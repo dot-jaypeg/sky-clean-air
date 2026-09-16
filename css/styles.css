@@ -552,7 +552,7 @@ body.nav-open { overflow: hidden; }
 }
 .kicker-num {
   position: absolute;
-  top: -0.3em;
+  top: -0.65em;
   left: 0;
   z-index: -1;
   font-family: var(--font-heading);
