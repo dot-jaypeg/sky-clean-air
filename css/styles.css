@@ -253,6 +253,41 @@ p { color: var(--ink-soft); }
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--night-line);
 }
+
+/* Homepage hero overlay header — the top bar + header float transparently
+   over the full-bleed hero and fill in solid once you scroll past it. */
+body.page-home .top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+body.page-home .site-header {
+  position: fixed;
+  top: var(--topbar-height);
+  left: 0;
+  right: 0;
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease, top 0.3s ease;
+}
+body.page-home.scrolled .top-bar {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+body.page-home.scrolled .site-header {
+  top: 0;
+  background: rgba(6, 12, 20, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--night-line);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
 .brand { display: flex; align-items: center; }
@@ -292,7 +327,7 @@ p { color: var(--ink-soft); }
 .mobile-nav {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: 110;
   background: var(--night);
   transform: translateX(100%);
   transition: transform 0.3s ease;
@@ -351,7 +386,7 @@ body.nav-open { overflow: hidden; }
   align-items: center;
   background: var(--night);
   overflow: hidden;
-  padding: 64px 0 96px;
+  padding: calc(var(--topbar-height) + var(--header-height) + 40px) 0 96px;
 }
 .hero-media {
   position: absolute;
@@ -456,7 +491,7 @@ body.nav-open { overflow: hidden; }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
 
 @media (max-width: 760px) {
-  .hero { padding: 28px 0 32px; }
+  .hero { padding: calc(var(--topbar-height) + var(--header-height) + 24px) 0 32px; }
   .hero-badge { margin-bottom: 16px; }
   .hero .lede { margin-top: 14px; }
   .hero-ctas { margin-top: 20px; }

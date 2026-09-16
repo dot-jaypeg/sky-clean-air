@@ -1,6 +1,13 @@
 (function () {
   'use strict';
 
+  // ---- Scrolled header state (transparent-over-hero -> solid fill) ----
+  var updateScrolled = function () {
+    document.body.classList.toggle('scrolled', window.scrollY > 8);
+  };
+  window.addEventListener('scroll', updateScrolled, { passive: true });
+  updateScrolled();
+
   // ---- Scroll progress bar ----
   var progressBar = document.getElementById('scroll-progress');
   if (progressBar) {
