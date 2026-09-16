@@ -341,7 +341,6 @@ body.nav-open { overflow: hidden; }
 @media (max-width: 760px) {
   .mobile-call-bar { display: block; }
   body { padding-bottom: 52px; }
-  .promo-strip { margin-bottom: 60px; }
 }
 
 /* ---- Hero ------------------------------------------------------------ */
@@ -455,30 +454,6 @@ body.nav-open { overflow: hidden; }
 .hero .lede { color: rgba(255, 255, 255, 0.75); margin-top: 20px; max-width: 560px; }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
 
-.promo-strip { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 40px; }
-.promo-chip {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-md);
-  padding: 14px 20px;
-  backdrop-filter: blur(6px);
-}
-.promo-chip .price {
-  font-family: var(--font-heading);
-  font-size: 1.9rem;
-  font-weight: 700;
-  line-height: 1;
-  background: var(--grad-sky);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.promo-chip .label { font-size: 0.85rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.02em; }
-.promo-chip .label small { display: block; font-weight: 400; color: rgba(255,255,255,0.55); text-transform: none; letter-spacing: normal; margin-top: 2px; }
-
 .scroll-cue {
   position: absolute;
   bottom: 28px;
@@ -520,7 +495,6 @@ body.nav-open { overflow: hidden; }
   .hero-badge { margin-bottom: 16px; }
   .hero .lede { margin-top: 14px; }
   .hero-ctas { margin-top: 20px; }
-  .promo-strip { margin-top: 20px; }
 }
 @media (max-width: 480px) {
   .hero h1 { font-size: clamp(2.2rem, 9vw, 2.6rem); }
@@ -802,6 +776,48 @@ body.nav-open { overflow: hidden; }
 .area-note { margin-top: 28px; font-size: 0.92rem; color: rgba(255, 255, 255, 0.55); }
 @media (max-width: 760px) {
   .area-band { padding-top: 80px; padding-bottom: 80px; }
+}
+
+/* ---- Special offers -------------------------------------------------- */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.offer-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--grad-sky);
+}
+.offer-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(42, 221, 234, 0.18), var(--shadow-lg); }
+.offer-price {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  background: var(--grad-sky);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+.offer-card h3 { margin-bottom: 10px; }
+.offer-card p { margin-bottom: 24px; }
+@media (max-width: 700px) {
+  .offers-grid { grid-template-columns: 1fr; }
 }
 
 /* ---- CTA band ----------------------------------------------------------- */
