@@ -844,6 +844,7 @@ body.nav-open { overflow: hidden; }
   box-shadow: 0 30px 60px -24px rgba(42, 221, 234, 0.5);
 }
 .cta-band > * { position: relative; z-index: 1; }
+.cta-band .hero-grid { position: absolute; z-index: 0; }
 .cta-band h2 { color: var(--white); }
 .cta-band p { color: rgba(255, 255, 255, 0.72); margin-top: 10px; }
 .cta-band .btn-outline { border-color: rgba(255, 255, 255, 0.5); color: var(--white); }
