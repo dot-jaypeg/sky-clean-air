@@ -370,8 +370,8 @@ body.nav-open { overflow: hidden; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(6,12,20,0.55) 0%, rgba(6,12,20,0.72) 55%, var(--night) 100%),
-    linear-gradient(100deg, rgba(6,12,20,0.9) 10%, rgba(6,12,20,0.35) 55%, rgba(6,12,20,0.75) 100%);
+    linear-gradient(180deg, rgba(6,12,20,0.3) 0%, rgba(6,12,20,0.45) 55%, rgba(6,12,20,0.8) 100%),
+    linear-gradient(100deg, rgba(6,12,20,0.65) 10%, rgba(6,12,20,0.15) 55%, rgba(6,12,20,0.45) 100%);
 }
 .hero-glow {
   position: absolute;
