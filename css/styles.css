@@ -546,23 +546,6 @@ body.nav-open { overflow: hidden; }
   color: transparent !important;
 }
 
-/* ---- Decorative blobs ---------------------------------------------------- */
-.blob-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  animation: blob-drift 16s ease-in-out infinite;
-}
-.blob.sky { background: radial-gradient(circle, rgba(42, 221, 234, 0.45) 0%, rgba(42, 221, 234, 0) 55%); }
-.blob.teal { background: radial-gradient(circle, rgba(35, 212, 215, 0.45) 0%, rgba(35, 212, 215, 0) 55%); }
-@keyframes blob-drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(20px, -16px) scale(1.06); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .blob { animation: none; }
-}
-
 /* ---- Wave section dividers ------------------------------------------------ */
 .wave-divider {
   position: absolute;
