@@ -1,6 +1,19 @@
 (function () {
   'use strict';
 
+  // ---- Scroll progress bar ----
+  var progressBar = document.getElementById('scroll-progress');
+  if (progressBar) {
+    var updateProgress = function () {
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  }
+
   // ---- Mobile nav drawer ----
   var navToggle = document.querySelector('.nav-toggle');
   var mobileNav = document.querySelector('.mobile-nav');

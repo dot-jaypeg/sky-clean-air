@@ -10,6 +10,8 @@
 </head>
 <body class="page-home">
 
+<div class="scroll-progress" id="scroll-progress"></div>
+
 <div class="top-bar">
   <div class="container">
     <div class="top-bar-left">
@@ -90,6 +92,15 @@
     <div class="hero-overlay"></div>
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-particles" aria-hidden="true">
+      <span class="particle" style="--px:6%; --ps:6px; --pd:9s; --pdelay:0s;"></span>
+      <span class="particle" style="--px:18%; --ps:9px; --pd:11s; --pdelay:1.5s;"></span>
+      <span class="particle" style="--px:32%; --ps:5px; --pd:8s; --pdelay:3s;"></span>
+      <span class="particle" style="--px:48%; --ps:8px; --pd:12s; --pdelay:.8s;"></span>
+      <span class="particle" style="--px:63%; --ps:6px; --pd:10s; --pdelay:2.4s;"></span>
+      <span class="particle" style="--px:77%; --ps:10px; --pd:13s; --pdelay:4s;"></span>
+      <span class="particle" style="--px:88%; --ps:5px; --pd:9.5s; --pdelay:1.1s;"></span>
+    </div>
     <div class="container">
       <div class="hero-content">
         <span class="hero-badge"><span class="dot"></span> Family-Owned Since 2018 &middot; San Diego, CA</span>
@@ -112,13 +123,20 @@
       </div>
     </div>
     <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span>Scroll</div>
+    <div class="wave-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,40 C360,100 1080,-10 1440,50 L1440,90 L0,90 Z" fill="#ffffff"/></svg>
+    </div>
   </section>
 
   <section class="section" id="services">
+    <div class="blob-field" aria-hidden="true">
+      <div class="blob sky" style="width:420px; height:420px; top:-140px; left:-120px;"></div>
+      <div class="blob teal" style="width:360px; height:360px; bottom:-160px; right:-100px; animation-delay:4s;"></div>
+    </div>
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="kicker-num" aria-hidden="true">01</span>
-        <h2>Core HVAC &amp; Air Quality Services</h2>
+        <h2>Core HVAC &amp; <span class="grad-text">Air Quality</span> Services</h2>
         <p>From a same-day duct cleaning to a full system install, our licensed technicians handle it right the first time — residential and commercial.</p>
       </div>
       <div class="services-grid">
@@ -164,9 +182,10 @@
 
   <section class="section stat-band bg-dark">
     <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true" style="top:-30%; left:-10%; right:auto;"></div>
     <div class="container">
       <div class="section-head center" data-reveal style="margin-bottom:56px;">
-        <h2>Built On Trust, Backed By Results</h2>
+        <h2>Built On Trust, Backed By <span class="grad-text">Results</span></h2>
       </div>
       <div class="counter-row" data-reveal>
         <div class="counter-item"><div class="num" data-count="8" data-suffix="+"><span class="val">0</span><span class="suf">+</span></div><div class="lbl">Years Serving San Diego</div></div>
@@ -175,9 +194,15 @@
         <div class="counter-item"><div class="num" data-count="20" data-suffix="+"><span class="val">0</span><span class="suf">+</span></div><div class="lbl">Cities Across SD &amp; OC</div></div>
       </div>
     </div>
+    <div class="wave-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,50 C420,-10 1020,100 1440,30 L1440,90 L0,90 Z" fill="#f2f7f9"/></svg>
+    </div>
   </section>
 
   <section class="section bg-soft" id="about">
+    <div class="blob-field" aria-hidden="true">
+      <div class="blob teal" style="width:380px; height:380px; top:-100px; right:-120px;"></div>
+    </div>
     <div class="container">
       <div class="story">
         <div class="story-media" data-reveal>
@@ -186,7 +211,7 @@
           <span class="frame-corner br" aria-hidden="true"></span>
         </div>
         <div class="story-copy" data-reveal style="--reveal-delay:.12s">
-          <h2>We Have An Extreme Team To Serve You</h2>
+          <h2>We Have An <span class="grad-text">Extreme Team</span> To Serve You</h2>
           <p>Sky Clean Air is a family owned and operated residential and commercial indoor air quality services company. Our goal is to provide the most professional service possible. Our team of trained and experienced technicians use state-of-the-art equipment to get the best results in every service we provide.</p>
           <p>Over the years, through our quality work, Sky Clean Air has built an extremely loyal and satisfied group of customers who show their enthusiasm by constantly making referrals to friends and loved ones. Most of our customers return to us whenever they need any cleaning service for their home or business.</p>
           <div class="story-signoff">
@@ -198,10 +223,13 @@
   </section>
 
   <section class="section" id="reviews">
+    <div class="blob-field" aria-hidden="true">
+      <div class="blob sky" style="width:340px; height:340px; bottom:-120px; left:-100px; animation-delay:2s;"></div>
+    </div>
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="kicker-num" aria-hidden="true">02</span>
-        <h2>Rated 5 Stars Across San Diego</h2>
+        <h2>Rated <span class="grad-text">5 Stars</span> Across San Diego</h2>
         <p>Don't just take our word for it — see what homeowners across San Diego County are saying.</p>
       </div>
       <div class="testimonial-grid" data-reveal>
@@ -230,9 +258,13 @@
   </section>
 
   <section class="area-band section" id="areas">
+    <div class="blob-field" aria-hidden="true">
+      <div class="blob teal" style="width:400px; height:400px; top:-140px; right:-100px;"></div>
+      <div class="blob sky" style="width:300px; height:300px; bottom:-100px; left:10%; animation-delay:3s;"></div>
+    </div>
     <div class="container">
       <div class="area-head section-head" data-reveal>
-        <h2>Serving San Diego County &amp; Beyond</h2>
+        <h2>Serving <span class="grad-text">San Diego County</span> &amp; Beyond</h2>
         <p>From San Ysidro to Fallbrook, with service into Temecula, San Clemente, and Brea — if you're within our reach, we're already on our way.</p>
       </div>
       <div class="city-cloud" data-reveal>
@@ -263,7 +295,7 @@
     <div class="container">
       <div class="cta-band" data-reveal>
         <div>
-          <h2>Ready For Cleaner Air?</h2>
+          <h2>Ready For <span class="grad-text">Cleaner Air</span>?</h2>
           <p>Get a free estimate today — same-day and next-day appointments available across San Diego County.</p>
         </div>
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
@@ -276,6 +308,9 @@
 </main>
 
 <footer class="site-footer" id="contact">
+  <div class="blob-field" aria-hidden="true">
+    <div class="blob sky" style="width:360px; height:360px; top:-100px; left:20%; opacity:0.2;"></div>
+  </div>
   <div class="footer-top">
     <div class="container footer-grid">
       <div class="footer-brand">
