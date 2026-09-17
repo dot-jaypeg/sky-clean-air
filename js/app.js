@@ -1,6 +1,22 @@
 (function () {
   'use strict';
 
+  // ---- Force hero video autoplay (some mobile browsers show a play
+  // button and wait instead of honoring the autoplay attribute) ----
+  var heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    var tryPlay = function () {
+      var p = heroVideo.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    tryPlay();
+    heroVideo.addEventListener('loadedmetadata', tryPlay);
+    heroVideo.addEventListener('canplay', tryPlay);
+    ['touchstart', 'click'].forEach(function (evt) {
+      document.addEventListener(evt, tryPlay, { once: true, passive: true });
+    });
+  }
+
   // ---- Scrolled header state (transparent-over-hero -> solid fill) ----
   var updateScrolled = function () {
     document.body.classList.toggle('scrolled', window.scrollY > 8);
