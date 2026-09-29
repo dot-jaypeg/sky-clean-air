@@ -32,7 +32,7 @@ def stat_band(ch, D, arg=None):
     stats = [(years, '+', 'Years In Business'), (100, '%', 'Licensed &amp; Insured'),
              (5, '★', 'Google &amp; Yelp Rated'), (city_count, '+', 'Communities Served')]
     items = ''.join(
-        f'<div class="counter-item"><div class="num" data-count="{n}"><span class="val">0</span><span class="suf">{suf}</span></div>'
+        f'<div class="counter-item"><div class="num" data-count="{n}"><span class="val">{n:,}</span><span class="suf">{suf}</span></div>'
         f'<div class="lbl">{lbl}</div></div>' for n, suf, lbl in stats)
     return f'''<section class="section stat-band bg-dark">
   <div class="hero-grid" aria-hidden="true"></div>

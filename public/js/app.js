@@ -92,16 +92,18 @@
       if (!start) start = timestamp;
       var progress = Math.min((timestamp - start) / duration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      valEl.textContent = Math.round(eased * target);
+      valEl.textContent = Math.round(eased * target).toLocaleString('en-US');
       if (progress < 1) {
         window.requestAnimationFrame(step);
       } else {
-        valEl.textContent = target;
+        valEl.textContent = target.toLocaleString('en-US');
       }
     }
     window.requestAnimationFrame(step);
   }
   if ('IntersectionObserver' in window && counters.length) {
+    // The real value is in the HTML (for crawlers / no-JS); zero it just before animating.
+    counters.forEach(function (el) { var v = el.querySelector('.val'); if (v) v.textContent = '0'; });
     var counterObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
