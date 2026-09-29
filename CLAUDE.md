@@ -16,6 +16,11 @@ The user has authorized automatic git management for this repo. Unless told othe
 
 ## Notes
 
-- `assets/content/*.mp4` and `*.mov` are gitignored (over GitHub's 100MB limit, not web-optimized). They also turned out to be finished vertical (9:16) social-ad clips with burned-in captions, not clean b-roll — not usable as a hero background loop as originally planned. The hero uses a real client photo (`assets/images/hero-team.jpg`, from `assets/content/IMG_6339.jpeg`) instead.
+- `assets/content/*.mp4` and `*.mov` are gitignored (over GitHub's 100MB limit, not web-optimized). The client's own clips are finished vertical (9:16) social-ad edits with burned-in captions, not clean b-roll, so they aren't used on the site.
+- Background video comes from stock footage in `assets/content/stock/` (gitignored — sources run up to ~400MB), transcoded to web-sized mp4 + webm in `assets/video/` at 1600px wide, no audio, each with a poster frame in `assets/images/`:
+  - Hero: `hero-loop.*` (aerial rooftop HVAC units) + `hero-poster.jpg`. `js/app.js` forces `play()` on load/first interaction so mobile browsers don't show a play-button overlay.
+  - Service-area section: `area-bg.*` (aerial downtown San Diego) + `area-bg-poster.jpg`, under a dark scrim.
+- About section photo: `assets/images/story-team.jpg` — the full team lined up in front of the vans, cropped tight.
+- `assets/images/hero-team.jpg` (from `assets/content/IMG_6339.jpeg`) is the old hero photo and is no longer referenced anywhere.
 - Nav links are in-page anchors (`#services`, `#about`, etc.) for now since only the homepage exists — swap to real page routes as each page gets built.
 - Phone number is 619-304-8822 (from the onboarding doc) — the live legacy site displays a different number, (858) 346-5551, possibly a tracked marketing line; confirm with the client if the two need to be reconciled.
