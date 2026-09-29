@@ -12,7 +12,7 @@ import os
 import re
 
 import components
-from gen_legacy import (area_name, article_layout, faq_section, image_map, legacy_all, legacy_by_path,
+from gen_legacy import (article_layout, faq_section, image_map, legacy_all, legacy_by_path,
                         local_images, seo_title, sidebar, strip_self_links, text_excerpt)
 from sitelib import ROOT, breadcrumb_schema, cta_band, esc, icon, page_hero
 
@@ -38,16 +38,6 @@ def split_faqs(body):
     if not pairs:
         return body, []
     return body[:m.start()].rstrip(), [[re.sub(r'<[^>]+>', '', q).strip(), a.strip()] for q, a in pairs]
-
-
-def locations_for(slug):
-    """Neighborhood pages that exist for a service: [(area_slug, path)]."""
-    out = []
-    for r in legacy_all('page', 'service-location'):
-        s, a = r['path'].strip('/').split('/')
-        if s == slug:
-            out.append((a, r['path']))
-    return sorted(out)
 
 
 def service_pages(site):
@@ -83,17 +73,15 @@ def service_pages(site):
         faq_html, faq_schema = faq_section(faqs, f'{name}: Frequently Asked Questions')
 
         # Where this service is offered: legacy neighborhood pages + live cities in newer regions
-        locs = locations_for(slug)
-        chips = ''.join(f'<a class="city-chip light" href="{p}">{esc(area_name(D, a))}</a>' for a, p in locs)
-        oc = ''.join(f'<a class="city-chip light" href="/service-areas/{c["slug"]}/">{esc(c["name"])}</a>'
-                     for c in D.cities('orange-county'))
-        sd_block = f'<h3>San Diego County</h3><div class="city-cloud">{chips}</div>' if chips else ''
-        area_html = f'''<section class="service-areas-block">
-  <h2>Where We Offer {esc(name)}</h2>
-  <p>Our crews provide {esc(name.lower())} across {" and ".join(regions)}. Choose your area for local details.</p>
-  <h3>Orange County</h3><div class="city-cloud">{oc}</div>
-  {sd_block}
-  <p class="more-link"><a href="/service-areas/">View the full service area map &rarr;</a></p>
+        # One CTA to the service-area hub instead of listing every city on every service page.
+        live_count = sum(1 for c in D.cities() if (c.get('status') or D.region(c['region'])['status']) != 'coming-soon')
+        area_html = f'''<section class="service-areas-cta">
+  <span class="sac-icon">{icon("pin", 26)}</span>
+  <div class="sac-copy">
+    <h2>Where We Offer {esc(name)}</h2>
+    <p>Our crews provide {esc(name.lower())} in {live_count}+ communities across {" and ".join(regions)}, with the Inland Empire coming soon.</p>
+  </div>
+  <a class="btn btn-primary" href="/service-areas/">View Our Service Areas &rarr;</a>
 </section>'''
 
         siblings = [(s['name'], f'/{s["slug"]}/') for s in cat['services'] if s['slug'] != slug and not s.get('hidden')]
