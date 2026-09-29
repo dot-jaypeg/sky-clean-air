@@ -1,0 +1,739 @@
+{
+  "_note": "Hand-written local intros for city service-area pages (cities without migrated legacy copy). Keyed by city slug from areas.json.",
+  "san-clemente": {
+    "intro": [
+      "San Clemente sits right on the ocean at the south end of Orange County, and the marine layer rolls in most mornings from May through July. That damp, salty air finds its way into attics, garages and duct runs, which is why we see corroded registers and musty-smelling ducts in homes near the pier as often as we do. Up the hill in Talega and Forster Ranch, the newer tract homes run warmer in late summer, and the upstairs bedrooms are usually the first to complain.",
+      "Sky Clean Air recently expanded north into Orange County, and San Clemente is one of the first places our trucks reach coming up the 5 from San Diego. It's the same crew and the same standards our San Diego customers already know. We clean ducts and dryer vents, repair and replace AC and heating systems, and add attic insulation where it's thin. If you're weighing a new system, we'll look at what you actually have first and tell you honestly whether it's worth repairing."
+    ],
+    "local": [
+      "Salt air near the coast speeds up corrosion on outdoor AC coils.",
+      "Marine-layer moisture can leave ducts and returns smelling musty.",
+      "Hillside homes in Talega and Forster Ranch run hotter upstairs in summer."
+    ],
+    "neighborhoods": [
+      "Talega",
+      "Forster Ranch",
+      "Rancho San Clemente",
+      "Marblehead",
+      "Shorecliffs",
+      "Pier Bowl"
+    ]
+  },
+  "dana-point": {
+    "intro": [
+      "Homes in Dana Point live with the harbor breeze. It keeps summers mild, but it also carries salt and moisture into every crawlspace and attic in town. Around Capistrano Beach and the Lantern District you'll find plenty of older homes with original ductwork, while Monarch Beach and Niguel Shores lean toward larger houses with more than one system. In both cases the main enemies are corrosion on outdoor equipment and dampness that settles into ducts, filters and dryer vents.",
+      "Now that Sky Clean Air serves Orange County, Dana Point homeowners get the same crew and the same upfront approach we've built in San Diego since 2018. We clean air ducts and dryer vents, service and replace AC and furnaces, and improve attic insulation. Because many coastal homes barely use their air conditioning, we often find systems that have sat idle for years. We'll check whether yours is still in good shape rather than assume it needs replacing."
+    ],
+    "local": [
+      "Coastal salt air shortens the life of condenser coils and fins.",
+      "Long dryer vent runs in townhomes clog with lint faster than you'd expect.",
+      "Rarely used AC systems benefit from a check before the first hot week."
+    ],
+    "neighborhoods": [
+      "Capistrano Beach",
+      "Monarch Beach",
+      "Lantern District",
+      "Niguel Shores",
+      "Dana Point Harbor"
+    ]
+  },
+  "san-juan-capistrano": {
+    "intro": [
+      "A few miles inland from the coast, San Juan Capistrano gets noticeably warmer than Dana Point on summer afternoons. The town mixes historic adobe-era streets around the Mission and Los Rios with ranch-style homes, horse properties and hillside neighborhoods like Marbella. Older houses here often have ductwork that has never been cleaned or sealed, and properties near open land and stables deal with more dust, pollen and hay debris getting pulled in through the return.",
+      "Sky Clean Air has recently expanded into Orange County, bringing the same crew and standards we've used in San Diego to homes along Ortega Highway and throughout San Juan. We handle air duct cleaning, dryer vent cleaning, AC and heating repair and installation, attic insulation and indoor air quality upgrades. For older homes, a duct inspection is a good starting point. It tells you whether cleaning is enough or whether leaky, aging ductwork is the real problem."
+    ],
+    "local": [
+      "Dust and pollen from open land and horse properties load filters quickly.",
+      "Older ranch homes often have original, unsealed ductwork.",
+      "Afternoons run warmer than the coast, so AC works harder here."
+    ],
+    "neighborhoods": [
+      "Los Rios Historic District",
+      "Marbella",
+      "San Juan Hills"
+    ]
+  },
+  "laguna-niguel": {
+    "intro": [
+      "Much of Laguna Niguel was built out from the 1970s through the 1990s, so a lot of homes here are now on their second or third furnace and AC. Many are two-story houses on sloped lots, with ducts running through a hot attic and a single system trying to keep both floors comfortable. Neighborhoods closer to the ocean, like Marina Hills, pick up some coastal moisture, while those farther inland feel the summer heat and the dry Santa Ana wind events in fall.",
+      "Since Sky Clean Air expanded into Orange County, we've been bringing Laguna Niguel homeowners the same crew and the same no-pressure recommendations our San Diego customers are used to. We clean ducts and dryer vents, repair and replace AC and heating equipment, and top up attic insulation. If your upstairs never cools down, we'll look at the ducts, insulation and system size together before recommending anything, because the fix isn't always a new unit."
+    ],
+    "local": [
+      "Many homes from the 1970s–90s still run their original ductwork.",
+      "Two-story homes often need better attic insulation to keep upstairs comfortable.",
+      "Santa Ana wind events push fine dust into homes each fall."
+    ],
+    "neighborhoods": [
+      "Marina Hills",
+      "Bear Brand Ranch",
+      "Beacon Hill",
+      "Laguna Sur"
+    ]
+  },
+  "laguna-beach": {
+    "intro": [
+      "Laguna Beach is built into steep canyons and bluffs, and that shapes everything about heating and cooling here. Many homes are older cottages or custom hillside houses where ducts snake through tight crawlspaces, and some have no central air at all. Salt air is constant near the water, and the canyons have a real wildfire history, so smoke during fire season is a genuine indoor air concern for homes in Bluebird Canyon, Top of the World and along Laguna Canyon.",
+      "Sky Clean Air recently expanded into Orange County, and we bring the same crew and standards to Laguna Beach that we've kept in San Diego since 2018. We clean ducts and dryer vents, service heating and cooling systems, install new equipment where it makes sense, and help with air filtration for smoky days. In older cottages we'll be straight with you about what the house can realistically support, whether that's a ducted system, a ductless option or simply better filtration."
+    ],
+    "local": [
+      "Wildfire smoke drifting through the canyons makes good filtration worth having.",
+      "Tight crawlspaces and older ducts need careful, hands-on inspection.",
+      "Salt air near the water corrodes outdoor equipment faster."
+    ],
+    "neighborhoods": [
+      "North Laguna",
+      "South Laguna",
+      "Top of the World",
+      "Bluebird Canyon",
+      "Three Arch Bay",
+      "Arch Beach Heights"
+    ]
+  },
+  "aliso-viejo": {
+    "intro": [
+      "Aliso Viejo is one of south Orange County's younger cities, mostly built as a planned community in the late 1980s and 1990s. That means a lot of townhomes and condos with compact mechanical closets, attic air handlers and long, shared-wall dryer vent runs. Plenty of the original HVAC equipment from that building boom is now reaching the age where repairs get more frequent. Summers are mild but warm enough that a tired AC shows its age every August.",
+      "We've recently brought Sky Clean Air into Orange County with the same crew and standards we built in San Diego, and Aliso Viejo's housing stock is right in our wheelhouse. Dryer vent cleaning is a big one for condos and townhomes here. We also clean ducts, repair and replace AC and furnaces, and add attic insulation. If your system is 20-plus years old, we'll tell you plainly whether a repair is still worth the money."
+    ],
+    "local": [
+      "Original equipment from the late 1980s and 90s is due for evaluation.",
+      "Long dryer vent runs in condos and townhomes clog easily.",
+      "Attic air handlers in compact homes benefit from regular filter changes."
+    ],
+    "neighborhoods": [
+      "Glenwood",
+      "Vantis",
+      "Aliso Viejo Town Center"
+    ]
+  },
+  "laguna-hills": {
+    "intro": [
+      "Laguna Hills sits in the Saddleback Valley just east of the coastal ridges, so it trades beach fog for warmer, drier summer afternoons. Much of the housing dates from the 1960s through the 1980s, from single-story ranch homes to the larger lots of Nellie Gail Ranch. Homes of that age often have ducts that have been patched over the years, attic insulation that has settled, and furnaces that have quietly outlived their expected lifespan.",
+      "With Sky Clean Air now serving Orange County, Laguna Hills homeowners get the same crew and the same standards we've kept in San Diego. We start with an honest look at your ducts, attic and equipment, then recommend only what's needed. That might be duct cleaning or sealing, a dryer vent cleaning, new attic insulation or an AC and heating replacement. On larger properties with multiple systems, we'll help you prioritize instead of doing everything at once."
+    ],
+    "local": [
+      "Settled attic insulation in older homes lets summer heat pour in.",
+      "Patched, decades-old ductwork often leaks conditioned air into the attic.",
+      "Warmer inland afternoons put more strain on aging AC units."
+    ],
+    "neighborhoods": [
+      "Nellie Gail Ranch"
+    ]
+  },
+  "mission-viejo": {
+    "intro": [
+      "Mission Viejo was laid out as a master-planned community starting in the late 1960s, and many of its homes are now 40 to 55 years old. Inland from the coast, it gets properly hot in summer, and a lot of houses still rely on AC systems and ductwork that were replaced once, if at all. Around Lake Mission Viejo and in neighborhoods like Casta del Sol and Aegean Hills, we regularly find leaky ducts and thin attic insulation working against an aging unit.",
+      "Sky Clean Air has recently expanded into Orange County, and our Mission Viejo customers get the same crew and standards we've built over years of San Diego work. We clean air ducts and dryer vents, repair and install AC and heating systems, and add attic insulation to cut down on that late-afternoon heat. If your system is older than about 15 years, we'll walk you through repair versus replacement honestly, with a written price before any work."
+    ],
+    "local": [
+      "Inland summer heat means AC runs hard from July into October.",
+      "Homes from the late 1960s–80s often need attic insulation topped up.",
+      "Older duct runs lose cool air before it reaches the far rooms."
+    ],
+    "neighborhoods": [
+      "Lake Mission Viejo",
+      "Casta del Sol",
+      "Palmia",
+      "Aegean Hills",
+      "Pacific Hills"
+    ]
+  },
+  "rancho-santa-margarita": {
+    "intro": [
+      "Tucked against the foothills of the Santa Ana Mountains, Rancho Santa Margarita is mostly homes built in the 1980s and 1990s, many of them two-story tract houses and townhomes. Being this far inland, it runs hotter in summer than coastal south county, and the foothill location brings wind, dust and occasional wildfire smoke. Plenty of the original AC systems from the city's build-out are now near or past the age when replacement starts to make sense.",
+      "Now that Sky Clean Air serves Orange County, Rancho Santa Margarita homes get the same crew and standards we've kept in San Diego since 2018. We clean ducts and dryer vents, repair and replace AC and furnaces, add attic insulation and set up better air filtration for smoky or windy days. We'll also do a whole-home HVAC check during duct or dryer vent visits, so you know where your system stands before summer."
+    ],
+    "local": [
+      "Foothill wind and wildfire smoke make good air filtration valuable.",
+      "Many original 1980s–90s AC systems are due for a hard look.",
+      "Upstairs rooms in two-story homes often run several degrees warmer."
+    ],
+    "neighborhoods": [
+      "Dove Canyon",
+      "Tijeras Creek"
+    ]
+  },
+  "ladera-ranch": {
+    "intro": [
+      "Ladera Ranch is a newer unincorporated community, with most homes built from around 1999 into the 2010s across villages like Covenant Hills, Terramor and Oak Knoll. The houses are well built, but many are large two-story homes with attic air handlers, zoned systems and long duct runs. The first generation of HVAC equipment here is now 15 to 25 years old, and the inland location means summers are warm enough to test it.",
+      "Sky Clean Air recently expanded into Orange County, bringing Ladera Ranch the same crew and standards our San Diego customers know. We clean ducts and dryer vents, troubleshoot zoning problems, repair and replace AC and heating systems, and improve attic insulation. For homes still on original equipment, a tune-up and inspection is a sensible first step. It shows whether you have years left or should start planning a replacement."
+    ],
+    "local": [
+      "First-generation equipment from the early 2000s is reaching replacement age.",
+      "Zoned systems with multiple dampers need periodic checking.",
+      "Big homes with attic air handlers benefit from regular duct cleaning."
+    ],
+    "neighborhoods": [
+      "Covenant Hills",
+      "Terramor",
+      "Oak Knoll",
+      "Flintridge",
+      "Township",
+      "Bridgepark"
+    ]
+  },
+  "lake-forest": {
+    "intro": [
+      "Lake Forest, once known as El Toro, spans a wide range of housing. There are 1960s and 70s tract homes on the older west side, and newer builds in Foothill Ranch, Portola Hills and Baker Ranch. Summers are hot here compared to the coast, and homes near the foothills also catch dust, pollen and smoke when the Santa Ana winds blow. Older homes tend to have undersized or leaky ducts, while newer ones often need their first real service.",
+      "Since expanding into Orange County, Sky Clean Air has been serving Lake Forest with the same crew and standards we've used in San Diego. We clean air ducts and dryer vents, repair and install AC and heating systems, add attic insulation and help with air filtration. Whether your home is a 1970s original or a newer build, we'll inspect before we recommend, and we'll tell you honestly if a repair makes more sense than a replacement."
+    ],
+    "local": [
+      "Inland heat makes AC performance a real comfort issue each summer.",
+      "Santa Ana winds carry foothill dust and smoke into homes.",
+      "Older El Toro-era tract homes often have leaky original ducts."
+    ],
+    "neighborhoods": [
+      "Foothill Ranch",
+      "Portola Hills",
+      "Baker Ranch",
+      "Serrano Summit"
+    ]
+  },
+  "irvine": {
+    "intro": [
+      "Irvine is almost entirely master-planned, built village by village from the early 1970s on. Woodbridge, Northwood and Turtle Rock have homes that are now 30 to 50 years old, often with original ductwork and a second or third AC. Newer areas like Portola Springs and the Great Park neighborhoods have modern, tighter homes where filtration and ventilation matter more. Across the city, attic air handlers and ducts sitting in hot attics are the norm.",
+      "Sky Clean Air recently expanded into Orange County, and Irvine gets the same crew and standards we've built in San Diego. We clean ducts and dryer vents, repair and replace AC and heating equipment, add attic insulation and improve indoor air quality with better filtration. In older villages, we'll check whether the ducts are worth cleaning or due for replacement. In newer homes, we'll make sure your system is breathing properly."
+    ],
+    "local": [
+      "Homes in older villages often still have their original 1970s–90s ductwork.",
+      "Tighter newer homes rely more on good filtration and ventilation.",
+      "Attic ducts and air handlers deal with high summer attic temperatures."
+    ],
+    "neighborhoods": [
+      "Woodbridge",
+      "Northwood",
+      "Turtle Rock",
+      "University Park",
+      "Quail Hill",
+      "Portola Springs",
+      "Westpark"
+    ]
+  },
+  "newport-beach": {
+    "intro": [
+      "From Balboa Island to Newport Coast, Newport Beach covers everything from tightly packed beach cottages to large hillside custom homes. On the peninsula and the islands, salt air and humidity are the main concerns, eating away at outdoor units and leaving ducts damp. Up in Newport Coast and the heights above Corona del Mar, homes are bigger, often with several zoned systems and long duct runs through the attic.",
+      "Now that Sky Clean Air has expanded into Orange County, Newport Beach homeowners get the same crew and the same standards we built serving San Diego's coastal neighborhoods. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with air purification. For homes near the water, we pay close attention to corrosion. For larger homes, we'll help you sort out which system needs attention first."
+    ],
+    "local": [
+      "Salt air on the peninsula and islands corrodes outdoor equipment quickly.",
+      "Large homes with multiple zones need each system checked separately.",
+      "Coastal humidity can leave ducts and returns smelling musty."
+    ],
+    "neighborhoods": [
+      "Balboa Island",
+      "Corona del Mar",
+      "Newport Heights",
+      "Eastbluff",
+      "Newport Coast",
+      "Lido Isle",
+      "Balboa Peninsula"
+    ]
+  },
+  "costa-mesa": {
+    "intro": [
+      "Costa Mesa grew fast after World War II, and many of its homes, especially on the Eastside and Westside, date from the 1950s and 60s. Houses of that era often came with a floor or wall furnace and no central air, or with ductwork that has been added onto over the decades. Mesa Verde and College Park have more 1960s tract homes, many now on aging systems. The city is close enough to the ocean for mild summers but still sees warm spells inland of the 405.",
+      "Sky Clean Air has recently expanded into Orange County, bringing Costa Mesa the same crew and standards we've kept in San Diego since 2018. We clean ducts and dryer vents, install and repair AC and heating systems, and add attic insulation to older homes that never had much. If you're thinking about adding central air to a mid-century house, we'll look at your attic and layout first and give you an honest take on what's practical."
+    ],
+    "local": [
+      "Many 1950s–60s homes started with wall furnaces and no central air.",
+      "Added-on ductwork in older homes is often leaky or poorly balanced.",
+      "Thin attic insulation is common in mid-century Costa Mesa homes."
+    ],
+    "neighborhoods": [
+      "Eastside",
+      "Westside",
+      "Mesa Verde",
+      "College Park",
+      "Mesa del Mar"
+    ]
+  },
+  "huntington-beach": {
+    "intro": [
+      "Huntington Beach lives in the marine layer. Near the coast and around Huntington Harbour, damp salty air is part of daily life, and it shows up as rusted condenser cabinets, musty ducts and dryer vents that clog faster in the humidity. Much of the city is 1960s and 70s tract housing, so a lot of homes are running older ductwork. Farther inland, toward the 405, summers warm up enough that a tired AC really gets noticed.",
+      "We recently expanded Sky Clean Air into Orange County, and Huntington Beach gets the same crew and standards our San Diego customers rely on. We clean air ducts and dryer vents, repair and replace AC and furnaces, add attic insulation and help with humidity-related air quality issues. For older tract homes, we'll inspect the ducts and tell you honestly whether cleaning will help or whether sealing or replacement is the better use of your money."
+    ],
+    "local": [
+      "Marine-layer humidity can lead to musty ducts and returns.",
+      "Salt air near the beach corrodes outdoor AC units faster.",
+      "Many 1960s–70s tract homes still run original ductwork."
+    ],
+    "neighborhoods": [
+      "Huntington Harbour",
+      "Seacliff",
+      "Sunset Beach",
+      "Downtown Huntington Beach"
+    ]
+  },
+  "fountain-valley": {
+    "intro": [
+      "Fountain Valley is mostly single-family tract homes built in the 1960s and 70s, many on the same street plans they started with. That means a lot of houses with ducts in the attic that are now 50-plus years old, insulation that has flattened out, and furnaces or AC units that have been replaced piecemeal. The city is just far enough from the beach to stay mild, but warm summer days still expose poor airflow and leaky duct runs.",
+      "Sky Clean Air has recently expanded into Orange County with the same crew and standards we bring to San Diego, and Fountain Valley's housing stock is a good match for what we do. We clean ducts and dryer vents, repair and install AC and heating systems, and add attic insulation. During a duct or dryer vent visit, we'll also check your HVAC system and let you know if anything needs attention, without pushing work you don't need."
+    ],
+    "local": [
+      "Original 1960s–70s attic ductwork often leaks at the joints.",
+      "Flattened attic insulation lets heat into single-story homes.",
+      "Piecemeal equipment replacements can leave systems mismatched."
+    ],
+    "neighborhoods": []
+  },
+  "tustin": {
+    "intro": [
+      "Tustin has three very different kinds of homes. Old Town Tustin has houses dating back more than a century, with the quirks that come with them. Tustin Ranch was built mostly in the 1980s and 90s and is now hitting the age when original equipment wears out. Tustin Legacy, on the former Marine Corps base, is newer construction with tighter building envelopes. Each needs a different approach to ducts, insulation and air quality.",
+      "Sky Clean Air recently expanded into Orange County, bringing Tustin the same crew and the same standards we've kept in San Diego. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and improve filtration. In older Old Town homes, we'll tell you what's realistic. In Tustin Ranch, we'll help you plan for aging equipment. In newer Legacy homes, we'll keep your system running the way it should."
+    ],
+    "local": [
+      "Old Town homes may have limited attic space or retrofitted ducts.",
+      "Tustin Ranch systems from the 1980s–90s are nearing replacement age.",
+      "Tighter newer homes depend on good filtration and fresh-air ventilation."
+    ],
+    "neighborhoods": [
+      "Old Town Tustin",
+      "Tustin Ranch",
+      "Tustin Legacy",
+      "Tustin Meadows"
+    ]
+  },
+  "santa-ana": {
+    "intro": [
+      "Santa Ana has some of Orange County's oldest housing, including 1920s and 30s bungalows and period revival homes in historic districts like Floral Park, French Park and Washington Square. Many of these homes were built without central air and have had ducts added later, sometimes in tight attics or crawlspaces. Newer neighborhoods have more typical postwar tract homes. Inland summers get hot, and traffic along the major freeways adds dust and exhaust to the air.",
+      "Now that Sky Clean Air has expanded into Orange County, Santa Ana homeowners get the same crew and standards we've built in San Diego since 2018. We clean ducts and dryer vents, install and repair AC and heating systems, add attic insulation and help with indoor air quality. For historic homes, we take extra care with older construction and give you an honest opinion on what the house can realistically handle."
+    ],
+    "local": [
+      "Historic homes often have retrofitted ducts in tight attics or crawlspaces.",
+      "Freeway-adjacent homes benefit from better air filtration.",
+      "Hot inland summers expose weak or undersized AC systems."
+    ],
+    "neighborhoods": [
+      "Floral Park",
+      "French Park",
+      "Washington Square",
+      "Wilshire Square",
+      "Park Santiago",
+      "Downtown Santa Ana"
+    ]
+  },
+  "orange": {
+    "intro": [
+      "The City of Orange mixes Old Towne's historic homes, many from the early 1900s, with postwar tract neighborhoods and newer hillside homes in Santiago Hills and Serrano Heights. Inland and close to the foothills, Orange gets hot in summer and catches the full force of Santa Ana winds in fall, which bring dust and, some years, wildfire smoke. Older homes often have limited ductwork and thin insulation, while newer ones deal with long attic runs.",
+      "Sky Clean Air has recently expanded into Orange County with the same crew and standards our San Diego customers know. In the City of Orange, we clean ducts and dryer vents, repair and replace AC and furnaces, add attic insulation and set up better filtration for windy or smoky days. In Old Towne, we'll respect the character of an older home and tell you straight what's feasible before we start."
+    ],
+    "local": [
+      "Santa Ana winds push dust and wildfire smoke into foothill homes.",
+      "Older Old Towne homes often have thin or no attic insulation.",
+      "Hillside homes deal with long duct runs through hot attics."
+    ],
+    "neighborhoods": [
+      "Old Towne Orange",
+      "El Modena",
+      "Santiago Hills",
+      "Serrano Heights"
+    ]
+  },
+  "garden-grove": {
+    "intro": [
+      "Garden Grove filled in quickly in the 1950s and 60s, and much of it is still made up of single-story tract homes from that era. Many started with a wall or floor furnace and later added central air, so ductwork can be a patchwork of old and new. Attic insulation is often thin or compressed. With summers warmer than the coast, a lot of these homes struggle to stay comfortable in the back bedrooms.",
+      "Since Sky Clean Air expanded into Orange County, we've brought Garden Grove the same crew and standards we built in San Diego. We clean ducts and dryer vents, repair and replace AC and heating systems, and add attic insulation to help older homes hold their temperature. If you're considering central air for the first time, we'll look at your attic and electrical setup and give you a clear, written price before any work begins."
+    ],
+    "local": [
+      "Many 1950s–60s homes have patchwork ducts from later AC additions.",
+      "Compressed attic insulation lets summer heat into back bedrooms.",
+      "Older wall furnaces may be ready for a modern replacement."
+    ],
+    "neighborhoods": [
+      "West Garden Grove"
+    ]
+  },
+  "anaheim": {
+    "intro": [
+      "Anaheim is big and varied. West Anaheim and the central city are full of 1950s and 60s tract homes, while Anaheim Hills has larger hillside homes from the 1970s through the 90s. It's hotter here than the coast, and Anaheim Hills in particular gets hit by Santa Ana winds and, in bad years, wildfire smoke from the nearby canyons. Older homes tend to have aging ducts, and hillside homes often have long, hot attic runs.",
+      "Sky Clean Air recently expanded into Orange County, and Anaheim gets the same crew and standards we've kept in San Diego since 2018. We clean ducts and dryer vents, repair and install AC and heating systems, add attic insulation and help with air filtration during wind and fire season. We'll inspect before we recommend anything and tell you honestly whether your system needs work or just some attention."
+    ],
+    "local": [
+      "Anaheim Hills homes get Santa Ana winds and occasional wildfire smoke.",
+      "1950s–60s tract homes often have aging, leaky ductwork.",
+      "Hot inland summers make AC efficiency a real cost issue."
+    ],
+    "neighborhoods": [
+      "Anaheim Hills",
+      "Anaheim Colony",
+      "West Anaheim",
+      "Platinum Triangle",
+      "Anaheim Resort"
+    ]
+  },
+  "westminster": {
+    "intro": [
+      "Westminster is mostly postwar single-family homes built in the 1950s and 60s, with some newer infill and townhomes mixed in. Close enough to the coast to stay moderate, it still gets warm spells, and homes of this era often have original or partially replaced ductwork running through lightly insulated attics. Many households also run older furnaces that have kept going well past their expected life.",
+      "Sky Clean Air has recently expanded into Orange County with the same crew and the same standards we've built in San Diego. In Westminster, we clean ducts and dryer vents, repair and replace AC and heating equipment, and add attic insulation. We also do a whole-home HVAC check during duct and dryer vent visits, so you'll know if your furnace or AC is showing its age before it lets you down."
+    ],
+    "local": [
+      "Original 1950s–60s ductwork often leaks conditioned air into the attic.",
+      "Aging furnaces should be checked before the first cold nights.",
+      "Lightly insulated attics make summer afternoons uncomfortable indoors."
+    ],
+    "neighborhoods": [
+      "Little Saigon"
+    ]
+  },
+  "fullerton": {
+    "intro": [
+      "Fullerton has some of north Orange County's older housing, with 1920s through 1960s homes around downtown and larger ranch-style and hillside homes in Sunny Hills and Golden Hills. Many of these houses have ducts that were added or rerouted over the decades, and attic insulation that hasn't been touched in years. North county runs hotter than the coast, so summer comfort depends a lot on how well the ducts and attic are holding up.",
+      "Now that Sky Clean Air serves Orange County, Fullerton homeowners get the same crew and standards we've kept in San Diego. We clean ducts and dryer vents, repair and replace AC and furnaces, and add attic insulation to older homes that need it. For older ranch homes, we'll inspect the ducts closely and tell you honestly whether cleaning, sealing or replacement makes the most sense."
+    ],
+    "local": [
+      "Older ranch homes often have rerouted or patched ductwork.",
+      "Hot north-county summers expose weak attic insulation.",
+      "Hillside homes deal with long duct runs and uneven cooling."
+    ],
+    "neighborhoods": [
+      "Sunny Hills",
+      "Golden Hills",
+      "Downtown Fullerton"
+    ]
+  },
+  "placentia": {
+    "intro": [
+      "Placentia sits inland in north Orange County, where summers get hot and the fall Santa Ana winds come through with dust and dry air. Much of the city is 1960s through 1980s single-family homes, with the older core around Old Town. Homes of that era commonly have original or partially replaced ductwork and AC systems that are working harder each year to keep up with the heat.",
+      "Sky Clean Air recently expanded into Orange County, bringing Placentia the same crew and standards we built in San Diego. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with air filtration during wind season. If your system is older than about 15 years, we'll give you an honest assessment and a written price before recommending any work."
+    ],
+    "local": [
+      "Santa Ana winds bring dust and dry air into homes each fall.",
+      "1960s–80s homes often run original ductwork.",
+      "Hot summers push older AC units to their limits."
+    ],
+    "neighborhoods": [
+      "Old Town Placentia",
+      "Alta Vista"
+    ]
+  },
+  "yorba-linda": {
+    "intro": [
+      "Yorba Linda sits at the eastern edge of north Orange County, close to the Chino Hills and the Santa Ana River canyon. Summers are hot, and Santa Ana winds can be fierce here. The city has been hit by wildfires before, most notably the 2008 Freeway Complex fire, so smoke is a real indoor air concern. Many homes are larger two-story houses from the 1970s through the 90s, with long duct runs and attic air handlers.",
+      "Since Sky Clean Air expanded into Orange County, Yorba Linda homes get the same crew and the same standards we've kept in San Diego. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and set up better filtration for smoky days. For larger homes with aging systems, we'll help you prioritize what needs attention now and what can wait."
+    ],
+    "local": [
+      "Wildfire smoke makes good filtration worth having in Yorba Linda.",
+      "Santa Ana winds push dust through gaps and into ducts.",
+      "Larger two-story homes often have uneven cooling between floors."
+    ],
+    "neighborhoods": [
+      "Old Town Yorba Linda",
+      "East Lake Village",
+      "Vista del Verde"
+    ]
+  },
+  "brea": {
+    "intro": [
+      "At the northern edge of Orange County, Brea runs hot in summer and sits right up against the hills of Carbon Canyon, where wildfire smoke and dry Santa Ana winds are part of fall. Older homes near downtown date from the mid-century, while Olinda Ranch and La Floresta are newer builds. Across the board, attic ducts and insulation work hard here, and filtration matters more than in coastal cities.",
+      "Sky Clean Air has recently expanded into Orange County, and Brea is the northern end of that territory. You get the same crew and standards we've built in San Diego since 2018. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with air purification. In newer homes, we'll keep original equipment running well. In older ones, we'll tell you honestly what's worth fixing."
+    ],
+    "local": [
+      "Carbon Canyon wildfire smoke is a recurring indoor air concern.",
+      "Hot summers make attic insulation a big comfort factor.",
+      "Newer homes' original equipment benefits from regular tune-ups."
+    ],
+    "neighborhoods": [
+      "Downtown Brea",
+      "Olinda Ranch",
+      "La Floresta"
+    ]
+  },
+  "san-diego": {
+    "intro": [
+      "San Diego proper covers a huge range of homes, from 1920s craftsman houses in North Park and Kensington to 1950s–70s tract homes in Clairemont and Point Loma, and newer builds in Mira Mesa and Rancho Bernardo. Near the coast, the marine layer brings humidity and musty ducts. Inland neighborhoods get hotter summers. Santa Ana winds can bring dust and wildfire smoke across the city in fall, which makes air quality a real concern.",
+      "San Diego is where Sky Clean Air started in 2018, and our office is in Kearny Mesa. We clean air ducts and dryer vents, repair and install AC and heating systems, add attic insulation and help with indoor air quality across the city. Many of our customers first meet us during a duct or dryer vent cleaning. While we're there, we check your HVAC system and tell you honestly if anything needs attention."
+    ],
+    "local": [
+      "Coastal neighborhoods deal with marine-layer humidity and musty ducts.",
+      "Older homes in Clairemont and Point Loma often have original ductwork.",
+      "Santa Ana winds bring dust and smoke into homes each fall."
+    ],
+    "neighborhoods": [
+      "North Park",
+      "Clairemont",
+      "Point Loma",
+      "Mira Mesa",
+      "Pacific Beach",
+      "Rancho Bernardo",
+      "Kensington",
+      "Hillcrest"
+    ]
+  },
+  "san-ysidro": {
+    "intro": [
+      "Right at the border in the South Bay, San Ysidro sits next to one of the busiest land crossings in the world. That brings a steady stream of vehicle traffic and exhaust, and homes close to the port of entry and the freeways pick up more fine dust than most. The housing is a mix of older single-family homes, apartments and newer developments, many with aging HVAC systems or no central air at all. The Tijuana River Valley nearby also affects air quality on some days.",
+      "Sky Clean Air has served San Diego County since 2018, and San Ysidro is the southern end of our territory. We clean ducts and dryer vents, repair and install AC and heating systems, add attic insulation and help with air filtration. For homes near heavy traffic, better filtration and clean ducts can make a noticeable difference. We'll give you a written, upfront price before any work begins."
+    ],
+    "local": [
+      "Traffic and exhaust near the border make good filtration worth having.",
+      "Many older homes have aging systems or no central air.",
+      "Nearby Tijuana River Valley odors can affect air quality some days."
+    ],
+    "neighborhoods": []
+  },
+  "chula-vista": {
+    "intro": [
+      "Chula Vista is really two cities in one. West of the 805, you'll find older homes from the 1950s through the 70s, many with original ducts and wall furnaces. East of the 805, communities like Eastlake, Otay Ranch and Rolling Hills Ranch are master-planned neighborhoods built from the 1980s onward, often with larger two-story homes and attic air handlers. The farther east you go, the warmer the summers get.",
+      "Sky Clean Air has worked in Chula Vista since our early days in San Diego County. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with indoor air quality. In western Chula Vista, we often help older homes add or upgrade central air. In eastern neighborhoods, we keep original equipment running and help plan replacements when the time comes."
+    ],
+    "local": [
+      "West Chula Vista homes often have original ducts or wall furnaces.",
+      "Eastern neighborhoods get warmer summers and need solid AC.",
+      "Two-story homes in Eastlake and Otay Ranch often cool unevenly."
+    ],
+    "neighborhoods": [
+      "Eastlake",
+      "Otay Ranch",
+      "Rolling Hills Ranch",
+      "Millenia",
+      "Third Avenue Village"
+    ]
+  },
+  "imperial-beach": {
+    "intro": [
+      "Imperial Beach is the most southwestern city in the continental U.S., and it lives with ocean air every day. Salt and humidity are constant, which means corroded outdoor units, damp ducts and dryer vents that clog faster. Many homes are older single-family houses and small apartments, often with limited ductwork or none at all. Sewage-related odors from the Tijuana River Valley are also a long-running air quality concern for residents here.",
+      "Our South Bay crews work in Imperial Beach regularly. We clean ducts and dryer vents, repair and install heating and cooling systems, and help with air filtration and purification. For coastal homes, we'll check for corrosion and moisture problems. If outdoor odors are a concern, we'll talk through filtration options honestly, including what they can and can't do. Filtration helps, but it won't fix an outdoor source on its own."
+    ],
+    "local": [
+      "Salt air corrodes outdoor units and registers quickly.",
+      "Coastal humidity makes musty ducts and clogged dryer vents common.",
+      "Tijuana River Valley odors make good filtration worth considering."
+    ],
+    "neighborhoods": []
+  },
+  "bonita": {
+    "intro": [
+      "Bonita is a semi-rural, unincorporated community tucked between Chula Vista and National City. Homes here tend to sit on larger lots, some with horse properties and open space nearby. That means more dust, pollen and animal dander getting into the house. Many homes are older ranch-style properties with ductwork that has been patched over the years. Being a few miles inland, Bonita also gets warmer summers than the coast.",
+      "In Bonita, Sky Clean Air handles the full range of home comfort work. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with indoor air quality. For homes near open land or horses, regular duct cleaning and better filtration can make a real difference. We'll inspect first and recommend only what your home needs."
+    ],
+    "local": [
+      "Dust, pollen and dander from open land load filters quickly.",
+      "Older ranch homes often have patched or aging ductwork.",
+      "Warmer inland summers put extra strain on older AC units."
+    ],
+    "neighborhoods": []
+  },
+  "spring-valley": {
+    "intro": [
+      "Spring Valley is an unincorporated East County community of hillside streets and single-family homes, many built from the 1950s through the 1970s. It's warmer than the coast, with hot summer afternoons and cool nights. Homes of this age often have original ductwork, thin attic insulation and furnaces that have been running for decades. Santa Ana winds also bring dust and, some years, smoke from East County fires.",
+      "Spring Valley is part of the East County territory our San Diego trucks cover every week. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with air filtration. During duct and dryer vent visits, we check your HVAC system and let you know honestly if anything needs attention, with no pressure."
+    ],
+    "local": [
+      "Hot summer afternoons expose weak AC and thin attic insulation.",
+      "Many 1950s–70s homes still run their original ductwork.",
+      "Santa Ana winds carry dust and occasional smoke into homes."
+    ],
+    "neighborhoods": []
+  },
+  "el-cajon": {
+    "intro": [
+      "El Cajon sits in a valley surrounded by hills, and it traps heat. Summer afternoons here are regularly among the hottest in San Diego County's western half, so air conditioning isn't optional. Much of the housing is 1950s through 1970s single-family homes and apartments, with older ducts, aging AC units and attics that bake in the sun. Santa Ana winds and East County wildfires can also bring dust and smoke into the valley.",
+      "Sky Clean Air has been working in El Cajon since our early years in San Diego County. We repair and replace AC and heating systems, clean ducts and dryer vents, add attic insulation to cut the heat coming in from above, and help with air filtration. If your AC is struggling through July, we'll figure out whether it's the unit, the ducts or the attic before recommending anything."
+    ],
+    "local": [
+      "Valley heat makes AC a must from summer into early fall.",
+      "Hot attics make insulation one of the best upgrades here.",
+      "Santa Ana winds and wildfire smoke affect indoor air quality."
+    ],
+    "neighborhoods": [
+      "Fletcher Hills",
+      "Downtown El Cajon"
+    ]
+  },
+  "la-mesa": {
+    "intro": [
+      "La Mesa's older neighborhoods are full of 1940s through 1960s homes on hilly, tree-lined streets, many with original ductwork and furnaces that have been running for decades. It's warmer than the coast but a bit milder than El Cajon, so summer comfort depends on good insulation and working ducts. Some homes near the hills also deal with dust and smoke during Santa Ana wind events.",
+      "Sky Clean Air has served La Mesa as part of our San Diego County work since 2018. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with indoor air quality. In older homes, we'll inspect the ducts closely and give you an honest recommendation on whether cleaning, sealing or replacement makes the most sense."
+    ],
+    "local": [
+      "Older 1940s–60s homes often have original, leaky ductwork.",
+      "Aging furnaces should be checked before winter.",
+      "Better attic insulation helps older homes stay cooler in summer."
+    ],
+    "neighborhoods": [
+      "La Mesa Village",
+      "Grossmont"
+    ]
+  },
+  "santee": {
+    "intro": [
+      "Santee is an inland East County city along the San Diego River, and it gets hot. Summer afternoons regularly run well above the coast, so AC works hard here. Much of the housing dates from the 1970s through the 1990s, with some newer builds in Sky Ranch and elsewhere. Many homes are now on their second AC system and still running original ductwork through hot attics.",
+      "In Santee, most of our calls start with cooling. We repair and install AC and heating systems, clean ducts and dryer vents, add attic insulation and help with air filtration. For homes with older ducts and attics, we'll look at the whole picture, because a new AC won't cool well if the ducts are leaking and the attic is baking."
+    ],
+    "local": [
+      "Hot inland summers make AC and attic insulation top priorities.",
+      "Original 1970s–90s ductwork often leaks into hot attics.",
+      "Santa Ana winds bring dust and smoke into East County homes."
+    ],
+    "neighborhoods": [
+      "Carlton Hills",
+      "Carlton Oaks",
+      "Sky Ranch"
+    ]
+  },
+  "poway": {
+    "intro": [
+      "Poway calls itself 'The City in the Country,' and it fits. Homes range from ranch properties on larger lots to 1970s–90s tract homes, many on hilly terrain. It's inland, so summers are hot and winter nights can get chilly. The 2007 Witch Creek fire burned into Poway, and wildfire smoke remains a real concern here during fire season. Rural properties also deal with more dust and pollen.",
+      "Poway homeowners call us for all sorts of jobs. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with air filtration for smoky days. For larger properties, we'll help you prioritize work across multiple systems, and on smoky days a better filter setup can make the house noticeably easier to breathe in. We'll give you a written, upfront price before any work begins."
+    ],
+    "local": [
+      "Wildfire smoke makes good filtration worth having in Poway.",
+      "Hot summers and chilly nights mean both AC and heat get used.",
+      "Rural properties deal with more dust and pollen indoors."
+    ],
+    "neighborhoods": [
+      "Old Poway",
+      "Green Valley"
+    ]
+  },
+  "del-mar": {
+    "intro": [
+      "Del Mar is small, coastal and close to the ocean on nearly every street. Salt air and marine-layer humidity are constant here, so outdoor units corrode faster and ducts can hold onto moisture. Homes range from older beach cottages to modern custom builds on the bluffs. Many older homes have limited ductwork or none at all, and some newer ones have high-end systems that need careful service.",
+      "For Del Mar homes, Sky Clean Air focuses on what the coast does to a system. We clean ducts and dryer vents, repair and install heating and cooling systems, and help with air purification and humidity. For homes near the water, we'll check for corrosion and moisture problems. For newer homes, we'll keep your system running well so it's ready when a warm spell hits."
+    ],
+    "local": [
+      "Salt air near the beach corrodes outdoor units quickly.",
+      "Marine-layer humidity can leave ducts damp and musty.",
+      "Older cottages may have limited or no ductwork."
+    ],
+    "neighborhoods": [
+      "Del Mar Village"
+    ]
+  },
+  "rancho-santa-fe": {
+    "intro": [
+      "Rancho Santa Fe is known for large estate homes on big lots, many with multiple HVAC systems, zoned ductwork and guest houses. It's a few miles inland, so summers are warmer than the coast, and the area's open land and landscaping bring plenty of dust and pollen. Wildfire smoke during Santa Ana events is also a concern here. Big homes mean long duct runs and a lot of equipment to maintain.",
+      "Rancho Santa Fe is part of our regular North County route. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with air purification. For estate homes with several systems, we'll inspect each one and help you prioritize what needs attention now and what can wait, with no pressure. Guest houses and casitas get the same attention as the main house."
+    ],
+    "local": [
+      "Estate homes with multiple systems need each one checked regularly.",
+      "Open land brings dust and pollen into ducts and filters.",
+      "Wildfire smoke during Santa Ana events affects indoor air."
+    ],
+    "neighborhoods": [
+      "The Covenant",
+      "The Bridges",
+      "Cielo"
+    ]
+  },
+  "carlsbad": {
+    "intro": [
+      "Carlsbad stretches from the beach to the inland hills, and the climate changes along the way. Near the coast in Carlsbad Village and Olde Carlsbad, marine-layer humidity and salt air are constant. Farther east in La Costa, Aviara, Bressi Ranch and Calavera Hills, summers are warmer and homes are larger, often two-story with attic air handlers. Much of the city was built from the 1980s onward, so a lot of original equipment is now aging.",
+      "Our crews are in Carlsbad often, from the Village to La Costa. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with indoor air quality. For coastal homes, we'll check for moisture and corrosion. For inland neighborhoods, we'll make sure your AC is ready for warm summers, and that the upstairs actually cools down on hot afternoons."
+    ],
+    "local": [
+      "Coastal humidity can lead to musty ducts in western Carlsbad.",
+      "Inland neighborhoods get warmer summers and need reliable AC.",
+      "Many 1980s–2000s homes are on original, aging equipment."
+    ],
+    "neighborhoods": [
+      "La Costa",
+      "Aviara",
+      "Bressi Ranch",
+      "Calavera Hills",
+      "Carlsbad Village",
+      "Olde Carlsbad",
+      "Rancho Carrillo",
+      "Robertson Ranch"
+    ]
+  },
+  "encinitas": {
+    "intro": [
+      "Encinitas is really a collection of beach towns, including Leucadia, Cardiff-by-the-Sea, Olivenhain and Old and New Encinitas. Near the coast, homes deal with salt air and marine-layer humidity, which means musty ducts and corroded outdoor units. Many older homes have limited or no central air. Inland in Olivenhain and New Encinitas, homes are larger and summers are warmer, so AC matters more.",
+      "Whether you're in Leucadia or Olivenhain, Sky Clean Air can help. We clean ducts and dryer vents, repair and install heating and cooling systems, add attic insulation and help with humidity and air quality. For older beach homes, we'll tell you honestly what's practical. For inland homes, we'll make sure your system is ready for summer, and we'll check dryer vents too, since humid air makes lint cake up faster."
+    ],
+    "local": [
+      "Coastal humidity makes musty ducts and clogged dryer vents common.",
+      "Older beach homes may have limited or no ductwork.",
+      "Inland Olivenhain homes see warmer summers and need solid AC."
+    ],
+    "neighborhoods": [
+      "Leucadia",
+      "Cardiff-by-the-Sea",
+      "Olivenhain",
+      "Old Encinitas",
+      "New Encinitas"
+    ]
+  },
+  "oceanside": {
+    "intro": [
+      "Oceanside runs from the beach and harbor inland toward the hills around Rancho del Oro. Near the water, salt air and marine-layer humidity are part of life, and outdoor units show it. Farther inland, summers get warmer and homes tend to be 1970s–2000s tract houses and planned communities, many with aging AC and original ducts. Homes near Camp Pendleton also catch dust and, during fire season, smoke.",
+      "From the harbor to Rancho del Oro, Oceanside is on our regular North County route. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with indoor air quality. During a duct or dryer vent visit, we'll check your HVAC system and let you know if anything needs attention, with honest recommendations and no pressure."
+    ],
+    "local": [
+      "Salt air near the beach and harbor corrodes outdoor units.",
+      "Inland neighborhoods get warmer summers and need reliable AC.",
+      "Many 1970s–2000s homes are running original ductwork."
+    ],
+    "neighborhoods": [
+      "South Oceanside",
+      "Fire Mountain",
+      "Rancho del Oro",
+      "Downtown Oceanside"
+    ]
+  },
+  "vista": {
+    "intro": [
+      "Vista sits inland in North County, where summers are warm and dry and winter nights get cool. Many homes date from the 1960s through the 1990s, from older ranch houses to larger homes in Shadowridge. Homes of this age often have original or partially replaced ductwork, thin attic insulation and AC units that are near the end of their life. Santa Ana winds can bring dust and smoke into the area in fall.",
+      "In Vista, a lot of our work comes down to aging systems and hot attics. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with air filtration. If your system is older than about 15 years, we'll give you an honest assessment of repair versus replacement and a written price before any work."
+    ],
+    "local": [
+      "Warm, dry inland summers put strain on older AC units.",
+      "Many 1960s–90s homes have original or patched ductwork.",
+      "Thin attic insulation lets summer heat into living spaces."
+    ],
+    "neighborhoods": [
+      "Shadowridge",
+      "Downtown Vista"
+    ]
+  },
+  "san-marcos": {
+    "intro": [
+      "San Marcos has grown a lot since the 1990s, with newer communities like San Elijo Hills alongside older neighborhoods closer to the center of town. Inland North County means warm summers and cool winter nights, so both heating and cooling get used. Many newer homes are two-story with attic air handlers, while older homes may have aging ductwork and equipment that's ready for evaluation.",
+      "San Marcos homes are a mix of new and older, and so is the work we do there. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with indoor air quality. In newer homes, we'll keep original equipment running well. In older ones, we'll tell you honestly whether it's worth repairing or time to plan for a replacement."
+    ],
+    "local": [
+      "Two-story homes in San Elijo Hills often cool unevenly upstairs.",
+      "Warm summers and cool nights mean both systems get used.",
+      "Older neighborhoods may have aging ducts and equipment."
+    ],
+    "neighborhoods": [
+      "San Elijo Hills",
+      "Twin Oaks Valley",
+      "North City"
+    ]
+  },
+  "escondido": {
+    "intro": [
+      "Escondido sits in an inland valley and gets some of North County's hottest summers. AC isn't a luxury here. Homes range from older houses in the Old Escondido historic district to postwar tract homes and newer hillside developments. Many older homes have original ductwork and attics that get extremely hot. Santa Ana winds and nearby wildfires, like the 2007 Witch Creek fire, have made smoke a real concern.",
+      "Escondido is one of the places where our AC work picks up first each summer. We repair and install AC and heating systems, clean ducts and dryer vents, add attic insulation and help with air filtration during fire season. If your AC is struggling, we'll look at the unit, the ducts and the attic together, because fixing just one often isn't enough."
+    ],
+    "local": [
+      "Hot valley summers make AC and attic insulation essential.",
+      "Older homes in Old Escondido may have original ductwork.",
+      "Wildfire smoke makes good filtration worth having."
+    ],
+    "neighborhoods": [
+      "Old Escondido",
+      "Downtown Escondido"
+    ]
+  },
+  "temecula": {
+    "intro": [
+      "Temecula is in southwest Riverside County, and the climate is a big step up in heat from coastal San Diego. Summer days are regularly hot and dry, while nights can cool off quickly, so both AC and heating get real use. Most homes were built from the late 1980s onward in planned communities like Redhawk, Paloma del Sol and Harveston, and a lot of that original equipment is now aging. Dust and wildfire smoke are also common concerns.",
+      "Sky Clean Air is already taking select jobs in Temecula, and full Inland Empire service is coming soon. We clean ducts and dryer vents, repair and replace AC and heating systems, add attic insulation and help with air filtration. If you're in Temecula and need help, give us a call to check availability. We'll give you the same honest recommendations and upfront pricing we're known for in San Diego."
+    ],
+    "local": [
+      "Hot, dry summers make AC and attic insulation top priorities.",
+      "Original 1980s–2000s equipment is due for evaluation.",
+      "Dust and wildfire smoke make good filtration worth having."
+    ],
+    "neighborhoods": [
+      "Old Town Temecula",
+      "Redhawk",
+      "Paloma del Sol",
+      "Harveston",
+      "Wolf Creek",
+      "Crowne Hill"
+    ]
+  }
+}

@@ -13,7 +13,11 @@
         33.7,
         -117.8
       ],
-      "zoom": 10
+      "zoom": 10,
+      "intro": [
+        "Orange County is the newest stop on our map, and we're bringing the same crew habits that built our name in San Diego: show up when we say we will, explain what we find in plain English, and give you a written price before any work starts.",
+        "From the coastal neighborhoods of San Clemente, Dana Point and Huntington Beach to the inland heat of Mission Viejo, Lake Forest and Yorba Linda, OC homes put real demands on their HVAC systems. A lot of the housing here went up between the 1970s and 1990s, which means original ductwork, attic-mounted air handlers and systems that are quietly nearing the end of their life. That's exactly the kind of home we know how to take care of — whether you need a duct cleaning, a dryer vent that finally stops clogging, better attic insulation or a new, properly sized system."
+      ]
     },
     {
       "slug": "san-diego-county",
@@ -26,7 +30,11 @@
         32.85,
         -117.1
       ],
-      "zoom": 10
+      "zoom": 10,
+      "intro": [
+        "San Diego is where Sky Clean Air started in 2018 — one rented van, one set of duct-cleaning equipment and two founders who answered the phone themselves. Today our trucks are in San Diego County neighborhoods every day, from San Ysidro and Chula Vista up through Kearny Mesa, the beach communities and North County to Fallbrook.",
+        "The county's microclimates matter for your home. Coastal neighborhoods deal with marine-layer humidity and salt air; inland areas like El Cajon, Santee, Poway and Escondido see summer heat that pushes AC systems hard; Santa Ana winds and wildfire season send fine dust and smoke into every home. We service all of it — ducts, dryer vents, attics, heating, cooling and indoor air quality — with the same honest recommendations wherever you live."
+      ]
     },
     {
       "slug": "inland-empire",
@@ -40,7 +48,11 @@
         33.7,
         -117.25
       ],
-      "zoom": 10
+      "zoom": 10,
+      "intro": [
+        "Riverside County is next. We already take select jobs in Temecula, and we're building toward full Inland Empire service across Murrieta, Menifee, Lake Elsinore, Wildomar, Riverside and Corona.",
+        "Inland Empire summers are long and hot, which is hard on air conditioners, attic ductwork and insulation. If you're in the area now, give us a call — we'll tell you honestly whether we can get to you yet, and you'll be first in line when we launch in your city."
+      ]
     }
   ],
   "cities": [
@@ -1684,5 +1696,11 @@
       "lat": 33.8753,
       "lng": -117.5664
     }
-  ]
+  ],
+  "map": {
+    "tiles": {
+      "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "attribution": "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+    }
+  }
 }

@@ -5,6 +5,7 @@ dict needs `path`, `title`, `description` and `body`; optional keys are
 `body_class`, `noindex`, `schema` (extra JSON-LD objects), `lastmod`,
 `head_extra`, `scripts`.
 """
+import gen_areas
 import gen_legacy
 import gen_services
 from sitelib import page_hero
@@ -31,6 +32,9 @@ ALL = [
     gen_services.service_pages,
     gen_services.category_hubs,
     gen_services.services_index,
+    gen_areas.hub,
+    gen_areas.region_pages,
+    gen_areas.city_pages,
     gen_legacy.service_locations,
     gen_legacy.posts,
     gen_legacy.misc_pages,
