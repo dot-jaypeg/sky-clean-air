@@ -1,31 +1,43 @@
 # Sky Clean Air
 
-Marketing site for Sky Clean Air (skycleanair.com) — a family-owned HVAC company serving San Diego County (San Ysidro–Fallbrook, some Temecula) and parts of Orange County (San Clemente–Brea) since 2018.
+Marketing site for Sky Clean Air (skycleanair.com), a family-owned HVAC and indoor air quality company serving San Diego County and Orange County, with the Inland Empire coming next.
 
-## Status
+## Quick start
 
-Homepage built: pure HTML/CSS/JS, no build step. This is a website refresh/redesign — other pages (services, about, gallery, contact as standalone pages) are not started yet, so nav currently links to in-page anchors.
+```sh
+python3 tools/build.py --check            # build public/ and report broken links
+python3 -m http.server 8791 -d public     # preview at http://localhost:8791
+```
+
+No dependencies beyond Python 3.8+. `public/` is the deploy root and works on any static host. Pages are written as `<path>/index.html`, so URLs match the legacy WordPress site's trailing-slash URLs.
 
 ## Structure
 
-- `index.html` / `css/styles.css` / `js/app.js` — the homepage
-- `assets/logos/` — SCA monogram logo, as provided by client
-- `assets/fonts/antonio/`, `assets/fonts/inter/` — Antonio (headings) + Inter (body), self-hosted
-- `assets/images/` — web-optimized photos: About section team photo and video poster frames (`hero-team.jpg` is the old hero photo, now unused)
-- `assets/video/` — web-optimized background loops (mp4 + webm) for the hero and service-area sections, transcoded from stock footage
-- `assets/content/` — client-provided team/office photos and raw video clips (videos gitignored — see below); `stock/` holds the raw stock footage (gitignored)
-- `references/onboarding-info/` — full client brief: services, pricing, service area, brand contacts
-- `references/website-inspo/` — reference sites for style/layout direction (samedaysd.com, Nuvehome.com, bluediamond.tech)
-- `CLAUDE.md` — working agreement for this repo (design direction, git workflow, etc.)
+| Path | What it is |
+|---|---|
+| `src/data/site.json` | Phone, address, hours, specials, widget embed codes, mascot artwork, draft placeholders toggle |
+| `src/data/services.json` | Every service page, grouped into categories (drives nav, service pages, hubs) |
+| `src/data/areas.json` | Regions → cities with status and map coordinates (drives area pages, map, lists) |
+| `src/data/team.json` | Team page, grouped by department |
+| `src/data/reviews.json` | Fallback testimonials, used until the review widget is live |
+| `src/pages/` | Hand-written pages (front matter + HTML + `{{component:…}}` blocks) |
+| `tools/build.py` | The builder |
+| `tools/sitelib.py`, `tools/components.py`, `tools/generators.py` | Shared chrome, reusable sections, data-driven page generators |
+| `tools/scrape_legacy.py` | Downloads the legacy WordPress site for migration |
+| `tools/geocode_areas.py` | Fills in map coordinates for new cities |
+| `public/css`, `public/js`, `public/assets` | Hand-edited static files |
+| `assets/content/` | Raw client photos/video (not deployed; videos gitignored) |
+| `references/` | Client brief and reference material |
+
+Generated files (every `.html` in `public/`, `sitemap.xml`, `robots.txt`) should never be edited by hand. Change the source and rebuild.
+
+## Adding things
+
+- **A service area:** add the city (or a whole region) to `src/data/areas.json`, run `python3 tools/geocode_areas.py`, then rebuild.
+- **A service:** add it to its category in `src/data/services.json`. Optional hand-written copy goes in `src/pages/services/<slug>.html`.
+- **Widgets and mascot:** paste the embed code or artwork path into `src/data/site.json` and rebuild.
+- **Before launch:** set `show_placeholders` to `false` in `site.json`.
 
 ## Design
 
-Moody dark-navy hero over a looping aerial rooftop-HVAC video, with a glowing cyan/teal gradient accent (echoing the SCA logo mark), transitioning into clean light sections for trust/credibility content — structurally modeled on `lincoln-plumbing` elsewhere in the AM SITES workspace, pulling service/copy content forward from the legacy skycleanair.com site. Antonio carries headlines and labels; Inter handles body copy.
-
-## Notes
-
-- Brand colors: `#2addea`, `#2dd2c7`, `#23d4d7`
-- `assets/content/*.mp4` and `*.mov` are gitignored — the raw clips run well over GitHub's 100MB push limit, aren't web-optimized, and are finished vertical (9:16) social-ad edits with burned-in captions rather than clean b-roll, so they aren't used on the site. The hero and service-area backgrounds use stock aerial footage instead (raw files in `assets/content/stock/`, also gitignored).
-- Services: HVAC install & repair, air duct cleaning, dryer vent cleaning, attic cleaning & insulation, indoor air quality
-- Current promos shown on the homepage: $59 whole-house duct cleaning, $50 basic HVAC tune-up
-- Phone number on the site is 619-304-8822 (per onboarding doc) — differs from the legacy site's displayed (858) 346-5551
+A dark-navy hero with a glowing cyan/teal gradient accent (from the SCA logo mark) leads into clean light content sections. Antonio is used for headlines and Inter for body copy. Brand colors: `#2addea`, `#2dd2c7`, `#23d4d7`.

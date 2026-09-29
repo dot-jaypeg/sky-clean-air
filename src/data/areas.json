@@ -1,0 +1,1688 @@
+{
+  "_note": "Single source of truth for where Sky Clean Air works. Drives the service-area pages, the map pins, nav, footer and homepage lists. To add a new market: add a region (status 'coming-soon' until launch) and its cities, then rebuild. Flipping a region's status to 'active' or 'launching' publishes a page for every city in it. A city can override its region's status (e.g. Temecula is already served while the rest of the Inland Empire is coming soon). lat/lng are filled in by tools/geocode_areas.py.",
+  "regions": [
+    {
+      "slug": "orange-county",
+      "name": "Orange County",
+      "short": "OC",
+      "status": "launching",
+      "badge": "Now Serving",
+      "order": 1,
+      "blurb": "Now serving Orange County homes and businesses from San Clemente to Brea — the same crew, the same standards, and the same upfront pricing our San Diego customers know.",
+      "center": [
+        33.7,
+        -117.8
+      ],
+      "zoom": 10
+    },
+    {
+      "slug": "san-diego-county",
+      "name": "San Diego County",
+      "short": "SD",
+      "status": "active",
+      "order": 2,
+      "blurb": "Our home base since 2018. From San Ysidro to Fallbrook, our trucks are in San Diego County neighborhoods every day.",
+      "center": [
+        32.85,
+        -117.1
+      ],
+      "zoom": 10
+    },
+    {
+      "slug": "inland-empire",
+      "name": "Inland Empire",
+      "short": "IE",
+      "status": "coming-soon",
+      "badge": "Coming Soon",
+      "order": 3,
+      "blurb": "Riverside County is next. We already take select jobs in Temecula, with full Inland Empire service launching soon.",
+      "center": [
+        33.7,
+        -117.25
+      ],
+      "zoom": 10
+    }
+  ],
+  "cities": [
+    {
+      "slug": "san-clemente",
+      "name": "San Clemente",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.427,
+      "lng": -117.6124
+    },
+    {
+      "slug": "dana-point",
+      "name": "Dana Point",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.467,
+      "lng": -117.6981
+    },
+    {
+      "slug": "san-juan-capistrano",
+      "name": "San Juan Capistrano",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.5017,
+      "lng": -117.6626
+    },
+    {
+      "slug": "laguna-niguel",
+      "name": "Laguna Niguel",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.5225,
+      "lng": -117.7076
+    },
+    {
+      "slug": "laguna-beach",
+      "name": "Laguna Beach",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.5427,
+      "lng": -117.7854
+    },
+    {
+      "slug": "aliso-viejo",
+      "name": "Aliso Viejo",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.5761,
+      "lng": -117.7258
+    },
+    {
+      "slug": "laguna-hills",
+      "name": "Laguna Hills",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.5949,
+      "lng": -117.6882
+    },
+    {
+      "slug": "mission-viejo",
+      "name": "Mission Viejo",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.5966,
+      "lng": -117.6594
+    },
+    {
+      "slug": "rancho-santa-margarita",
+      "name": "Rancho Santa Margarita",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.6409,
+      "lng": -117.6029
+    },
+    {
+      "slug": "ladera-ranch",
+      "name": "Ladera Ranch",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.5512,
+      "lng": -117.6443
+    },
+    {
+      "slug": "lake-forest",
+      "name": "Lake Forest",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.6469,
+      "lng": -117.6859
+    },
+    {
+      "slug": "irvine",
+      "name": "Irvine",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.6857,
+      "lng": -117.826
+    },
+    {
+      "slug": "newport-beach",
+      "name": "Newport Beach",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.617,
+      "lng": -117.9294
+    },
+    {
+      "slug": "costa-mesa",
+      "name": "Costa Mesa",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.6633,
+      "lng": -117.9033
+    },
+    {
+      "slug": "huntington-beach",
+      "name": "Huntington Beach",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.6783,
+      "lng": -118.0
+    },
+    {
+      "slug": "fountain-valley",
+      "name": "Fountain Valley",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.7038,
+      "lng": -117.9627
+    },
+    {
+      "slug": "tustin",
+      "name": "Tustin",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.7459,
+      "lng": -117.8262
+    },
+    {
+      "slug": "santa-ana",
+      "name": "Santa Ana",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.7495,
+      "lng": -117.8732
+    },
+    {
+      "slug": "orange",
+      "name": "Orange",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.7873,
+      "lng": -117.8503
+    },
+    {
+      "slug": "garden-grove",
+      "name": "Garden Grove",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.7746,
+      "lng": -117.9464
+    },
+    {
+      "slug": "anaheim",
+      "name": "Anaheim",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8348,
+      "lng": -117.9117
+    },
+    {
+      "slug": "westminster",
+      "name": "Westminster",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.7579,
+      "lng": -117.9859
+    },
+    {
+      "slug": "fullerton",
+      "name": "Fullerton",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8708,
+      "lng": -117.9294
+    },
+    {
+      "slug": "placentia",
+      "name": "Placentia",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8715,
+      "lng": -117.8617
+    },
+    {
+      "slug": "yorba-linda",
+      "name": "Yorba Linda",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8901,
+      "lng": -117.825
+    },
+    {
+      "slug": "brea",
+      "name": "Brea",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.917,
+      "lng": -117.8889
+    },
+    {
+      "slug": "san-diego",
+      "name": "San Diego",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.7157,
+      "lng": -117.1638
+    },
+    {
+      "slug": "san-ysidro",
+      "name": "San Ysidro",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.552,
+      "lng": -117.0431
+    },
+    {
+      "slug": "chula-vista",
+      "name": "Chula Vista",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.6401,
+      "lng": -117.0842
+    },
+    {
+      "slug": "imperial-beach",
+      "name": "Imperial Beach",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.5839,
+      "lng": -117.113
+    },
+    {
+      "slug": "bonita",
+      "name": "Bonita",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.6649,
+      "lng": -117.017
+    },
+    {
+      "slug": "spring-valley",
+      "name": "Spring Valley",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.7296,
+      "lng": -116.9669
+    },
+    {
+      "slug": "el-cajon",
+      "name": "El Cajon",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.7948,
+      "lng": -116.9625
+    },
+    {
+      "slug": "la-mesa",
+      "name": "La Mesa",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.7678,
+      "lng": -117.0231
+    },
+    {
+      "slug": "santee",
+      "name": "Santee",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.8384,
+      "lng": -116.9739
+    },
+    {
+      "slug": "poway",
+      "name": "Poway",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.9628,
+      "lng": -117.0359
+    },
+    {
+      "slug": "del-mar",
+      "name": "Del Mar",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 32.9595,
+      "lng": -117.2653
+    },
+    {
+      "slug": "rancho-santa-fe",
+      "name": "Rancho Santa Fe",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 33.0242,
+      "lng": -117.198
+    },
+    {
+      "slug": "carlsbad",
+      "name": "Carlsbad",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 33.1352,
+      "lng": -117.3291
+    },
+    {
+      "slug": "encinitas",
+      "name": "Encinitas",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 33.0432,
+      "lng": -117.285
+    },
+    {
+      "slug": "oceanside",
+      "name": "Oceanside",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 33.1959,
+      "lng": -117.3795
+    },
+    {
+      "slug": "vista",
+      "name": "Vista",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 33.2021,
+      "lng": -117.2425
+    },
+    {
+      "slug": "san-marcos",
+      "name": "San Marcos",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 33.1353,
+      "lng": -117.1743
+    },
+    {
+      "slug": "escondido",
+      "name": "Escondido",
+      "region": "san-diego-county",
+      "type": "city",
+      "lat": 33.1217,
+      "lng": -117.0815
+    },
+    {
+      "slug": "adams-avenue",
+      "name": "Adams Avenue, San Diego",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7633,
+      "lng": -117.118
+    },
+    {
+      "slug": "allied-gardens",
+      "name": "Allied Gardens",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7927,
+      "lng": -117.0804
+    },
+    {
+      "slug": "alta-vista",
+      "name": "Alta Vista",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6936,
+      "lng": -117.0631
+    },
+    {
+      "slug": "balboa-park",
+      "name": "Balboa Park",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7317,
+      "lng": -117.1465,
+      "featured": true
+    },
+    {
+      "slug": "bankers-hill",
+      "name": "Bankers Hill",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.73,
+      "lng": -117.1618
+    },
+    {
+      "slug": "barrio-logan",
+      "name": "Barrio Logan",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6939,
+      "lng": -117.138
+    },
+    {
+      "slug": "bay-ho",
+      "name": "Bay Ho",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8236,
+      "lng": -117.214
+    },
+    {
+      "slug": "bay-park",
+      "name": "Bay Park",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7846,
+      "lng": -117.2026
+    },
+    {
+      "slug": "bay-terraces",
+      "name": "Bay Terraces",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6919,
+      "lng": -117.0366
+    },
+    {
+      "slug": "beach-barber-tract",
+      "name": "Beach Barber Tract",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8312,
+      "lng": -117.2764
+    },
+    {
+      "slug": "bird-rock",
+      "name": "Bird Rock",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8145,
+      "lng": -117.2742
+    },
+    {
+      "slug": "birdland",
+      "name": "Birdland",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7923,
+      "lng": -117.1542
+    },
+    {
+      "slug": "black-mountain-ranch",
+      "name": "Black Mountain Ranch",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9988,
+      "lng": -117.1371
+    },
+    {
+      "slug": "broadway-heights",
+      "name": "Broadway Heights",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.73,
+      "lng": -117.0541
+    },
+    {
+      "slug": "burlingame",
+      "name": "Burlingame",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7317,
+      "lng": -117.1293
+    },
+    {
+      "slug": "carmel-mountain-ranch",
+      "name": "Carmel Mountain Ranch",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9804,
+      "lng": -117.0784
+    },
+    {
+      "slug": "carmel-valley",
+      "name": "Carmel Valley",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9434,
+      "lng": -117.214,
+      "featured": true
+    },
+    {
+      "slug": "castle",
+      "name": "Castle",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7404,
+      "lng": -117.1082
+    },
+    {
+      "slug": "cherokee-point",
+      "name": "Cherokee Point",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.746,
+      "lng": -117.1145
+    },
+    {
+      "slug": "chollas-creek",
+      "name": "Chollas Creek",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7409,
+      "lng": -117.0858
+    },
+    {
+      "slug": "chollas-view",
+      "name": "Chollas View",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7131,
+      "lng": -117.0936
+    },
+    {
+      "slug": "clairemont",
+      "name": "Clairemont",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8195,
+      "lng": -117.1823,
+      "featured": true
+    },
+    {
+      "slug": "clairemont-mesa-east",
+      "name": "Clairemont Mesa East",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8203,
+      "lng": -117.1706
+    },
+    {
+      "slug": "clairemont-mesa-west",
+      "name": "Clairemont Mesa West",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8236,
+      "lng": -117.214
+    },
+    {
+      "slug": "colina-del-sol",
+      "name": "Colina del Sol",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7516,
+      "lng": -117.0816
+    },
+    {
+      "slug": "college-east",
+      "name": "College East",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8803,
+      "lng": -117.2416
+    },
+    {
+      "slug": "college-west",
+      "name": "College West",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8803,
+      "lng": -117.243
+    },
+    {
+      "slug": "coronado",
+      "name": "Coronado",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 32.6915,
+      "lng": -117.1767
+    },
+    {
+      "slug": "corridor",
+      "name": "Corridor",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7516,
+      "lng": -117.1155
+    },
+    {
+      "slug": "cortez",
+      "name": "Cortez",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7215,
+      "lng": -117.1598
+    },
+    {
+      "slug": "del-cerro",
+      "name": "Del Cerro",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.785,
+      "lng": -117.0625
+    },
+    {
+      "slug": "del-mar-heights",
+      "name": "Del Mar Heights",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9488,
+      "lng": -117.2508
+    },
+    {
+      "slug": "downtown",
+      "name": "Downtown",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7089,
+      "lng": -117.1643
+    },
+    {
+      "slug": "east-village",
+      "name": "East Village",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7137,
+      "lng": -117.1536
+    },
+    {
+      "slug": "egger-highlands",
+      "name": "Egger Highlands",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.5802,
+      "lng": -117.096
+    },
+    {
+      "slug": "el-cerrito",
+      "name": "El Cerrito",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7542,
+      "lng": -117.0701
+    },
+    {
+      "slug": "emerald-hills",
+      "name": "Emerald Hills",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7156,
+      "lng": -117.0766
+    },
+    {
+      "slug": "encanto",
+      "name": "Encanto",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7109,
+      "lng": -117.0633
+    },
+    {
+      "slug": "fairmont-park",
+      "name": "Fairmont Park",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7322,
+      "lng": -117.0857
+    },
+    {
+      "slug": "fairmount-village",
+      "name": "Fairmount Village",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7262,
+      "lng": -117.0967
+    },
+    {
+      "slug": "fallbrook",
+      "name": "Fallbrook",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 33.3663,
+      "lng": -117.2233
+    },
+    {
+      "slug": "fox-canyon",
+      "name": "Fox Canyon",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7465,
+      "lng": -117.0897
+    },
+    {
+      "slug": "golden-hill",
+      "name": "Golden Hill",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7162,
+      "lng": -117.1361
+    },
+    {
+      "slug": "grant-hill",
+      "name": "Grant Hill",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7087,
+      "lng": -117.1339
+    },
+    {
+      "slug": "grantville",
+      "name": "Grantville",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7875,
+      "lng": -117.0973
+    },
+    {
+      "slug": "hidden-valley",
+      "name": "Hidden Valley",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8472,
+      "lng": -117.2499
+    },
+    {
+      "slug": "hillcrest",
+      "name": "Hillcrest",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7483,
+      "lng": -117.161,
+      "featured": true
+    },
+    {
+      "slug": "hollywood-park",
+      "name": "Hollywood Park",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7296,
+      "lng": -117.1032
+    },
+    {
+      "slug": "islenair",
+      "name": "Islenair",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7404,
+      "lng": -117.0916
+    },
+    {
+      "slug": "jamacha-lomita",
+      "name": "Jamacha Lomita",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 32.7157,
+      "lng": -117.0261
+    },
+    {
+      "slug": "kensington",
+      "name": "Kensington",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7633,
+      "lng": -117.1062
+    },
+    {
+      "slug": "la-jolla-alta",
+      "name": "La Jolla Alta",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8217,
+      "lng": -117.2483
+    },
+    {
+      "slug": "la-jolla-farms",
+      "name": "La Jolla Farms",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8802,
+      "lng": -117.247
+    },
+    {
+      "slug": "la-jolla-mesa",
+      "name": "La Jolla Mesa",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8282,
+      "lng": -117.2577
+    },
+    {
+      "slug": "la-jolla-shores",
+      "name": "La Jolla Shores",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8556,
+      "lng": -117.2536,
+      "featured": true
+    },
+    {
+      "slug": "la-jolla-village",
+      "name": "La Jolla Village",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8669,
+      "lng": -117.2333
+    },
+    {
+      "slug": "la-playa",
+      "name": "La Playa",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7106,
+      "lng": -117.2384
+    },
+    {
+      "slug": "la-presa",
+      "name": "La Presa",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 32.7056,
+      "lng": -117.0008
+    },
+    {
+      "slug": "lake-murray",
+      "name": "Lake Murray",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7883,
+      "lng": -117.0227
+    },
+    {
+      "slug": "lakeside",
+      "name": "Lakeside",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 32.8503,
+      "lng": -116.896
+    },
+    {
+      "slug": "lemon-grove",
+      "name": "Lemon Grove",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 32.7426,
+      "lng": -117.0314
+    },
+    {
+      "slug": "liberty-station",
+      "name": "Liberty Station",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7387,
+      "lng": -117.215
+    },
+    {
+      "slug": "lincoln-park",
+      "name": "Lincoln Park",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7042,
+      "lng": -117.0895
+    },
+    {
+      "slug": "linda-vista",
+      "name": "Linda Vista",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7898,
+      "lng": -117.1676
+    },
+    {
+      "slug": "little-italy",
+      "name": "Little Italy",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7233,
+      "lng": -117.1683
+    },
+    {
+      "slug": "logan-heights",
+      "name": "Logan Heights",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7012,
+      "lng": -117.1296
+    },
+    {
+      "slug": "loma-alta",
+      "name": "Loma Alta",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7509,
+      "lng": -117.232
+    },
+    {
+      "slug": "lower-hermosa",
+      "name": "Lower Hermosa",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8226,
+      "lng": -117.2776
+    },
+    {
+      "slug": "marina",
+      "name": "Marina",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7139,
+      "lng": -117.1634
+    },
+    {
+      "slug": "memorial",
+      "name": "Memorial",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7043,
+      "lng": -117.134
+    },
+    {
+      "slug": "midway",
+      "name": "Midway",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7499,
+      "lng": -117.2062
+    },
+    {
+      "slug": "mira-mesa",
+      "name": "Mira Mesa",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9156,
+      "lng": -117.1439,
+      "featured": true
+    },
+    {
+      "slug": "miramar",
+      "name": "Miramar",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8907,
+      "lng": -117.1468
+    },
+    {
+      "slug": "miramar-ranch-north",
+      "name": "Miramar Ranch North",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9348,
+      "lng": -117.097
+    },
+    {
+      "slug": "mission-hills",
+      "name": "Mission Hills",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.753,
+      "lng": -117.1835
+    },
+    {
+      "slug": "mission-valley",
+      "name": "Mission Valley",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7705,
+      "lng": -117.1523,
+      "featured": true
+    },
+    {
+      "slug": "mission-valley-east",
+      "name": "Mission Valley East",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7797,
+      "lng": -117.1004
+    },
+    {
+      "slug": "mission-valley-west",
+      "name": "Mission Valley West",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7667,
+      "lng": -117.1555
+    },
+    {
+      "slug": "morena",
+      "name": "Morena",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7667,
+      "lng": -117.1959
+    },
+    {
+      "slug": "mount-hope",
+      "name": "Mount Hope",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7142,
+      "lng": -117.1075
+    },
+    {
+      "slug": "mountain-view",
+      "name": "Mountain View",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6992,
+      "lng": -117.1128
+    },
+    {
+      "slug": "muirlands",
+      "name": "Muirlands",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8253,
+      "lng": -117.2612
+    },
+    {
+      "slug": "muirlands-west",
+      "name": "Muirlands West",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.834,
+      "lng": -117.268
+    },
+    {
+      "slug": "national-city",
+      "name": "National City",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 32.6781,
+      "lng": -117.0992
+    },
+    {
+      "slug": "navajo",
+      "name": "Navajo",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8008,
+      "lng": -117.0565
+    },
+    {
+      "slug": "nestor",
+      "name": "Nestor",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.5703,
+      "lng": -117.0842
+    },
+    {
+      "slug": "normal-heights",
+      "name": "Normal Heights",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7633,
+      "lng": -117.1184
+    },
+    {
+      "slug": "north-bay-terrace",
+      "name": "North Bay Terrace",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6958,
+      "lng": -117.0473
+    },
+    {
+      "slug": "north-clairemont",
+      "name": "North Clairemont",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8354,
+      "lng": -117.2013
+    },
+    {
+      "slug": "north-park",
+      "name": "North Park",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7484,
+      "lng": -117.1302,
+      "featured": true
+    },
+    {
+      "slug": "ocean-beach",
+      "name": "Ocean Beach",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7448,
+      "lng": -117.2476,
+      "featured": true
+    },
+    {
+      "slug": "old-town",
+      "name": "Old Town",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7553,
+      "lng": -117.1979
+    },
+    {
+      "slug": "otay-mesa",
+      "name": "Otay Mesa",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.5629,
+      "lng": -116.9878
+    },
+    {
+      "slug": "otay-mesa-west",
+      "name": "Otay Mesa West",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.5731,
+      "lng": -117.0542
+    },
+    {
+      "slug": "pacific-beach",
+      "name": "Pacific Beach",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7978,
+      "lng": -117.2403,
+      "featured": true
+    },
+    {
+      "slug": "palm-city",
+      "name": "Palm City",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.5847,
+      "lng": -117.079
+    },
+    {
+      "slug": "paradise-hills",
+      "name": "Paradise Hills",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6784,
+      "lng": -117.057
+    },
+    {
+      "slug": "point-loma",
+      "name": "Point Loma",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7265,
+      "lng": -117.2445,
+      "featured": true
+    },
+    {
+      "slug": "point-loma-heights",
+      "name": "Point Loma Heights",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7426,
+      "lng": -117.2328
+    },
+    {
+      "slug": "ramona",
+      "name": "Ramona",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 33.0473,
+      "lng": -116.8776
+    },
+    {
+      "slug": "rancho-bernardo",
+      "name": "Rancho Bernardo",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 33.0228,
+      "lng": -117.0744,
+      "featured": true
+    },
+    {
+      "slug": "rancho-encantada",
+      "name": "Rancho Encantada",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9248,
+      "lng": -117.0222
+    },
+    {
+      "slug": "rancho-penasquitos",
+      "name": "Rancho Peñasquitos",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9577,
+      "lng": -117.1285,
+      "featured": true
+    },
+    {
+      "slug": "rancho-san-diego",
+      "name": "Rancho San Diego",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 32.7611,
+      "lng": -116.9265
+    },
+    {
+      "slug": "ridgeview",
+      "name": "Ridgeview",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7267,
+      "lng": -117.0978
+    },
+    {
+      "slug": "rolando",
+      "name": "Rolando",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7638,
+      "lng": -117.0583
+    },
+    {
+      "slug": "sabre-springs",
+      "name": "Sabre Springs",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9498,
+      "lng": -117.0952
+    },
+    {
+      "slug": "san-carlos",
+      "name": "San Carlos",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8043,
+      "lng": -117.0375
+    },
+    {
+      "slug": "scripps-ranch",
+      "name": "Scripps Ranch",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.915,
+      "lng": -117.1025,
+      "featured": true
+    },
+    {
+      "slug": "serra-mesa",
+      "name": "Serra Mesa",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8029,
+      "lng": -117.1388
+    },
+    {
+      "slug": "shelltown",
+      "name": "Shelltown",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6887,
+      "lng": -117.1082
+    },
+    {
+      "slug": "shelter-island",
+      "name": "Shelter Island",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7113,
+      "lng": -117.23
+    },
+    {
+      "slug": "sherman-heights",
+      "name": "Sherman Heights",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7106,
+      "lng": -117.1423
+    },
+    {
+      "slug": "skyline",
+      "name": "Skyline",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7027,
+      "lng": -117.0306
+    },
+    {
+      "slug": "solana-beach",
+      "name": "Solana Beach",
+      "region": "san-diego-county",
+      "type": "city",
+      "legacy": true,
+      "lat": 32.9919,
+      "lng": -117.2678
+    },
+    {
+      "slug": "soledad-south",
+      "name": "Soledad South",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8291,
+      "lng": -117.2412
+    },
+    {
+      "slug": "sorrento-valley",
+      "name": "Sorrento Valley",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8942,
+      "lng": -117.216
+    },
+    {
+      "slug": "south-bay-terrace",
+      "name": "South Bay Terrace",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6814,
+      "lng": -117.0455
+    },
+    {
+      "slug": "south-park",
+      "name": "South Park",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7245,
+      "lng": -117.1292
+    },
+    {
+      "slug": "southcrest",
+      "name": "Southcrest",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.6911,
+      "lng": -117.1172
+    },
+    {
+      "slug": "stockton",
+      "name": "Stockton",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7115,
+      "lng": -117.1255
+    },
+    {
+      "slug": "sunset-cliffs",
+      "name": "Sunset Cliffs",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7305,
+      "lng": -117.2532
+    },
+    {
+      "slug": "swan-canyon",
+      "name": "Swan Canyon",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7383,
+      "lng": -117.0988
+    },
+    {
+      "slug": "talmadge",
+      "name": "Talmadge",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7592,
+      "lng": -117.089
+    },
+    {
+      "slug": "teralta-east",
+      "name": "Teralta East",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7516,
+      "lng": -117.1087
+    },
+    {
+      "slug": "teralta-west",
+      "name": "Teralta West",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7527,
+      "lng": -117.1078
+    },
+    {
+      "slug": "tierrasanta",
+      "name": "Tierrasanta",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8292,
+      "lng": -117.1036,
+      "featured": true
+    },
+    {
+      "slug": "tijuana-river-valley",
+      "name": "Tijuana River Valley",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.548,
+      "lng": -117.087
+    },
+    {
+      "slug": "torrey-hills",
+      "name": "Torrey Hills",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.9155,
+      "lng": -117.2244
+    },
+    {
+      "slug": "torrey-pines",
+      "name": "Torrey Pines",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.892,
+      "lng": -117.2403
+    },
+    {
+      "slug": "university-city",
+      "name": "University City",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8672,
+      "lng": -117.2136,
+      "featured": true
+    },
+    {
+      "slug": "university-heights",
+      "name": "University Heights",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7572,
+      "lng": -117.146
+    },
+    {
+      "slug": "upper-hermosa",
+      "name": "Upper Hermosa",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.8209,
+      "lng": -117.2709
+    },
+    {
+      "slug": "valencia-park",
+      "name": "Valencia Park",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.7048,
+      "lng": -117.085
+    },
+    {
+      "slug": "winter-gardens",
+      "name": "Winter Gardens",
+      "region": "san-diego-county",
+      "type": "neighborhood",
+      "legacy": true,
+      "lat": 32.839,
+      "lng": -116.9283
+    },
+    {
+      "slug": "temecula",
+      "name": "Temecula",
+      "region": "inland-empire",
+      "type": "city",
+      "status": "active",
+      "lat": 33.4946,
+      "lng": -117.1474
+    },
+    {
+      "slug": "murrieta",
+      "name": "Murrieta",
+      "region": "inland-empire",
+      "type": "city",
+      "lat": 33.5608,
+      "lng": -117.2107
+    },
+    {
+      "slug": "menifee",
+      "name": "Menifee",
+      "region": "inland-empire",
+      "type": "city",
+      "lat": 33.6864,
+      "lng": -117.1779
+    },
+    {
+      "slug": "lake-elsinore",
+      "name": "Lake Elsinore",
+      "region": "inland-empire",
+      "type": "city",
+      "lat": 33.6681,
+      "lng": -117.3273
+    },
+    {
+      "slug": "wildomar",
+      "name": "Wildomar",
+      "region": "inland-empire",
+      "type": "city",
+      "lat": 33.611,
+      "lng": -117.2581
+    },
+    {
+      "slug": "riverside",
+      "name": "Riverside",
+      "region": "inland-empire",
+      "type": "city",
+      "lat": 33.9825,
+      "lng": -117.3742
+    },
+    {
+      "slug": "corona",
+      "name": "Corona",
+      "region": "inland-empire",
+      "type": "city",
+      "lat": 33.8753,
+      "lng": -117.5664
+    }
+  ]
+}

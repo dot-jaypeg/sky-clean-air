@@ -1,0 +1,10 @@
+{
+  "_note": "Hand-picked reviews shown until the review-aggregator widget (site.json → widgets.reviews) is set up. Once the widget is live it replaces these everywhere.",
+  "summary": { "rating": "5.0", "count_label": "~1,000 reviews", "platforms": ["Google", "Yelp", "Facebook"] },
+  "items": [
+    { "name": "Amanda S.", "text": "Sky Clean Air came to clean our vents in our new home. They were hardworking and professional. They tuned up our HVAC and brushed out our vents. It was a little more expensive than I was planning but in the end I think it was worth the money for a super clean house." },
+    { "name": "Anil G.", "text": "I found Sky Clean Air through Valpak, booked an appointment, Nadav was very helpful, explained everything over the phone. Gave us a real good and fair price and the job was very well done. Will recommend them to friends and family. Double thumbs up!!" },
+    { "name": "Adi O.", "text": "I had allergies for a long time and didn't know what to do! I contacted Sky Clean Air, the next day Daniel arrived with his crew and did an amazing job. They have really good prices and amazing customer service. Highly recommended!" },
+    { "name": "Eugene K.", "text": "Thank you Nadav and Daniel for high quality air duct cleaning and treatment. Thanks for your thorough work, professionalism and friendliness. Good job! My air duct is much cleaner and fresher now." }
+  ]
+}

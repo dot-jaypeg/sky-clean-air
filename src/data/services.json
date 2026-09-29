@@ -1,0 +1,182 @@
+{
+  "_note": "Every service page on the site. `slug` is the page URL (/slug/) — these match the legacy WordPress URLs so SEO carries over. A category's `hub` page lives at /services/<category slug>/. `featured` services show on the homepage. Hand-written page copy lives in src/pages/services/<slug>.html; services without one fall back to their migrated legacy copy.",
+  "categories": [
+    {
+      "slug": "air-conditioning",
+      "name": "Air Conditioning",
+      "icon": "snow",
+      "blurb": "AC repair, new installs, replacements and seasonal maintenance for central air and ductless systems.",
+      "services": [
+        { "slug": "ac-repair", "name": "AC Repair" },
+        { "slug": "ac-installation", "name": "AC Installation" },
+        { "slug": "central-ac-installation", "name": "Central AC Installation" },
+        { "slug": "ac-replacement", "name": "AC Replacement" },
+        { "slug": "ac-maintenance", "name": "AC Maintenance" },
+        { "slug": "ac-cleaning", "name": "AC Cleaning" },
+        { "slug": "mini-split-installation", "name": "Mini-Split Installation" },
+        { "slug": "mini‑split-ac-installation", "name": "Mini-Split AC Installation", "hidden": true },
+        { "slug": "mini-split-service", "name": "Mini-Split Service" },
+        { "slug": "ductless-system-installation", "name": "Ductless System Installation" },
+        { "slug": "ductless-system-service", "name": "Ductless System Service" }
+      ]
+    },
+    {
+      "slug": "hvac",
+      "name": "HVAC Systems",
+      "icon": "thermo",
+      "blurb": "Whole-system installs, replacements, repairs, tune-ups and diagnostics — including 24/7 emergency service.",
+      "services": [
+        { "slug": "hvac-installation", "name": "HVAC Installation", "featured": true },
+        { "slug": "hvac-replacement", "name": "HVAC Replacement" },
+        { "slug": "hvac-repair", "name": "HVAC Repair" },
+        { "slug": "hvac-maintenance", "name": "HVAC Maintenance" },
+        { "slug": "hvac-tune-up", "name": "HVAC Tune-Up" },
+        { "slug": "hvac-inspection", "name": "HVAC Inspection" },
+        { "slug": "hvac-diagnostics", "name": "HVAC Diagnostics" },
+        { "slug": "hvac-troubleshooting", "name": "HVAC Troubleshooting" },
+        { "slug": "hvac-zoning-setup", "name": "HVAC Zoning Setup" },
+        { "slug": "emergency-hvac-services", "name": "Emergency HVAC Services" },
+        { "slug": "thermostat-installation", "name": "Thermostat Installation" },
+        { "slug": "thermostat-programming", "name": "Thermostat Programming" }
+      ]
+    },
+    {
+      "slug": "heating",
+      "name": "Heating",
+      "icon": "flame",
+      "blurb": "Furnace and heat pump installation and repair to keep your home warm through San Diego's cool nights.",
+      "services": [
+        { "slug": "furnace-installation", "name": "Furnace Installation" },
+        { "slug": "furnace-repair", "name": "Furnace Repair" },
+        { "slug": "heat-pump-installation", "name": "Heat Pump Installation" },
+        { "slug": "heat-pump-repair", "name": "Heat Pump Repair" }
+      ]
+    },
+    {
+      "slug": "air-ducts",
+      "name": "Air Ducts",
+      "icon": "wind",
+      "blurb": "Duct cleaning, sanitizing, sealing, repair and replacement — the service Sky Clean Air was founded on.",
+      "services": [
+        { "slug": "air-duct-cleaning", "name": "Air Duct Cleaning", "featured": true },
+        { "slug": "duct-sanitizing", "name": "Duct Sanitizing" },
+        { "slug": "residential-hvac-air-duct-disinfecting", "name": "Air Duct Disinfecting" },
+        { "slug": "air-duct-repair", "name": "Air Duct Repair" },
+        { "slug": "air-duct-replacement", "name": "Air Duct Replacement" },
+        { "slug": "air-duct-installation", "name": "Air Duct Installation" },
+        { "slug": "air-duct-maintenance", "name": "Air Duct Maintenance" },
+        { "slug": "duct-sealing", "name": "Duct Sealing" },
+        { "slug": "duct-leakage-testing", "name": "Duct Leakage Testing" },
+        { "slug": "ductwork-inspection", "name": "Ductwork Inspection" },
+        { "slug": "airflow-balancing", "name": "Airflow Balancing" }
+      ]
+    },
+    {
+      "slug": "dryer-vents",
+      "name": "Dryer Vents",
+      "icon": "fire",
+      "blurb": "Dryer vent cleaning, repair, rerouting and upgrades that cut drying time and fire risk.",
+      "services": [
+        { "slug": "dryer-vent-cleaning", "name": "Dryer Vent Cleaning", "featured": true },
+        { "slug": "dryer-vent-repair", "name": "Dryer Vent Repair" },
+        { "slug": "dryer-vent-installation", "name": "Dryer Vent Installation" },
+        { "slug": "dryer-vent-maintenance", "name": "Dryer Vent Maintenance" },
+        { "slug": "dryer-vent-rerouting", "name": "Dryer Vent Rerouting" },
+        { "slug": "dryer-vent-lint-trap-installation", "name": "Lint Trap Installation" },
+        { "slug": "dryer-vent-booster-fan-installation", "name": "Booster Fan Installation" }
+      ]
+    },
+    {
+      "slug": "attic-insulation",
+      "name": "Attic & Insulation",
+      "icon": "home",
+      "blurb": "Attic cleaning, rodent-waste removal, insulation replacement and air sealing for a cleaner, more efficient home.",
+      "services": [
+        { "slug": "attic-inspection", "name": "Attic Inspection" },
+        { "slug": "attic-insulation-removal", "name": "Attic Insulation Removal", "featured": true },
+        { "slug": "attic-insulation-replacement", "name": "Attic Insulation Replacement" },
+        { "slug": "blown-in-insulation-installation", "name": "Blown-In Insulation" },
+        { "slug": "batt-and-roll-insulation-installation", "name": "Batt & Roll Insulation" },
+        { "slug": "spray-foam-insulation-installation", "name": "Spray Foam Insulation" },
+        { "slug": "radiant-barrier-installation", "name": "Radiant Barrier Installation" },
+        { "slug": "attic-air-sealing", "name": "Attic Air Sealing" },
+        { "slug": "attic-ventilation-installation", "name": "Attic Ventilation" }
+      ]
+    },
+    {
+      "slug": "indoor-air-quality",
+      "name": "Indoor Air Quality",
+      "icon": "drop",
+      "blurb": "UV purifiers, whole-home air filtration, humidifiers and dehumidifiers for healthier air in every room.",
+      "services": [
+        { "slug": "whole-home-air-purifier-installation", "name": "Whole-Home Air Purifier", "featured": true },
+        { "slug": "uv-air-purifier-installation", "name": "UV Air Purifier Installation" },
+        { "slug": "uv-air-purifier-replacement", "name": "UV Air Purifier Replacement" },
+        { "slug": "uv-bulb-replacement", "name": "UV Bulb Replacement" },
+        { "slug": "uv-system-repair", "name": "UV System Repair" },
+        { "slug": "media-filter-installation", "name": "Media Filter Installation" },
+        { "slug": "humidifier-installation", "name": "Humidifier Installation" },
+        { "slug": "dehumidifier-installation", "name": "Dehumidifier Installation" }
+      ]
+    },
+    {
+      "slug": "commercial",
+      "name": "Commercial",
+      "icon": "building",
+      "blurb": "HVAC, duct, dryer vent, attic and air quality services for offices, retail, restaurants and multi-unit properties.",
+      "services": [
+        { "slug": "commercial-hvac-installation", "name": "Commercial HVAC Installation" },
+        { "slug": "commercial-hvac-replacement", "name": "Commercial HVAC Replacement" },
+        { "slug": "commercial-hvac-repair", "name": "Commercial HVAC Repair" },
+        { "slug": "commercial-hvac-maintenance", "name": "Commercial HVAC Maintenance" },
+        { "slug": "commercial-hvac-tune-up", "name": "Commercial HVAC Tune-Up" },
+        { "slug": "commercial-hvac-inspection", "name": "Commercial HVAC Inspection" },
+        { "slug": "commercial-hvac-diagnostics", "name": "Commercial HVAC Diagnostics" },
+        { "slug": "commercial-hvac-troubleshooting", "name": "Commercial HVAC Troubleshooting" },
+        { "slug": "commercial-emergency-hvac-services", "name": "Commercial Emergency HVAC" },
+        { "slug": "commercial-hvac-zoning-setup", "name": "Commercial HVAC Zoning" },
+        { "slug": "commercial-hvac-control-setup", "name": "Commercial HVAC Controls" },
+        { "slug": "commercial-hvac-system-integration", "name": "Commercial HVAC System Integration" },
+        { "slug": "commercial-rooftop-unit", "name": "Commercial Rooftop Units" },
+        { "slug": "commercial-package-unit", "name": "Commercial Package Units" },
+        { "slug": "commercial-split-system", "name": "Commercial Split Systems" },
+        { "slug": "commercial-mini-split-system", "name": "Commercial Mini-Splits" },
+        { "slug": "commercial-thermostat-installation", "name": "Commercial Thermostat Installation" },
+        { "slug": "commercial-thermostat-programming", "name": "Commercial Thermostat Programming" },
+        { "slug": "commercial-ac-installation", "name": "Commercial AC Installation" },
+        { "slug": "commercial-ac-replacement", "name": "Commercial AC Replacement" },
+        { "slug": "commercial-ac-repair", "name": "Commercial AC Repair" },
+        { "slug": "commercial-ac-maintenance", "name": "Commercial AC Maintenance" },
+        { "slug": "commercial-ac-cleaning", "name": "Commercial AC Cleaning" },
+        { "slug": "commercial-air-duct-cleaning", "name": "Commercial Air Duct Cleaning" },
+        { "slug": "commercial-hvac-air-duct-disinfecting", "name": "Commercial Duct Disinfecting" },
+        { "slug": "commercial-air-duct-installation", "name": "Commercial Air Duct Installation" },
+        { "slug": "commercial-air-duct-repair", "name": "Commercial Air Duct Repair" },
+        { "slug": "commercial-air-duct-replacement", "name": "Commercial Air Duct Replacement" },
+        { "slug": "commercial-air-duct-maintenance", "name": "Commercial Air Duct Maintenance" },
+        { "slug": "commercial-air-duct-testing", "name": "Commercial Air Duct Testing" },
+        { "slug": "commercial-duct-leakage-testing", "name": "Commercial Duct Leakage Testing" },
+        { "slug": "commercial-duct-balancing", "name": "Commercial Duct Balancing" },
+        { "slug": "commercial-dryer-vent-cleaning", "name": "Commercial Dryer Vent Cleaning" },
+        { "slug": "commercial-dryer-vent-installation", "name": "Commercial Dryer Vent Installation" },
+        { "slug": "commercial-dryer-vent-repair", "name": "Commercial Dryer Vent Repair" },
+        { "slug": "commercial-dryer-vent-maintenance", "name": "Commercial Dryer Vent Maintenance" },
+        { "slug": "commercial-dryer-vent-rerouting", "name": "Commercial Dryer Vent Rerouting" },
+        { "slug": "commercial-dryer-vent-lint-trap-installation", "name": "Commercial Lint Trap Installation" },
+        { "slug": "commercial-dryer-vent-booster-fan-installation", "name": "Commercial Booster Fan Installation" },
+        { "slug": "commercial-attic-energy-efficiency-inspection", "name": "Commercial Attic Energy Inspection" },
+        { "slug": "commercial-attic-insulation-removal", "name": "Commercial Insulation Removal" },
+        { "slug": "commercial-attic-insulation-replacement", "name": "Commercial Insulation Replacement" },
+        { "slug": "commercial-blown-in-attic-insulation-installation", "name": "Commercial Blown-In Insulation" },
+        { "slug": "commercial-batt-and-roll-insulation-installation", "name": "Commercial Batt & Roll Insulation" },
+        { "slug": "commercial-spray-foam-insulation-installation", "name": "Commercial Spray Foam Insulation" },
+        { "slug": "commercial-radiant-barrier-installation", "name": "Commercial Radiant Barrier" },
+        { "slug": "commercial-attic-air-sealing", "name": "Commercial Attic Air Sealing" },
+        { "slug": "commercial-attic-ventilation-upgrades", "name": "Commercial Attic Ventilation" },
+        { "slug": "commercial-uv-air-purifier-replacement", "name": "Commercial UV Purifier Replacement" },
+        { "slug": "commercial-uv-air-purifier-bulb-replacement", "name": "Commercial UV Bulb Replacement" },
+        { "slug": "commercial-uv-system-repair", "name": "Commercial UV System Repair" }
+      ]
+    }
+  ]
+}

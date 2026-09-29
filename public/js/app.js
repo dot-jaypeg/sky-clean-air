@@ -109,13 +109,12 @@
   }
 
   // ---- Contact form prototype (no backend yet) ----
-  var quoteForm = document.getElementById('quote-form');
-  var formSuccess = document.getElementById('form-success');
-  if (quoteForm) {
-    quoteForm.addEventListener('submit', function (e) {
+  document.querySelectorAll('[data-quote-form]').forEach(function (form) {
+    var success = form.querySelector('.form-success');
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (formSuccess) formSuccess.classList.add('show');
-      quoteForm.reset();
+      if (success) success.classList.add('show');
+      form.reset();
     });
-  }
+  });
 })();

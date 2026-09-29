@@ -2,3 +2,5 @@
 assets/content/*.mp4
 assets/content/*.mov
 assets/content/stock/
+
+__pycache__/

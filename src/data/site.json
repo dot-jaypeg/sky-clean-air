@@ -1,0 +1,55 @@
+{
+  "name": "Sky Clean Air",
+  "domain": "https://skycleanair.com",
+  "tagline": "Family-owned HVAC & indoor air quality since 2018",
+  "founded": 2018,
+  "phone": "619-304-8822",
+  "phone_tel": "+16193048822",
+  "email": "",
+  "license": "1036543",
+  "address": {
+    "street": "9474 Chesapeake Dr STE 902",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92123",
+    "lat": 32.8279,
+    "lng": -117.1403
+  },
+  "hours": [
+    ["Mon–Fri", "8am–6pm"],
+    ["Saturday", "8am–3pm"],
+    ["Sunday", "Closed"]
+  ],
+  "socials": [
+    { "name": "Instagram", "url": "https://instagram.com/skycleanairhvac" },
+    { "name": "TikTok", "url": "https://tiktok.com/@sky.clean.air.hvac" },
+    { "name": "Facebook", "url": "https://www.facebook.com/SkyCleanAir" },
+    { "name": "Yelp", "url": "https://www.yelp.com/biz/sky-clean-air-san-diego" }
+  ],
+  "logo": "/assets/logos/e59f1fa1-dea7-470b-be38-968f76544f1b.png",
+  "specials": [
+    { "price": "$59", "title": "Whole-House Duct Cleaning", "text": "Deep clean, mold & odor removal.", "active": true },
+    { "price": "$50", "title": "Basic HVAC Tune-Up", "text": "Keep your system running strong.", "active": true },
+    { "price": "$29", "title": "Furnace Safety Inspection", "text": "Winter special — make sure your heat is safe before the cold sets in.", "active": false }
+  ],
+
+  "_widgets_note": "Paste the vendor embed snippets here once we have them. Empty = the page shows a placeholder (when show_placeholders is true) or falls back to our own content.",
+  "widgets": {
+    "contractor_commerce": "",
+    "reviews": ""
+  },
+
+  "_mascot_note": "Path to Skylar artwork (PNG/WebP with transparency) once the designer hands it off. Empty = placeholder slots.",
+  "mascot": {
+    "name": "Skylar",
+    "title": "The Home Service Eagle",
+    "images": {
+      "wave": "",
+      "point": "",
+      "thumbs_up": ""
+    }
+  },
+
+  "_placeholders_note": "Draft-only: shows labeled boxes where pending assets (widgets, mascot, team photos) will go. Set false before launch to hide them.",
+  "show_placeholders": true
+}

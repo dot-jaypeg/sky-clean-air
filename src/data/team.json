@@ -1,0 +1,112 @@
+{
+  "_note": "Team page data, grouped by department. Photos are the legacy-site headshots as a stand-in until the new event headshots arrive — swap `photo` paths when they do. `role_pending: true` marks people whose role/duties we still need from the client (rendered with a 'details coming soon' note while show_placeholders is on). Add people to a department by appending to its `members` list.",
+  "group_photo": "/assets/images/story-team.jpg",
+  "departments": [
+    {
+      "slug": "management",
+      "name": "Management",
+      "blurb": "The founders and office team who keep every job scheduled, quoted, staffed and followed up on.",
+      "members": [
+        {
+          "name": "Nadav Offer",
+          "short": "Nadi",
+          "role": "Co-Founder & CEO",
+          "photo": "/assets/images/team/nadav.jpg",
+          "bio": "Nadav co-founded Sky Clean Air and grew it from a single rented van into a multi-van, multi-technician operation with hundreds of five-star reviews.",
+          "duties": [
+            "Company strategy, finance and growth",
+            "Building the systems and culture that let the company scale without losing the personal touch",
+            "Leading the expansion into Orange County and the Inland Empire"
+          ],
+          "facts": [
+            ["Credentials", "EPA-certified, NADCA standards knowledge"],
+            ["Outside work", "Family travel, boating, exploring food from around the world"]
+          ]
+        },
+        {
+          "name": "Daniel Lezmy",
+          "role": "Co-Founder & Co-Owner",
+          "photo": "/assets/images/team/daniel.jpg",
+          "bio": "Daniel has spent 9 years in HVAC and indoor air quality. He believes in building a business that serves customers well and supports its employees like family.",
+          "duties": [
+            "Field operations and service quality",
+            "Leading and supporting the technician crews",
+            "Keeping customer relationships strong from first call to follow-up"
+          ],
+          "facts": [
+            ["Department", "Leadership / Executive"],
+            ["Outside work", "Time with family and friends"]
+          ]
+        },
+        {
+          "name": "Valarie Chavez",
+          "role": "Office Manager",
+          "photo": "/assets/images/team/valarie.jpg",
+          "bio": "Valarie joined in 2024 and is the voice many customers hear first. She keeps projects running smoothly from the first call to the final walkthrough.",
+          "duties": [
+            "Scheduling, dispatch and day-to-day office operations",
+            "Customer success — questions, estimates and follow-ups",
+            "Keeping projects on track from start to finish"
+          ],
+          "facts": [
+            ["Fun fact", "Former cheer coach in the Sweetwater Union High School District"],
+            ["Community", "Board member at Donald's Doggie Haven, a 501(c) rescue"]
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "installation",
+      "name": "HVAC Installation Team",
+      "blurb": "The crew that designs, installs and replaces full heating and cooling systems — from sizing the equipment to the final startup test.",
+      "members": []
+    },
+    {
+      "slug": "technicians",
+      "name": "Technicians & Helpers",
+      "blurb": "The people in our trucks every day — inspecting systems, cleaning ducts and dryer vents, diagnosing problems and walking homeowners through their options.",
+      "members": [
+        {
+          "name": "Oscar L.",
+          "role": "Sales Technician",
+          "photo": "/assets/images/team/oscar.jpg",
+          "bio": "Oscar came to HVAC from construction and now diagnoses and quotes residential and commercial heating and cooling solutions.",
+          "duties": [
+            "In-home system inspections and diagnostics",
+            "Explaining repair vs. replacement options and preparing quotes"
+          ]
+        },
+        {
+          "name": "Taylor M.",
+          "role": "Sales Technician",
+          "photo": "/assets/images/team/taylor.jpg",
+          "bio": "A Hawaii native and military veteran, Taylor worked HVAC in the San Diego shipyards before moving into residential comfort.",
+          "duties": [
+            "In-home consultations and system recommendations",
+            "Quoting installs, replacements and indoor air quality upgrades"
+          ],
+          "facts": [
+            ["Experience", "8 years in the field"],
+            ["Credentials", "EPA Universal, OSHA 10"]
+          ]
+        },
+        {
+          "name": "Joe",
+          "role": "HVAC Technician",
+          "photo": "/assets/images/team/joe.jpg",
+          "bio": "With 10+ years in the trade and 3 with Sky Clean Air, Joe helps homeowners and businesses find the right comfort solution.",
+          "duties": [
+            "Service calls, diagnostics and repairs",
+            "Helping customers choose the right system for their home"
+          ],
+          "facts": [
+            ["Outside work", "Welding, fabricating and building trucks"]
+          ]
+        },
+        { "name": "Erick", "role": "Team Member", "role_pending": true, "photo": "/assets/images/team/erick.jpg" },
+        { "name": "Louis A.", "role": "Team Member", "role_pending": true, "photo": "/assets/images/team/louis.jpg" },
+        { "name": "Tedi", "role": "Team Member", "role_pending": true, "photo": "/assets/images/team/tedi.jpg" }
+      ]
+    }
+  ]
+}
