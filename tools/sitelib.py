@@ -467,10 +467,14 @@ def page_hero(ch, title_html, lede='', crumbs=None, kicker='', ctas=True, media=
 
 def cta_band(ch, title='Ready For <span class="grad-text">Cleaner Air</span>?',
              text='Get a free estimate today — same-day and next-day appointments available.'):
+    # Skylar gives a thumbs-up here once the artwork exists (no placeholder — this band is on every page).
+    art = ch.s['mascot']['images'].get('thumbs_up')
+    art_html = f'<img class="cta-mascot" src="{art}" alt="{esc(ch.s["mascot"]["name"])}" loading="lazy">' if art else ''
     return f'''<section class="section-tight">
   <div class="container">
-    <div class="cta-band" data-reveal>
+    <div class="cta-band{' has-mascot' if art else ''}" data-reveal>
       <div class="hero-grid" aria-hidden="true"></div>
+      {art_html}
       <div>
         <h2>{title}</h2>
         <p>{text}</p>

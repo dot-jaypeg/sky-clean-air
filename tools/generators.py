@@ -8,7 +8,8 @@ dict needs `path`, `title`, `description` and `body`; optional keys are
 import gen_areas
 import gen_legacy
 import gen_services
-from sitelib import page_hero
+import gen_team
+from sitelib import mascot, page_hero
 
 
 def not_found(site):
@@ -21,7 +22,8 @@ def not_found(site):
         'body': page_hero(ch, 'Page <span class="hl">Not Found</span>',
                           "We couldn't find that page. Try one of the links below, or give us a call — we're happy to help.",
                           extra='<p class="hero-links"><a href="/">Home</a> · <a href="/services/">Services</a> · '
-                                '<a href="/service-areas/">Service Areas</a> · <a href="/contact-us/">Contact</a></p>'),
+                                '<a href="/service-areas/">Service Areas</a> · <a href="/contact-us/">Contact</a></p>') +
+                f'<section class="section"><div class="container mascot-intro">{mascot(ch, "point")}</div></section>',
     })
 
 
@@ -35,6 +37,7 @@ ALL = [
     gen_areas.hub,
     gen_areas.region_pages,
     gen_areas.city_pages,
+    gen_team.team_page,
     gen_legacy.service_locations,
     gen_legacy.posts,
     gen_legacy.misc_pages,
