@@ -279,7 +279,7 @@ class Chrome:
 <header class="site-header" id="top">
   <div class="container">
     <a href="/" class="brand" aria-label="{esc(s["name"])} home">
-      <img src="{s["logo"]}" alt="{esc(s["name"])} logo" width="1754" height="1241">
+      <img src="{s["logo"]}" alt="{esc(s["name"])} logo" width="600" height="316">
     </a>
     <nav class="main-nav" aria-label="Primary">{"".join(nav_html)}</nav>
     <div class="header-actions">

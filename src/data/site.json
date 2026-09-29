@@ -26,7 +26,7 @@
     { "name": "Facebook", "url": "https://www.facebook.com/SkyCleanAir" },
     { "name": "Yelp", "url": "https://www.yelp.com/biz/sky-clean-air-san-diego" }
   ],
-  "logo": "/assets/logos/e59f1fa1-dea7-470b-be38-968f76544f1b.png",
+  "logo": "/assets/logos/sca-logo-trimmed-600.png",
   "specials": [
     { "price": "$59", "title": "Whole-House Duct Cleaning", "text": "Deep clean, mold & odor removal.", "active": true },
     { "price": "$50", "title": "Basic HVAC Tune-Up", "text": "Keep your system running strong.", "active": true },

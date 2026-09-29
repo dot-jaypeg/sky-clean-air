@@ -36,7 +36,10 @@ The user has authorized automatic git management for this repo. Unless told othe
 ## Notes
 
 - `assets/content/` (repo root, not deployed) holds raw client material. `*.mp4`/`*.mov` and `stock/` are gitignored (too big). The client's own clips are 9:16 social-ad edits with burned-in captions — not usable as background video.
-- Background videos in `public/assets/video/` are transcoded from stock footage (1600px wide, no audio) with poster frames in `public/assets/images/`. `public/js/app.js` forces hero `play()` so mobile browsers don't show a play-button overlay.
+- Background videos in `public/assets/video/` are transcoded from stock footage (no audio) with poster frames in `public/assets/images/`. `public/js/app.js` forces hero `play()` so mobile browsers don't show a play-button overlay.
+  - Hero: `hero-residential.*` — Pexels #39056799 (SoCal red-tile-roof suburb + mountains; free commercial license), first 14s played forward then reversed for a seamless loop, 1440px. Replaced the aerial rooftop-HVAC clip, which the client felt looked too commercial. Swap in custom fleet/van footage if the client provides it.
+  - Service-area band: `area-bg.*` (aerial downtown San Diego).
+- Hero logo overlay (`.hero-brandmark`) is a client-requested test — `?heromark=off` on the URL hides it for side-by-side comparison. Header logo uses `sca-logo-trimmed-600.png`, a copy of the client logo with only its transparent padding cropped (original kept untouched) so it renders at a real size.
 - Team headshots in `public/assets/images/team/` are from the legacy site's Our Team page — stand-ins until the new event headshots arrive. The About section team photo (`story-team.jpg`) stays until then too (client asked to replace it; user said keep it for now).
 - Phone: site uses 619-304-8822 (onboarding doc). The legacy site shows (858) 346-5551 everywhere, possibly a tracking line — unconfirmed; it's one field in `site.json`.
 - Founding year: brief and client notes say 2018; legacy team bios say "start year 2016". Site uses 2018.

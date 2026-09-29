@@ -17,6 +17,11 @@
     });
   }
 
+  // ---- Hero logo-overlay test: ?heromark=off shows the hero without it ----
+  if (/[?&]heromark=off\b/.test(window.location.search)) {
+    document.documentElement.classList.add('heromark-off');
+  }
+
   // ---- Scrolled header state (transparent-over-hero -> solid fill) ----
   var updateScrolled = function () {
     document.body.classList.toggle('scrolled', window.scrollY > 8);

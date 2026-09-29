@@ -6,9 +6,9 @@ body_class: page-home
 ---
 <section class="hero">
   <div class="hero-media">
-    <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture poster="/assets/images/hero-poster.jpg">
-      <source src="/assets/video/hero-loop.webm" type="video/webm">
-      <source src="/assets/video/hero-loop.mp4" type="video/mp4">
+    <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture poster="/assets/images/hero-residential-poster.jpg">
+      <source src="/assets/video/hero-residential.webm" type="video/webm">
+      <source src="/assets/video/hero-residential.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -22,9 +22,17 @@ body_class: page-home
     <span class="particle" style="--px:77%; --ps:10px; --pd:13s; --pdelay:4s;"></span>
     <span class="particle" style="--px:88%; --ps:5px; --pd:9.5s; --pdelay:1.1s;"></span>
   </div>
+  <!-- Large logo overlay (test — add ?heromark=off to the URL to compare without it) -->
+  <div class="hero-brandmark" aria-hidden="true">
+    <img src="/assets/logos/sca-logo-trimmed.png" alt="" width="1488" height="784">
+  </div>
   <div class="container">
     <div class="hero-content">
-      <span class="hero-badge"><span class="dot"></span> Family-Owned Since {{founded}} &middot; San Diego, CA</span>
+      <div class="hero-locale">
+        <span class="hero-locale-pin" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span class="hero-locale-text"><strong>San Diego</strong><span>&amp; Orange County, CA</span></span>
+      </div>
+      <span class="hero-badge"><span class="dot"></span> Family-Owned Since {{founded}}</span>
       <h1>HVAC &amp; Air Duct Cleaning Services in <span class="hl">San Diego, CA</span></h1>
       <p class="lede">Cleaner air and dependable home comfort start here. Sky Clean Air is a family owned and operated residential and commercial indoor air quality services company serving San Diego, Orange County and surrounding areas.</p>
       <div class="hero-ctas">

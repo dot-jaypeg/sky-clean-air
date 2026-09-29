@@ -290,8 +290,9 @@ body.has-hero.scrolled .site-header {
 }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 100%; }
 
-.brand { display: flex; align-items: center; }
-.brand img { height: 52px; width: auto; }
+.brand { display: flex; align-items: center; flex-shrink: 0; }
+.brand img { height: 64px; width: auto; transition: height 0.3s ease; }
+body.scrolled .brand img { height: 52px; }
 
 .main-nav { display: flex; align-items: center; gap: 24px; height: 100%; }
 .nav-item { position: relative; height: 100%; display: flex; align-items: center; }
@@ -427,7 +428,7 @@ body.scrolled .nav-menu.mega { top: calc(var(--header-height) - 10px); }
   .nav-toggle { display: inline-flex; }
   .header-actions .btn-call span { display: none; }
   .header-actions .btn-call { padding: 12px; }
-  .brand img { height: 42px; }
+  .brand img, body.scrolled .brand img { height: 46px; }
 }
 
 /* ---- Mobile nav drawer ---------------------------------------------------- */
@@ -578,6 +579,76 @@ body.nav-open { overflow: hidden; }
 }
 .hero .container { position: relative; z-index: 2; }
 .hero-content { max-width: 700px; }
+
+/* Large faint logo overlay on the right of the hero, echoing the legacy
+   site's logo-forward hero. Test treatment: ?heromark=off hides it. */
+.hero-brandmark {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: max(24px, calc((100vw - var(--max-width)) / 2 - 40px));
+  width: min(46vw, 660px);
+  transform: translateY(-44%);
+  pointer-events: none;
+  opacity: 0.16;
+  filter: drop-shadow(0 0 40px rgba(42, 221, 234, 0.55));
+  animation: brandmark-drift 14s ease-in-out infinite;
+}
+.hero-brandmark img { width: 100%; height: auto; }
+@keyframes brandmark-drift {
+  0%, 100% { transform: translateY(-44%); }
+  50% { transform: translateY(-47%); }
+}
+.heromark-off .hero-brandmark { display: none; }
+
+/* Location lockup: small mark + "San Diego" set together, copy shifted right to balance the overlay */
+.hero-locale {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.hero-locale-pin {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(42, 221, 234, 0.12);
+  border: 1px solid rgba(42, 221, 234, 0.35);
+  color: var(--sky);
+  flex-shrink: 0;
+}
+.hero-locale-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  padding-left: 14px;
+  border-left: 2px solid rgba(42, 221, 234, 0.5);
+}
+.hero-locale-text strong {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.hero-locale-text span {
+  margin-top: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sky);
+}
+@media (min-width: 1100px) {
+  .hero .hero-content { margin-left: 56px; }
+}
+@media (max-width: 900px) {
+  .hero-brandmark { width: 92vw; right: -24%; opacity: 0.1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-brandmark { animation: none; }
+}
 
 .hero-badge {
   display: inline-flex;
