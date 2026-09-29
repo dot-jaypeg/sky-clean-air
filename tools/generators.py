@@ -5,6 +5,8 @@ dict needs `path`, `title`, `description` and `body`; optional keys are
 `body_class`, `noindex`, `schema` (extra JSON-LD objects), `lastmod`,
 `head_extra`, `scripts`.
 """
+import gen_legacy
+import gen_services
 from sitelib import page_hero
 
 
@@ -22,4 +24,18 @@ def not_found(site):
     })
 
 
-ALL = [not_found]
+# Order matters a little: services and hand-built pages claim their URLs
+# first, then legacy migration fills in everything else.
+ALL = [
+    not_found,
+    gen_services.service_pages,
+    gen_services.category_hubs,
+    gen_services.services_index,
+    gen_legacy.service_locations,
+    gen_legacy.posts,
+    gen_legacy.misc_pages,
+    gen_legacy.redirects,
+]
+
+# Run after every page exists (e.g. to drop links to pages that don't).
+FINALIZE = [gen_legacy.fix_legacy_links]

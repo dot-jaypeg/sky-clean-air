@@ -115,6 +115,8 @@ class Site:
         import generators
         for gen in generators.ALL:
             gen(self)
+        for fin in generators.FINALIZE:
+            fin(self)
 
         written = []
         for path, p in sorted(self.pages.items()):

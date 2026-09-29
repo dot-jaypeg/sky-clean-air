@@ -1,0 +1,15 @@
+{
+ "id": 2526,
+ "kind": "page",
+ "type": "page",
+ "path": "/contact-us/",
+ "title": "Contact Us",
+ "h1": null,
+ "seo_title": "Contact Sky Clean Air or Call 858-346-5551",
+ "description": "Call or Fill out our form for more information about hvac, air ducts, dry vent, air conditioner, indoor air quality & commercial services. Call {{phone}} today",
+ "date": "2024-07-24",
+ "modified": "2026-05-04",
+ "image": "https://skycleanair.com/wp-content/uploads/2022/02/address.png",
+ "body": "<p>Call Sky Clean Air duct cleaning today!</p>\n<figure><img src=\"https://skycleanair.com/wp-content/uploads/2022/02/address.png\" alt=\"\" loading=\"lazy\"></figure>\n<h2>ADDRESS</h2>\n<p>9474 Chesapeake Dr, Ste 902, San Diego, CA 92123</p>\n<figure><img src=\"https://skycleanair.com/wp-content/uploads/2022/02/call.png\" alt=\"\" loading=\"lazy\"></figure>\n<h2>PHONE NUMBER</h2>\n<a href=\"{{tel}}\">{{phone}}</a>\n<figure><img src=\"https://skycleanair.com/wp-content/uploads/2022/02/email-1.png\" alt=\"\" loading=\"lazy\"></figure>\n<h2>EMAIL ADDRESS</h2>\n<p><a href=\"/cdn-cgi/l/email-protection#0f7c64766c636a6e616e667d4f68626e6663216c6062\">[email protected]</a></p>\n<figure><img src=\"https://skycleanair.com/wp-content/uploads/2022/02/hours.png\" alt=\"\" loading=\"lazy\"></figure>\n<h2>BUSINESS HOURS</h2>\n<p><strong>Monday – Friday</strong> <br>7:30am – 6pm</p>\n<p><strong>Sat / Sun</strong> <br>Closed</p>",
+ "faqs": []
+}

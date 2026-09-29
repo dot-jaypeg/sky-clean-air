@@ -1,0 +1,15 @@
+{
+ "id": 33,
+ "kind": "page",
+ "type": "page",
+ "path": "/contact-us-nw/",
+ "title": "Contact Us (not working)",
+ "h1": null,
+ "seo_title": "Contact Us | Sky clean Air",
+ "description": "Contact Sky Clean Air for superior HVAC and air cleaning services. Our experts are dedicated to improving indoor air quality for healthier living environments. Get in touch today.",
+ "date": "2022-02-08",
+ "modified": "2024-07-24",
+ "image": "https://skycleanair.com/wp-content/uploads/2022/03/contact-us.png",
+ "body": "<h2>Feel free to contact with us</h2>\n<p>Call Sky Clean Air duct cleaning today!</p>\n<figure><img src=\"https://skycleanair.com/wp-content/uploads/2022/02/address.png\" alt=\"\" loading=\"lazy\"></figure>\n<h2>ADDRESS</h2>\n<p>7929 Silverton Avenue, Suite #603<br>San Diego, CA 92126</p>\n<figure><img src=\"https://skycleanair.com/wp-content/uploads/2022/02/call.png\" alt=\"\" loading=\"lazy\"></figure>\n<h2>PHONE NUMBER</h2>\n<a href=\"{{tel}}\">{{phone}}</a>\n<figure><img src=\"https://skycleanair.com/wp-content/uploads/2022/02/email-1.png\" alt=\"\" loading=\"lazy\"></figure>\n<h2>EMAIL ADDRESS</h2>\n<p><a href=\"/cdn-cgi/l/email-protection#becdd5c7ddd2dbdfd0dfd7ccfed9d3dfd7d290ddd1d3\">[email protected]</a></p>\n<figure><img src=\"https://skycleanair.com/wp-content/uploads/2022/02/hours.png\" alt=\"\" loading=\"lazy\"></figure>\n<h2>BUSINESS HOURS</h2>\n<p><strong>Monday-Saturday: </strong>7:00AM – 10:00PM<br></p>",
+ "faqs": []
+}
