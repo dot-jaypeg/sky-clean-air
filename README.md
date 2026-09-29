@@ -20,10 +20,13 @@ No dependencies beyond Python 3.8+. `public/` is the deploy root and works on an
 | `src/data/areas.json` | Regions → cities with status and map coordinates (drives area pages, map, lists) |
 | `src/data/team.json` | Team page, grouped by department |
 | `src/data/reviews.json` | Fallback testimonials, used until the review widget is live |
+| `src/data/area-copy.json` | Hand-written local intros for city pages without legacy copy |
 | `src/pages/` | Hand-written pages (front matter + HTML + `{{component:…}}` blocks) |
+| `src/content/services/` | Hand-written service/hub copy (overrides migrated legacy copy) |
+| `content/legacy/` | Content migrated from the old WordPress site (pages, posts, image map) |
 | `tools/build.py` | The builder |
 | `tools/sitelib.py`, `tools/components.py`, `tools/generators.py` | Shared chrome, reusable sections, data-driven page generators |
-| `tools/scrape_legacy.py` | Downloads the legacy WordPress site for migration |
+| `tools/scrape_legacy.py`, `parse_legacy.py`, `fetch_legacy_images.py` | Legacy-site migration pipeline (download → clean → images) |
 | `tools/geocode_areas.py` | Fills in map coordinates for new cities |
 | `public/css`, `public/js`, `public/assets` | Hand-edited static files |
 | `assets/content/` | Raw client photos/video (not deployed; videos gitignored) |
