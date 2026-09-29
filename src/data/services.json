@@ -1,5 +1,5 @@
 {
-  "_note": "Every service page on the site. `slug` is the page URL (/slug/) — these match the legacy WordPress URLs so SEO carries over. A category's `hub` page lives at /services/<category slug>/. `featured` services show on the homepage. Hand-written page copy lives in src/pages/services/<slug>.html; services without one fall back to their migrated legacy copy.",
+  "_note": "Every service page on the site. `slug` is the page URL (/slug/) — these match the legacy WordPress URLs so SEO carries over. A category's `hub` page lives at /services/<category slug>/. `featured` services show on the homepage. Hand-written page copy lives in src/content/services/<slug>.html; services without one fall back to their migrated legacy copy.",
   "categories": [
     {
       "slug": "air-conditioning",
@@ -24,7 +24,7 @@
       "slug": "hvac",
       "name": "HVAC Systems",
       "icon": "thermo",
-      "blurb": "Whole-system installs, replacements, repairs, tune-ups and diagnostics — including 24/7 emergency service.",
+      "blurb": "Whole-system installs, replacements, repairs, tune-ups and diagnostics — plus urgent, same-day help when we can fit you in.",
       "services": [
         { "slug": "hvac-installation", "name": "HVAC Installation", "featured": true },
         { "slug": "hvac-replacement", "name": "HVAC Replacement" },

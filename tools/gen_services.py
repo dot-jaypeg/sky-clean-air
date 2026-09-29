@@ -63,6 +63,9 @@ def service_pages(site):
             h1 = custom.get('h1') or f'{name} in <span class="hl">San Diego &amp; Orange County</span>'
             lede = custom.get('lede', '')
             body, faqs = custom['body'], custom['faqs']
+            lead = image_map().get((legacy or {}).get('image') or '')
+            if lead:
+                body = f'<figure><img src="{lead}" alt="{esc(name)} by Sky Clean Air" loading="eager"></figure>\n' + body
             title = custom.get('title') or seo_title(legacy, name)
             desc = custom.get('description') or (legacy or {}).get('description', '')
         elif legacy:
