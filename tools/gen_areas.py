@@ -16,8 +16,8 @@ import math
 import os
 
 import components
-from gen_legacy import (article_layout, faq_section, image_map, legacy_all, legacy_by_path, local_images,
-                        seo_title, sidebar, strip_self_links)
+from gen_legacy import (article_layout, faq_section, image_map, legacy_by_path, local_images, seo_title,
+                        sidebar, strip_self_links)
 from sitelib import DATA_DIR, breadcrumb_schema, cta_band, esc, icon, page_hero
 
 MAP_ASSETS = '<link rel="stylesheet" href="/vendor/leaflet/leaflet.css">\n'
@@ -166,25 +166,17 @@ def region_pages(site):
         })
 
 
-def services_here(D, c, existing):
-    """Category → service links for a city, pointing at the local page when one exists."""
-    cols = []
-    for cat in D.categories:
-        if cat['slug'] == 'commercial':
-            continue
-        items = []
-        for s in [s for s in cat['services'] if not s.get('hidden')][:5]:
-            local = f'/{s["slug"]}/{c["slug"]}/'
-            href = local if local in existing else f'/{s["slug"]}/'
-            items.append(f'<li><a href="{href}">{esc(s["name"])}</a></li>')
-        cols.append(f'<div class="svc-col"><h3><a href="/services/{cat["slug"]}/">{esc(cat["name"])}</a></h3><ul>{"".join(items)}</ul></div>')
-    return f'<div class="svc-cols">{"".join(cols)}</div>'
+def services_here(D):
+    """The 8 service categories, each linking to its service page."""
+    cards = ''.join(
+        f'<a class="svc-tile" href="/services/{cat["slug"]}/"><span class="mega-icon">{icon(cat["icon"], 18)}</span>'
+        f'<span>{esc(cat["name"])}</span></a>' for cat in D.categories)
+    return f'<div class="svc-tiles">{cards}</div>'
 
 
 def city_pages(site):
     D, ch = site.D, site.ch
     copy = area_copy()
-    existing = {r['path'] for r in legacy_all('page', 'service-location')}
     all_cities = D.cities()
     for c in all_cities:
         if not live(D, c):
@@ -222,7 +214,7 @@ def city_pages(site):
             main = (f'<div class="callout"><strong>Now taking select jobs in {esc(name)}.</strong> Full {esc(r["name"])} service is coming soon — '
                     f'call <a href="{{{{tel}}}}">{{{{phone}}}}</a> and we\'ll let you know if we can schedule you.</div>') + main
         faq_html, faq_schema = faq_section(faqs, f'{name} HVAC &amp; Air Quality FAQs')
-        extra = f'''<section class="city-services"><h2>Services in {esc(name)}</h2>{services_here(D, c, existing)}</section>
+        extra = f'''<section class="city-services"><h2>Services in {esc(name)}</h2>{services_here(D)}</section>
 <section class="city-nearby"><h2>Nearby Areas We Serve</h2><div class="city-cloud">{"".join(f'<a class="city-chip light" href="/service-areas/{o["slug"]}/">{esc(o["name"])}</a>' for o in nearby)}</div></section>'''
         side_map = f'<div class="side-card side-map"><h3>{esc(name)} on the Map</h3>{map_block(D, [pin(D, o) for o in nearby] + [pin(D, c, True)], center=[c["lat"], c["lng"]], zoom=12 if c["type"] == "neighborhood" else 11, cls="mini", legend=False)}</div>'
         side = sidebar(ch, D, f'More in {r["name"]}', [(o['name'], f'/service-areas/{o["slug"]}/') for o in nearby[:6]], extra=side_map)

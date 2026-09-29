@@ -1,22 +1,26 @@
-"""Service pages, category hubs and the /services/ index.
+"""The 8 service pages (/services/<category>/), the /services/ index, and
+redirects from every retired individual-service URL.
 
-Page copy, in priority order:
-  1. src/content/services/<slug>.html — hand-written copy (front matter:
-     title, description, h1, lede; body HTML). A trailing
-     <h2>…FAQ…</h2> section of <h3>question</h3><p>answer</p> pairs is
-     lifted out into the FAQ accordion + FAQPage schema.
-  2. The migrated legacy copy for the same URL.
-Category hubs can likewise have src/content/services/_<category>.html.
+One page per service category. Each page is built from:
+  src/content/services/_<category>.html — hand-written copy (front matter:
+      title, description, h1, lede; HTML body). A trailing
+      <h2>Frequently Asked Questions</h2> of <h3>/<p> pairs becomes the
+      FAQ accordion + FAQPage schema.
+  src/data/services.json — the sub-services the page covers, listed in an
+      "included" section (their old per-service URLs redirect here).
 """
 import os
 import re
 
 import components
-from gen_legacy import (article_layout, faq_section, image_map, legacy_all, legacy_by_path,
-                        local_images, seo_title, sidebar, strip_self_links, text_excerpt)
+from gen_legacy import article_layout, faq_section, image_map, legacy_by_path, sidebar
 from sitelib import ROOT, breadcrumb_schema, cta_band, esc, icon, page_hero
 
 CONTENT = os.path.join(ROOT, 'src', 'content', 'services')
+
+
+def category_url(cat):
+    return f'/services/{cat["slug"]}/'
 
 
 def custom_copy(name):
@@ -40,131 +44,106 @@ def split_faqs(body):
     return body[:m.start()].rstrip(), [[re.sub(r'<[^>]+>', '', q).strip(), a.strip()] for q, a in pairs]
 
 
-def service_pages(site):
-    D, ch = site.D, site.ch
-    for cat, svc in D.all_services():
-        slug = svc['slug']
-        path = f'/{slug}/'
-        legacy = legacy_by_path(path)
-        custom = custom_copy(slug)
-        name = svc['name']
-        regions = [r['name'] for r in D.regions if r['status'] != 'coming-soon']
-        if custom:
-            h1 = custom.get('h1') or f'{name} in <span class="hl">San Diego &amp; Orange County</span>'
-            lede = custom.get('lede', '')
-            body, faqs = custom['body'], custom['faqs']
-            lead = image_map().get((legacy or {}).get('image') or '')
-            if lead:
-                body = f'<figure><img src="{lead}" alt="{esc(name)} by Sky Clean Air" loading="eager"></figure>\n' + body
-            title = custom.get('title') or seo_title(legacy, name)
-            desc = custom.get('description') or (legacy or {}).get('description', '')
-        elif legacy:
-            h1 = f'{esc(name)} in <span class="hl">San Diego &amp; Orange County</span>'
-            lede = esc(legacy['description'].replace('{{phone}}', ch.phone))
-            body, faqs = strip_self_links(local_images(legacy['body']), path), legacy['faqs']
-            title, desc = seo_title(legacy, name), legacy['description']
-        else:
-            h1 = esc(name)
-            lede = esc(svc.get('blurb', cat['blurb']))
-            body, faqs = f'<p>{esc(cat["blurb"])}</p>', []
-            title, desc = f'{name} | Sky Clean Air', cat['blurb']
+def included_section(cat):
+    svcs = [s for s in cat['services'] if not s.get('hidden')]
+    if cat['slug'] == 'commercial':
+        groups = {}
+        for s in svcs:
+            groups.setdefault(s.get('group', 'Other'), []).append(s)
+        cols = ''.join(
+            f'<div class="inc-group"><h3>{esc(g)}</h3><ul>'
+            + ''.join(f'<li>{esc(s["name"].replace("Commercial ", ""))}</li>' for s in items) + '</ul></div>'
+            for g, items in groups.items())
+        return f'''<section class="included" id="included">
+  <h2>Commercial Services We Offer</h2>
+  <div class="inc-groups">{cols}</div>
+</section>'''
+    items = ''.join(
+        f'<div class="inc-item"><span class="inc-check">{icon("check", 16)}</span>'
+        f'<div><h3>{esc(s["name"])}</h3><p>{esc(s.get("summary", ""))}</p></div></div>' for s in svcs)
+    return f'''<section class="included" id="included">
+  <h2>What's Included in Our {esc(cat["name"])} Service</h2>
+  <div class="inc-grid">{items}</div>
+</section>'''
 
-        crumbs = [('Home', '/'), ('Services', '/services/'), (cat['name'], f'/services/{cat["slug"]}/'), (name, None)]
-        faq_html, faq_schema = faq_section(faqs, f'{name}: Frequently Asked Questions')
 
-        # Where this service is offered: legacy neighborhood pages + live cities in newer regions
-        # One CTA to the service-area hub instead of listing every city on every service page.
-        live_count = sum(1 for c in D.cities() if (c.get('status') or D.region(c['region'])['status']) != 'coming-soon')
-        area_html = f'''<section class="service-areas-cta">
+def area_cta(D, name):
+    regions = [r['name'] for r in D.regions if r['status'] != 'coming-soon']
+    live = sum(1 for c in D.cities() if (c.get('status') or D.region(c['region'])['status']) != 'coming-soon')
+    return f'''<section class="service-areas-cta">
   <span class="sac-icon">{icon("pin", 26)}</span>
   <div class="sac-copy">
     <h2>Where We Offer {esc(name)}</h2>
-    <p>Our crews provide {esc(name.lower())} in {live_count}+ communities across {" and ".join(regions)}, with the Inland Empire coming soon.</p>
+    <p>Our crews work in {live}+ communities across {" and ".join(regions)}, with the Inland Empire coming soon.</p>
   </div>
   <a class="btn btn-primary" href="/service-areas/">View Our Service Areas &rarr;</a>
 </section>'''
 
-        siblings = [(s['name'], f'/{s["slug"]}/') for s in cat['services'] if s['slug'] != slug and not s.get('hidden')]
-        side = sidebar(ch, D, f'More {cat["name"]} Services', siblings)
+
+def lead_image(cat):
+    """The legacy banner of the category's first sub-service that has one."""
+    for s in cat['services']:
+        img = image_map().get((legacy_by_path(f'/{s["slug"]}/') or {}).get('image') or '')
+        if img:
+            return img
+    return None
+
+
+def service_pages(site):
+    D, ch = site.D, site.ch
+    regions = [r['name'] for r in D.regions if r['status'] != 'coming-soon']
+    for cat in D.categories:
+        path = category_url(cat)
+        custom = custom_copy('_' + cat['slug']) or {'body': f'<p>{esc(cat["blurb"])}</p>', 'faqs': []}
+        name = cat['name']
+        crumbs = [('Home', '/'), ('Services', '/services/'), (name, None)]
+        h1 = custom.get('h1') or f'{esc(name)} in <span class="hl">San Diego &amp; Orange County</span>'
+        lede = custom.get('lede') or esc(cat['blurb'])
+        faq_html, faq_schema = faq_section(custom['faqs'], f'{name}: Frequently Asked Questions')
+        lead = lead_image(cat)
+        lead_html = f'<figure><img src="{lead}" alt="{esc(name)} services by Sky Clean Air" loading="eager"></figure>\n' if lead else ''
+        others = [(c['name'], category_url(c)) for c in D.categories if c is not cat]
         service_schema = {
             '@context': 'https://schema.org', '@type': 'Service', 'serviceType': name,
             'provider': {'@type': 'HVACBusiness', 'name': D.site['name'], 'telephone': '+1-' + D.site['phone']},
             'areaServed': regions, 'url': D.site['domain'] + path,
+            'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': name, 'itemListElement': [
+                {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': s['name']}}
+                for s in cat['services'] if not s.get('hidden')]},
         }
-        img = image_map().get((legacy or {}).get('image') or '')
-        site.add({
-            'path': path, 'legacy': True, 'lastmod': (legacy or {}).get('modified'),
-            'title': title, 'description': desc or cat['blurb'],
-            'og_image': img or '/assets/images/story-team.jpg',
-            'schema': [service_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
-            'body': page_hero(ch, h1, lede, crumbs, kicker=esc(cat['name'])) +
-                    article_layout(f'<div class="prose">{body}</div>{faq_html}{area_html}', side) +
-                    f'<section class="section bg-soft"><div class="container"><div class="section-head center"><h2>What Our <span class="grad-text">Customers</span> Say</h2></div>{components.reviews(ch, D, "2")}</div></section>' +
-                    cta_band(ch),
-        })
-
-
-def service_card(D, svc, legacy):
-    desc = (legacy or {}).get('description') or ''
-    desc = re.sub(r'\s*Call (today|now).*$', '', desc.replace('{{phone}}', D.site['phone'])).strip()
-    if len(desc) > 150:
-        desc = desc[:150].rsplit(' ', 1)[0] + '…'
-    return f'''<div class="mini-card">
-  <h3><a class="card-link" href="/{svc["slug"]}/">{esc(svc["name"])}</a></h3>
-  <p>{esc(desc)}</p>
-  <span class="service-link" aria-hidden="true">Learn more &rarr;</span>
-</div>'''
-
-
-def category_hubs(site):
-    D, ch = site.D, site.ch
-    for cat in D.categories:
-        path = f'/services/{cat["slug"]}/'
-        custom = custom_copy('_' + cat['slug'])
-        crumbs = [('Home', '/'), ('Services', '/services/'), (cat['name'], None)]
-        svcs = [s for s in cat['services'] if not s.get('hidden')]
-        cards = ''.join(service_card(D, s, legacy_by_path(f'/{s["slug"]}/')) for s in svcs)
-        intro = custom['body'] if custom else f'<p class="lede-dark">{esc(cat["blurb"])}</p>'
-        faq_html, faq_schema = faq_section(custom['faqs'], f'{cat["name"]} FAQs') if custom else ('', [])
-        h1 = (custom or {}).get('h1') or f'{esc(cat["name"])} <span class="hl">Services</span>'
-        lede = (custom or {}).get('lede') or esc(cat['blurb'])
         site.add({
             'path': path,
-            'title': (custom or {}).get('title') or f'{cat["name"]} Services in San Diego & Orange County | Sky Clean Air',
-            'description': (custom or {}).get('description') or cat['blurb'],
-            'schema': [breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
-            'body': page_hero(ch, h1, lede, crumbs, kicker=f'{len(svcs)} services') +
-                    f'''<section class="section"><div class="container">
-  <div class="hub-intro prose">{intro}</div>
-  <div class="mini-grid">{cards}</div>
-  {faq_html}
-</div></section>''' +
-                    f'<section class="section bg-soft"><div class="container"><div class="section-head center"><h2>Explore <span class="grad-text">Other Services</span></h2></div>{components.services_grid(ch, D)}</div></section>' +
+            'title': custom.get('title') or f'{name} in San Diego & Orange County | Sky Clean Air',
+            'description': custom.get('description') or cat['blurb'],
+            'og_image': lead or '/assets/images/story-team.jpg',
+            'schema': [service_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
+            'body': page_hero(ch, h1, lede, crumbs, kicker=esc(name)) +
+                    article_layout(f'<div class="prose">{lead_html}{custom["body"]}</div>{included_section(cat)}'
+                                   f'{faq_html}{area_cta(D, name)}',
+                                   sidebar(ch, D, 'Our Other Services', others)) +
+                    f'<section class="section bg-soft"><div class="container"><div class="section-head center"><h2>What Our <span class="grad-text">Customers</span> Say</h2></div>{components.reviews(ch, D, "2")}</div></section>' +
                     cta_band(ch),
         })
 
 
 def services_index(site):
     D, ch = site.D, site.ch
-    groups = []
-    for cat in D.categories:
-        svcs = [s for s in cat['services'] if not s.get('hidden')]
-        links = ''.join(f'<li><a href="/{s["slug"]}/">{esc(s["name"])}</a></li>' for s in svcs)
-        groups.append(f'''<div class="svc-group" id="{cat["slug"]}">
-  <h2><span class="mega-icon">{icon(cat["icon"], 18)}</span><a href="/services/{cat["slug"]}/">{esc(cat["name"])}</a></h2>
-  <p>{esc(cat["blurb"])}</p>
-  <ul class="svc-list">{links}</ul>
-</div>''')
     crumbs = [('Home', '/'), ('Services', None)]
     site.add({
         'path': '/services/',
         'title': 'HVAC, Air Duct, Dryer Vent & Attic Services | Sky Clean Air',
-        'description': 'Every service Sky Clean Air offers: AC and heating, HVAC installs and repair, air duct and dryer vent cleaning, attic insulation, indoor air quality and commercial HVAC.',
+        'description': 'Sky Clean Air services: air conditioning, HVAC systems, heating, air ducts, dryer vents, attic & insulation, indoor air quality and commercial — across San Diego and Orange County.',
         'schema': [breadcrumb_schema(D.site['domain'], crumbs)],
         'body': page_hero(ch, 'Every Service, <span class="hl">One Trusted Team</span>',
                           'From a same-day duct cleaning to a full system install — residential and commercial, across San Diego and Orange County.',
                           crumbs) +
                 f'<section class="section"><div class="container">{components.services_grid(ch, D)}</div></section>' +
-                f'<section class="section bg-soft"><div class="container"><div class="section-head center"><h2>The Full <span class="grad-text">Service List</span></h2></div><div class="svc-groups">{"".join(groups)}</div></div></section>' +
                 cta_band(ch),
     })
+
+
+def service_redirects(site):
+    """Every retired individual-service URL → its category page."""
+    for cat in site.D.categories:
+        for s in cat['services']:
+            site.redirect(f'/{s["slug"]}/', category_url(cat))

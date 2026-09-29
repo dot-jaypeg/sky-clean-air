@@ -16,13 +16,13 @@ No dependencies beyond Python 3.8+. `public/` is the deploy root and works on an
 | Path | What it is |
 |---|---|
 | `src/data/site.json` | Phone, address, hours, specials, widget embed codes, mascot artwork, draft placeholders toggle |
-| `src/data/services.json` | Every service page, grouped into categories (drives nav, service pages, hubs) |
+| `src/data/services.json` | The 8 service categories (one page each) and the sub-services each covers |
 | `src/data/areas.json` | Regions → cities with status and map coordinates (drives area pages, map, lists) |
 | `src/data/team.json` | Team page, grouped by department |
 | `src/data/reviews.json` | Fallback testimonials, used until the review widget is live |
 | `src/data/area-copy.json` | Hand-written local intros for city pages without legacy copy |
 | `src/pages/` | Hand-written pages (front matter + HTML + `{{component:…}}` blocks) |
-| `src/content/services/` | Hand-written service/hub copy (overrides migrated legacy copy) |
+| `src/content/services/` | Hand-written copy for the 8 service pages |
 | `content/legacy/` | Content migrated from the old WordPress site (pages, posts, image map) |
 | `tools/build.py` | The builder |
 | `tools/sitelib.py`, `tools/components.py`, `tools/generators.py` | Shared chrome, reusable sections, data-driven page generators |
@@ -37,7 +37,7 @@ Generated files (every `.html` in `public/`, `sitemap.xml`, `robots.txt`) should
 ## Adding things
 
 - **A service area:** add the city (or a whole region) to `src/data/areas.json`, run `python3 tools/geocode_areas.py`, then rebuild.
-- **A service:** add it to its category in `src/data/services.json`. Optional hand-written copy goes in `src/pages/services/<slug>.html`.
+- **A sub-service:** add it (with a `summary`) to its category in `src/data/services.json`; it shows in that service page's "What's included" list.
 - **Widgets and mascot:** paste the embed code or artwork path into `src/data/site.json` and rebuild.
 - **Before launch:** set `show_placeholders` to `false` in `site.json`.
 

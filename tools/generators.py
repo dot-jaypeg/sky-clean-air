@@ -32,13 +32,13 @@ def not_found(site):
 ALL = [
     not_found,
     gen_services.service_pages,
-    gen_services.category_hubs,
     gen_services.services_index,
+    gen_services.service_redirects,
     gen_areas.hub,
     gen_areas.region_pages,
     gen_areas.city_pages,
     gen_team.team_page,
-    gen_legacy.service_locations,
+    gen_legacy.location_redirects,   # after city_pages: targets must exist
     gen_legacy.posts,
     gen_legacy.misc_pages,
     gen_legacy.redirects,

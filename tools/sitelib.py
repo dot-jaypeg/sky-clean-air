@@ -191,28 +191,20 @@ class Chrome:
         out = [biz] + p.get('schema', [])
         return '\n'.join(f'<script type="application/ld+json">{json.dumps(o, ensure_ascii=False)}</script>' for o in out)
 
-    # -- nav model (single source for desktop mega-menu, mobile drawer and footer) --
+    # -- nav model (single source for desktop dropdowns and the mobile drawer) --
     def nav(self):
         D = self.D
-        services_cols = []
-        for c in D.categories:
-            items = [s for s in c['services'] if not s.get('hidden')]
-            services_cols.append({
-                'label': c['name'], 'href': f'/services/{c["slug"]}/', 'icon': c['icon'],
-                'items': [(s['name'], f'/{s["slug"]}/') for s in items[:6]],
-                'more': len(items) > 6,
-            })
-        areas = []
-        for r in D.regions:
-            areas.append((r['name'], f'/service-areas/{r["slug"]}/', r.get('badge', '')))
+        # One entry per service category: (label, href, badge, icon)
+        services = [(c['name'], f'/services/{c["slug"]}/', '', c['icon']) for c in D.categories]
+        areas = [(r['name'], f'/service-areas/{r["slug"]}/', r.get('badge', ''), None) for r in D.regions]
         return [
-            {'label': 'Services', 'href': '/services/', 'mega': services_cols},
+            {'label': 'Services', 'href': '/services/', 'items': services, 'cls': 'services-menu'},
             {'label': 'Service Areas', 'href': '/service-areas/',
-             'items': areas + [('Service Area Map', '/service-areas/#map', '')]},
+             'items': areas + [('Service Area Map', '/service-areas/#map', '', None)]},
             {'label': 'About', 'href': '/about-us/',
-             'items': [('Our Story', '/about-us/', ''), ('Our Team', '/our-team/', ''),
-                       ('Reviews', '/testimonials/', ''), ('Careers', '/careers/', ''),
-                       ('Gallery', '/about-us/gallery/', '')]},
+             'items': [('Our Story', '/about-us/', '', None), ('Our Team', '/our-team/', '', None),
+                       ('Reviews', '/testimonials/', '', None), ('Careers', '/careers/', '', None),
+                       ('Gallery', '/about-us/gallery/', '', None)]},
             {'label': 'Specials', 'href': '/specials/'},
             {'label': 'Blog', 'href': '/blog/'},
             {'label': 'Contact', 'href': '/contact-us/'},
@@ -231,34 +223,21 @@ class Chrome:
         nav_html = []
         for item in self.nav():
             active = ' active' if self._active(p, item['href']) else ''
-            if 'mega' in item:
-                cols = ''.join(
-                    f'<div class="mega-col"><a class="mega-head" href="{c["href"]}">'
-                    f'<span class="mega-icon">{icon(c["icon"], 18)}</span>{esc(c["label"])}</a><ul>'
-                    + ''.join(f'<li><a href="{h}">{esc(n)}</a></li>' for n, h in c['items'])
-                    + (f'<li><a class="mega-more" href="{c["href"]}">View all &rarr;</a></li>' if c['more'] else '')
-                    + '</ul></div>' for c in item['mega'])
-                nav_html.append(
-                    f'<div class="nav-item has-menu"><a href="{item["href"]}" class="nav-link{active}">{item["label"]}{icon("chev", 14, "nav-chev")}</a>'
-                    f'<div class="nav-menu mega"><div class="mega-grid">{cols}</div>'
-                    f'<div class="mega-foot"><a href="/services/">See every service we offer &rarr;</a>'
-                    f'<a href="{self.tel}">Not sure what you need? Call {self.phone}</a></div></div></div>')
-            elif 'items' in item:
+            if 'items' in item:
                 links = ''.join(
-                    f'<a href="{h}">{esc(n)}{badge_html(b)}</a>' for n, h, b in item['items'])
+                    f'<a href="{h}">{f"<span class=menu-icon>{icon(ic, 16)}</span>" if ic else ""}'
+                    f'<span class="menu-label">{esc(n)}</span>{badge_html(b)}</a>' for n, h, b, ic in item['items'])
+                cls = f' {item["cls"]}' if item.get('cls') else ''
                 nav_html.append(
                     f'<div class="nav-item has-menu"><a href="{item["href"]}" class="nav-link{active}">{item["label"]}{icon("chev", 14, "nav-chev")}</a>'
-                    f'<div class="nav-menu">{links}</div></div>')
+                    f'<div class="nav-menu{cls}">{links}</div></div>')
             else:
                 nav_html.append(f'<div class="nav-item"><a href="{item["href"]}" class="nav-link{active}">{item["label"]}</a></div>')
 
         mobile = []
         for item in self.nav():
-            if 'mega' in item:
-                sub = ''.join(f'<a href="{c["href"]}">{esc(c["label"])}</a>' for c in item['mega'])
-                sub += '<a href="/services/">All Services</a>'
-            elif 'items' in item:
-                sub = ''.join(f'<a href="{h}">{esc(n)}</a>' for n, h, _ in item['items'])
+            if 'items' in item:
+                sub = ''.join(f'<a href="{h}">{esc(n)}</a>' for n, h, _, _ in item['items'])
             else:
                 mobile.append(f'<a class="m-link" href="{item["href"]}">{item["label"]}</a>')
                 continue

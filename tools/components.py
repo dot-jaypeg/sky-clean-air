@@ -13,7 +13,7 @@ def services_grid(ch, D, arg=None):
     for i, c in enumerate(cats):
         delay = f' style="--reveal-delay:{(i % 4) * 0.08:.2f}s"' if i % 4 else ''
         top = [s for s in c['services'] if not s.get('hidden')][:3]
-        links = ''.join(f'<li><a href="/{s["slug"]}/">{esc(s["name"])}</a></li>' for s in top)
+        links = ''.join(f'<li>{esc(s["name"])}</li>' for s in top)
         cards.append(f'''<div class="service-card" data-reveal{delay}>
   <div class="service-icon">{icon(c["icon"], 28)}</div>
   <h3><a class="card-link" href="/services/{c["slug"]}/">{esc(c["name"])}</a></h3>

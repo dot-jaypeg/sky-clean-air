@@ -91,6 +91,7 @@ class Site:
         self.D = Data()
         self.ch = Chrome(self.D)
         self.pages = {}   # url path -> page dict
+        self.redirects = {}  # retired url path -> new url path
 
     def add(self, p):
         path = p['path']
@@ -100,6 +101,52 @@ class Site:
 
     def has(self, path):
         return path in self.pages
+
+    def redirect(self, old, new):
+        """Retire `old`: a stub page sends visitors (and search engines, via canonical +
+        meta refresh — the static host can't send real 301s) to `new`, and every
+        internal link to `old` is rewritten to point straight at `new`."""
+        if old != new:
+            self.redirects[old] = new
+
+    def resolve(self, path):
+        seen = set()
+        while path in self.redirects and path not in seen:
+            seen.add(path)
+            path = self.redirects[path]
+        return path
+
+    def emit_redirects(self):
+        domain = self.D.site['domain']
+        for old in sorted(self.redirects):
+            if old in self.pages:
+                continue  # a real page won the URL
+            new = self.resolve(old)
+            self.add({
+                'path': old, 'raw': True, 'noindex': True, 'redirect': True,
+                'body': f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title>
+<link rel="canonical" href="{domain}{new}"><meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url={new}"></head>
+<body><p>This page has moved to <a href="{new}">{new}</a>.</p></body></html>
+''',
+            })
+
+    def rewrite_links(self):
+        """Point internal links at their final destination; unwrap links to the page itself."""
+        def fix(page):
+            def sub(m):
+                href, rest, inner = m.group(1), m.group(2), m.group(3)
+                base, _, frag = href.partition('#')
+                target = self.resolve(base)
+                if target == page['path'] and not frag:
+                    return inner
+                if target != base:
+                    href = target + ('#' + frag if frag else '')
+                return f'<a href="{href}"{rest}>{inner}</a>'
+            page['body'] = re.sub(r'<a href="(/[^"]*)"([^>]*)>(.*?)</a>', sub, page['body'], flags=re.S)
+        for p in self.pages.values():
+            if not p.get('raw'):
+                fix(p)
 
     def build(self):
         # Hand-written pages
@@ -115,8 +162,10 @@ class Site:
         import generators
         for gen in generators.ALL:
             gen(self)
+        self.rewrite_links()
         for fin in generators.FINALIZE:
             fin(self)
+        self.emit_redirects()
 
         written = []
         for path, p in sorted(self.pages.items()):

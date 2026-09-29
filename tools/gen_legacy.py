@@ -4,7 +4,7 @@ Input: content/legacy/{pages,posts}/<id>.json (from tools/parse_legacy.py)
 and content/legacy/image-map.json (from tools/fetch_legacy_images.py).
 
 Every legacy URL keeps its path. Page types:
-  service-location   /ac-repair/clairemont/     -> service_location_page()
+  service-location   /ac-repair/clairemont/     -> retired; redirects to /service-areas/clairemont/
   post               /<slug>/                   -> post_page(), plus /blog/ index
   page               misc (privacy, terms, ...) -> misc_page()
 Service pages (/ac-repair/) and area pages are built by gen_services.py /
@@ -142,51 +142,6 @@ def seo_title(r, fallback):
     t = (r or {}).get('seo_title') or ''
     t = re.sub(r'\s*[|–-]\s*Sky Clean Air\s*$', '', t).strip()
     return f'{t or fallback} | Sky Clean Air'
-
-
-# ---------------------------------------------------------------------------
-# Service × neighborhood pages  (/ac-repair/clairemont/)
-# ---------------------------------------------------------------------------
-def area_name(D, slug, fallback=None):
-    c = next((c for c in D.cities() if c['slug'] == slug), None)
-    if c:
-        return c['name']
-    return fallback or slug.replace('-', ' ').title()
-
-
-def service_locations(site):
-    D, ch = site.D, site.ch
-    recs = legacy_all('page', 'service-location')
-    by_area = {}
-    for r in recs:
-        svc_slug, area_slug = r['path'].strip('/').split('/')
-        by_area.setdefault(area_slug, []).append(svc_slug)
-    for r in recs:
-        svc_slug, area_slug = r['path'].strip('/').split('/')
-        cat, svc = D.service(svc_slug)
-        svc_name = svc['name'] if svc else r['title'].split(' in ')[0]
-        name = area_name(D, area_slug, re.sub(r'^.* in ', '', r['h1'] or r['title']).replace(', CA', ''))
-        h1 = f'{svc_name} in <span class="hl">{esc(name)}, CA</span>'
-        crumbs = [('Home', '/'), ('Services', '/services/')]
-        if cat:
-            crumbs.append((cat['name'], f'/services/{cat["slug"]}/'))
-        crumbs += [(svc_name, f'/{svc_slug}/'), (name, None)]
-        body = strip_self_links(local_images(r['body']), r['path'])
-        faq_html, faq_schema = faq_section(r['faqs'], f'{svc_name} in {name}: FAQs')
-        others = [(D.service(s)[1]['name'] if D.service(s)[1] else s.replace('-', ' ').title(), f'/{s}/{area_slug}/')
-                  for s in sorted(by_area[area_slug]) if s != svc_slug]
-        area_link = [(f'All services in {name}', f'/service-areas/{area_slug}/')]
-        side = sidebar(ch, D, f'More Services in {name}', area_link + others)
-        lede = esc(r['description'].replace('{{phone}}', ch.phone)) if r['description'] else ''
-        site.add({
-            'path': r['path'], 'legacy': True, 'lastmod': r['modified'],
-            'title': seo_title(r, f'{svc_name} in {name}, CA'),
-            'description': r['description'] or f'{svc_name} in {name}, CA from Sky Clean Air.',
-            'og_image': (image_map().get(r['image']) if r.get('image') else None) or '/assets/images/story-team.jpg',
-            'schema': [breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
-            'body': page_hero(ch, h1, lede, crumbs, kicker=f'Serving {esc(name)} &amp; nearby') +
-                    article_layout(f'<div class="prose">{body}</div>{faq_html}', side) + cta_band(ch),
-        })
 
 
 # ---------------------------------------------------------------------------
@@ -328,15 +283,18 @@ def misc_pages(site):
 
 def redirects(site):
     for old, new in RETIRED.items():
-        if new and not site.has(old):
-            site.add({
-                'path': old, 'raw': True,
-                'body': f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title>
-<link rel="canonical" href="{site.D.site["domain"]}{new}"><meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url={new}"></head>
-<body><p>This page has moved to <a href="{new}">{new}</a>.</p></body></html>''',
-                'noindex': True,
-            })
+        if new:
+            site.redirect(old, new)
+
+
+def location_redirects(site):
+    """Service × neighborhood pages (/air-duct-cleaning/clairemont/) are retired now that there's
+    one page per service category: each points at that neighborhood's service-area page, which
+    lists every service (or the service-area hub when the neighborhood has no page)."""
+    for r in legacy_all('page', 'service-location'):
+        area = r['path'].strip('/').split('/')[1]
+        target = f'/service-areas/{area}/'
+        site.redirect(r['path'], target if site.has(target) else '/service-areas/')
 
 
 def fix_legacy_links(site):

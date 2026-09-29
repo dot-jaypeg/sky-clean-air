@@ -354,56 +354,20 @@ body.scrolled .brand img { height: 52px; }
   white-space: nowrap;
 }
 
-/* Services mega menu */
-.nav-menu.mega {
-  position: fixed;
-  top: calc(var(--header-height) + var(--topbar-height) - 10px);
-  left: 50%;
-  width: min(1120px, calc(100vw - 48px));
-  transform: translate(-50%, 8px);
-  padding: 28px 28px 0;
-}
-body.scrolled .nav-menu.mega { top: calc(var(--header-height) - 10px); }
-.nav-item:hover > .nav-menu.mega, .nav-item:focus-within > .nav-menu.mega { transform: translate(-50%, 0); }
-.mega-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 24px; }
-.mega-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-heading);
-  text-transform: uppercase;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--white);
-  margin-bottom: 10px;
-}
-.mega-head:hover { color: var(--sky); }
-.mega-icon {
-  width: 30px; height: 30px;
-  border-radius: 8px;
-  background: var(--grad-sky);
-  color: var(--night);
+/* Services dropdown: the 8 service categories with icons */
+.nav-menu.services-menu { min-width: 280px; }
+.nav-menu > a { justify-content: flex-start; }
+.nav-menu > a .menu-label { flex: 1; }
+.menu-icon {
+  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+  background: var(--grad-sky); color: var(--night);
   display: inline-flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
 }
-.mega-col ul { display: flex; flex-direction: column; gap: 2px; }
-.mega-col li a { display: block; padding: 5px 0; font-size: 0.87rem; color: rgba(255, 255, 255, 0.68); }
-.mega-col li a:hover { color: var(--sky); }
-.mega-col .mega-more { color: var(--sky); font-weight: 700; }
-.mega-foot {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin: 24px -28px 0;
-  padding: 16px 28px;
-  border-top: 1px solid var(--night-line);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--sky);
+.mega-icon {
+  width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+  background: var(--grad-sky); color: var(--night);
+  display: inline-flex; align-items: center; justify-content: center;
 }
-.mega-foot a:hover { color: var(--white); }
 
 .header-actions { display: flex; align-items: center; gap: 14px; }
 
@@ -1602,3 +1566,24 @@ body.nav-open { overflow: hidden; }
 .sac-copy h2 { font-size: clamp(1.5rem, 2.2vw, 1.9rem); }
 .sac-copy p { margin-top: 6px; }
 @media (max-width: 560px) { .service-areas-cta { padding: 26px 22px; } .service-areas-cta .btn { width: 100%; } }
+
+/* ---- Service pages: included sub-services ------------------------------- */
+.included { margin-top: 64px; }
+.included > h2 { font-size: clamp(1.7rem, 2.6vw, 2.2rem); margin-bottom: 22px; }
+.inc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.inc-item { display: flex; gap: 14px; padding: 18px 20px; border: 1px solid var(--gray-200); border-radius: var(--radius-md); background: var(--white); }
+.inc-check { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--grad-sky); color: var(--night); display: flex; align-items: center; justify-content: center; }
+.inc-item h3 { font-size: 1.12rem; }
+.inc-item p { margin-top: 4px; font-size: 0.9rem; }
+.inc-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.inc-group { padding: 20px; border-radius: var(--radius-md); background: var(--gray-100); }
+.inc-group h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.inc-group li { position: relative; padding: 3px 0 3px 16px; font-size: 0.88rem; color: var(--ink-soft); }
+.inc-group li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 7px; height: 7px; border-radius: 50%; background: var(--grad-sky); }
+@media (max-width: 760px) { .inc-grid { grid-template-columns: 1fr; } .inc-groups { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .inc-groups { grid-template-columns: 1fr; } }
+/* City pages: the 8 services as tiles */
+.svc-tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.svc-tile { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--gray-200); border-radius: var(--radius-md); background: var(--white); font-weight: 700; color: var(--ink); transition: border-color 0.15s ease, transform 0.15s ease; }
+.svc-tile:hover { border-color: var(--sky); transform: translateY(-2px); color: var(--sky-deep); }
+@media (max-width: 460px) { .svc-tiles { grid-template-columns: 1fr; } }
