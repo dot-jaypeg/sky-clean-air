@@ -30,8 +30,11 @@ Adding a market = edit `src/data/areas.json`: add a region (`status`: `active` /
 ### Pending assets (placeholders)
 `site.json → show_placeholders: true` shows labeled dashed boxes where pending assets go: Contractor Commerce widget (contact page), reviews-aggregator widget (homepage, reviews page, service/region pages — falls back to `reviews.json` testimonials), the empty HVAC Installation Team department and team members with `role_pending`. Paste widget embed code / artwork paths into `site.json` and rebuild. Set `show_placeholders` to `false` before launch. The legacy site already runs Trustindex (4.9★, 833 reviews) — likely the client's existing reviews account.
 
-### Skyler the mascot — use SPARINGLY
-Client direction: Skyler (the Home Service Eagle; art in `assets/mascot/`, web copies in `public/assets/mascot/`) is **never on the homepage** and appears only where a page opts in — currently the About page intro (`{{component:mascot}}`) and the bottom CTA band on Contact and Specials (`{{component:cta:mascot}}`). Don't add him elsewhere without being asked.
+### Skyler the mascot — use SPARINGLY and deliberately
+Client direction: Skyler (the Home Service Eagle; source art in `assets/mascot/`, web copies in `public/assets/mascot/`) is **never on the homepage** and must feel designed-in, not dropped in. Current placements: the About page "Meet Skyler" brand panel (he stands on the panel and breaks out of its top edge), and the closing CTA band on Contact and Specials, where he stands at the end of the band with a page-specific speech bubble (`{{component:cta:Bubble text}}`). Don't add him elsewhere without being asked.
+
+### Icons
+Service and UI icons are Lucide (ISC license) and social icons are Simple Icons (CC0), embedded as SVG in `ICONS` / `SOCIAL_ICONS` in `tools/sitelib.py`. Use `icon('name')` in Python or `{{icon:name[:size]}}` in page sources. Don't hand-draw icons. To add one, copy its SVG body from lucide.dev into `ICONS`.
 
 ### Favicon
 `public/favicon.ico` + `public/assets/logos/favicon-{32,192}.png` / `apple-touch-icon.png` are the ORIGINAL logo file centered on a square canvas — never stretched or cropped (client: keep the logo in its original format).

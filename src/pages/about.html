@@ -110,12 +110,22 @@ body_class: page-about
   </div>
 </section>
 
-<section class="section mascot-section">
-  <div class="container mascot-intro">
-    {{component:mascot}}
-    <div data-reveal>
-      <h2>Say Hello To <span class="grad-text">Skyler</span></h2>
-      <p>Meet Skyler, the Home Service Eagle — the newest member of the Sky Clean Air family. Friendly, dependable and always ready to help, Skyler stands for everything our crews bring to your door: honest work, a good attitude and a home that breathes easier when we leave.</p>
+<section class="section skyler-section" id="skyler">
+  <div class="container">
+    <div class="skyler-panel" data-reveal>
+      <div class="skyler-bg" aria-hidden="true"><div class="hero-grid"></div></div>
+      <div class="skyler-copy">
+        <span class="skyler-kicker">Our Mascot</span>
+        <h2>Meet <span class="grad-text">Skyler</span></h2>
+        <p class="skyler-sub">The Home Service Eagle</p>
+        <p>As Sky Clean Air grows into new neighborhoods, Skyler is the friendly face that comes along — a reminder that behind every truck is the same family company that started with one rented van.</p>
+        <ul class="skyler-traits">
+          <li>{{icon:check:16}} Friendly and easy to talk to</li>
+          <li>{{icon:check:16}} Honest about what your home needs</li>
+          <li>{{icon:check:16}} Always ready to lend a wing</li>
+        </ul>
+      </div>
+      {{component:mascot}}
     </div>
   </div>
 </section>

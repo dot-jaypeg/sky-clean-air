@@ -119,8 +119,9 @@ def specials(ch, D, arg=None):
 
 
 def cta(ch, D, arg=None):
-    """{{component:cta}} — or {{component:cta:mascot}} to include Skyler (use sparingly)."""
-    return cta_band(ch, with_mascot=(arg == 'mascot'))
+    """{{component:cta}}, or {{component:cta:Speech bubble text}} to have Skyler stand at the end of the
+    band saying it. Use sparingly — the client doesn't want the mascot everywhere."""
+    return cta_band(ch, mascot_line=arg)
 
 
 def mascot(ch, D, arg=None):

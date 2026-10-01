@@ -62,6 +62,10 @@ def expand(body, ch, D):
 
     def sub(m):
         key = m.group(1).strip()
+        if key.startswith('icon:'):
+            from sitelib import icon
+            _, name, *size = key.split(':')
+            return icon(name, int(size[0]) if size else 24)
         if key.startswith('component:'):
             _, name, *arg = key.split(':', 2)
             fn = getattr(components, name.replace('-', '_'), None)

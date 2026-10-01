@@ -68,7 +68,7 @@
     {
       "slug": "hvac",
       "name": "HVAC Systems",
-      "icon": "thermo",
+      "icon": "vent",
       "blurb": "Whole-system installs, replacements, repairs, tune-ups and diagnostics — plus urgent, same-day help when we can fit you in.",
       "services": [
         {
@@ -136,7 +136,7 @@
     {
       "slug": "heating",
       "name": "Heating",
-      "icon": "flame",
+      "icon": "heater",
       "blurb": "Furnace and heat pump installation and repair to keep your home warm through San Diego's cool nights.",
       "services": [
         {
@@ -227,7 +227,7 @@
     {
       "slug": "dryer-vents",
       "name": "Dryer Vents",
-      "icon": "fire",
+      "icon": "dryer",
       "blurb": "Dryer vent cleaning, repair, rerouting and upgrades that cut drying time and fire risk.",
       "services": [
         {
@@ -323,7 +323,7 @@
     {
       "slug": "indoor-air-quality",
       "name": "Indoor Air Quality",
-      "icon": "drop",
+      "icon": "leaf",
       "blurb": "UV purifiers, whole-home air filtration, humidifiers and dehumidifiers for healthier air in every room.",
       "services": [
         {
