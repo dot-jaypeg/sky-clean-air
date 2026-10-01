@@ -74,7 +74,7 @@ def area_cta(D, name):
   <span class="sac-icon">{icon("pin", 26)}</span>
   <div class="sac-copy">
     <h2>Where We Offer {esc(name)}</h2>
-    <p>Our crews work in {live}+ communities across {" and ".join(regions)}, with the Inland Empire coming soon.</p>
+    <p>Our crews work in {live}+ communities across {" and ".join(regions)}.</p>
   </div>
   <a class="btn btn-primary" href="/service-areas/">View Our Service Areas &rarr;</a>
 </section>'''

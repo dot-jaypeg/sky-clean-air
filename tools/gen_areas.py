@@ -52,9 +52,11 @@ def map_block(D, pins, center=None, zoom=None, cls='', legend=True, filters=Fals
         filt = f'<div class="map-filters"><button type="button" class="active" data-map-region="all">All Areas</button>{btns}</div>'
     leg = ''
     if legend:
-        leg = ('<div class="map-legend"><span><i class="dot active"></i> Serving now</span>'
-               '<span><i class="dot launching"></i> Newly launched</span>'
-               '<span><i class="dot soon"></i> Coming soon</span></div>')
+        present = {p['status'] for p in pins}
+        keys = [('active', 'active', 'Serving now'), ('launching', 'launching', 'Newly launched'),
+                ('coming-soon', 'soon', 'Coming soon')]
+        leg = '<div class="map-legend">' + ''.join(
+            f'<span><i class="dot {dot}"></i> {label}</span>' for st, dot, label in keys if st in present) + '</div>'
     return f'''<div class="area-map-wrap {cls}">
   {filt}
   <div class="area-map" data-area-map role="region" aria-label="Map of Sky Clean Air service areas"></div>
@@ -111,12 +113,12 @@ def hub(site):
     cards = ''.join(region_card(D, r) for r in D.regions)
     site.add({
         'path': '/service-areas/',
-        'title': 'Service Areas: Orange County, San Diego & Inland Empire | Sky Clean Air',
-        'description': f'Sky Clean Air serves {live_count}+ communities across Orange County and San Diego County, with the Inland Empire coming soon. Find your city on our service area map.',
+        'title': 'Service Areas: Orange County & San Diego County | Sky Clean Air',
+        'description': f'Sky Clean Air serves {live_count}+ communities across Orange County and San Diego County. Find your city on our service area map.',
         'head_extra': MAP_ASSETS, 'scripts': MAP_SCRIPTS,
         'schema': [breadcrumb_schema(D.site['domain'], crumbs)],
         'body': page_hero(ch, 'Where We <span class="hl">Work</span>',
-                          'Orange County, San Diego County and — soon — the Inland Empire. Find your city below, or just call; if we can get to you, we will.',
+                          'Orange County and San Diego County. Find your city below, or just call; if we can get to you, we will.',
                           crumbs) +
                 f'''<section class="section map-section" id="map"><div class="container">
   <div class="section-head center"><h2>Our <span class="grad-text">Service Area</span> Map</h2>

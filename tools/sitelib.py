@@ -163,7 +163,10 @@ class Chrome:
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{esc(canonical)}">
 <meta property="og:image" content="{s['domain']}{p.get('og_image', '/assets/images/story-team.jpg')}">
-<link rel="icon" href="{s['logo']}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/logos/favicon-192.png">
+<link rel="apple-touch-icon" href="/assets/logos/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/antonio/Antonio-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="stylesheet" href="/css/styles.css?v={css_v}">
 {extra}{self.schema(p)}
@@ -445,10 +448,12 @@ def page_hero(ch, title_html, lede='', crumbs=None, kicker='', ctas=True, media=
 
 
 def cta_band(ch, title='Ready For <span class="grad-text">Cleaner Air</span>?',
-             text='Get a free estimate today — same-day and next-day appointments available.'):
-    # Skylar gives a thumbs-up here once the artwork exists (no placeholder — this band is on every page).
-    art = ch.s['mascot']['images'].get('thumbs_up')
-    art_html = f'<img class="cta-mascot" src="{art}" alt="{esc(ch.s["mascot"]["name"])}" loading="lazy">' if art else ''
+             text='Get a free estimate today — same-day and next-day appointments available.', with_mascot=False):
+    """Closing call-to-action band. `with_mascot` adds Skyler — opt-in per page; keep it rare."""
+    m = ch.s['mascot']
+    art = m.get('image_sm') if with_mascot else None
+    art_html = (f'<img class="cta-mascot" src="{art}" alt="{esc(m["name"])}, {esc(m["title"])}, giving a thumbs-up" '
+                f'width="471" height="560" loading="lazy">') if art else ''
     return f'''<section class="section-tight">
   <div class="container">
     <div class="cta-band{' has-mascot' if art else ''}" data-reveal>
@@ -475,15 +480,13 @@ def placeholder(ch, label, note='', cls=''):
     return f'<div class="asset-placeholder {cls}"><span class="ph-label">{esc(label)}</span>{note_html}</div>'
 
 
-def mascot(ch, pose='wave', cls=''):
-    """Skylar the Home Service Eagle. Renders the artwork once it's in site.json, else a placeholder slot."""
+def mascot(ch, cls=''):
+    """Skyler the Home Service Eagle, full size. Opt-in per page — the client wants him used sparingly."""
     m = ch.s['mascot']
-    src = m['images'].get(pose)
-    if src:
-        return (f'<figure class="mascot mascot-{pose} {cls}"><img src="{src}" '
-                f'alt="{esc(m["name"])}, {esc(m["title"])}" loading="lazy"></figure>')
-    return placeholder(ch, f'{m["name"]} — {m["title"]}', f'Mascot artwork slot ({pose.replace("_", " ")} pose)',
-                       f'mascot-slot {cls}')
+    if not m.get('image'):
+        return ''
+    return (f'<figure class="mascot {cls}"><img src="{m["image"]}" alt="{esc(m["name"])}, {esc(m["title"])}" '
+            f'width="924" height="1100" loading="lazy"></figure>')
 
 
 def stars(n=5):

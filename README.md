@@ -1,6 +1,6 @@
 # Sky Clean Air
 
-Marketing site for Sky Clean Air (skycleanair.com), a family-owned HVAC and indoor air quality company serving San Diego County and Orange County, with the Inland Empire coming next.
+Marketing site for Sky Clean Air (skycleanair.com), a family-owned HVAC and indoor air quality company serving San Diego County and Orange County.
 
 ## Quick start
 
@@ -15,7 +15,7 @@ No dependencies beyond Python 3.8+. `public/` is the deploy root and works on an
 
 | Path | What it is |
 |---|---|
-| `src/data/site.json` | Phone, address, hours, specials, widget embed codes, mascot artwork, draft placeholders toggle |
+| `src/data/site.json` | Phone, address, hours, specials, widget embed codes, mascot (Skyler — used sparingly), draft placeholders toggle |
 | `src/data/services.json` | The 8 service categories (one page each) and the sub-services each covers |
 | `src/data/areas.json` | Regions → cities with status and map coordinates (drives area pages, map, lists) |
 | `src/data/team.json` | Team page, grouped by department |
@@ -38,7 +38,8 @@ Generated files (every `.html` in `public/`, `sitemap.xml`, `robots.txt`) should
 
 - **A service area:** add the city (or a whole region) to `src/data/areas.json`, run `python3 tools/geocode_areas.py`, then rebuild.
 - **A sub-service:** add it (with a `summary`) to its category in `src/data/services.json`; it shows in that service page's "What's included" list.
-- **Widgets and mascot:** paste the embed code or artwork path into `src/data/site.json` and rebuild.
+- **Widgets:** paste the embed code into `src/data/site.json` and rebuild.
+- **Skyler (mascot):** add `{{component:cta:mascot}}` to a page's closing CTA — sparingly, and never on the homepage.
 - **Before launch:** set `show_placeholders` to `false` in `site.json`.
 
 ## Design

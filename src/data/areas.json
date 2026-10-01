@@ -1,5 +1,5 @@
 {
-  "_note": "Single source of truth for where Sky Clean Air works. Drives the service-area pages, the map pins, nav, footer and homepage lists. To add a new market: add a region (status 'coming-soon' until launch) and its cities, then rebuild. Flipping a region's status to 'active' or 'launching' publishes a page for every city in it. A city can override its region's status (e.g. Temecula is already served while the rest of the Inland Empire is coming soon). lat/lng are filled in by tools/geocode_areas.py.",
+  "_note": "Single source of truth for where Sky Clean Air works. Drives the service-area pages, the map pins, nav, footer and homepage lists. To add a new market: add a region (status 'coming-soon' until launch) and its cities, then rebuild. Flipping a region's status to 'active' or 'launching' publishes a page for every city in it. A city can override its region's status with its own `status`. lat/lng are filled in by tools/geocode_areas.py.",
   "regions": [
     {
       "slug": "orange-county",
@@ -34,24 +34,6 @@
       "intro": [
         "San Diego is where Sky Clean Air started in 2018 — one rented van, one set of duct-cleaning equipment and two founders who answered the phone themselves. Today our trucks are in San Diego County neighborhoods every day, from San Ysidro and Chula Vista up through Kearny Mesa, the beach communities and North County to Fallbrook.",
         "The county's microclimates matter for your home. Coastal neighborhoods deal with marine-layer humidity and salt air; inland areas like El Cajon, Santee, Poway and Escondido see summer heat that pushes AC systems hard; Santa Ana winds and wildfire season send fine dust and smoke into every home. We service all of it — ducts, dryer vents, attics, heating, cooling and indoor air quality — with the same honest recommendations wherever you live."
-      ]
-    },
-    {
-      "slug": "inland-empire",
-      "name": "Inland Empire",
-      "short": "IE",
-      "status": "coming-soon",
-      "badge": "Coming Soon",
-      "order": 3,
-      "blurb": "Riverside County is next. We already take select jobs in Temecula, with full Inland Empire service launching soon.",
-      "center": [
-        33.7,
-        -117.25
-      ],
-      "zoom": 10,
-      "intro": [
-        "Riverside County is next. We already take select jobs in Temecula, and we're building toward full Inland Empire service across Murrieta, Menifee, Lake Elsinore, Wildomar, Riverside and Corona.",
-        "Inland Empire summers are long and hot, which is hard on air conditioners, attic ductwork and insulation. If you're in the area now, give us a call — we'll tell you honestly whether we can get to you yet, and you'll be first in line when we launch in your city."
       ]
     }
   ],
@@ -1638,63 +1620,6 @@
       "legacy": true,
       "lat": 32.839,
       "lng": -116.9283
-    },
-    {
-      "slug": "temecula",
-      "name": "Temecula",
-      "region": "inland-empire",
-      "type": "city",
-      "status": "active",
-      "lat": 33.4946,
-      "lng": -117.1474
-    },
-    {
-      "slug": "murrieta",
-      "name": "Murrieta",
-      "region": "inland-empire",
-      "type": "city",
-      "lat": 33.5608,
-      "lng": -117.2107
-    },
-    {
-      "slug": "menifee",
-      "name": "Menifee",
-      "region": "inland-empire",
-      "type": "city",
-      "lat": 33.6864,
-      "lng": -117.1779
-    },
-    {
-      "slug": "lake-elsinore",
-      "name": "Lake Elsinore",
-      "region": "inland-empire",
-      "type": "city",
-      "lat": 33.6681,
-      "lng": -117.3273
-    },
-    {
-      "slug": "wildomar",
-      "name": "Wildomar",
-      "region": "inland-empire",
-      "type": "city",
-      "lat": 33.611,
-      "lng": -117.2581
-    },
-    {
-      "slug": "riverside",
-      "name": "Riverside",
-      "region": "inland-empire",
-      "type": "city",
-      "lat": 33.9825,
-      "lng": -117.3742
-    },
-    {
-      "slug": "corona",
-      "name": "Corona",
-      "region": "inland-empire",
-      "type": "city",
-      "lat": 33.8753,
-      "lng": -117.5664
     }
   ],
   "map": {

@@ -18,7 +18,8 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PATH = os.path.join(ROOT, 'src', 'data', 'areas.json')
 UA = 'SkyCleanAirSiteBuilder/1.0 (jayden@advancedmarketers.co)'
-COUNTY = {'orange-county': 'Orange County', 'san-diego-county': 'San Diego County', 'inland-empire': 'Riverside County'}
+# Region slug -> county name used in the geocoder query. Add an entry when adding a region.
+COUNTY = {'orange-county': 'Orange County', 'san-diego-county': 'San Diego County'}
 # Southern California bounding box — rejects same-named places elsewhere.
 VIEWBOX = '-118.2,34.1,-116.0,32.5'
 

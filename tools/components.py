@@ -100,7 +100,7 @@ def areas_band(ch, D, arg=None):
   <div class="container">
     <div class="area-head section-head" data-reveal>
       <h2>Serving <span class="grad-text">Southern California</span></h2>
-      <p>Orange County, San Diego County, and soon the Inland Empire — if you're within our reach, we're already on our way.</p>
+      <p>Orange County and San Diego County — if you're within our reach, we're already on our way.</p>
     </div>
     <div class="region-groups" data-reveal>{"".join(groups)}</div>
     <p class="area-links"><a href="/service-areas/" class="btn btn-secondary">See the full service area map &rarr;</a></p>
@@ -119,8 +119,9 @@ def specials(ch, D, arg=None):
 
 
 def cta(ch, D, arg=None):
-    return cta_band(ch)
+    """{{component:cta}} — or {{component:cta:mascot}} to include Skyler (use sparingly)."""
+    return cta_band(ch, with_mascot=(arg == 'mascot'))
 
 
 def mascot(ch, D, arg=None):
-    return mascot_slot(ch, arg or 'wave')
+    return mascot_slot(ch)

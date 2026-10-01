@@ -39,15 +39,12 @@
     "reviews": ""
   },
 
-  "_mascot_note": "Path to Skylar artwork (PNG/WebP with transparency) once the designer hands it off. Empty = placeholder slots.",
+  "_mascot_note": "Skyler the Home Service Eagle (source art: assets/mascot/). Used SPARINGLY on purpose — client direction: never on the homepage, only where a page opts in: the About page intro ({{component:mascot}}) and the bottom CTA band on Contact and Specials ({{component:cta:mascot}}).",
   "mascot": {
-    "name": "Skylar",
+    "name": "Skyler",
     "title": "The Home Service Eagle",
-    "images": {
-      "wave": "",
-      "point": "",
-      "thumbs_up": ""
-    }
+    "image": "/assets/mascot/skyler-thumbs-up.webp",
+    "image_sm": "/assets/mascot/skyler-thumbs-up-sm.webp"
   },
 
   "_placeholders_note": "Draft-only: shows labeled boxes where pending assets (widgets, mascot, team photos) will go. Set false before launch to hide them.",
