@@ -39,7 +39,7 @@
     "reviews": ""
   },
 
-  "_mascot_note": "Skyler the Home Service Eagle (source art: assets/mascot/). Used SPARINGLY on purpose — client direction: never on the homepage, only where a page opts in: the About page "Meet Skyler" panel ({{component:mascot}}) and the closing CTA band on Contact and Specials ({{component:cta:Speech bubble text}}).",
+  "_mascot_note": "Skyler the Home Service Eagle (source art: assets/mascot/). Used SPARINGLY on purpose — client direction: never on the homepage, only where a page opts in: the About page Meet Skyler panel ({{component:mascot}}) and the closing CTA band on Contact and Specials ({{component:cta:Speech bubble text}}).",
   "mascot": {
     "name": "Skyler",
     "title": "The Home Service Eagle",
