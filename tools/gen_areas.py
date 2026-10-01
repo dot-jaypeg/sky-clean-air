@@ -125,9 +125,8 @@ def hub(site):
   <p>Every dot is a community we serve. Tap one to see local details.</p></div>
   {map_block(D, pins, filters=True)}
 </div></section>
-<section class="section bg-soft"><div class="container"><div class="region-cards">{cards}</div>
-<p class="area-cta-note">Don't see your city? Call <a href="{ch.tel}">{ch.phone}</a> — we're adding new areas as we grow.</p></div></section>''' +
-                cta_band(ch),
+<section class="section bg-soft"><div class="container"><div class="region-cards">{cards}</div></div></section>''' +
+                cta_band(ch, mascot_line="Don't see your city? Give us a call!"),
     })
 
 
