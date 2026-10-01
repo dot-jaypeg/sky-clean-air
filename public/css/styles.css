@@ -1381,7 +1381,7 @@ body.nav-open { overflow: hidden; }
 .leaflet-popup-content { font-family: var(--font); font-size: 0.88rem; line-height: 1.45; }
 .leaflet-popup-content a { color: var(--sky-deep); font-weight: 700; }
 
-.region-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+.region-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: start; max-width: 1080px; margin: 0 auto; }
 .region-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 30px; position: relative; overflow: hidden; }
 .region-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--grad-sky); }
 .region-card.region-coming-soon::before { background: var(--gray-200); }
@@ -1391,7 +1391,7 @@ body.nav-open { overflow: hidden; }
 .region-card > p { margin: 12px 0 18px; font-size: 0.95rem; }
 .region-card .region-badge { background: rgba(26, 166, 194, 0.12); color: var(--sky-deep); }
 .region-card .service-link { display: inline-block; margin-top: 18px; }
-@media (max-width: 1000px) { .region-cards { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .region-cards { grid-template-columns: 1fr; max-width: 620px; } }
 .area-list { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .area-list li { font-size: 0.9rem; font-weight: 600; }
 .area-list a { color: var(--ink-soft); }
@@ -1658,4 +1658,40 @@ body.nav-open { overflow: hidden; }
   .cta-has-skyler .cta-wrap { display: flex; flex-direction: column; }
   .cta-skyler { position: relative; order: -1; right: auto; width: 140px; margin: 0 auto -30px; }
   .cta-has-skyler .cta-band { padding: 48px 28px 36px; }
+}
+
+/* Hub region cards: alphabetized, column-aligned city list (was a wrapping paragraph) */
+.region-card { padding: 34px 34px 30px; }
+.city-grid-label {
+  display: flex; align-items: center; gap: 10px;
+  margin: 26px 0 10px; font-family: var(--font); text-transform: none; letter-spacing: 0.06em;
+  font-size: 0.78rem; font-weight: 800; color: var(--gray-600); text-transform: uppercase;
+}
+.city-grid-label span { padding: 2px 8px; border-radius: 999px; background: var(--gray-100); color: var(--sky-deep); font-size: 0.75rem; }
+/* CSS columns so the alphabetical order reads top-to-bottom, column by column */
+.city-grid { columns: 2; column-gap: 28px; }
+.city-grid.cols-3 { columns: 3; column-gap: 20px; }
+.city-grid li { break-inside: avoid; border-bottom: 1px solid var(--gray-100); }
+.city-grid a, .city-grid span {
+  display: flex; align-items: flex-start; gap: 10px; line-height: 1.35;
+  padding: 9px 2px; font-size: 0.95rem; font-weight: 600; color: var(--ink-soft);
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+.city-grid a::before {
+  content: ''; flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%; margin-top: 0.42em;
+  background: var(--grad-sky);
+}
+.city-grid a:hover { color: var(--sky-deep); padding-left: 6px; }
+.city-grid a:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; border-radius: 4px; }
+.city-grid.cols-3 a { font-size: 0.86rem; font-weight: 500; padding: 7px 2px; }
+.region-card .hood-more { margin-top: 18px; border-top: 1px solid var(--gray-200); padding-top: 16px; }
+.region-card .hood-more summary { display: inline-flex; align-items: center; gap: 6px; list-style: none; font-size: 0.92rem; }
+.region-card .hood-more summary::-webkit-details-marker { display: none; }
+.region-card .hood-more summary svg { transition: transform 0.2s ease; }
+.region-card .hood-more[open] summary svg { transform: rotate(180deg); }
+.region-card .hood-more .city-grid { margin-top: 10px; }
+.region-card .service-link { margin-top: 22px; }
+@media (max-width: 560px) {
+  .region-card { padding: 26px 22px; }
+  .city-grid.cols-3 { columns: 2; }
 }

@@ -78,7 +78,7 @@ def pin(D, c, current=False):
 
 def city_links(D, cities, cls='area-list'):
     items = []
-    for c in cities:
+    for c in sorted(cities, key=lambda c: c['name']):
         if live(D, c):
             items.append(f'<li><a href="/service-areas/{c["slug"]}/">{esc(c["name"])}</a></li>')
         else:
@@ -87,21 +87,25 @@ def city_links(D, cities, cls='area-list'):
 
 
 def region_card(D, r):
+    """Hub-page card for a region: blurb, then an alphabetized, column-aligned city list."""
     cities = D.cities(r['slug'])
     badge = f'<span class="region-badge">{esc(r["badge"])}</span>' if r.get('badge') else ''
     towns = [c for c in cities if c['type'] == 'city']
     hoods = [c for c in cities if c['type'] == 'neighborhood']
     hoods_html = ''
     if hoods:
-        hoods_html = f'<details class="hood-more"><summary>San Diego neighborhoods ({len(hoods)})</summary>{city_links(D, hoods, "area-list compact")}</details>'
+        hoods_html = (f'<details class="hood-more"><summary>{icon("chev", 16)} Show all {len(hoods)} San Diego neighborhoods</summary>'
+                      f'{city_links(D, hoods, "city-grid cols-3")}</details>')
+    label = 'Cities &amp; Communities' if hoods else 'Cities'
     return f'''<div class="region-card region-{r["status"]}" id="{r["slug"]}">
   <div class="region-card-head">
     <h2><a href="/service-areas/{r["slug"]}/">{esc(r["name"])}</a></h2>{badge}
   </div>
   <p>{esc(r["blurb"])}</p>
-  {city_links(D, towns)}
+  <h3 class="city-grid-label">{label} <span>{len(towns)}</span></h3>
+  {city_links(D, towns, "city-grid")}
   {hoods_html}
-  <a class="service-link" href="/service-areas/{r["slug"]}/">{"Learn about " + esc(r["name"]) if r["status"] != "coming-soon" else "See what's coming"} &rarr;</a>
+  <a class="service-link" href="/service-areas/{r["slug"]}/">Learn about {esc(r["name"])} &rarr;</a>
 </div>'''
 
 
