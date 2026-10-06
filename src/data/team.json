@@ -1,5 +1,5 @@
 {
-  "_note": "Team page data, grouped by department. Group photo and the headshots for Nadav, Daniel and Valarie are from the Sept 29, 2026 team shoot (raw files: assets/content/sky-clean-pics1-3, gitignored; frames S1_00238, 01416, 01525, 01240). Everyone else still uses their legacy-site headshot until we have names matched to the new photos. `role_pending: true` marks people whose role/duties we still need from the client. Add people to a department by appending to its `members` list.",
+  "_note": "Team page data, grouped by department. Headshots are from the Sept 29, 2026 team shoot, chosen by the client (Nadav 01661, Daniel 01516, Valarie 01194, Erick 00781, Louis 00815; group photo 00238). Oscar, Joe, Tedi and Taylor still use legacy-site headshots. The 'crew' department holds the other people from the shoot whose names we don't have yet (`name_pending`, `shoot_frame` = the source frame) — fill in name/role and move them to the right department when the client confirms. Possible duplicates to check: crew-00853 may be Tedi, crew-00164 may be Oscar.",
   "group_photo": "/assets/images/team-2026.jpg",
   "departments": [
     {
@@ -147,6 +147,125 @@
           "role": "Team Member",
           "role_pending": true,
           "photo": "/assets/images/team/tedi.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "crew",
+      "name": "More of Our Crew",
+      "blurb": "The rest of the people who keep Sky Clean Air running — in the office, in the trucks and on the job site.",
+      "members": [
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00011.jpg",
+          "shoot_frame": "00011"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00026.jpg",
+          "shoot_frame": "00026"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00036.jpg",
+          "shoot_frame": "00036"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00058.jpg",
+          "shoot_frame": "00058"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00092.jpg",
+          "shoot_frame": "00092"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00127.jpg",
+          "shoot_frame": "00127"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00164.jpg",
+          "shoot_frame": "00164"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00853.jpg",
+          "shoot_frame": "00853"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00881.jpg",
+          "shoot_frame": "00881"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00918.jpg",
+          "shoot_frame": "00918"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00954.jpg",
+          "shoot_frame": "00954"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-00993.jpg",
+          "shoot_frame": "00993"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-01040.jpg",
+          "shoot_frame": "01040"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-01116.jpg",
+          "shoot_frame": "01116"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-01140.jpg",
+          "shoot_frame": "01140"
+        },
+        {
+          "name": "",
+          "name_pending": true,
+          "role": "",
+          "photo": "/assets/images/team/crew-01589.jpg",
+          "shoot_frame": "01589"
         }
       ]
     }

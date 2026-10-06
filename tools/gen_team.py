@@ -10,13 +10,18 @@ from sitelib import breadcrumb_schema, cta_band, esc, icon, page_hero, placehold
 
 
 def member_card(ch, m):
+    if m.get('name_pending'):
+        # Photo from the team shoot, name not confirmed yet — never guess a name.
+        m = dict(m, name='Sky Clean Air Crew', role=m.get('role') or 'Team Member')
+        if ch.s.get('show_placeholders'):
+            m['role_pending'] = True
     photo = (f'<img src="{m["photo"]}" alt="{esc(m["name"])}, {esc(m["role"])} at Sky Clean Air" loading="lazy">'
              if m.get('photo') else f'<div class="team-photo-ph">{icon("user", 48)}</div>')
     duties = ''.join(f'<li>{esc(d)}</li>' for d in m.get('duties', []))
     facts = ''.join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in m.get('facts', []))
     pending = ''
     if m.get('role_pending') and ch.s.get('show_placeholders'):
-        pending = '<p class="team-pending">Role &amp; duties coming soon</p>'
+        pending = '<p class="team-pending">Name, role &amp; duties coming soon</p>' if m.get('name_pending') else '<p class="team-pending">Role &amp; duties coming soon</p>'
     nick = f' <span class="team-nick">“{esc(m["short"])}”</span>' if m.get('short') else ''
     return f'''<article class="team-card" data-reveal>
   <div class="team-photo">{photo}</div>
