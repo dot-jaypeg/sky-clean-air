@@ -194,7 +194,7 @@ def posts(site):
             'path': r['path'], 'legacy': True, 'lastmod': r['modified'],
             'title': seo_title(r, r['title']),
             'description': r['description'] or text_excerpt(r['body'], 155),
-            'og_image': img or '/assets/images/story-team.jpg',
+            'og_image': img or '/assets/images/team-2026.jpg',
             'body_class': 'page-post',
             'schema': [article_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
             'body': page_hero(ch, esc(r['title']), '', crumbs, ctas=False, extra=meta) +

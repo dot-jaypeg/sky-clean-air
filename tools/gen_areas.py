@@ -233,7 +233,7 @@ def city_pages(site):
         site.add({
             'path': path, 'legacy': bool(legacy and not cc), 'lastmod': (legacy or {}).get('modified'),
             'title': title, 'description': desc,
-            'og_image': img or '/assets/images/story-team.jpg',
+            'og_image': img or '/assets/images/team-2026.jpg',
             'head_extra': MAP_ASSETS, 'scripts': MAP_SCRIPTS,
             'schema': [place_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
             'body': page_hero(ch, f'HVAC &amp; Air Duct Services in <span class="hl">{esc(name)}, CA</span>',

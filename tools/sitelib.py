@@ -164,7 +164,7 @@ class Chrome:
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{esc(canonical)}">
-<meta property="og:image" content="{s['domain']}{p.get('og_image', '/assets/images/story-team.jpg')}">
+<meta property="og:image" content="{s['domain']}{p.get('og_image', '/assets/images/team-2026.jpg')}">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/logos/favicon-192.png">

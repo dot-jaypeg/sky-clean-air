@@ -115,7 +115,7 @@ def service_pages(site):
             'path': path,
             'title': custom.get('title') or f'{name} in San Diego & Orange County | Sky Clean Air',
             'description': custom.get('description') or cat['blurb'],
-            'og_image': lead or '/assets/images/story-team.jpg',
+            'og_image': lead or '/assets/images/team-2026.jpg',
             'schema': [service_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
             'body': page_hero(ch, h1, lede, crumbs, kicker=esc(name)) +
                     article_layout(f'<div class="prose">{lead_html}{custom["body"]}</div>{included_section(cat)}'

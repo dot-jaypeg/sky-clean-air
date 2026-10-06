@@ -1,6 +1,6 @@
 {
-  "_note": "Team page data, grouped by department. Photos are the legacy-site headshots as a stand-in until the new event headshots arrive — swap `photo` paths when they do. `role_pending: true` marks people whose role/duties we still need from the client (rendered with a 'details coming soon' note while show_placeholders is on). Add people to a department by appending to its `members` list.",
-  "group_photo": "/assets/images/story-team.jpg",
+  "_note": "Team page data, grouped by department. Group photo and the headshots for Nadav, Daniel and Valarie are from the Sept 29, 2026 team shoot (raw files: assets/content/sky-clean-pics1-3, gitignored; frames S1_00238, 01416, 01525, 01240). Everyone else still uses their legacy-site headshot until we have names matched to the new photos. `role_pending: true` marks people whose role/duties we still need from the client. Add people to a department by appending to its `members` list.",
+  "group_photo": "/assets/images/team-2026.jpg",
   "departments": [
     {
       "slug": "management",
@@ -19,8 +19,14 @@
             "Leading the expansion into Orange County and beyond"
           ],
           "facts": [
-            ["Credentials", "EPA-certified, NADCA standards knowledge"],
-            ["Outside work", "Family travel, boating, exploring food from around the world"]
+            [
+              "Credentials",
+              "EPA-certified, NADCA standards knowledge"
+            ],
+            [
+              "Outside work",
+              "Family travel, boating, exploring food from around the world"
+            ]
           ]
         },
         {
@@ -34,8 +40,14 @@
             "Keeping customer relationships strong from first call to follow-up"
           ],
           "facts": [
-            ["Department", "Leadership / Executive"],
-            ["Outside work", "Time with family and friends"]
+            [
+              "Department",
+              "Leadership / Executive"
+            ],
+            [
+              "Outside work",
+              "Time with family and friends"
+            ]
           ]
         },
         {
@@ -49,8 +61,14 @@
             "Keeping projects on track from start to finish"
           ],
           "facts": [
-            ["Fun fact", "Former cheer coach in the Sweetwater Union High School District"],
-            ["Community", "Board member at Donald's Doggie Haven, a 501(c) rescue"]
+            [
+              "Fun fact",
+              "Former cheer coach in the Sweetwater Union High School District"
+            ],
+            [
+              "Community",
+              "Board member at Donald's Doggie Haven, a 501(c) rescue"
+            ]
           ]
         }
       ]
@@ -86,8 +104,14 @@
             "Quoting installs, replacements and indoor air quality upgrades"
           ],
           "facts": [
-            ["Experience", "8 years in the field"],
-            ["Credentials", "EPA Universal, OSHA 10"]
+            [
+              "Experience",
+              "8 years in the field"
+            ],
+            [
+              "Credentials",
+              "EPA Universal, OSHA 10"
+            ]
           ]
         },
         {
@@ -100,12 +124,30 @@
             "Helping customers choose the right system for their home"
           ],
           "facts": [
-            ["Outside work", "Welding, fabricating and building trucks"]
+            [
+              "Outside work",
+              "Welding, fabricating and building trucks"
+            ]
           ]
         },
-        { "name": "Erick", "role": "Team Member", "role_pending": true, "photo": "/assets/images/team/erick.jpg" },
-        { "name": "Louis A.", "role": "Team Member", "role_pending": true, "photo": "/assets/images/team/louis.jpg" },
-        { "name": "Tedi", "role": "Team Member", "role_pending": true, "photo": "/assets/images/team/tedi.jpg" }
+        {
+          "name": "Erick",
+          "role": "Team Member",
+          "role_pending": true,
+          "photo": "/assets/images/team/erick.jpg"
+        },
+        {
+          "name": "Louis A.",
+          "role": "Team Member",
+          "role_pending": true,
+          "photo": "/assets/images/team/louis.jpg"
+        },
+        {
+          "name": "Tedi",
+          "role": "Team Member",
+          "role_pending": true,
+          "photo": "/assets/images/team/tedi.jpg"
+        }
       ]
     }
   ]
