@@ -1,0 +1,73 @@
+{
+  "region": "orange-county",
+  "service": "dryer-vents",
+  "title": "Dryer Vent Cleaning in Orange County | Free Estimate",
+  "description": "Dryer vent cleaning for Orange County homes before the holiday laundry piles up. Faster drying, less lint buildup. Free estimates and written prices.",
+  "kicker": "Dryer Vent Cleaning · Orange County",
+  "h1": "Towels taking two cycles? <span class=\"hl\">Clean the dryer vent.</span>",
+  "sub": "Holiday guests mean more sheets, towels and laundry. We clear lint from Orange County dryer vents so loads dry faster and safer. Free estimates.",
+  "offer": null,
+  "why_now": [
+    {
+      "title": "Laundry piles up in winter",
+      "text": "Heavier clothes, extra bedding and holiday guests mean your dryer works harder this time of year."
+    },
+    {
+      "title": "Lint is a fire risk",
+      "text": "Lint that gets past the screen collects in the vent. It's flammable, and a clogged vent makes the dryer run hotter."
+    },
+    {
+      "title": "Long runs clog faster",
+      "text": "Many OC homes vent the dryer through the attic to the roof. Long runs with bends trap more lint."
+    }
+  ],
+  "included": [
+    "Free estimate before any work",
+    "Full vent line cleaned from dryer to exterior",
+    "Exterior vent or roof cap checked and cleared",
+    "Airflow check after cleaning",
+    "Check for crushed, loose or foil vent hose",
+    "Written price for any repair or reroute we recommend"
+  ],
+  "steps": [
+    {
+      "title": "Ask for a free estimate",
+      "text": "Call or request a visit and tell us how long drying is taking."
+    },
+    {
+      "title": "We trace the vent",
+      "text": "A tech follows the line from your dryer to where it exits the house."
+    },
+    {
+      "title": "Written price, then cleaning",
+      "text": "You approve the price in writing before we clean."
+    },
+    {
+      "title": "Faster dry times",
+      "text": "We check airflow when we're done so you know it's working."
+    }
+  ],
+  "local": "A lot of Orange County homes in Mission Viejo, Rancho Santa Margarita and Aliso Viejo have the laundry room in the middle of the house or upstairs, with a long vent running through the attic to the roof. Those runs collect lint faster than a short wall vent. In coastal Dana Point and San Clemente, damp air can make lint clump and stick. We clean vents across OC with the same crew and standards as our San Diego work.",
+  "faqs": [
+    [
+      "How much does dryer vent cleaning cost?",
+      "<p>It depends on how long your vent is and where it exits the house, so we give you a <strong>free estimate</strong> and a written price before any work. Check <a href=\"/specials/\">current specials</a> too in case something applies.</p>"
+    ],
+    [
+      "How do I know my dryer vent needs cleaning?",
+      "<p>Common signs: clothes need more than one cycle, the dryer or laundry room gets unusually hot, there's a burning smell, or the outside flap barely opens when the dryer runs. Any of those is worth a look.</p>"
+    ],
+    [
+      "Is a clogged dryer vent really a fire risk?",
+      "<p>Yes. Lint is flammable, and when the vent is restricted, heat builds up around it. Keeping the line clear is one of the simpler safety jobs in a home. It also lets the dryer finish loads faster.</p>"
+    ],
+    [
+      "My vent goes to the roof. Can you clean it?",
+      "<p>Yes. Attic and roof-exit vents are common in Orange County homes, and they tend to need cleaning more often. We'll check the roof cap as well. More on our <a href=\"/services/dryer-vents/\">dryer vent services</a> page.</p>"
+    ],
+    [
+      "Do you serve my city?",
+      "<p>We cover Orange County from San Clemente to Brea. See the <a href=\"/service-areas/orange-county/\">Orange County service area</a> page or call {{phone}}.</p>"
+    ]
+  ]
+}

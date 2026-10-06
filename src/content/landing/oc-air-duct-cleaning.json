@@ -1,0 +1,77 @@
+{
+  "region": "orange-county",
+  "service": "air-ducts",
+  "title": "$59 Air Duct Cleaning in Orange County",
+  "description": "Get your Orange County home ready for winter with a $59 whole-house air duct cleaning. Same crew and standards as San Diego. Upfront written pricing.",
+  "kicker": "Winter-Ready Duct Cleaning · OC",
+  "h1": "Clean ducts before the <span class=\"hl\">heater kicks on</span> this winter",
+  "sub": "The first heat cycle pushes a summer's worth of dust through your vents. A $59 whole-house duct cleaning clears it out before the holidays.",
+  "offer": {
+    "price": "$59",
+    "label": "Whole-House Duct Cleaning",
+    "note": "See current specials for what's included and the terms."
+  },
+  "why_now": [
+    {
+      "title": "The first heat cycle stirs it up",
+      "text": "Dust that settled in your ducts all summer gets blown into every room the first time the furnace runs."
+    },
+    {
+      "title": "Windows close, air stays in",
+      "text": "Once it cools down, homes stay shut. Whatever is in the ducts keeps circulating."
+    },
+    {
+      "title": "Guests are coming",
+      "text": "A cleaner-smelling house before Thanksgiving and the holidays is one less thing to think about."
+    }
+  ],
+  "included": [
+    "Supply and return vents cleaned throughout the house",
+    "Main trunk lines cleaned",
+    "Vent covers removed and cleaned",
+    "Before-and-after look at what came out",
+    "Whole-home HVAC inspection while we're there",
+    "Honest notes on duct condition and age"
+  ],
+  "steps": [
+    {
+      "title": "Book your cleaning",
+      "text": "Call or request a visit and pick a time that suits you."
+    },
+    {
+      "title": "We protect your home",
+      "text": "The crew covers floors and works vent by vent through the house."
+    },
+    {
+      "title": "Clean and inspect",
+      "text": "We clean the system and check your HVAC while we're there."
+    },
+    {
+      "title": "Walk-through",
+      "text": "We show you what we found and answer any questions before we leave."
+    }
+  ],
+  "local": "Many Orange County homes in Irvine, Tustin, Mission Viejo and Fullerton were built from the 1970s through the 1990s, often with the air handler and ducts up in a hot, dusty attic. Those ducts collect years of buildup, and Santa Ana winds push fine dust in through every gap. Closer to the coast in Huntington Beach, damp air adds its own musty smell. We're newly serving OC with the same crew and standards our San Diego customers know.",
+  "faqs": [
+    [
+      "What does the $59 whole-house duct cleaning include?",
+      "<p>It covers cleaning the ducts throughout your home. Details and terms are on our <a href=\"/specials/\">specials page</a>. Your tech will confirm the scope and give you a written price before starting, so there are no surprises.</p>"
+    ],
+    [
+      "Why clean my ducts before winter instead of spring?",
+      "<p>Because the heater is about to start moving air through them. The first few heat cycles push out whatever settled in the ducts over summer, right as the house closes up for the season. Cleaning first means that dust ends up in our equipment, not your living room.</p>"
+    ],
+    [
+      "Do you really serve Orange County now?",
+      "<p>Yes. We've expanded from San Diego into Orange County, from San Clemente to Brea, with the same crew habits and upfront pricing. See the <a href=\"/service-areas/orange-county/\">Orange County service area</a> page for cities we cover.</p>"
+    ],
+    [
+      "Will you try to sell me a new system?",
+      "<p>No. We do a whole-home HVAC inspection during duct cleaning, and if your system is around 15 years or older we'll mention it. That's information, not a sales pitch. What you do with it is up to you.</p>"
+    ],
+    [
+      "How do I book?",
+      "<p>Call {{phone}} or <a href=\"/contact-us/\">request a visit</a> online. Same-day or next-day appointments are often available. Learn more about the service on our <a href=\"/services/air-ducts/\">air duct cleaning</a> page.</p>"
+    ]
+  ]
+}

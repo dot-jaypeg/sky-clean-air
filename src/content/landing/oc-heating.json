@@ -1,0 +1,78 @@
+{
+  "region": "orange-county",
+  "service": "heating",
+  "title": "Furnace & Heat Pump Service in Orange County",
+  "description": "Furnace and heat pump repair, tune-ups and a $29 furnace safety inspection in Orange County. Licensed, family-owned, written price before any work.",
+  "kicker": "Winter Heating Service · Orange County",
+  "h1": "Get your heater ready before the <span class=\"hl\">first cold OC night</span>",
+  "sub": "Furnace and heat pump repair, tune-ups and a $29 safety inspection for Orange County homes, from San Clemente to Brea. Written price before we start.",
+  "offer": {
+    "price": "$29",
+    "label": "Furnace Safety Inspection",
+    "note": "Winter special. See current specials for details and terms."
+  },
+  "why_now": [
+    {
+      "title": "It's been off since spring",
+      "text": "Most OC heaters sit idle for eight months. Dust settles on the burners and small problems wait quietly for the first cold night."
+    },
+    {
+      "title": "Inland nights drop fast",
+      "text": "Mission Viejo, Lake Forest and Yorba Linda can fall into the 40s after sunset, even when the afternoon felt like summer."
+    },
+    {
+      "title": "Older systems need a look",
+      "text": "A lot of OC homes still run the furnace that came with the house. A quick inspection tells you where yours stands before you depend on it."
+    }
+  ],
+  "included": [
+    "Furnace safety inspection: burners, flame, venting and heat exchanger",
+    "Carbon monoxide check around the furnace",
+    "Gas furnace diagnosis and repair",
+    "Heat pump diagnosis and repair, including heating mode",
+    "Tune-up: clean, test and adjust for the season",
+    "Thermostat and filter check",
+    "Honest notes if your system is near the end of its life"
+  ],
+  "steps": [
+    {
+      "title": "Call or request a visit",
+      "text": "Tell us what your heater is doing and we'll find a time that works, often same-day or next-day."
+    },
+    {
+      "title": "We inspect and test",
+      "text": "A licensed tech checks the furnace or heat pump from the thermostat to the vent."
+    },
+    {
+      "title": "You get a written price",
+      "text": "If anything needs fixing, you see the price in writing before any work starts."
+    },
+    {
+      "title": "Warm house, no surprises",
+      "text": "We do the agreed work, test it with you and leave the area clean."
+    }
+  ],
+  "local": "Orange County homes have a wide range of heating needs. In Huntington Beach and Newport Beach, damp marine-layer mornings make a cold house feel colder, while inland neighborhoods in Mission Viejo, Lake Forest and Yorba Linda see real winter nights in the 40s. Many homes here were built between the 1970s and 1990s, often with a furnace in the garage or attic that has never been replaced. We're new to OC but not to this work: the same crew and standards that built our name in San Diego.",
+  "faqs": [
+    [
+      "What does the $29 furnace safety inspection cover?",
+      "<p>A tech checks the parts of your furnace that matter most for safe operation: the burners and flame, the venting, the heat exchanger and the area around the unit for carbon monoxide. If we find something, we'll explain it and give you a written price before doing anything. See <a href=\"/specials/\">current specials</a> for the terms.</p>"
+    ],
+    [
+      "Is carbon monoxide something I should worry about?",
+      "<p>It's worth checking, not worrying about. A gas furnace that's venting properly and has a sound heat exchanger keeps combustion gases out of your home. The inspection confirms that, and if something isn't right we'll tell you plainly and talk through your options. A working CO detector near bedrooms is a good idea in any home with gas appliances.</p>"
+    ],
+    [
+      "Do you work on heat pumps too?",
+      "<p>Yes. We repair and tune up heat pumps as well as gas furnaces. If your heat pump cools fine in summer but struggles to heat, that's a common call this time of year. Learn more on our <a href=\"/services/heating/\">heating services</a> page.</p>"
+    ],
+    [
+      "Do you serve my part of Orange County?",
+      "<p>We cover Orange County from San Clemente to Brea, including Irvine, Costa Mesa, Anaheim, Fullerton and Laguna Niguel. See the full list on our <a href=\"/service-areas/orange-county/\">Orange County service area</a> page, or call {{phone}} to check your address.</p>"
+    ],
+    [
+      "My furnace is old. Will you push me to replace it?",
+      "<p>No. If your system is around 15 years or older, we'll tell you so and explain what we see, but the decision is yours. Plenty of older furnaces just need a repair and a tune-up. If replacement does make sense, we offer free estimates and financing.</p>"
+    ]
+  ]
+}

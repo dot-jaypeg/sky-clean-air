@@ -1,0 +1,77 @@
+{
+  "region": "san-diego-county",
+  "service": "heating",
+  "title": "Heating Repair & Tune-Ups in San Diego County",
+  "description": "San Diego's local heating crew since 2018. Furnace and heat pump repair, seasonal tune-ups and a $29 furnace safety inspection. Upfront written prices.",
+  "kicker": "Furnace & Heat Pump · San Diego",
+  "h1": "San Diego winters are mild. <span class=\"hl\">Cold nights aren't.</span>",
+  "sub": "Furnace and heat pump repair, tune-ups and a $29 safety inspection from the Kearny Mesa crew that's been heating San Diego homes since 2018.",
+  "offer": {
+    "price": "$29",
+    "label": "Furnace Safety Inspection",
+    "note": "Winter special. See current specials for details and terms."
+  },
+  "why_now": [
+    {
+      "title": "First startup smells like dust",
+      "text": "That burning smell on the first cold night is usually months of dust on the burners. A tune-up clears it before it fills the house."
+    },
+    {
+      "title": "Inland temps hit the 30s",
+      "text": "Santee, Ramona and Escondido regularly see nights in the 30s and low 40s in December and January."
+    },
+    {
+      "title": "Book before the rush",
+      "text": "The first cold snap brings a wave of calls. Getting checked now means you're not waiting when you need heat."
+    }
+  ],
+  "included": [
+    "$29 furnace safety inspection with carbon monoxide check",
+    "Gas furnace repair: ignition, burners, blower, limit switches",
+    "Heat pump repair when it cools but won't heat",
+    "Seasonal tune-up and cleaning",
+    "Filter, thermostat and airflow check",
+    "Written price before any repair"
+  ],
+  "steps": [
+    {
+      "title": "Reach out",
+      "text": "Call us or request a visit online and tell us what's going on."
+    },
+    {
+      "title": "A tech comes out",
+      "text": "We often have same-day or next-day openings across the county."
+    },
+    {
+      "title": "See it in writing",
+      "text": "We explain what we found and give you a written price before any work."
+    },
+    {
+      "title": "Heat that works",
+      "text": "We fix it, run the system with you and make sure it's heating evenly."
+    }
+  ],
+  "local": "San Diego County has more than one winter. Along the coast in Oceanside and Pacific Beach, it's the damp marine-layer mornings that make a house feel cold. Head inland to Santee or Escondido and nights regularly drop into the 30s. A lot of older San Diego homes still have a hall-closet or garage furnace, and newer homes in North County often run heat pumps. We've worked on all of it from our Kearny Mesa shop since 2018.",
+  "faqs": [
+    [
+      "Why does my heater smell like burning when I first turn it on?",
+      "<p>Usually it's dust that settled on the burners and heat exchanger over the summer burning off. It should fade within the first run. If the smell lingers, smells electrical, or you see smoke, turn the system off and call us at {{phone}}.</p>"
+    ],
+    [
+      "What's in the $29 furnace safety inspection?",
+      "<p>We check the flame and burners, ignition, venting, heat exchanger and the area around the furnace for carbon monoxide, then tell you what we found in plain English. It's a winter special; see <a href=\"/specials/\">current specials</a> for terms.</p>"
+    ],
+    [
+      "What's the difference between the inspection and a tune-up?",
+      "<p>The <strong>safety inspection</strong> focuses on whether your furnace is running safely. A <strong>tune-up</strong> goes further: cleaning, adjusting and testing so the system runs efficiently through the season. Your tech can tell you which makes sense for your system. More on our <a href=\"/services/heating/\">heating page</a>.</p>"
+    ],
+    [
+      "My heat pump blows cool air in heat mode. Is it broken?",
+      "<p>Not necessarily. Heat pumps deliver gentler, steadier heat than a furnace, so the air can feel cooler than you're used to. But if the house isn't warming up, or the outdoor unit is icing over or not running, it's worth a visit. We repair heat pumps across <a href=\"/service-areas/san-diego-county/\">San Diego County</a>.</p>"
+    ],
+    [
+      "What are your hours?",
+      "<p>We're open Monday to Friday 8am to 6pm and Saturday 8am to 3pm. We often have same-day or next-day appointments, so call early in the day or <a href=\"/contact-us/\">request a visit</a> online.</p>"
+    ]
+  ]
+}

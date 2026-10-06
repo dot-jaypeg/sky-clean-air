@@ -109,7 +109,7 @@ def sidebar(ch, D, links_title=None, links=None, extra=''):
         links_html = f'<div class="side-card"><h3>{esc(links_title)}</h3><ul class="side-links">{items}</ul></div>'
     specials = ''.join(
         f'<li><span class="sp-price">{esc(o["price"])}</span><span>{esc(o["title"])}</span></li>'
-        for o in D.site['specials'] if o.get('active'))
+        for o in D.specials)
     return f'''<aside class="content-side">
   <div class="side-card side-quote">
     <h3>Get a Free Estimate</h3>

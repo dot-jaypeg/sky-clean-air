@@ -27,11 +27,45 @@
     { "name": "Yelp", "url": "https://www.yelp.com/biz/sky-clean-air-san-diego" }
   ],
   "logo": "/assets/logos/sca-logo-trimmed-600.png",
+  "_specials_note": "`seasons` lists when an offer runs (\"all\" = year-round). Only offers for the current season (see `season.current`) show, in this order.",
   "specials": [
-    { "price": "$59", "title": "Whole-House Duct Cleaning", "text": "Deep clean, mold & odor removal.", "active": true },
-    { "price": "$50", "title": "Basic HVAC Tune-Up", "text": "Keep your system running strong.", "active": true },
-    { "price": "$29", "title": "Furnace Safety Inspection", "text": "Winter special — make sure your heat is safe before the cold sets in.", "active": false }
+    { "price": "$29", "title": "Furnace Safety Inspection", "text": "Make sure your heat is safe and ready before the cold nights set in.", "seasons": ["winter"], "link": "/services/heating/" },
+    { "price": "$59", "title": "Whole-House Duct Cleaning", "text": "Clear out a summer's worth of dust before the first heat cycle.", "seasons": ["winter"], "link": "/services/air-ducts/" },
+    { "price": "$59", "title": "Whole-House Duct Cleaning", "text": "Deep clean, mold & odor removal.", "seasons": ["summer"], "link": "/services/air-ducts/" },
+    { "price": "$50", "title": "Basic HVAC Tune-Up", "text": "Keep your system running strong.", "seasons": ["all"], "link": "/services/hvac/" }
   ],
+
+  "_season_note": "Seasonal emphasis switch. Change `current` to \"summer\" in spring to put cooling back first. `service_order` reorders the 8 services everywhere (nav, homepage, footer, city pages); `home` drives the homepage hero headline and the seasonal prep section; `pages` adds a seasonal banner to those service pages.",
+  "season": {
+    "current": "winter",
+    "winter": {
+      "service_order": ["heating", "air-ducts", "dryer-vents", "hvac", "indoor-air-quality", "attic-insulation", "air-conditioning", "commercial"],
+      "home": {
+        "badge": "Winter Prep Season · Family-Owned Since {{founded}}",
+        "h1": "Heating, Furnace &amp; Air Duct Services in <span class=\"hl\">San Diego, CA</span>",
+        "prep_title": "Get Your Home <span class=\"grad-text\">Ready For Winter</span>",
+        "prep_text": "Cold nights are coming. Three things worth doing before you run the heat all season.",
+        "prep": [
+          { "service": "heating", "title": "Furnace Safety Inspection & Tune-Up", "text": "We check burners, heat exchanger, venting and carbon monoxide safety, then tune it so it lights clean and runs efficiently all winter.", "offer": "$29 safety inspection" },
+          { "service": "air-ducts", "title": "Air Duct Cleaning", "text": "The first heat cycle pushes a summer's worth of dust through every vent. Clean ducts before you close up the house for winter.", "offer": "$59 whole-house" },
+          { "service": "dryer-vents", "title": "Dryer Vent Cleaning", "text": "Holiday laundry and heavy blankets mean longer dryer runs. A clear vent dries faster and cuts lint fire risk.", "offer": "Free estimate" }
+        ]
+      },
+      "pages": {
+        "heating": "Winter special: $29 furnace safety inspection. Book before the first cold snap.",
+        "air-ducts": "Get your home ready for winter — $59 whole-house duct cleaning before you turn on the heat.",
+        "dryer-vents": "Holiday laundry season is here. Clear your dryer vent before the heavy loads."
+      }
+    },
+    "summer": {
+      "service_order": ["air-conditioning", "air-ducts", "hvac", "dryer-vents", "indoor-air-quality", "attic-insulation", "heating", "commercial"],
+      "home": {
+        "badge": "Family-Owned Since {{founded}}",
+        "h1": "HVAC &amp; Air Duct Cleaning Services in <span class=\"hl\">San Diego, CA</span>"
+      },
+      "pages": {}
+    }
+  },
 
   "_widgets_note": "Paste the vendor embed snippets here once we have them. Empty = the page shows a placeholder (when show_placeholders is true) or falls back to our own content.",
   "widgets": {

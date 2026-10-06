@@ -203,8 +203,10 @@ def city_pages(site):
                 main += f'<h2>What We See in {esc(name)} Homes</h2><ul>{local}</ul>'
             if hoods:
                 main += f'<p class="hood-line"><strong>Neighborhoods we serve in {esc(name)}:</strong> {esc(", ".join(hoods))}, and surrounding areas.</p>'
-            desc = f'HVAC, air duct cleaning, dryer vent, attic insulation and indoor air quality services in {name}, CA. Family-owned Sky Clean Air — call {ch.phone} for a free estimate.'
-            title = f'HVAC & Air Duct Cleaning in {name}, CA | Sky Clean Air'
+            # Hand-written, per-city meta description (area-copy.json → meta); template only as a fallback.
+            desc = cc.get('meta') or (f'Heating, HVAC, air duct and dryer vent service in {name}, CA from family-owned '
+                                      f'Sky Clean Air. Call {ch.phone} for a free estimate.')
+            title = f'Heating, HVAC & Air Duct Service in {name}, CA | Sky Clean Air'
         elif legacy:
             main = strip_self_links(local_images(legacy['body']), path)
             faqs = legacy['faqs']
@@ -223,11 +225,21 @@ def city_pages(site):
 <section class="city-nearby"><h2>Nearby Areas We Serve</h2><div class="city-cloud">{"".join(f'<a class="city-chip light" href="/service-areas/{o["slug"]}/">{esc(o["name"])}</a>' for o in nearby)}</div></section>'''
         side_map = f'<div class="side-card side-map"><h3>{esc(name)} on the Map</h3>{map_block(D, [pin(D, o) for o in nearby] + [pin(D, c, True)], center=[c["lat"], c["lng"]], zoom=12 if c["type"] == "neighborhood" else 11, cls="mini", legend=False)}</div>'
         side = sidebar(ch, D, f'More in {r["name"]}', [(o['name'], f'/service-areas/{o["slug"]}/') for o in nearby[:6]], extra=side_map)
+        # LocalBusiness (HVACBusiness) entity for this city. Same @id as the sitewide business entity, so
+        # search engines merge them; the address stays the real San Diego office (no fake local addresses).
+        addr = D.site['address']
         place_schema = {
-            '@context': 'https://schema.org', '@type': 'Service', 'serviceType': 'HVAC and indoor air quality services',
-            'provider': {'@type': 'HVACBusiness', 'name': D.site['name'], 'telephone': '+1-' + D.site['phone']},
+            '@context': 'https://schema.org', '@type': 'HVACBusiness', '@id': D.site['domain'] + '/#business',
+            'name': D.site['name'], 'url': D.site['domain'] + path, 'telephone': '+1-' + D.site['phone'],
+            'image': D.site['domain'] + D.site['logo'],
+            'address': {'@type': 'PostalAddress', 'streetAddress': addr['street'], 'addressLocality': addr['city'],
+                        'addressRegion': addr['state'], 'postalCode': addr['zip'], 'addressCountry': 'US'},
             'areaServed': {'@type': 'City' if c['type'] == 'city' else 'Place', 'name': f'{name}, CA',
+                           'containedInPlace': {'@type': 'AdministrativeArea', 'name': r['name']},
                            'geo': {'@type': 'GeoCoordinates', 'latitude': c['lat'], 'longitude': c['lng']}},
+            'makesOffer': [{'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': cat['name'],
+                                                              'url': D.site['domain'] + f'/services/{cat["slug"]}/'}}
+                           for cat in D.categories],
         }
         img = image_map().get((legacy or {}).get('image') or '')
         site.add({
@@ -236,7 +248,7 @@ def city_pages(site):
             'og_image': img or '/assets/images/team-2026.jpg',
             'head_extra': MAP_ASSETS, 'scripts': MAP_SCRIPTS,
             'schema': [place_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
-            'body': page_hero(ch, f'HVAC &amp; Air Duct Services in <span class="hl">{esc(name)}, CA</span>',
+            'body': page_hero(ch, f'Heating, HVAC &amp; Air Duct Services in <span class="hl">{esc(name)}, CA</span>',
                               f'Family-owned heating, cooling, duct, dryer vent, attic and indoor air quality service for {esc(name)} homes and businesses.',
                               crumbs, kicker=esc(r['name'])) +
                     article_layout(f'<div class="prose">{main}</div>{extra}{faq_html}', side) +

@@ -1,0 +1,78 @@
+{
+  "region": "san-diego-county",
+  "service": "air-ducts",
+  "title": "Air Duct Cleaning in San Diego | $59 Winter Special",
+  "description": "San Diego air duct cleaning from the crew that started with one van in 2018. $59 whole-house special to get your home ready for winter. Written price first.",
+  "kicker": "Air Duct Cleaning · San Diego County",
+  "h1": "Get your San Diego home <span class=\"hl\">ready for winter</span>",
+  "sub": "Duct cleaning is how Sky Clean Air started in 2018. Clear out a summer of dust and fire-season smoke before the heater runs, with our $59 whole-house special.",
+  "offer": {
+    "price": "$59",
+    "label": "Whole-House Duct Cleaning",
+    "note": "See current specials for what's included and the terms."
+  },
+  "why_now": [
+    {
+      "title": "Fire season leaves residue",
+      "text": "Smoke and ash from Santa Ana wind days settle into your duct system and come back out when the heat turns on."
+    },
+    {
+      "title": "Heater season is starting",
+      "text": "When the furnace runs for the first time in months, everything in the ducts goes airborne."
+    },
+    {
+      "title": "Holidays mean a full house",
+      "text": "Family visits and long weekends indoors are a good time to have cleaner air moving through the vents."
+    }
+  ],
+  "included": [
+    "Cleaning of supply and return ducts",
+    "Register and grille cleaning",
+    "Return-air area cleaned",
+    "Floors and furniture protected during the job",
+    "Whole-home HVAC inspection",
+    "Straight answers on duct condition",
+    "Written price before any extra work"
+  ],
+  "steps": [
+    {
+      "title": "Schedule",
+      "text": "Call or book online; we often have openings within a day or two."
+    },
+    {
+      "title": "Prep and protect",
+      "text": "We cover floors and set up so the dust goes into our equipment, not your house."
+    },
+    {
+      "title": "Clean the system",
+      "text": "We work through your supply and return ducts and check your HVAC along the way."
+    },
+    {
+      "title": "Show and tell",
+      "text": "You see what came out and hear what we noticed about your system."
+    }
+  ],
+  "local": "Duct cleaning is where we started, with one rented van in 2018, and San Diego homes are still most of what we do. Older homes in La Mesa and Chula Vista often have original attic ducts with decades of buildup. Inland in El Cajon, Santa Ana winds and wildfire smoke push fine dust into every gap. Near the beach in Carlsbad, damp marine air can leave ducts smelling musty. We see all of it, every week.",
+  "faqs": [
+    [
+      "How much is duct cleaning right now?",
+      "<p>We're running a $59 whole-house air duct cleaning special this season. See <a href=\"/specials/\">current specials</a> for the terms. Your tech confirms everything in writing before starting.</p>"
+    ],
+    [
+      "Does duct cleaning help after wildfire smoke?",
+      "<p>Smoke and fine ash can settle inside ducts on bad air days and get pushed back out when the system runs. Cleaning removes that buildup. If you're dealing with ongoing air quality concerns, ask your tech about other options on our <a href=\"/services/air-ducts/\">air duct services</a> page.</p>"
+    ],
+    [
+      "How long does it take?",
+      "<p>It depends on the size of your home and how many vents you have. Your tech will give you a time estimate when they arrive, along with the written price.</p>"
+    ],
+    [
+      "What else do you check while you're there?",
+      "<p>We usually do a whole-home HVAC inspection with a duct cleaning. If something looks worn, or your system is around 15 years old or more, we'll tell you honestly. No pressure either way. If your heater needs attention, see our <a href=\"/services/heating/\">heating services</a>.</p>"
+    ],
+    [
+      "Which areas do you cover?",
+      "<p>All of San Diego County, from San Ysidro to Fallbrook. Our office is in Kearny Mesa. See the <a href=\"/service-areas/san-diego-county/\">San Diego County service area</a> page, or call {{phone}}.</p>"
+    ]
+  ]
+}

@@ -30,6 +30,18 @@ Adding a market = edit `src/data/areas.json`: add a region (`status`: `active` /
 ### Pending assets (placeholders)
 `site.json → show_placeholders: true` shows labeled dashed boxes where pending assets go: Contractor Commerce widget (contact page), reviews-aggregator widget (homepage, reviews page, service/region pages — falls back to `reviews.json` testimonials), the empty HVAC Installation Team department and team members with `role_pending`. Paste widget embed code / artwork paths into `site.json` and rebuild. Set `show_placeholders` to `false` before launch. The legacy site already runs Trustindex (4.9★, 833 reviews) — likely the client's existing reviews account.
 
+### Seasons (site.json → `season`)
+`season.current` is `winter` (set 2026-10-06, client: shift focus from AC to heating). It reorders the 8 services everywhere (heating first, AC near the end), sets the homepage hero headline/badge and the "Get your home ready for winter" section, adds a seasonal banner to the Heating / Air Ducts / Dryer Vents pages, and picks which `specials` show (each has `seasons`). Flip to `summer` in spring. Air duct cleaning stays prominent in both.
+
+### Paid-ads landing pages
+`/lp/<region>-<service>/` (orange-county|san-diego-county × heating|air-duct-cleaning|dryer-vent-cleaning) from `src/content/landing/*.json` via `tools/gen_landing.py`: slim chrome (logo + call, no nav), one offer, form above the fold, noindexed and out of the sitemap. Point Google/Meta ads at these; OC is the priority market.
+
+### City landing pages
+Every incorporated city in both counties has a page (OC list completed 2026-10-06 with Buena Park, Cypress, La Habra, La Palma, Laguna Woods, Los Alamitos, Seal Beach, Stanton, Villa Park). Non-legacy cities need an `area-copy.json` entry with `intro`, `local`, `neighborhoods` and a unique `meta` (140–158 chars). City pages carry an HVACBusiness (LocalBusiness) entity with `areaServed` = the city and the same `@id` as the sitewide entity.
+
+### Working copy / iCloud
+iCloud Drive stalls file reads in this folder when the Mac is low on disk or mid-upload (builds and even `git status` hang). If that happens, clone the repo outside iCloud, build/commit/push there, and `git pull` here later.
+
 ### Skyler the mascot — use SPARINGLY and deliberately
 Client direction: Skyler (the Home Service Eagle; source art in `assets/mascot/`, web copies in `public/assets/mascot/`) is **never on the homepage** and must feel designed-in, not dropped in. Current placements: the About page "Meet Skyler" brand panel (he stands on the panel and breaks out of its top edge), and the closing CTA band on Contact, Specials and the /service-areas/ hub, where he stands at the end of the band with a page-specific speech bubble (`{{component:cta:Bubble text}}`). Don't add him elsewhere without being asked.
 

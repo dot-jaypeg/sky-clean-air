@@ -1,0 +1,74 @@
+{
+  "region": "san-diego-county",
+  "service": "dryer-vents",
+  "title": "San Diego Dryer Vent Cleaning | Free Estimates",
+  "description": "Holiday laundry is coming. Get your dryer vent cleaned by San Diego's local, family-owned crew. Free estimate, written price, often same-day or next-day.",
+  "kicker": "Free Dryer Vent Estimate · San Diego",
+  "h1": "Clear the lint before the <span class=\"hl\">holiday laundry</span> hits",
+  "sub": "Extra bedding, guest towels and winter clothes all go through one dryer vent. We clean it out so your dryer runs cooler and finishes faster. Free estimates.",
+  "offer": null,
+  "why_now": [
+    {
+      "title": "More loads, more lint",
+      "text": "Between guests and heavier clothes, winter is when most homes run the dryer the most."
+    },
+    {
+      "title": "Hot dryer, clogged vent",
+      "text": "When lint narrows the vent, hot air backs up. That's hard on the dryer and a fire risk."
+    },
+    {
+      "title": "Easy to forget",
+      "text": "The vent is hidden in the wall or attic, so most people don't think about it until drying slows down."
+    }
+  ],
+  "included": [
+    "Free estimate and written price",
+    "Vent line cleaned end to end",
+    "Lint cleared from the dryer connection",
+    "Outside vent flap or roof cap cleared",
+    "Check for damaged or unsafe vent hose",
+    "Airflow test when we're done",
+    "Whole-home HVAC inspection on request"
+  ],
+  "steps": [
+    {
+      "title": "Get a free estimate",
+      "text": "Call us or request a visit online, and tell us how slow drying has gotten."
+    },
+    {
+      "title": "Inspect the line",
+      "text": "We find where your vent runs and how much lint is in it."
+    },
+    {
+      "title": "Approve, then clean",
+      "text": "You get a written price, and we clean only after you say yes."
+    },
+    {
+      "title": "Test it",
+      "text": "We run the dryer and check airflow at the outside vent."
+    }
+  ],
+  "local": "We've been cleaning dryer vents across San Diego County since 2018. Condos and townhomes in Mira Mesa and Chula Vista often have long shared-wall or attic runs that clog without anyone noticing. Near the coast in Oceanside and Encinitas, marine-layer humidity can make lint stick and build up. In Poway and other inland areas, vents through the attic are common. Whatever your setup, we'll find the line and clear it.",
+  "faqs": [
+    [
+      "Is the estimate really free?",
+      "<p>Yes. We look at your vent, explain what it needs, and give you a written price. You decide whether to go ahead. Also check our <a href=\"/specials/\">current specials</a>.</p>"
+    ],
+    [
+      "How often should a dryer vent be cleaned?",
+      "<p>It depends on how much laundry you do and how long the vent run is. Big households and long attic or roof runs need it more often. If drying times are creeping up, that's your sign.</p>"
+    ],
+    [
+      "Why does winter matter for dryer vents?",
+      "<p>Most homes run more loads in winter: heavier clothes, extra bedding, holiday guests. More loads mean more lint in the vent, and a restricted vent makes the dryer run hotter. Cleaning before the busy stretch keeps things safer and faster.</p>"
+    ],
+    [
+      "Can you fix a crushed or disconnected vent?",
+      "<p>Yes. If we find a crushed hose, a loose connection or a vent that needs rerouting, we'll show you and give you a written price. See our <a href=\"/services/dryer-vents/\">dryer vent services</a>.</p>"
+    ],
+    [
+      "Where are you located?",
+      "<p>Our office is in Kearny Mesa, and we serve all of <a href=\"/service-areas/san-diego-county/\">San Diego County</a> from San Ysidro to Fallbrook. Open Monday to Friday 8am to 6pm and Saturday 8am to 3pm. <a href=\"/contact-us/\">Request a visit</a> anytime online.</p>"
+    ]
+  ]
+}

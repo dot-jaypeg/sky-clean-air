@@ -118,7 +118,7 @@ def service_pages(site):
             'og_image': lead or '/assets/images/team-2026.jpg',
             'schema': [service_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
             'body': page_hero(ch, h1, lede, crumbs, kicker=esc(name)) +
-                    article_layout(f'<div class="prose">{lead_html}{custom["body"]}</div>{included_section(cat)}'
+                    article_layout(f'{components.season_banner(ch, D, cat["slug"])}<div class="prose">{lead_html}{custom["body"]}</div>{included_section(cat)}'
                                    f'{faq_html}{area_cta(D, name)}',
                                    sidebar(ch, D, 'Our Other Services', others)) +
                     f'<section class="section bg-soft"><div class="container"><div class="section-head center"><h2>What Our <span class="grad-text">Customers</span> Say</h2></div>{components.reviews(ch, D, "2")}</div></section>' +

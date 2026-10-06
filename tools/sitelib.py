@@ -37,7 +37,20 @@ class Data:
     # --- services ---
     @property
     def categories(self):
-        return self.services['categories']
+        """The 8 service categories in the current season's priority order."""
+        order = self.season.get('service_order') or []
+        cats = self.services['categories']
+        return sorted(cats, key=lambda c: order.index(c['slug']) if c['slug'] in order else len(order))
+
+    @property
+    def season(self):
+        s = self.site.get('season') or {}
+        return s.get(s.get('current'), {})
+
+    @property
+    def specials(self):
+        cur = (self.site.get('season') or {}).get('current')
+        return [o for o in self.site['specials'] if 'all' in o.get('seasons', ['all']) or cur in o.get('seasons', [])]
 
     def category(self, slug):
         return next(c for c in self.categories if c['slug'] == slug)
@@ -181,6 +194,7 @@ class Chrome:
         biz = {
             '@context': 'https://schema.org',
             '@type': 'HVACBusiness',
+            '@id': s['domain'] + '/#business',
             'name': s['name'],
             'url': s['domain'] + '/',
             'telephone': '+1-' + s['phone'],
@@ -368,6 +382,32 @@ class Chrome:
   </div>
 </footer>'''
 
+    # -- Paid-ads landing page chrome: logo + call only, no nav (keeps ad traffic focused) --
+    def lp_header(self):
+        s = self.s
+        return f'''<header class="site-header lp-header" id="top">
+  <div class="container">
+    <a href="/" class="brand" aria-label="{esc(s["name"])} home"><img src="{s["logo"]}" alt="{esc(s["name"])} logo" width="600" height="316"></a>
+    <div class="lp-header-right">
+      <span class="lp-trust">{icon("star", 16)} 5-Star Rated · Licensed &amp; Insured</span>
+      <a href="{self.tel}" class="btn-call">{icon("phone", 20)}<span>{self.phone}</span></a>
+    </div>
+  </div>
+</header>
+<div class="mobile-call-bar"><a href="{self.tel}">{icon("phone", 18)} Call Now — {self.phone}</a></div>'''
+
+    def lp_footer(self):
+        s = self.s
+        a = s['address']
+        return f'''<footer class="site-footer lp-footer">
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; {s.get("year", 2026)} {esc(s["name"])} · {esc(a["street"])}, {a["city"]}, {a["state"]} {a["zip"]} · CA License #{s["license"]}</p>
+      <p class="footer-legal-links"><a href="/privacy-policy/">Privacy Policy</a> · <a href="/terms-conditions/">Terms</a></p>
+    </div>
+  </div>
+</footer>'''
+
     def page(self, p):
         body_class = ' '.join(['has-hero'] + p.get('body_class', '').split())
         js_v = asset_version('js/app.js')
@@ -375,13 +415,13 @@ class Chrome:
         return f'''{self.head(p)}
 <body class="{body_class}">
 
-{self.header(p)}
+{self.lp_header() if p.get('chrome') == 'lp' else self.header(p)}
 
 <main>
 {p["body"]}
 </main>
 
-{self.footer()}
+{self.lp_footer() if p.get('chrome') == 'lp' else self.footer()}
 
 <script src="/js/app.js?v={js_v}"></script>
 {scripts}

@@ -1620,6 +1620,78 @@
       "legacy": true,
       "lat": 32.839,
       "lng": -116.9283
+    },
+    {
+      "slug": "buena-park",
+      "name": "Buena Park",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8704,
+      "lng": -117.9962
+    },
+    {
+      "slug": "cypress",
+      "name": "Cypress",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8248,
+      "lng": -118.0399
+    },
+    {
+      "slug": "la-habra",
+      "name": "La Habra",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.9316,
+      "lng": -117.9455
+    },
+    {
+      "slug": "la-palma",
+      "name": "La Palma",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8464,
+      "lng": -118.0467
+    },
+    {
+      "slug": "laguna-woods",
+      "name": "Laguna Woods",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.6106,
+      "lng": -117.725
+    },
+    {
+      "slug": "los-alamitos",
+      "name": "Los Alamitos",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8039,
+      "lng": -118.0772
+    },
+    {
+      "slug": "seal-beach",
+      "name": "Seal Beach",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.7424,
+      "lng": -118.1056
+    },
+    {
+      "slug": "stanton",
+      "name": "Stanton",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.7941,
+      "lng": -117.9951
+    },
+    {
+      "slug": "villa-park",
+      "name": "Villa Park",
+      "region": "orange-county",
+      "type": "city",
+      "lat": 33.8148,
+      "lng": -117.8206
     }
   ],
   "map": {

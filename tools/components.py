@@ -114,7 +114,8 @@ def specials(ch, D, arg=None):
   <h3>{esc(o["title"])}</h3>
   <p>{esc(o["text"])}</p>
   <a href="/contact-us/#quote" class="btn btn-primary">Claim This Offer</a>
-</div>''' for o in D.site['specials'] if o.get('active'))
+  {f'<a class="offer-more" href="{o["link"]}">About this service &rarr;</a>' if o.get('link') else ''}
+</div>''' for o in D.specials)
     return f'<div class="offers-grid" data-reveal>{cards}</div>'
 
 
@@ -126,3 +127,52 @@ def cta(ch, D, arg=None):
 
 def mascot(ch, D, arg=None):
     return mascot_slot(ch)
+
+
+# ---- Seasonal homepage pieces (driven by site.json → season) ---------------
+def _season_home(D):
+    return D.season.get('home', {})
+
+
+def season_badge(ch, D, arg=None):
+    return _season_home(D).get('badge', 'Family-Owned Since {{founded}}').replace('{{founded}}', str(D.site['founded']))
+
+
+def season_h1(ch, D, arg=None):
+    return _season_home(D).get('h1', 'HVAC &amp; Air Duct Cleaning Services in <span class="hl">San Diego, CA</span>')
+
+
+def season_prep(ch, D, arg=None):
+    """'Get your home ready for <season>' cards. Renders nothing if the season defines none."""
+    h = _season_home(D)
+    if not h.get('prep'):
+        return ''
+    cards = []
+    for i, p in enumerate(h['prep']):
+        cat = D.category(p['service'])
+        delay = f' style="--reveal-delay:{i * 0.08:.2f}s"' if i else ''
+        cards.append(f'''<div class="prep-card" data-reveal{delay}>
+  <div class="prep-top"><span class="service-icon">{icon(cat["icon"], 26)}</span><span class="prep-offer">{esc(p["offer"])}</span></div>
+  <h3><a class="card-link" href="/services/{cat["slug"]}/">{esc(p["title"])}</a></h3>
+  <p>{esc(p["text"])}</p>
+  <span class="service-link" aria-hidden="true">Learn more &rarr;</span>
+</div>''')
+    return f'''<section class="section season-prep" id="winter-prep">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <h2>{h["prep_title"]}</h2>
+      <p>{esc(h.get("prep_text", ""))}</p>
+    </div>
+    <div class="prep-grid">{"".join(cards)}</div>
+    <p class="section-more" data-reveal><a href="{ch.tel}" class="btn btn-primary">Book Winter Service — {ch.phone}</a> <a href="/specials/" class="btn btn-outline">See Current Specials</a></p>
+  </div>
+</section>'''
+
+
+def season_banner(ch, D, arg=None):
+    """One-line seasonal banner for a service page (arg = category slug)."""
+    msg = D.season.get('pages', {}).get(arg)
+    if not msg:
+        return ''
+    return (f'<div class="season-banner"><span class="sb-icon">{icon("snow", 18)}</span><span>{esc(msg)}</span>'
+            f'<a href="{ch.tel}">Call {ch.phone}</a></div>')

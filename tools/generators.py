@@ -6,6 +6,7 @@ dict needs `path`, `title`, `description` and `body`; optional keys are
 `head_extra`, `scripts`.
 """
 import gen_areas
+import gen_landing
 import gen_legacy
 import gen_services
 import gen_team
@@ -37,6 +38,7 @@ ALL = [
     gen_areas.region_pages,
     gen_areas.city_pages,
     gen_team.team_page,
+    gen_landing.landing_pages,
     gen_legacy.location_redirects,   # after city_pages: targets must exist
     gen_legacy.posts,
     gen_legacy.misc_pages,
