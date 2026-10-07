@@ -118,7 +118,7 @@
   // ---- Lead forms -> GoHighLevel inbound webhook ----
   // Every [data-quote-form] posts straight from the browser to GHL (no server
   // hop). Forms are told apart by their hidden "source" input (form_source).
-  var GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/6I0LjKqhOUErlUG5Lyzi/webhook-trigger/5f0f8268-04f9-468f-9721-af32861149a6';
+  var GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/6I0LjKqhOUErlUG5Lyzi/webhook-trigger/39e610f0-88ce-4c47-82c1-7ddd5d166e35';
   var ATTR_KEY = 'sca_attr';
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
 
