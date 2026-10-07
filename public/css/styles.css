@@ -1071,6 +1071,9 @@ body.nav-open { overflow: hidden; }
   margin-top: 14px;
 }
 .form-success.show { display: flex; }
+.form-success.is-error { background: rgba(239, 68, 68, 0.12); border-color: rgba(239, 68, 68, 0.4); color: #fca5a5; }
+.full-form .form-success.is-error { color: #b91c1c; }
+.form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 .footer-bottom { padding: 24px 0; }
 .footer-bottom .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }

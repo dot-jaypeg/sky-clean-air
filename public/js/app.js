@@ -115,13 +115,101 @@
     counters.forEach(function (el) { counterObserver.observe(el); });
   }
 
-  // ---- Contact form prototype (no backend yet) ----
+  // ---- Lead forms -> GoHighLevel inbound webhook ----
+  // Every [data-quote-form] posts straight from the browser to GHL (no server
+  // hop). Forms are told apart by their hidden "source" input (form_source).
+  var GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/6I0LjKqhOUErlUG5Lyzi/webhook-trigger/5f0f8268-04f9-468f-9721-af32861149a6';
+  var ATTR_KEY = 'sca_attr';
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
+
+  // First-touch attribution: captured on whatever page the visitor lands on, never overwritten.
+  var attribution = (function () {
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(ATTR_KEY) || '{}'); } catch (e) {}
+    if (saved._captured) return saved;
+    var q = new URLSearchParams(location.search);
+    var a = { _captured: new Date().toISOString(), landing_page: location.pathname + location.search, referrer: document.referrer || '' };
+    UTM_KEYS.forEach(function (k) { a[k] = q.get(k) || ''; });
+    try { localStorage.setItem(ATTR_KEY, JSON.stringify(a)); } catch (e) {}
+    return a;
+  })();
+
+  function toE164(raw) {
+    var d = String(raw || '').replace(/\D/g, '');
+    if (d.length === 10) return '+1' + d;
+    if (d.length === 11 && d[0] === '1') return '+' + d;
+    return String(raw || '').trim();
+  }
+
+  function newEventId() {
+    return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+  }
+
+  function buildLeadPayload(form, eventId) {
+    var data = {};
+    new FormData(form).forEach(function (v, k) {
+      if (k === 'website') return; // honeypot
+      data[k === 'source' ? 'form_source' : k] = typeof v === 'string' ? v.trim() : v;
+    });
+    var parts = (data.name || '').split(/\s+/).filter(Boolean);
+    data.full_name = data.name || '';
+    data.first_name = parts.shift() || '';
+    data.last_name = parts.join(' ');
+    delete data.name;
+    data.phone = toE164(data.phone);
+    if (data.service) data.service_needed = data.service;
+    data.source = 'Website';
+    data.form_name = location.pathname.replace(/^\/+|\/+$/g, '') || 'home';
+    data.page_url = location.href.split('#')[0];
+    data.submitted_at = new Date().toISOString();
+    data.event_id = eventId;
+    UTM_KEYS.concat(['referrer', 'landing_page']).forEach(function (k) {
+      if (!data[k]) data[k] = attribution[k] || '';
+    });
+    return data;
+  }
+
+  var telLink = document.querySelector('a[href^="tel:"]');
+  var phoneText = telLink ? telLink.textContent.replace(/\s+/g, ' ').trim() : '';
+  var callUs = phoneText ? ' Please call us at ' + phoneText + '.' : ' Please give us a call.';
+
   document.querySelectorAll('[data-quote-form]').forEach(function (form) {
-    var success = form.querySelector('.form-success');
+    var status = form.querySelector('.form-success');
+    var okText = status ? status.textContent : '';
+    var btn = form.querySelector('[type="submit"]');
+    var busy = false;
+
+    function show(text, isError) {
+      if (!status) return;
+      status.textContent = text;
+      status.classList.toggle('is-error', !!isError);
+      status.classList.add('show');
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (success) success.classList.add('show');
-      form.reset();
+      if (busy) return;
+      var hp = form.querySelector('input[name="website"]');
+      if (hp && hp.value.trim()) { show(okText); form.reset(); return; } // bot: fake success, send nothing
+      busy = true;
+      if (btn) btn.disabled = true;
+      if (status) status.classList.remove('show');
+      var eventId = newEventId();
+      var payload = buildLeadPayload(form, eventId);
+      fetch(GHL_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          show(okText);
+          form.reset();
+          (window.dataLayer = window.dataLayer || []).push({ event: 'generate_lead', form_source: payload.form_source || '', event_id: eventId });
+          if (window.gtag) window.gtag('event', 'generate_lead', { event_id: eventId, form_source: payload.form_source || '' });
+        })
+        .catch(function () { show("Sorry, we couldn't send your request." + callUs, true); })
+        .then(function () { busy = false; if (btn) btn.disabled = false; });
     });
   });
 })();

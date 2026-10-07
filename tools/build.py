@@ -179,7 +179,7 @@ class Site:
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             with open(dest, 'w', encoding='utf-8') as f:
                 f.write(html_out)
-            written.append(os.path.relpath(dest, PUBLIC))
+            written.append(os.path.relpath(dest, PUBLIC).replace(os.sep, '/'))  # manifest is POSIX on every OS
 
         written += self.write_sitemap()
         self.clean_stale(written)

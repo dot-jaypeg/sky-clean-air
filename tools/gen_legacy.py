@@ -42,7 +42,7 @@ NOINDEX = {'/landing-page/', '/sky-clean-air-google/', '/sky-clean-air-meta/', '
 def _load():
     recs = {}
     for kind in ('pages', 'posts'):
-        for f in glob.glob(os.path.join(LEGACY, kind, '*.json')):
+        for f in sorted(glob.glob(os.path.join(LEGACY, kind, '*.json'))):  # same order on every OS
             r = json.load(open(f))
             if '-delete/' in r['path'] or r['path'].endswith('-delete'):
                 continue
@@ -116,6 +116,7 @@ def sidebar(ch, D, links_title=None, links=None, extra=''):
     <p>Same-day and next-day appointments. Tell us what's going on and we'll call you back.</p>
     <a href="{ch.tel}" class="btn btn-primary btn-block">{icon("phone", 18)} {ch.phone}</a>
     <form class="quote-form side-form" data-quote-form>
+      <input type="hidden" name="source" value="Sidebar Form"><label class="form-hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
       <label class="sr-only" for="side-name">Name</label><input id="side-name" name="name" placeholder="Your name" required>
       <label class="sr-only" for="side-phone">Phone</label><input id="side-phone" name="phone" type="tel" placeholder="Phone number" required>
       <label class="sr-only" for="side-service">Service</label><select id="side-service" name="service" required><option value="" disabled selected>Service needed</option>{options}</select>
@@ -206,7 +207,8 @@ def posts(site):
 
 def format_date(d):
     import datetime
-    return datetime.date.fromisoformat(d).strftime('%B %-d, %Y')
+    dt = datetime.date.fromisoformat(d)
+    return '{} {}, {}'.format(dt.strftime('%B'), dt.day, dt.year)  # %-d is glibc/macOS-only
 
 
 def post_card(r):
