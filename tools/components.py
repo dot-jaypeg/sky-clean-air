@@ -47,24 +47,17 @@ def stat_band(ch, D, arg=None):
 
 
 def reviews(ch, D, arg=None):
-    """The review-aggregator widget if configured, otherwise our hand-picked testimonials."""
+    """Yelp testimonials from reviews.json. arg = how many to show (default 4); 'all' shows every
+    review in full (Reviews page). A reviews-widget embed in site.json, if ever added, replaces them."""
     widget = D.site['widgets'].get('reviews')
     if widget:
         return f'<div class="widget-embed reviews-widget" data-reveal>{widget}</div>'
     r = D.reviews
-    limit = int(arg) if arg else len(r['items'])
-    ph = placeholder(ch, 'All-platform reviews widget',
-                     f'Trustindex / Contractor Commerce aggregator goes here — {r["summary"]["count_label"]} from '
-                     + ', '.join(r['summary']['platforms']), 'ph-wide')
-    return f'''{ph}<div class="testimonial-grid" data-reveal>{testimonial_cards(r["items"][:limit])}</div>'''
-
-
-def contractor_commerce(ch, D, arg=None):
-    widget = D.site['widgets'].get('contractor_commerce')
-    if widget:
-        return f'<div class="widget-embed cc-widget">{widget}</div>'
-    return placeholder(ch, 'Contractor Commerce widget', 'Online booking / financing widget goes here once we have the embed code',
-                       'ph-wide')
+    full = arg == 'all'
+    items = r['items'] if full else r['items'][:int(arg or 4)]
+    link = (f'<p class="reviews-source" data-reveal>5-star reviews from our customers on '
+            f'<a href="{r["summary"]["url"]}" target="_blank" rel="noopener">Yelp &rarr;</a></p>')
+    return f'''<div class="testimonial-grid{' full' if full else ''}" data-reveal>{testimonial_cards(items)}</div>{link}'''
 
 
 def region_status(D, city):

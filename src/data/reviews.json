@@ -1,10 +1,59 @@
 {
-  "_note": "Hand-picked reviews shown until the review-aggregator widget (site.json → widgets.reviews) is set up. Once the widget is live it replaces these everywhere.",
-  "summary": { "rating": "5.0", "count_label": "~1,000 reviews", "platforms": ["Google", "Yelp", "Facebook"] },
+  "_note": "5-star Yelp reviews (pulled 2026-10-08 from the client's own Trustindex review feed — Yelp's site blocks automated access). Shown in this order; pages show the first N. Add more by appending.",
+  "summary": {
+    "platform": "Yelp",
+    "url": "https://www.yelp.com/biz/sky-clean-air-san-diego"
+  },
   "items": [
-    { "name": "Amanda S.", "text": "Sky Clean Air came to clean our vents in our new home. They were hardworking and professional. They tuned up our HVAC and brushed out our vents. It was a little more expensive than I was planning but in the end I think it was worth the money for a super clean house." },
-    { "name": "Anil G.", "text": "I found Sky Clean Air through Valpak, booked an appointment, Nadav was very helpful, explained everything over the phone. Gave us a real good and fair price and the job was very well done. Will recommend them to friends and family. Double thumbs up!!" },
-    { "name": "Adi O.", "text": "I had allergies for a long time and didn't know what to do! I contacted Sky Clean Air, the next day Daniel arrived with his crew and did an amazing job. They have really good prices and amazing customer service. Highly recommended!" },
-    { "name": "Eugene K.", "text": "Thank you Nadav and Daniel for high quality air duct cleaning and treatment. Thanks for your thorough work, professionalism and friendliness. Good job! My air duct is much cleaner and fresher now." }
+    {
+      "name": "Samantha R.",
+      "text": "This is the best company to use for everything HVAC. I would personally recommend Brandon, he was efficient, professional and honest. I don't know much about vents, but he made sure to show pictures, explain and was extremely patient when I asked for more information. I will only be going through sky clean air and requesting Brandon only.",
+      "source": "Yelp"
+    },
+    {
+      "name": "Bettina P.",
+      "text": "I had a great experience with Sky Clean Air! Brandon and Jesus were my technicians, and they did an amazing job cleaning my dryer vent. They were extremely professional, respectful, and knowledgeable throughout the entire service. They took the time to do the job properly and made sure everything was clean when they finished. I really appreciate their excellent customer service and attention to detail. I would definitely recommend Sky Clean Air to anyone who needs dryer vent cleaning. Thank you, Brandon and Jesus, for the great service!",
+      "source": "Yelp"
+    },
+    {
+      "name": "Heidi S.",
+      "text": "I had such a great experience with Sky Clean Air. Oscar and Louis were not only professional, but incredibly kind, honest, and hardworking. They were very clear and upfront about pricing, kept everything clean, and made the whole process feel easy and stress-free. You can tell they take pride in their work and truly have integrity--it's rare and so appreciated. They worked seamlessly as a team and handled everything with care. I'm so grateful for their help and would highly recommend them to anyone needing dryer duct cleaning!",
+      "source": "Yelp"
+    },
+    {
+      "name": "Sonja R.",
+      "text": "Brandon did an exceptional job on my AC. We had numerous issues starting from the ducts to the to condensing unit. He was very thorough and professional. The AC is running great and I am very pleased with my experience with Sky Clean Air.",
+      "source": "Yelp"
+    },
+    {
+      "name": "Hazel R.",
+      "text": "My new dryer wasn't drying my clothes, I knew it was time to clean out my air vent. Thank you Brandon and Armando for being thorough and knowledgeable, most importantly for the quality service. My dryer is working great again! Highly recommend sky clean air!",
+      "source": "Yelp"
+    },
+    {
+      "name": "Allen",
+      "text": "Brandon and Juan did an excellent job redirecting airflow from our AC unit moving cooled air from the front office space to the back warehouse of our 3,300 sq. ft. commercial building. They were professional, great communicators, and kept us informed throughout the project. Highly recommend!",
+      "source": "Yelp"
+    },
+    {
+      "name": "Linda S.",
+      "text": "A great service. Brandon is the technician who serviced our condo. We are very pleased with his knowledge, reliability, and professionalism. He left everything clean and explained the process as he completed the air duct cleaning. Thank you, Brandon.",
+      "source": "Yelp"
+    },
+    {
+      "name": "Anna V.",
+      "text": "Jacob came to clean my dryer vent quickly and efficiently! It only took about 15 minutes or less for the appointment.",
+      "source": "Yelp"
+    },
+    {
+      "name": "Tiny T.",
+      "text": "Brandon and Alan were professional and wasted no time cleaning my ventilation ducts. Great job",
+      "source": "Yelp"
+    },
+    {
+      "name": "Monique J.",
+      "text": "First time using Sky Clean Air Vent/Duct cleaning services and they did an amazing job for me. First spoke with Maya regarding upstairs and downstairs ducts and vents cleaning services in my two story townhouse and she was very helpful addressing all my concerns , recommended best service for my needs from information I provided her, and , scheduled me a free estimate appointment. Garrett and Jason prior to free estimate appointment, arrived 15 minutes early, provided me with both courtesy text followed by a phone call regarding ETA, did a thorough inspection , provided me with quote at a very reasonable price for the scope of work needed, and graciously was able to fit me into to their busy schedules and scheduled me an appointment for today. Garrett and Jason 30 minutes prior to arrival notified me of ETA via text and phone and arrived 15 minutes early. They both went above and beyond our agreement providing me with honest, outstanding customer service all with a smile at very reasonable price for much needed home vent and duct cleaning services. Garrett and Emanuel were amazing, very professional and patient answering all my questions , all while they meticulously and safely worked keeping work areas clean with a smile even having to go up and down stairs , fitting into tight spaces and going that extra mile accommodating all my requests even those that weren't initially agreed upon but made sure I was completely satisfied, and all my concerns were addressed. I would definitely recommend Sky Clean Air to others, and use their services again. Great teamwork, Thank you Maya, Garrett, Emanuel, Jason, and the owner Oscar for providing me with such a wonderful service experience with your company!!",
+      "source": "Yelp"
+    }
   ]
 }

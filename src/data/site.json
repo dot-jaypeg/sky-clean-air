@@ -1,8 +1,8 @@
 {
   "name": "Sky Clean Air",
   "domain": "https://skycleanair.com",
-  "tagline": "Family-owned HVAC & indoor air quality since 2018",
-  "founded": 2018,
+  "tagline": "Family-owned HVAC & indoor air quality since 2016",
+  "founded": 2016,
   "phone": "619-304-8822",
   "phone_tel": "+16193048822",
   "email": "",
@@ -67,9 +67,8 @@
     }
   },
 
-  "_widgets_note": "Paste the vendor embed snippets here once we have them. Empty = the page shows a placeholder (when show_placeholders is true) or falls back to our own content.",
+  "_widgets_note": "Optional third-party embed snippets. reviews: a review-widget embed would replace the Yelp testimonials from reviews.json (empty = use reviews.json). Contractor Commerce was dropped at the client's request.",
   "widgets": {
-    "contractor_commerce": "",
     "reviews": ""
   },
 

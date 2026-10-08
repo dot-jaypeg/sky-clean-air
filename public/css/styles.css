@@ -1764,3 +1764,8 @@ body.page-lp .site-header.lp-header { top: 0; }
 .lp-local p { margin-top: 14px; }
 .lp-towns { font-size: 0.88rem; color: var(--gray-600); line-height: 1.9; }
 .lp-footer .footer-bottom { padding-bottom: 72px; }
+
+/* Review cards: clamp long reviews except on the full Reviews page */
+.testimonial-grid:not(.full) .testimonial-card p { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+.reviews-source { text-align: center; margin-top: 24px; font-size: 0.92rem; font-weight: 600; }
+.reviews-source a { color: var(--sky-deep); font-weight: 800; }
