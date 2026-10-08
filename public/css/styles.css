@@ -1769,3 +1769,10 @@ body.page-lp .site-header.lp-header { top: 0; }
 .testimonial-grid:not(.full) .testimonial-card p { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
 .reviews-source { text-align: center; margin-top: 24px; font-size: 0.92rem; font-weight: 600; }
 .reviews-source a { color: var(--sky-deep); font-weight: 800; }
+
+/* Review profile links (Google / Yelp / Facebook) */
+.reviews-source { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 28px; font-size: 0.92rem; font-weight: 600; color: var(--ink-soft); }
+.review-profiles { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.review-profile { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--gray-200); background: var(--white); color: var(--ink); font-weight: 700; font-size: 0.88rem; transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease; }
+.review-profile:hover { border-color: var(--sky); color: var(--sky-deep); transform: translateY(-2px); }
+.review-links .review-profiles { margin-top: 4px; }

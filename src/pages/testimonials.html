@@ -8,7 +8,6 @@ body_class: page-reviews
   <div class="hero-overlay"></div>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="container">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/about-us/">About</a><span class="sep">/</span><span aria-current="page">Reviews</span></nav>
     <div class="hero-content">
       <span class="hero-badge"><span class="dot"></span> 5-Star Rated on Yelp &amp; Google</span>
       <h1>Rated <span class="hl">5 Stars</span> By Our Neighbors</h1>
@@ -23,8 +22,7 @@ body_class: page-reviews
     {{component:reviews:all}}
     <div class="review-links" data-reveal>
       <p>Had a great experience? We'd love to hear about it.</p>
-      <a class="btn btn-outline" href="https://www.yelp.com/biz/sky-clean-air-san-diego" target="_blank" rel="noopener">Review us on Yelp</a>
-      <a class="btn btn-outline" href="https://www.facebook.com/SkyCleanAir" target="_blank" rel="noopener">Review us on Facebook</a>
+      {{component:review_write_links}}
     </div>
   </div>
 </section>

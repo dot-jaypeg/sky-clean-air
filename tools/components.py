@@ -3,7 +3,7 @@
 Each takes (ch, D, arg) — the Chrome, the site Data, and the optional
 argument after the second colon — and returns HTML.
 """
-from sitelib import cta_band, esc, icon, mascot as mascot_slot, placeholder, testimonial_cards, wave
+from sitelib import SOCIAL_ICONS, cta_band, esc, icon, mascot as mascot_slot, placeholder, testimonial_cards, wave
 
 
 def services_grid(ch, D, arg=None):
@@ -55,8 +55,7 @@ def reviews(ch, D, arg=None):
     r = D.reviews
     full = arg == 'all'
     items = r['items'] if full else r['items'][:int(arg or 4)]
-    link = (f'<p class="reviews-source" data-reveal>5-star reviews from our customers on '
-            f'<a href="{r["summary"]["url"]}" target="_blank" rel="noopener">Yelp &rarr;</a></p>')
+    link = f'<div class="reviews-source" data-reveal><span>Read more of our reviews on</span>{review_profile_links(D)}</div>'
     return f'''<div class="testimonial-grid{' full' if full else ''}" data-reveal>{testimonial_cards(items)}</div>{link}'''
 
 
@@ -169,3 +168,18 @@ def season_banner(ch, D, arg=None):
         return ''
     return (f'<div class="season-banner"><span class="sb-icon">{icon("snow", 18)}</span><span>{esc(msg)}</span>'
             f'<a href="{ch.tel}">Call {ch.phone}</a></div>')
+
+
+def review_profile_links(D, mode='read'):
+    """Buttons to the Google / Yelp / Facebook review profiles. mode='write' links to 'leave a review'."""
+    out = []
+    for pr in D.reviews['summary']['profiles']:
+        ic = SOCIAL_ICONS.get(pr['name'], '')
+        label = pr['name'] if mode == 'read' else f'Review us on {pr["name"]}'
+        out.append(f'<a class="review-profile" href="{pr[mode]}" target="_blank" rel="noopener">'
+                   f'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{ic}</svg>{esc(label)}</a>')
+    return f'<span class="review-profiles">{"".join(out)}</span>'
+
+
+def review_write_links(ch, D, arg=None):
+    return review_profile_links(D, 'write')

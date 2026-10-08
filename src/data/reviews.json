@@ -2,7 +2,24 @@
   "_note": "5-star Yelp reviews (pulled 2026-10-08 from the client's own Trustindex review feed — Yelp's site blocks automated access). Shown in this order; pages show the first N. Add more by appending.",
   "summary": {
     "platform": "Yelp",
-    "url": "https://www.yelp.com/biz/sky-clean-air-san-diego"
+    "url": "https://www.yelp.com/biz/sky-clean-air-san-diego",
+    "profiles": [
+      {
+        "name": "Google",
+        "read": "https://www.google.com/maps/search/?api=1&query=Sky%20Clean%20Air&query_place_id=ChIJ6731M4VV2YARMYsCa4sqbpA",
+        "write": "https://search.google.com/local/writereview?placeid=ChIJ6731M4VV2YARMYsCa4sqbpA"
+      },
+      {
+        "name": "Yelp",
+        "read": "https://www.yelp.com/biz/sky-clean-air-san-diego",
+        "write": "https://www.yelp.com/writeareview/biz/sky-clean-air-san-diego"
+      },
+      {
+        "name": "Facebook",
+        "read": "https://www.facebook.com/SkyCleanAir/reviews",
+        "write": "https://www.facebook.com/SkyCleanAir/reviews"
+      }
+    ]
   },
   "items": [
     {
