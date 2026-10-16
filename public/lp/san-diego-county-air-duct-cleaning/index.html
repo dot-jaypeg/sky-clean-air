@@ -19,6 +19,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 <script>
+  // Google Ads call tracking swaps in a forwarding number as tel:+<10 digits>,
+  // dropping the US country code (tel:+9493914609). Put the +1 back.
+  (function () {
+    function fix(a) {
+      var m = /^tel:\+(\d{10})$/.exec(a.getAttribute('href') || '');
+      if (m) a.setAttribute('href', 'tel:+1' + m[1]);
+    }
+    function fixAll() { [].forEach.call(document.querySelectorAll('a[href^="tel:"]'), fix); }
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) { if (m.target.tagName === 'A') fix(m.target); });
+    }).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['href'] });
+    document.addEventListener('DOMContentLoaded', fixAll);
+    window.addEventListener('load', fixAll);
+  })();
+</script>
+<script>
   gtag('config', 'AW-815882541/0UHoCKzl-5wdEK3ChYUD', {
     'phone_conversion_number': '(619) 304-8822'
   });
