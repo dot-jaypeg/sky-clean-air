@@ -222,6 +222,29 @@ INLAND = [
     (re.compile(r',?\s*(?:and|&|or)\s+(?:the\s+)?Inland Empire\b', re.I), ''),
     (re.compile(r'\b(?:the\s+)?Inland Empire\s*(?:,\s*|\s+(?:and|&)\s+)', re.I), ''),
 ]
+MD_BOLD = re.compile(r'\*\*\s*([^*\n]+?)\s*\*\*')  # also "** spaced **" and "**<strong>x</strong>**"
+# The WordPress export dropped apostrophes ("isnt", "youre"). Only unambiguous contractions are
+# restored; "lets", "were", "its", "well" can be correct as written, so they're left alone.
+CONTRACTIONS = {
+    'isnt': 'isn’t', 'dont': 'don’t', 'doesnt': 'doesn’t', 'didnt': 'didn’t', 'cant': 'can’t',
+    'wont': 'won’t', 'arent': 'aren’t', 'wasnt': 'wasn’t', 'werent': 'weren’t', 'shouldnt': 'shouldn’t',
+    'wouldnt': 'wouldn’t', 'couldnt': 'couldn’t', 'havent': 'haven’t', 'hasnt': 'hasn’t',
+    'youre': 'you’re', 'theyre': 'they’re', 'youll': 'you’ll', 'theyll': 'they’ll', 'youve': 'you’ve',
+    'weve': 'we’ve', 'theyve': 'they’ve', 'whats': 'what’s', 'thats': 'that’s', 'theres': 'there’s',
+    'heres': 'here’s', 'wheres': 'where’s', 'whos': 'who’s', 'Im': 'I’m', 'Ive': 'I’ve',
+}
+CONTRACTION_RE = re.compile(r'\b(%s)\b' % '|'.join(
+    sorted({k for w in CONTRACTIONS for k in (w, w.capitalize())}, key=len, reverse=True)))
+
+
+def fix_contractions(text):
+    def fn(m):
+        w = m.group(1)
+        fixed = CONTRACTIONS.get(w) or CONTRACTIONS.get(w.lower())
+        return fixed[0].upper() + fixed[1:] if w[0].isupper() else fixed
+    # Text nodes only: never touch tags, attributes or URLs.
+    return ''.join(CONTRACTION_RE.sub(fn, part) if not part.startswith('<') else part
+                   for part in re.split(r'(<[^>]+>)', text))
 
 
 def _domain(href):
@@ -251,6 +274,14 @@ def hygiene(h, path, license_no, count=True):
         h = OWN_LICENSE.sub(rec('license_added', r'\1 (California Contractor License #%s)' % license_no), h)
     for pat, rep in INLAND:
         h = pat.sub(rec('inland_empire', rep), h)
+    # Raw markdown left in the old WordPress copy: **keyword** bolding (keyword stuffing, so the
+    # asterisks go and the word stays plain) and literal "\n" escapes.
+    h = MD_BOLD.sub(rec('markdown_removed', r'\1'), h)
+    h = h.replace('\\n', ' ')
+    fixed = fix_contractions(h)
+    if fixed != h:
+        stat('apostrophes_restored')
+        h = fixed
     if '<' not in h:
         return h
 
@@ -706,7 +737,8 @@ _CARDS = {}
 def card_of(r):
     if r['path'] not in _CARDS:
         img, branded = lead_image(r)
-        _CARDS[r['path']] = {'path': r['path'], 'title': r['title'], 'date': _iso(r['date']), 'img': img,
+        _CARDS[r['path']] = {'path': r['path'], 'title': hygiene(r['title'], r['path'], '', count=False),
+                             'date': _iso(r['date']), 'img': img,
                              'branded': branded, 'excerpt': text_excerpt(hygiene(r['body'], r['path'], '', count=False), 130)}
     return _CARDS[r['path']]
 
