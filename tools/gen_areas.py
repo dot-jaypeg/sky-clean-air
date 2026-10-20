@@ -158,6 +158,7 @@ def hub(site):
 def region_pages(site):
     D, ch = site.D, site.ch
     for r in D.regions:
+        site.redirect(f'/{r["slug"]}/', f'/service-areas/{r["slug"]}/')  # short URL, e.g. /orange-county/
         cities = D.cities(r['slug'])
         path = f'/service-areas/{r["slug"]}/'
         crumbs = [('Home', '/'), ('Service Areas', '/service-areas/'), (r['name'], None)]
