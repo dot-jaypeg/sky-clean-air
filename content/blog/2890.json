@@ -1,0 +1,29 @@
+{
+  "id": "2890",
+  "path": "/how-does-ac-remove-humidity/",
+  "status": "rewritten",
+  "title": "Does Air Conditioning Remove Humidity?",
+  "h1": "Does Air Conditioning Remove Humidity From Your Home?",
+  "description": "Yes, your AC pulls moisture out of the air as it cools. Here's how that works, why some homes still feel clammy, and when a dehumidifier helps.",
+  "quick_answer": "Yes. As warm indoor air passes over the cold evaporator coil, moisture in the air condenses into water and drains away, so your AC dries the air while it cools it. How much it removes depends on how long it runs, how fast the blower moves air, and whether the system is sized right for the house.",
+  "body": "<h2>How does an air conditioner pull moisture out of the air?</h2><p>It's the same thing that happens to a cold glass of water on a warm day. Air can only hold so much water vapor at a given temperature. When the air cools below its dew point, some of that vapor turns back into liquid.</p><p>Inside your indoor unit, the evaporator coil is cold. As the blower pushes house air across it, the air cools and water beads up on the coil fins. That water drips into a drain pan, runs out through the condensate line, and leaves the house. On a humid day you can often see the line dripping outside.</p><h2>Why does my house still feel humid with the AC on?</h2><p>An air conditioner removes moisture as a side effect of cooling, so a few things can cut down how much it takes out:</p><ul><li><strong>The system is oversized.</strong> A unit that's too big cools the house fast and shuts off before the coil has time to pull out much water. The room hits the set temperature but feels damp.</li><li><strong>The blower runs too fast or stays on.</strong> With the fan set to \"on\" instead of \"auto,\" the blower keeps running after the compressor stops and can blow moisture off the wet coil back into the house.</li><li><strong>Low refrigerant or a dirty coil.</strong> Both reduce how cold the coil gets, which means less condensation.</li><li><strong>Leaky ducts.</strong> Return ducts in the attic or crawl space can pull in outside air that's warmer and wetter than your indoor air.</li><li><strong>Moisture sources inside.</strong> Showers, cooking, laundry and lots of houseplants add water to the air faster than a lightly loaded AC can remove it.</li></ul><h2>What indoor humidity should I aim for?</h2><p>A common target is somewhere between 30 and 50 percent relative humidity. In that range most people feel comfortable, and it's dry enough to discourage mold and dust mites. An inexpensive hygrometer from a hardware store will tell you where your house sits.</p><p>Near the coast, the marine layer can push indoor humidity up, especially in homes that stay closed up. Inland valleys tend to run drier, and during Santa Ana winds humidity can drop so low that people notice dry skin and static.</p><h2>Does air conditioning remove humidity on mild days?</h2><p>Not much. On a cool, damp coastal morning the AC may not run at all, or it runs briefly, so it isn't pulling much water out. That's when homes near the beach can feel sticky or smell musty even though the temperature is fine.</p><p>In those cases a dedicated dehumidifier usually does a better job than turning the thermostat down. Running the AC colder just to dry the air tends to overcool the house.</p><h2>How can I get better humidity control from my AC?</h2><ul><li>Set the thermostat fan to <strong>auto</strong> so the blower stops when cooling stops.</li><li>Keep the filter clean so air moves across the coil at the right speed.</li><li>Use bathroom and kitchen exhaust fans while showering and cooking.</li><li>Schedule a tune-up so a technician can check refrigerant charge, clean the coil and confirm the blower speed is set properly.</li><li>Ask about a variable-speed or two-stage system if you're replacing equipment. These run longer at lower speeds, which gives the coil more time to remove moisture.</li><li>Consider a whole-home dehumidifier if your home stays damp even when the AC is working right.</li></ul><p>Our <a href=\"/services/indoor-air-quality/\">indoor air quality team</a> can measure humidity in your home and tell you whether the fix is an AC adjustment or a dedicated dehumidifier.</p><h3>What if water is leaking from the indoor unit?</h3><p>That usually means the condensate line or drain pan is clogged, often with algae or debris. Turn the system off to limit water damage and have the drain cleared. Many systems have a float switch that shuts the AC down when the pan backs up, so a unit that suddenly stops cooling may be telling you the same thing. Our <a href=\"/services/air-conditioning/\">air conditioning service</a> handles drain clogs and coil cleaning.</p>",
+  "faqs": [
+    [
+      "Is it better to use dry mode or cool mode on a mini-split?",
+      "Dry mode runs the compressor and fan at low speed to remove moisture with less cooling, which works well on mild, muggy days. Cool mode is better when the room is actually hot."
+    ],
+    [
+      "Can an AC make the air too dry?",
+      "It can feel that way, especially inland or during Santa Ana winds when the outdoor air is already dry. If you notice dry skin, static or irritated sinuses, a hygrometer reading and possibly a humidifier can help."
+    ],
+    [
+      "Why is my AC dripping water outside?",
+      "That's the condensate line doing its job, carrying the water your AC pulled out of the air. Steady dripping on a warm day is normal. Water inside the house is not, and should be checked."
+    ],
+    [
+      "Should I buy a dehumidifier if I have central air?",
+      "Only if humidity stays high when the AC is working properly. Measure first. If readings stay above about 50 percent, a portable or whole-home dehumidifier is worth considering."
+    ]
+  ],
+  "service": "air-conditioning"
+}

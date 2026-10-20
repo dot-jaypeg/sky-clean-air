@@ -1,0 +1,29 @@
+{
+  "id": "29824",
+  "path": "/condensate-drain-maintenance-steps/",
+  "status": "rewritten",
+  "title": "How to Clear a Clogged AC Condensate Drain Line",
+  "h1": "How Do You Clear a Clogged AC Condensate Drain Line?",
+  "description": "A clogged AC condensate drain can cause leaks and shut your system down. Learn how to clear it with a wet/dry vac and vinegar, and how to keep it flowing.",
+  "quick_answer": "Turn the AC off at the thermostat and the power switch, find the drain line's outdoor end and its cleanout near the indoor unit, then use a wet/dry vac at the outdoor end to pull the clog out. Flush the line with a cup of plain white vinegar or warm water through the cleanout. Check that it drains, empty the pan, and turn the system back on.",
+  "body": "<h2>What does the condensate drain do?</h2><p>When your AC cools the air, it also pulls moisture out of it. That water drips off the indoor coil into a drain pan and flows out through a small PVC drain line, usually to the outside, a nearby drain or a condensate pump. Over time, algae, mold, dust and slime build up in the line and slow it down or block it completely.</p><p>In coastal San Diego and Orange County, humid marine air means the AC pulls out more water, and the pan and line stay damp longer, so clogs are common.</p><h2>What are the signs of a clogged drain line?</h2><ul><li>Water around the indoor unit, furnace or air handler</li><li>Water stains on the ceiling below an attic system</li><li>Water dripping from a pipe over a window or eave, which is often the emergency drain telling you the main line is blocked</li><li>The AC shuts off and won't restart, because a float safety switch has tripped</li><li>A musty smell near the indoor unit</li></ul><h2>How do you clear a clogged condensate line?</h2><p>You'll need a wet/dry vac, a towel or two, a funnel and plain distilled white vinegar or warm water.</p><ol><li><strong>Turn off the system.</strong> Set the thermostat to off, then switch off the service switch near the indoor unit or the breaker. You don't need to open any electrical panels.</li><li><strong>Find the drain line.</strong> Follow the PVC pipe from the indoor unit. There's usually a T-shaped fitting with a removable cap near the unit. That's the cleanout.</li><li><strong>Find the outdoor end.</strong> The line usually ends outside near the foundation or the outdoor unit, or at a drain.</li><li><strong>Use the wet/dry vac.</strong> Hold the vac hose tightly over the outdoor end, wrapping a rag around it to make a seal, and run it for a minute or two. You'll often hear the clog break free.</li><li><strong>Flush the line.</strong> Remove the cleanout cap and slowly pour in about a cup of vinegar or warm water. Let vinegar sit for about 30 minutes, then follow with plain water.</li><li><strong>Check the pan.</strong> If the drain pan has standing water, soak it up with towels or the vac and wipe it clean.</li><li><strong>Restore power</strong> and run the AC. Within 15 to 30 minutes you should see water dripping from the outdoor end.</li></ol><p>Avoid bleach and harsh drain cleaners. They can damage some pan and line materials and the coil, and they're unpleasant to breathe in an attic or closet.</p><h2>Where is the drain line in my house?</h2><p>It depends on where the indoor unit is. With an attic system, the line usually runs through the attic and exits at an eave or a wall, with a second emergency line ending somewhere visible, often over a window. With a furnace in a garage or hall closet, the line may run outside through a wall or connect to a nearby plumbing drain. Ductless mini-splits have a small drain hose running out of the wall behind each indoor unit.</p><h2>What if the drain still won't flow?</h2><p>If the line won't clear, water keeps backing up or the float switch keeps tripping, call for service. The clog may be deep in the line, the line may be sagging or improperly sloped, a condensate pump may have failed, or the drain pan itself may be cracked. Attic systems also have a secondary pan with its own drain or safety switch that should be checked.</p><h2>How do you keep the drain line from clogging?</h2><ul><li>Flush the line with a cup of vinegar every month or two during cooling season.</li><li>Change your air filter on schedule. Dust that gets past a dirty filter ends up in the pan and line.</li><li>Keep the outdoor end clear of soil, mulch and plants.</li><li>Ask about a coil UV light if slime keeps coming back. It helps keep the pan and line cleaner.</li><li>Have the drain checked during your yearly AC maintenance.</li></ul><p>Our <a href=\"/services/air-conditioning/\">air conditioning repair and maintenance team</a> clears drains, replaces pans and pumps, and checks safety switches across San Diego and Orange County.</p>",
+  "faqs": [
+    [
+      "Can I use bleach to clean my AC drain line?",
+      "We recommend plain white vinegar or warm water instead. Bleach can be harsh on some drain pans, fittings and coil materials, and its fumes are unpleasant in a closet or attic. Never mix bleach with other cleaners."
+    ],
+    [
+      "How often should I flush my AC drain line?",
+      "Every month or two during cooling season is a good habit, especially near the coast where the AC pulls a lot of moisture. Flushing helps keep algae and slime from building into a clog."
+    ],
+    [
+      "Why is water dripping from a pipe above my window?",
+      "That's usually the secondary or emergency drain from an attic AC. It means the main drain line is clogged and water is overflowing into the backup pan. Clear the main line or call for service soon."
+    ],
+    [
+      "Why won't my AC turn on after a drain clog?",
+      "Many systems have a float switch that shuts the AC off when water backs up, to prevent leaks. Once the line is cleared and the pan has drained, the switch usually resets and the system will start."
+    ]
+  ],
+  "service": "air-conditioning"
+}

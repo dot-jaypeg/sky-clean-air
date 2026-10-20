@@ -1,0 +1,29 @@
+{
+  "id": "31698",
+  "path": "/uv-light-and-mold-on-evaporator-coils/",
+  "status": "rewritten",
+  "title": "Do UV Lights Prevent Mold on AC Coils?",
+  "h1": "Do UV Lights Prevent Mold on Air Conditioner Coils?",
+  "description": "UV-C lights can keep mold and bacteria from growing on the AC coils and drain pans they reach. Learn what they do, what they don't and how to maintain them.",
+  "quick_answer": "Yes, a UV-C light aimed at the indoor coil can keep mold and bacteria from growing on the surfaces it shines on, including the coil and drain pan. It works continuously, so growth has trouble getting started. It won't clean a coil that's already heavily coated, it won't fix a drainage problem, and it only works where the light actually reaches.",
+  "body": "<p>The indoor coil of your air conditioner is cold and wet whenever the AC runs. Add dust and darkness, and you've got a good place for mold and bacteria to grow. That growth can cause musty smells, slow drainage and reduced airflow. UV lights are one of the tools used to keep it under control.</p> <h2>How does a UV light work on an AC coil?</h2> <p>UV-C is a type of ultraviolet light that damages the DNA of microorganisms, so they can't grow and reproduce. In an HVAC system, a UV-C lamp is mounted inside the air handler or plenum, aimed at the coil and drain pan. Because the lamp is on all the time and the coil doesn't move, the surfaces get a steady dose of light.</p> <p>That constant exposure is what makes coil lights effective. Mold has trouble getting a foothold on surfaces that are always being treated.</p> <h2>What can a coil UV light actually do?</h2> <ul> <li>Keep mold and bacteria from building up on the coil surfaces it reaches</li> <li>Reduce slime and growth in the drain pan, which helps prevent clogs</li> <li>Help cut down on musty smells that come from the coil</li> <li>Help the coil stay cleaner, which supports good airflow and heat transfer</li> </ul> <h2>What won't a UV light do?</h2> <p>It's easy to expect too much from a UV light. Here's what it doesn't do:</p> <ol> <li><strong>It won't remove existing heavy growth.</strong> A coil that's already coated should be cleaned before a UV light is installed.</li> <li><strong>It won't reach shadows.</strong> Parts of the coil or pan that the light can't see don't get treated.</li> <li><strong>It won't do much for dust, pollen or smoke.</strong> Those are particles, and they need filtration.</li> <li><strong>It won't fix the cause of moisture.</strong> A clogged drain line, a rusted pan or high indoor humidity needs to be fixed separately.</li> <li><strong>It won't treat mold in the ducts or the house.</strong> A coil light protects the coil area, not every surface the air touches.</li> </ol> <h2>Are UV lights worth it in Southern California?</h2> <p>They're most useful in certain situations:</p> <ul> <li>Homes near the coast, where humidity can keep coils damp</li> <li>Systems with a history of musty smells or drain clogs</li> <li>Air handlers in attics, garages or closets where coils are hard to reach for regular cleaning</li> <li>Households with allergies or asthma who want fewer sources of mold spores</li> <li>Heat pumps and AC systems that run most of the year</li> </ul> <p>In a dry inland home with a well-maintained system and no smell or drain issues, a UV light is less necessary. A technician can look at your coil and tell you if there's growth to worry about.</p> <h2>How do I keep a UV light working?</h2> <p>UV-C lamps lose strength over time even if they still glow. Most manufacturers call for replacing the bulb about once a year. The lamp and its sleeve also need wiping when dust builds up, since dust blocks the light.</p> <p>Safety matters too. UV-C light can hurt your eyes and skin. Never look at the lamp. Systems should have a switch that turns the lamp off when the panel is opened, and bulb changes are best done by a technician. Choose a lamp that doesn't produce ozone.</p> <h2>What's the best way to prevent coil mold?</h2> <p>A UV light works best as part of a bigger plan. Keep the filter clean so less dust reaches the coil, keep the condensate drain clear, control indoor humidity, and have the coil checked during regular maintenance. If there's already growth, clean the coil first, then add the light.</p> <p>During maintenance visits, ask your technician to look at the coil and drain pan with a light. If they stay clean year after year, your current setup is working. If growth keeps coming back, a UV light is a reasonable next step.</p> <p>If your air handler sits in the attic, also make sure it has a secondary drain pan or an overflow shutoff switch. A UV light cuts down on slime in the pan, but it can't stop water from coming through the ceiling if the drain line clogs anyway.</p> <p>Our <a href=\"/services/indoor-air-quality/\">indoor air quality</a> team installs and services UV lights, and our <a href=\"/services/hvac/\">HVAC</a> technicians handle coil cleaning and drain maintenance.</p>",
+  "faqs": [
+    [
+      "Can a UV light kill mold that's already on my coil?",
+      "It can slow it down, but heavy existing growth should be cleaned off first. The light works best at keeping a clean coil from getting moldy again."
+    ],
+    [
+      "How often should a UV bulb be replaced?",
+      "Most manufacturers recommend replacing UV-C bulbs about once a year. The bulb can still glow while its germicidal output has dropped, so don't wait for it to burn out."
+    ],
+    [
+      "Do UV lights produce ozone?",
+      "Some do. Many HVAC UV lamps are made to be ozone-free. Ask for an ozone-free model, since ozone can irritate the lungs."
+    ],
+    [
+      "Can I install a UV light myself?",
+      "It's best left to a technician. The lamp needs to be placed correctly, wired safely and set up with a shutoff switch, and UV-C light can damage your eyes and skin."
+    ]
+  ],
+  "service": "indoor-air-quality"
+}
