@@ -1,8 +1,8 @@
 """The /our-team/ page, generated from src/data/team.json.
 
-Grouped by department (Management, HVAC Installation Team, Technicians &
-Helpers), each person with their photo, role, a short bio and their
-duties. Departments with no members yet, and people whose role we still
+Grouped by department in team.json order (Management, Office Team, HVAC
+Installation, Indoor Air Quality), each person with their photo, role, a
+short bio and their duties. Members marked `hidden` are skipped. Departments with no members yet, and people whose role we still
 need from the client (`role_pending`), show a "coming soon" note while
 site.json → show_placeholders is on.
 """
@@ -43,8 +43,9 @@ def team_page(site):
     nav = ''.join(f'<a href="#{d["slug"]}">{esc(d["name"])}</a>' for d in T['departments'])
     sections = []
     for i, dept in enumerate(T['departments']):
-        cards = ''.join(member_card(ch, m) for m in dept['members'])
-        if not dept['members']:
+        members = [m for m in dept['members'] if not m.get('hidden')]
+        cards = ''.join(member_card(ch, m) for m in members)
+        if not members:
             cards = placeholder(ch, f'{dept["name"]} — photos & bios coming soon',
                                 'New headshots from the team event will go here, with each installer’s role and duties.',
                                 'ph-wide team-ph')
@@ -59,7 +60,7 @@ def team_page(site):
     <div class="team-grid{' team-grid-lead' if dept['slug'] == 'management' else ''}">{cards}</div>
   </div>
 </section>''')
-    people = [m for d in T['departments'] for m in d['members']]
+    people = [m for d in T['departments'] for m in d['members'] if not m.get('hidden')]
     schema = {
         '@context': 'https://schema.org', '@type': 'Organization', 'name': D.site['name'], 'url': D.site['domain'] + '/',
         'founder': [{'@type': 'Person', 'name': 'Nadav Offer'}, {'@type': 'Person', 'name': 'Daniel Lezmy'}],
@@ -68,7 +69,7 @@ def team_page(site):
     site.add({
         'path': '/our-team/',
         'title': 'Meet Our Team | Sky Clean Air San Diego & Orange County',
-        'description': 'Meet the Sky Clean Air team — founders Nadav Offer and Daniel Lezmy, our office and management team, HVAC installers and the technicians in our trucks every day.',
+        'description': 'Meet the Sky Clean Air team — founders Nadav Offer and Daniel Lezmy, our office team, HVAC installers and the indoor air quality technicians in our trucks every day.',
         'schema': [schema, breadcrumb_schema(D.site['domain'], crumbs)],
         'body': page_hero(ch, 'Meet The <span class="hl">Sky Clean Air</span> Team',
                           'A family-owned company runs on its people. Here’s who you’ll talk to on the phone, who plans your install, and who shows up at your door.',

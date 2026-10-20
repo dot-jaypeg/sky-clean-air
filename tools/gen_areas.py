@@ -24,6 +24,27 @@ MAP_ASSETS = '<link rel="stylesheet" href="/vendor/leaflet/leaflet.css">\n'
 MAP_SCRIPTS = '<script src="/vendor/leaflet/leaflet.js"></script>\n<script src="/js/map.js"></script>'
 
 
+
+# CSLB advertising rules: don't advertise insurance coverage without naming the type, and only once
+# coverage and wording are confirmed with the client. These legacy neighborhood pages offered "proof of
+# insurance" / "certificates of insurance"; until confirmed, they promise paperwork instead.
+CSLB_REPLACE = [
+    ('Need proof of insurance for your HOA manager? Need certificates of service for a building record?',
+     'Need paperwork for your HOA manager or a certificate of service for a building record?'),
+    ('<li>Certificates of insurance on request</li>', '<li>Vendor paperwork and documentation on request</li>'),
+    ('We work with access lists, insurance requests, and vendor portals', 'We work with access lists, paperwork requests, and vendor portals'),
+    ('We coordinate access, provide proof of insurance, and share reports', 'We coordinate access, provide the paperwork they need, and share reports'),
+    ('Providing proof of insurance and any needed documents to your HOA', 'Providing any needed documents to your HOA'),
+    ('Certificate of insurance needs and scheduling with building managers', 'Vendor paperwork and scheduling with building managers'),
+    ('We can provide scope, insurance, and product PDFs upon request.', 'We can provide the scope and product PDFs upon request.'),
+]
+
+
+def cslb_clean(body):
+    for old, new in CSLB_REPLACE:
+        body = body.replace(old, new)
+    return body
+
 def area_copy():
     p = os.path.join(DATA_DIR, 'area-copy.json')
     return json.load(open(p)) if os.path.exists(p) else {}
@@ -117,12 +138,12 @@ def hub(site):
     cards = ''.join(region_card(D, r) for r in D.regions)
     site.add({
         'path': '/service-areas/',
-        'title': 'Service Areas: Orange County & San Diego County | Sky Clean Air',
-        'description': f'Sky Clean Air serves {live_count}+ communities across Orange County and San Diego County. Find your city on our service area map.',
+        'title': 'Service Areas: San Diego County & Orange County | Sky Clean Air',
+        'description': f'Sky Clean Air serves {live_count}+ communities across San Diego County and Orange County. Find your city on our service area map.',
         'head_extra': MAP_ASSETS, 'scripts': MAP_SCRIPTS,
         'schema': [breadcrumb_schema(D.site['domain'], crumbs)],
         'body': page_hero(ch, 'Where We <span class="hl">Work</span>',
-                          'Orange County and San Diego County. Find your city below, or just call; if we can get to you, we will.',
+                          'San Diego County and Orange County. Find your city below, or just call; if we can get to you, we will.',
                           crumbs) +
                 f'''<section class="section map-section" id="map"><div class="container">
   <div class="section-head center"><h2>Our <span class="grad-text">Service Area</span> Map</h2>
@@ -151,7 +172,7 @@ def region_pages(site):
   <div class="section-head center"><h2>Services in <span class="grad-text">{esc(r["name"])}</span></h2></div>
   {components.services_grid(ch, D)}</div></section>'''
         kicker = esc(r.get('badge') or f'{len([c for c in cities if live(D, c)])} communities')
-        h1 = f'HVAC &amp; Air Quality Services in <span class="hl">{esc(r["name"])}</span>'
+        h1 = f'HVAC Installation &amp; Indoor Air Quality Services in <span class="hl">{esc(r["name"])}</span>'
         if soon:
             h1 = f'<span class="hl">{esc(r["name"])}</span> — Coming Soon'
         site.add({
@@ -208,7 +229,7 @@ def city_pages(site):
                                       f'Sky Clean Air. Call {ch.phone} for a free estimate.')
             title = f'Heating, HVAC & Air Duct Service in {name}, CA | Sky Clean Air'
         elif legacy:
-            main = strip_self_links(local_images(legacy['body']), path)
+            main = cslb_clean(strip_self_links(local_images(legacy['body']), path))
             faqs = legacy['faqs']
             desc = legacy['description'] or f'HVAC and indoor air quality services in {name}, CA.'
             title = seo_title(legacy, f'HVAC & Air Duct Services in {name}, CA')

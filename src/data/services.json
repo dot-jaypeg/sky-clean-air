@@ -1,9 +1,9 @@
 {
-  "_note": "The 8 service pages live at /services/<category slug>/ — one page per category. The `services` inside each category are what that page covers (shown as an 'included' list, not separate pages); their slugs are the legacy WordPress URLs, which now redirect to the category page. Hand-written category copy lives in src/content/services/_<category slug>.html.",
+  "_note": "The 8 service pages live at /services/<category slug>/ — one page per category. The `services` inside each category are what that page covers (shown as an 'included' list, not separate pages); their slugs are the legacy WordPress URLs, which now redirect to the category page. Hand-written category copy lives in src/content/services/_<category slug>.html. `photo` = the real job photo used (branded by tools/brand_service_images.py) as the page's lead image.",
   "categories": [
     {
       "slug": "air-conditioning",
-      "name": "Air Conditioning",
+      "name": "Cooling",
       "icon": "snow",
       "blurb": "AC repair, new installs, replacements and seasonal maintenance for central air and ductless systems.",
       "services": [
@@ -63,7 +63,9 @@
           "name": "Ductless System Service",
           "summary": "Repairs and tune-ups for ductless heads and outdoor units."
         }
-      ]
+      ],
+      "photo": "/assets/legacy/2026/07/what-happens-during-hvac-tune-up-3.webp",
+      "skyler_line": "Stay cool when the Santa Anas blow!"
     },
     {
       "slug": "hvac",
@@ -131,7 +133,9 @@
           "name": "Thermostat Programming",
           "summary": "Schedules and settings that match how your household actually lives."
         }
-      ]
+      ],
+      "photo": "/assets/legacy/2023/06/15_6_24_image_image_image_203ad403-b2c2-4e3a-b1e0-f346d9a4b67b.jpg-15.jpeg-15.jpeg-15.webp",
+      "skyler_line": "Ask about a free install estimate!"
     },
     {
       "slug": "heating",
@@ -159,7 +163,9 @@
           "name": "Heat Pump Repair",
           "summary": "Repairs for heat pumps that won't heat, won't cool or won't switch modes."
         }
-      ]
+      ],
+      "photo": "/assets/legacy/2026/07/what-happens-during-hvac-tune-up-2.webp",
+      "skyler_line": "Keep your family warm this winter!"
     },
     {
       "slug": "air-ducts",
@@ -222,7 +228,9 @@
           "name": "Airflow Balancing",
           "summary": "Evening out airflow so every room gets its share."
         }
-      ]
+      ],
+      "photo": "/assets/images/photos/tech-on-ladder.webp",
+      "skyler_line": "Breathe easier with clean ducts!"
     },
     {
       "slug": "dryer-vents",
@@ -265,18 +273,38 @@
           "name": "Booster Fan Installation",
           "summary": "Booster fans for long vent runs that need extra push."
         }
-      ]
+      ],
+      "photo": "/assets/images/gallery/cleaning-out-rooftop-dryer-vent.webp",
+      "skyler_line": "Clear vents, safer home!"
     },
     {
       "slug": "attic-insulation",
       "name": "Attic & Insulation",
       "icon": "home",
-      "blurb": "Attic cleaning, rodent-waste removal, insulation replacement and air sealing for a cleaner, more efficient home.",
+      "blurb": "Attic and crawl space insulation, rodent activity inspections and cleanup, moisture barriers and air sealing for a cleaner, more efficient home.",
       "services": [
         {
           "slug": "attic-inspection",
           "name": "Attic Inspection",
-          "summary": "A look at insulation, rodent activity, ventilation and ducts in your attic."
+          "summary": "A look at insulation, rodent activity, ventilation and ducts in your attic or crawl space."
+        },
+        {
+          "slug": "rodent-activity-inspection",
+          "name": "Rodent Activity Inspection",
+          "summary": "We check attics and crawl spaces for droppings, nesting, entry points and damaged insulation or ducts.",
+          "no_legacy_url": true
+        },
+        {
+          "slug": "crawl-space-insulation",
+          "name": "Crawl Space Insulation",
+          "summary": "Insulation under raised floors to keep rooms above warmer in winter and cut energy loss.",
+          "no_legacy_url": true
+        },
+        {
+          "slug": "crawl-space-moisture-barrier",
+          "name": "Crawl Space Moisture Barrier",
+          "summary": "A vapor barrier over the crawl space soil to limit moisture, musty odors and mold growth.",
+          "no_legacy_url": true
         },
         {
           "slug": "attic-insulation-removal",
@@ -318,7 +346,10 @@
           "name": "Attic Ventilation",
           "summary": "Vents that let attic heat and moisture escape."
         }
-      ]
+      ],
+      "included_title": "Attic & Crawl Space Insulation",
+      "photo": "/assets/images/photos/attic-crew-protective-gear.webp",
+      "skyler_line": "I'll check the attic for critters!"
     },
     {
       "slug": "indoor-air-quality",
@@ -366,7 +397,9 @@
           "name": "Dehumidifier Installation",
           "summary": "Whole-home dehumidifiers for musty, humid coastal homes."
         }
-      ]
+      ],
+      "photo": "/assets/legacy/2022/02/hvac-uv-cleanser-light.webp",
+      "skyler_line": "Fresh air starts at home!"
     },
     {
       "slug": "commercial",
@@ -629,7 +662,9 @@
           "name": "Commercial UV System Repair",
           "group": "UV & Air Quality"
         }
-      ]
+      ],
+      "photo": "/assets/legacy/2026/07/ac-running-not-cooling-house-5.webp",
+      "skyler_line": "Your business stays open while we work!"
     }
   ]
 }

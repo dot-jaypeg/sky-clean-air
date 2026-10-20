@@ -139,6 +139,25 @@ SOCIAL_ICONS = {
 # ---------------------------------------------------------------------------
 # Page chrome
 # ---------------------------------------------------------------------------
+# Google Ads call tracking swaps in a forwarding number as tel:+<10 digits>,
+# dropping the US country code (tel:+9493914609). Put the +1 back. (LPs only.)
+LP_TEL_FIX = '''<script>
+  (function () {
+    function fix(a) {
+      var m = /^tel:\\+(\\d{10})$/.exec(a.getAttribute('href') || '');
+      if (m) a.setAttribute('href', 'tel:+1' + m[1]);
+    }
+    function fixAll() { [].forEach.call(document.querySelectorAll('a[href^="tel:"]'), fix); }
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) { if (m.target.tagName === 'A') fix(m.target); });
+    }).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['href'] });
+    document.addEventListener('DOMContentLoaded', fixAll);
+    window.addEventListener('load', fixAll);
+  })();
+</script>
+'''
+
+
 class Chrome:
     def __init__(self, D):
         self.D = D
@@ -170,10 +189,10 @@ class Chrome:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{esc(title)}</title>
+{self.tracking_head()}<title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{esc(canonical)}">
-{robots}<meta property="og:type" content="website">
+{robots}<meta property="og:type" content="{p.get('og_type') or ('article' if 'page-post' in p.get('body_class', '') else 'website')}">
 <meta property="og:site_name" content="{esc(s['name'])}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
@@ -187,6 +206,43 @@ class Chrome:
 <link rel="stylesheet" href="/css/styles.css?v={css_v}">
 {extra}{self.schema(p)}
 </head>'''
+
+    def tracking_head(self):
+        """Google Tag Manager + Google Ads tag (site.json → tracking)."""
+        t = self.s.get('tracking') or {}
+        out = ''
+        if t.get('gtm'):
+            out += ('''<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','%s');</script>
+<!-- End Google Tag Manager -->
+''' % t['gtm'])
+        if t.get('google_ads'):
+            out += ('''<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '%s');
+''' % (t['google_ads'], t['google_ads']))
+            if t.get('call_conversion'):
+                out += "  gtag('config', '%s', {'phone_conversion_number': '%s'});\n" % (
+                    t['call_conversion'], t.get('call_conversion_phone', ''))
+            out += '</script>\n'
+        return out
+
+    def tracking_body(self):
+        gtm = (self.s.get('tracking') or {}).get('gtm')
+        if not gtm:
+            return ''
+        return ('''<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%s"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->''' % gtm)
 
     def schema(self, p):
         """LocalBusiness JSON-LD on every page (plus page-specific extras)."""
@@ -268,7 +324,7 @@ class Chrome:
 <div class="top-bar">
   <div class="container">
     <div class="top-bar-left">
-      <span>Contractor License #{s["license"]}</span>
+      <span>California Contractor License #{s["license"]}</span>
       <a href="/contact-us/">{esc(a["street"])}, {a["city"]}, {a["state"]} {a["zip"]}</a>
     </div>
     <div class="top-bar-social">{socials}</div>
@@ -354,7 +410,7 @@ class Chrome:
           <li><a href="{self.tel}">{self.phone}</a></li>
           <li><address>{esc(a["street"])}<br>{a["city"]}, {a["state"]} {a["zip"]}</address></li>
           {hours}
-          <li>Contractor License #{s["license"]}</li>
+          <li>California Contractor License #{s["license"]}</li>
         </ul>
       </div>
 
@@ -391,7 +447,7 @@ class Chrome:
   <div class="container">
     <a href="/" class="brand" aria-label="{esc(s["name"])} home"><img src="{s["logo"]}" alt="{esc(s["name"])} logo" width="600" height="316"></a>
     <div class="lp-header-right">
-      <span class="lp-trust">{icon("star", 16)} 5-Star Rated · Licensed &amp; Insured</span>
+      <span class="lp-trust">{icon("star", 16)} 5-Star Rated · California Contractor License #{s["license"]}</span>
       <a href="{self.tel}" class="btn-call">{icon("phone", 20)}<span>{self.phone}</span></a>
     </div>
   </div>
@@ -404,7 +460,7 @@ class Chrome:
         return f'''<footer class="site-footer lp-footer">
   <div class="footer-bottom">
     <div class="container">
-      <p>&copy; {s.get("year", 2026)} {esc(s["name"])} · {esc(a["street"])}, {a["city"]}, {a["state"]} {a["zip"]} · CA License #{s["license"]}</p>
+      <p>&copy; {s.get("year", 2026)} {esc(s["name"])} · {esc(a["street"])}, {a["city"]}, {a["state"]} {a["zip"]} · California Contractor License #{s["license"]}</p>
       <p class="footer-legal-links"><a href="/privacy-policy/">Privacy Policy</a> · <a href="/terms-conditions/">Terms</a></p>
     </div>
   </div>
@@ -416,6 +472,7 @@ class Chrome:
         scripts = p.get('scripts', '')
         return f'''{self.head(p)}
 <body class="{body_class}">
+{self.tracking_body()}
 
 {self.lp_header() if p.get('chrome') == 'lp' else self.header(p)}
 
@@ -426,7 +483,7 @@ class Chrome:
 {self.lp_footer() if p.get('chrome') == 'lp' else self.footer()}
 
 <script src="/js/app.js?v={js_v}"></script>
-{scripts}
+{LP_TEL_FIX if p.get('chrome') == 'lp' else ''}{scripts}
 </body>
 </html>
 '''
@@ -472,8 +529,9 @@ def breadcrumb_schema(domain, crumbs):
     }
 
 
-def page_hero(ch, title_html, lede='', crumbs=None, kicker='', ctas=True, media=None, extra=''):
-    """Dark hero band used at the top of every inner page."""
+def page_hero(ch, title_html, lede='', crumbs=None, kicker='', ctas=True, media=None, extra='', skyler=None):
+    """Dark hero band used at the top of every inner page. `skyler` = a speech-bubble line to have
+    Skyler stand at the hero's right edge (hidden on small screens)."""
     crumbs_html = breadcrumbs(crumbs) if crumbs else ''
     kicker_html = f'<span class="hero-badge"><span class="dot"></span> {kicker}</span>' if kicker else ''
     lede_html = f'<p class="lede">{lede}</p>' if lede else ''
@@ -487,7 +545,7 @@ def page_hero(ch, title_html, lede='', crumbs=None, kicker='', ctas=True, media=
     return f'''<section class="page-hero">
   {media_html}<div class="hero-overlay"></div>
   <div class="hero-grid" aria-hidden="true"></div>
-  <div class="container">
+  {hero_skyler(ch, skyler) if skyler else ''}<div class="container">
     {crumbs_html}
     <div class="hero-content">
       {kicker_html}
@@ -501,12 +559,27 @@ def page_hero(ch, title_html, lede='', crumbs=None, kicker='', ctas=True, media=
 </section>'''
 
 
+SKYLER_CTA_LINE = 'Tell them Skyler sent you!'
+
+
+def hero_skyler(ch, line):
+    """Skyler standing at the right edge of a page hero with a speech bubble."""
+    m = ch.s['mascot']
+    if not m.get('image_sm'):
+        return ''
+    return (f'<figure class="hero-skyler" aria-hidden="true"><span class="skyler-bubble">{esc(line)}</span>'
+            f'<img src="{m["image_sm"]}" alt="" width="471" height="560" loading="eager"></figure>')
+
+
 def cta_band(ch, title='Ready For <span class="grad-text">Cleaner Air</span>?',
              text='Get a free estimate today — same-day and next-day appointments available.', mascot_line=None):
-    """Closing call-to-action band. Pass `mascot_line` to have Skyler stand at the end of the band
-    with a speech bubble — opt-in per page; the client wants him used sparingly."""
+    """Closing call-to-action band, with Skyler standing at the end of it in a speech bubble
+    (client direction 2026-10: feature Skyler throughout the site). `mascot_line` overrides the
+    default line; pass False to leave him out."""
     m = ch.s['mascot']
     skyler = ''
+    if mascot_line is None:
+        mascot_line = SKYLER_CTA_LINE
     if mascot_line and m.get('image_sm'):
         skyler = (f'<figure class="cta-skyler" aria-hidden="true"><span class="skyler-bubble">{esc(mascot_line)}</span>'
                   f'<img src="{m["image_sm"]}" alt="" width="471" height="560" loading="lazy"></figure>')

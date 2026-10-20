@@ -32,6 +32,8 @@ RETIRED = {
     '/sky-clean-air-google-old/': '/', '/sky-clean-air-meta-old/': '/',
     '/shop/': '/specials/', '/project-map/': '/service-areas/', '/service-area-map/': '/service-areas/',
     '/attic-and-crawl-space/': '/services/attic-insulation/',
+    # Arizona (Gilbert) post with Lorem ipsum filler, not a market we serve
+    '/gilbert-az-indoor-air-quality/': '/blog/',
 }
 # Paid-ads landing / thank-you pages: migrated but kept out of search.
 NOINDEX = {'/landing-page/', '/sky-clean-air-google/', '/sky-clean-air-meta/', '/thank-you/',
@@ -148,86 +150,602 @@ def seo_title(r, fallback):
 # ---------------------------------------------------------------------------
 # Blog posts + index
 # ---------------------------------------------------------------------------
+# Every legacy post is rendered through one template that adds, using only what
+# is already in the post: a Quick Answer box (extractive, from the opening
+# paragraphs), a table of contents from its H2s, a dated byline, a callout to
+# the best-matching service page, BlogPosting/FAQ/breadcrumb schema, and tidy
+# title/description meta. Copy hygiene (CSLB advertising rules, retired regions,
+# competitor links, stray Spanish) runs at render time; the source JSON is
+# never rewritten. `python3 tools/build.py` prints what hygiene changed, and
+# BLOG_STATS holds the details for reporting.
 POSTS_PER_PAGE = 24
+BLOG_IMG = os.path.join(ROOT, 'public', 'assets', 'blog')
+LANDMARK_MANIFEST = os.path.join(ROOT, '.landmark', 'manifest.json')
+SERVICE_AREA = 'San Diego &amp; Orange County'
+AREAS_SCHEMA = [
+    {'@type': 'AdministrativeArea', 'name': 'San Diego County, California'},
+    {'@type': 'AdministrativeArea', 'name': 'Orange County, California'},
+]
+BLOG_STATS = {}
+
+
+def _stat(key, path, detail=None):
+    s = BLOG_STATS.setdefault(key, {'count': 0, 'items': []})
+    s['count'] += 1
+    if detail is not None and len(s['items']) < 400:
+        s['items'].append((path, detail))
+
+
+def _text(h):
+    return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', h))).strip()
+
+
+# -- copy hygiene ------------------------------------------------------------
+# HVAC / duct / attic / cleaning contractors whose sites the legacy posts linked
+# to as "sources". Links to them are removed: the whole sentence when it only
+# exists to send readers there, otherwise just the link (text kept).
+COMPETITOR_DOMAINS = {
+    'accontractors.com', 'aceshvacllc.com', 'ajperri.com', 'atticprosinc.com', 'abchomeandcommercial.com',
+    'bluefrosthvac.com', 'callwaldrop.com', 'climatemechanics.com', 'coit.com', 'crawlpros.com',
+    'crawlspaceninja.com', 'drcrawlspace.com', 'drhvac.ca', 'ductcleaninggilbert.com', 'enviropdc.com',
+    'groundworks.ca', 'happyhiller.com', 'huskyair.com', 'jdindoorcomfort.com', 'lcsheatingandcooling.com',
+    'leeairservices.com', 'ongaroandsons.com', 'parkerandsons.com', 'petro.com', 'pritchardindustries.com',
+    'servpro.com', 'statewideconditioninginc.com', 'summersphc.com', 'terrysacandheating.com',
+    'totallycleanservices.com', 'townsendtotalenergy.com', 'therma.com', 'wolfe.construction',
+}
+# Unclear whether these are competitors; left alone but listed in the build report.
+UNSURE_DOMAINS = {'hutchbiz.com', 'ssrfg.com', 'usstn.com', 'tcmemt.com', 'projecthvac.com', 'tricohomes.com',
+                  'velappity.com', '2-10.com'}
+OWN_TYPO_DOMAINS = {'skyleanair.com'}  # misspelt links to the client's own site
+REFERRAL = re.compile(
+    r"\b(check out|check this|visit|read more|learn more|refer to|according to|explains|external (?:link|source|resource)"
+    r"|this (?:guide|article|resource|source|link|post|read|perspective|page|blog)|here\b|informative|helpful"
+    r"|insights?|for (?:more|further|additional|detailed|in-depth)|guide (?:from|by)|source)", re.I)
+SENT_SPLIT = re.compile(r'(?:(?<=[.!?])|(?<=[.!?]</b>)|(?<=[.!?]</i>)|(?<=[.!?]</em>)|(?<=[.!?]</strong>))\s+(?=[A-Z<“"])')
+SPANISH = set('el la los las del que y en por para con una es su sus muy más como pero sin sobre este esta '
+              'estos también puede pueden hogar aire limpieza servicio usted nuestro nuestra'.split())
+ENGLISH = set('the and to of your is are for with that this you it'.split())
+
+COMPLIANCE = [
+    # (pattern, replacement) — CSLB: never advertise "bonded" or unspecified insurance.
+    (re.compile(r'\b(fully\s+|properly\s+)?licensed,?\s+bonded,?\s+(?:and|&)\s+insured\b', re.I), r'\1licensed'),
+    (re.compile(r'\bbonded\s+(?:and|&)\s+insured\b', re.I), 'licensed'),
+    (re.compile(r'\b(licensed|certified)\s+(?:and|&)\s+(?:fully\s+)?insured\b', re.I), r'\1'),
+    (re.compile(r'\b(licensed|certified),\s+insured,\s+and\s+', re.I), r'\1 and '),
+    (re.compile(r'\binsured,\s+(licensed|certified),\s+and\s+', re.I), r'\1 and '),
+    (re.compile(r'\b(licensed|certified),\s+insured\b', re.I), r'\1'),
+    (re.compile(r'\b(?:and|&)\s+fully\s+insured\b', re.I), ''),
+    (re.compile(r'\bfully\s+insured\s+(?:and|&)\s+', re.I), ''),
+]
+OWN_LICENSE = re.compile(r'\b((?:Sky Clean Air|We) (?:is|are) (?:a )?(?:fully |properly )?licensed)\b(?! \(California)')
+INLAND = [
+    (re.compile(r',?\s*(?:and|&|or)\s+(?:the\s+)?Inland Empire\b', re.I), ''),
+    (re.compile(r'\b(?:the\s+)?Inland Empire\s*(?:,\s*|\s+(?:and|&)\s+)', re.I), ''),
+]
+
+
+def _domain(href):
+    d = re.sub(r'^https?://', '', href).split('/')[0].lower()
+    return d[4:] if d.startswith('www.') else d
+
+
+def _is(d, domains):
+    return any(d == x or d.endswith('.' + x) for x in domains)
+
+
+def hygiene(h, path, license_no, count=True):
+    """Render-time cleanup of migrated copy (text or HTML)."""
+    def stat(key, detail=None):
+        if count:
+            _stat(key, path, detail)
+
+    def rec(key, rep):
+        def fn(m):
+            out = m.expand(rep)
+            stat(key, '%s -> %s' % (m.group(0), out.strip() or '(removed)'))
+            return out
+        return fn
+    for pat, rep in COMPLIANCE:
+        h = pat.sub(rec('compliance', rep), h)
+    if license_no:
+        h = OWN_LICENSE.sub(rec('license_added', r'\1 (California Contractor License #%s)' % license_no), h)
+    for pat, rep in INLAND:
+        h = pat.sub(rec('inland_empire', rep), h)
+    if '<' not in h:
+        return h
+
+    # Misspelt links to our own domain -> internal links.
+    def own(m):
+        stat('own_domain_fixed', m.group(1))
+        return '<a href="%s">' % (re.sub(r'^https?://[^/]+', '', m.group(1)) or '/')
+    h = re.sub(r'<a href="(https?://(?:www\.)?skyleanair\.com[^"]*)"[^>]*>', own, h)
+
+    for m in re.finditer(r'href="(https?://[^"]+)"', h):
+        if _is(_domain(m.group(1)), UNSURE_DOMAINS):
+            stat('unsure_link', _domain(m.group(1)))
+
+    def block(m):
+        tag, attrs, inner = m.group(1), m.group(2) or '', m.group(3)
+        words = re.findall(r'[a-záéíóúñü]+', _text(inner).lower())
+        if len(words) >= 6 and sum(w in SPANISH for w in words) / len(words) > 0.25 \
+                and sum(w in ENGLISH for w in words) / len(words) < 0.05:
+            stat('spanish_removed', _text(inner)[:120])
+            return ''
+        if not any(_is(_domain(u), COMPETITOR_DOMAINS) for u in re.findall(r'<a href="(https?://[^"]+)"', inner)):
+            return m.group(0)
+        out = []
+        for sent in SENT_SPLIT.split(inner):
+            links = [a for a in re.finditer(r'<a href="(https?://[^"]+)"[^>]*>(.*?)</a>', sent, re.S)
+                     if _is(_domain(a.group(1)), COMPETITOR_DOMAINS)]
+            if not links:
+                out.append(sent)
+                continue
+            if tag in ('p', 'li'):
+                plain = _text(sent)
+                anchor_txt = ' '.join(_text(a.group(2)) for a in links)
+                if REFERRAL.search(plain) or len(anchor_txt) >= 0.6 * max(1, len(plain)) or \
+                        re.search(r'(Inc|LLC|Heating|Services|Industries|Sons|Cooling|Air)\b', anchor_txt):
+                    stat('competitor_sentence_removed', '[%s] %s' % (_domain(links[0].group(1)), plain[:150]))
+                    continue
+            for a in links:
+                stat('competitor_link_unwrapped', '[%s] %s' % (_domain(a.group(1)), _text(a.group(2))))
+                sent = sent.replace(a.group(0), a.group(2))
+            out.append(sent)
+        new = ' '.join(s for s in out if s.strip())
+        return '<%s%s>%s</%s>' % (tag, attrs, new, tag) if _text(new) else ''
+    return re.sub(r'<(p|li|h[2-6])((?:\s[^>]*)?)>(.*?)</\1>', block, h, flags=re.S)
+
+
+# -- service matching ----------------------------------------------------------
+SERVICE_KEYWORDS = {
+    'dryer-vents': [r'dryer', r'\blint\b'],
+    'air-ducts': [r'\bducts?\b', r'duct ?work', r'duct cleaning', r'nadca', r'\bvents? cleaning', r'registers?'],
+    'attic-insulation': [r'\battic', r'insulation', r'crawl ?space', r'rodent', r'radiant barrier'],
+    'indoor-air-quality': [r'air quality', r'\biaq\b', r'purif', r'\buv\b', r'humidi', r'dehumidi', r'allerg',
+                           r'asthma', r'\bmold\b', r'filters?\b', r'pollut', r'\bvoc', r'dander'],
+    'heating': [r'furnace', r'heat pump', r'\bheating\b', r'\bheater', r'carbon monoxide', r'boiler'],
+    'air-conditioning': [r'\bac\b', r'air condition', r'mini[- ]?split', r'ductless', r'refrigerant', r'cooling',
+                         r'condenser', r'evaporator'],
+    'commercial': [r'commercial', r'rooftop', r'\boffice', r'restaurant', r'business', r'lease', r'industr'],
+    'hvac': [r'\bhvac\b', r'thermostat', r'zoning', r'tune[- ]?up', r'maintenance'],
+}
+CALLOUT_LINES = {
+    'air-conditioning': 'AC not keeping up in San Diego or Orange County?',
+    'hvac': 'Want an HVAC pro to take a look?',
+    'heating': 'Furnace or heat pump acting up this season?',
+    'air-ducts': 'Time to get your air ducts cleaned?',
+    'dryer-vents': 'Dryer taking forever? Let us clear the vent.',
+    'attic-insulation': 'Attic or insulation need attention?',
+    'indoor-air-quality': 'Want cleaner, healthier air at home?',
+    'commercial': 'Managing HVAC for a business or property?',
+}
+
+
+def match_service(r, cats):
+    title = (r['title'] + ' ' + (r.get('seo_title') or '')).lower()
+    catstr = ' '.join(html.unescape(c) for c in r.get('categories', [])).lower()
+    lead = _text(r['body'][:2500]).lower()
+    best, best_score = 'hvac', 0.0
+    for slug, pats in SERVICE_KEYWORDS.items():
+        score = 0.0
+        for p in pats:
+            score += 3 * min(2, len(re.findall(p, title))) + 2 * min(2, len(re.findall(p, catstr))) + \
+                     0.5 * min(4, len(re.findall(p, lead)))
+        if slug == 'commercial' and 'commercial' not in title and 'commercial' not in catstr:
+            score = min(score, 1.0)
+        if slug == 'hvac':
+            score *= 0.6  # generic; only wins when nothing more specific does
+        if score > best_score:
+            best, best_score = slug, score
+    return cats[best]
+
+
+def service_callout(cat, ch):
+    return (f'<aside class="post-callout" aria-label="Related service">'
+            f'<div class="post-callout-icon" aria-hidden="true">{icon(cat.get("icon", "vent"), 26)}</div>'
+            f'<div class="post-callout-body"><p class="post-callout-kicker">{esc(cat["name"])} · {SERVICE_AREA}</p>'
+            f'<p class="post-callout-title">{esc(CALLOUT_LINES.get(cat["slug"], "Need a hand from a pro?"))}</p>'
+            f'<p>{esc(cat["blurb"])} Sky Clean Air serves homes and businesses across San Diego County and Orange County.</p>'
+            f'<p class="post-callout-actions"><a class="btn btn-primary btn-sm" href="/services/{cat["slug"]}/">'
+            f'Explore {esc(cat["name"])} {icon("arrow", 16)}</a>'
+            f'<a class="post-callout-call" href="{ch.tel}">{icon("phone", 16)} {ch.phone}</a></p></div></aside>')
+
+
+# -- quick answer, TOC, meta -------------------------------------------------
+FLUFF = re.compile(r"^(In today|In the world|In our|When it comes|When engaging|Have you|Are you|Do you|Did you know|"
+                   r"Imagine|Welcome|In this (?:article|post|blog|guide)|Let[’']s|We[’']ll|We will|This (?:article|post|guide|blog)|"
+                   r"Whether you|As (?:a|the) |If you[’']re (?:wondering|curious)|Understanding)", re.I)
+META_SENT = re.compile(r"\b(this (?:guide|article|post|blog|piece)|we[’']ll|we will|we[’']re going to|in this (?:article|post|guide|blog)|"
+                       r"(?:first|next|following) (?:two |few )?(?:paragraphs|sections)|additional insights|read on|keep reading|"
+                       r"let[’']s|below|discover|explore|dive into|delve)\b", re.I)
+STOP = set('a an the and or of to for in on is are your you how what why when do does can with at by it its be '
+           'vs from this that my our'.split())
+
+
+def sentences(text):
+    return [s.strip() for s in re.split(r'(?<=[.!?])\s+(?=[A-Z0-9“"])', text) if s.strip()]
+
+
+def quick_answer(body, title):
+    """Best 40–70-word run of consecutive sentences from the opening paragraphs."""
+    head = re.split(r'<h[2-4]', body, 1)[0]
+    paras = [_text(p) for p in re.findall(r'<p[^>]*>(.*?)</p>', head, re.S)][:3]
+    sents = [s for p in paras if '{{' not in p for s in sentences(p)][:10]
+    keys = {w for w in re.findall(r'[a-z0-9]+', title.lower()) if w not in STOP and len(w) > 2}
+    best, best_score = None, -99.0
+    for i in range(len(sents)):
+        words, j = 0, i
+        while j < len(sents) and words < 40:
+            words += len(sents[j].split())
+            j += 1
+        if not 40 <= words <= 70 or not re.search(r'[.!]$', sents[j - 1]):
+            continue
+        run = sents[i:j]
+        txt = ' '.join(run)
+        score = len(keys & set(re.findall(r'[a-z0-9]+', txt.lower()))) - 0.4 * i
+        if any(META_SENT.search(s) for s in run):
+            continue
+        score -= 3 * sum(bool(FLUFF.match(s)) for s in run[:1]) + 1.5 * sum(s.endswith('?') for s in run)
+        if score > best_score:
+            best, best_score = txt, score
+    return best
+
+
+def slugify(t):
+    return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')[:60] or 'section'
+
+
+def add_h2_ids(body):
+    toc, used = [], {'faq', 'top'}
+
+    def sub(m):
+        attrs, inner = m.group(1) or '', m.group(2)
+        label = _text(inner)
+        idm = re.search(r'\bid="([^"]+)"', attrs)
+        if idm:
+            hid = idm.group(1)
+        else:
+            base = slugify(label)
+            hid, k = base, 2
+            while hid in used:
+                hid, k = f'{base}-{k}', k + 1
+            attrs = f' id="{hid}"' + attrs
+        used.add(hid)
+        toc.append((hid, label))
+        return f'<h2{attrs}>{inner}</h2>'
+    body = re.sub(r'<h2((?:\s[^>]*)?)>(.*?)</h2>', sub, body, flags=re.S)
+    return body, toc
+
+
+def toc_html(toc):
+    items = ''.join(f'<li><a href="#{h}">{esc(t)}</a></li>' for h, t in toc)
+    # Long outlines start collapsed so they don't push the article below the fold.
+    return (f'<nav class="post-toc" aria-label="In this article"><details{" open" if len(toc) <= 8 else ""}>'
+            f'<summary class="post-toc-title">In this article <span>({len(toc)} sections)</span></summary>'
+            f'<ol>{items}</ol></details></nav>')
+
+
+def insert_callout(body, callout):
+    h2s = [m.start() for m in re.finditer(r'<h2[\s>]', body)]
+    if len(h2s) >= 3:
+        at = h2s[len(h2s) // 2]
+    elif h2s:
+        at = h2s[-1]
+    else:
+        return body + callout
+    return body[:at] + callout + body[at:]
+
+
+SUFFIX = ' | Sky Clean Air'
+IMG_DIMS = ' width="1200" height="675"'
+
+
+def post_title(r):
+    base = re.sub(r'\s*[|–-]\s*Sky Clean Air\s*$', '', html.unescape(r.get('seo_title') or r['title'])).strip()
+    short = re.split(r'\s*(?::|\s[–—-]\s|\?)\s*', base, 1)[0].strip()
+    if base.endswith('?') and short == base[:-1].strip():
+        short = base
+    elif re.search(r'\?', base) and len(short) < len(base):
+        short = short + '?'
+    for cand in (base + SUFFIX, base, short + SUFFIX if len(short) >= 22 else None,
+                 short if len(short) >= 22 else None):
+        if cand and len(cand) <= 60:
+            return cand
+    return base
+
+
+def fit_description(text, extra_sents=()):
+    """140–158 chars, ending on a sentence or (with an ellipsis) a whole word; never mid-word."""
+    text = re.sub(r'\s+', ' ', text.replace('{{phone}}', '')).strip()
+    complete = bool(re.search(r'[.!?…)"”]$', text))
+    if 140 <= len(text) <= 158 and complete:
+        return text
+    sents = sentences(text) + list(extra_sents)
+    if not complete and sents:
+        sents = sents[:-1] or sents  # the source was cut mid-sentence: drop the fragment
+    out = ''
+    for i, s in enumerate(sents):
+        cand = (out + ' ' + s).strip()
+        if len(cand) > 158:
+            if len(out) >= 140:
+                return out
+            # finish on a whole word of the next sentence, marked with an ellipsis
+            cut = cand[:157].rsplit(' ', 1)[0].rstrip(',;:–—-')
+            return cut + '…' if len(cut) >= 139 else None
+        out = cand
+        if 140 <= len(out) <= 158 and i + 1 < len(sents) and len(out + ' ' + sents[i + 1]) > 158:
+            return out
+    if 140 <= len(out) <= 158:
+        return out
+    cand = (out + ' Serving San Diego & Orange County.').strip()
+    return cand if 140 <= len(cand) <= 158 else None
+
+
+# Lead images that show another company's uniform/logo or are implausible AI art. Posts using them
+# get the branded real job photo of their matched service instead (tools/brand_service_images.py).
+UNSUITABLE_LEAD = {'refrigerant-level-inspection-guide-for-san-diego-homeowners-featured', 'VMzFThzaCw',
+                   'ZXEuBQAvkZ', 'QZdfoDfqcg', 'cLKLKgsGPS'}
+UNSUITABLE_PREFIX = ('refrigerant-level-inspection-guide', 'hvac-system-performance-issues-signs')
+
+
+@lru_cache(maxsize=None)
+def _service_cats():
+    return {c['slug']: c for c in json.load(open(os.path.join(ROOT, 'src', 'data', 'services.json')))['categories']}
+
+
+def lead_image(r):
+    """(path, branded) for a post's lead image; the branded 1200x675 version when built."""
+    legacy = image_map().get(r['image']) if r.get('image') else None
+    if not legacy:
+        return None, False
+    stem = os.path.splitext(os.path.basename(legacy))[0]
+    if stem in UNSUITABLE_LEAD or stem.startswith(UNSUITABLE_PREFIX):
+        slug = match_service(r, _service_cats())['slug']
+        alt = f'/assets/images/services/{slug}.webp'
+        if os.path.exists(os.path.join(ROOT, 'public', alt.lstrip('/'))):
+            return alt, True
+    branded = '/assets/blog/' + os.path.splitext(os.path.basename(legacy))[0] + '.webp'
+    if os.path.exists(os.path.join(BLOG_IMG, os.path.basename(branded))):
+        return branded, True
+    return legacy, False
+
+
+def _iso(d):
+    return (d or '')[:10]
 
 
 def posts(site):
     D, ch = site.D, site.ch
+    domain = D.site['domain']
+    license_no = D.site.get('license', '')
+    cats = {c['slug']: c for c in D.categories}
+    BLOG_STATS.clear()
+    _CARDS.clear()
     recs = sorted(legacy_all('post'), key=lambda r: r['date'], reverse=True)
     by_cat = {}
     for r in recs:
         for c in r.get('categories', []):
             by_cat.setdefault(c, []).append(r)
+    used_desc, used_title = set(), {}
+    publisher = {'@type': 'Organization', '@id': domain + '/#business', 'name': D.site['name'], 'url': domain + '/',
+                 'logo': {'@type': 'ImageObject', 'url': domain + D.site['logo'], 'width': 600, 'height': 316}}
+    touched = 0
     for r in recs:
+        if r['path'] in RETIRED:
+            continue
         if site.has(r['path']):
             print(f'  ! post {r["path"]} collides with an existing page; skipped')
             continue
-        img = image_map().get(r['image']) if r.get('image') else None
-        body = local_images(r['body'])
+        path = r['path']
+        img, branded = lead_image(r)
+        body0 = local_images(r['body'])
+        before = json.dumps([body0, [list(x) for x in r['faqs']], r['description'] or ''], ensure_ascii=False)
+        body = hygiene(body0, path, license_no)
+        faqs = [(hygiene(q, path, license_no), hygiene(a, path, license_no)) for q, a in r['faqs']]
+        desc_src = hygiene(r['description'] or '', path, license_no)
+        title = hygiene(r['title'], path, license_no)
+        if json.dumps([body, [list(x) for x in faqs], desc_src], ensure_ascii=False) != before:
+            touched += 1
         if img:
             body = re.sub(r'^<figure>.*?</figure>\n?', '', body)  # drop a duplicate lead image
-        crumbs = [('Home', '/'), ('Blog', '/blog/'), (r['title'], None)]
-        faq_schema = []
-        if r['faqs']:
-            _, faq_schema = faq_section(r['faqs'])
+        cat = match_service(r, cats)
+        _stat('service:' + cat['slug'], path)
+
+        qa = quick_answer(body, title)
+        body, toc = add_h2_ids(body)
+        body = insert_callout(body, service_callout(cat, ch))
+
+        crumbs = [('Home', '/'), ('Blog', '/blog/'), (title, None)]
+        faq_schema = faq_section(faqs)[1] if faqs else []
         related = []
         for c in r.get('categories', []):
             for o in by_cat.get(c, []):
                 if o is not r and o not in related:
                     related.append(o)
         related = related[:3] or [o for o in recs[:4] if o is not r][:3]
-        date_str = format_date(r['date'])
-        cats = ', '.join(r.get('categories', [])[:2])
-        meta = f'<p class="post-meta">{icon("clock", 16)} {date_str}{" · " + esc(cats) if cats else ""}</p>'
-        lead = f'<figure class="post-lead"><img src="{img}" alt="{esc(r["title"])}"></figure>' if img else ''
+        published, modified = _iso(r['date']), _iso(r['modified'] or r['date'])
+        cat_names = ', '.join(html.unescape(c) for c in r.get('categories', [])[:2] if c not in ('Blog', 'Uncategorized'))
+        meta = (f'<p class="post-meta">{icon("clock", 16)} '
+                f'<span>Last updated <time datetime="{modified}">{format_date(modified)}</time></span>'
+                f'<span class="post-meta-sep">·</span><span class="post-byline">By <a href="/our-team/">the Sky Clean Air Team</a></span>'
+                f'{"<span class=post-meta-sep>·</span><span>" + esc(cat_names) + "</span>" if cat_names else ""}</p>')
+        lead = (f'<figure class="post-lead"><img src="{img}" alt="{esc(title)}"'
+                f'{IMG_DIMS if branded else ""} fetchpriority="high"></figure>') if img else ''
+        qa_html = (f'<div class="post-quick-answer" id="quick-answer"><p class="post-qa-label">Quick Answer</p>'
+                   f'<p class="post-qa-text">{esc(qa)}</p></div>') if qa else ''
+        if qa:
+            _stat('quick_answer', path)
+        if len(toc) >= 3:
+            _stat('toc', path)
+        toc_block = toc_html(toc) if len(toc) >= 3 else ''
         rel_html = ''
         if related:
             rel_html = '<section class="related-posts"><h2>Keep Reading</h2><div class="blog-grid">' + \
-                       ''.join(post_card(o) for o in related) + '</div></section>'
+                       ''.join(post_card(card_of(o)) for o in related) + '</div></section>'
+
+        # Meta description: the post's own, else its quick answer / opening sentences; unique.
+        body_sents = sentences(_text(body))[:8]
+        description = None
+        body_text = _text(body)
+        desc_cut = desc_src and not re.search(r'[.!?…)"”]$', desc_src.strip())
+        if desc_cut and _text(desc_src)[:60] in body_text[:600]:
+            # WordPress trimmed the excerpt mid-sentence: rebuild it from the same opening text.
+            start = body_text.index(_text(desc_src)[:60])
+            desc_src = body_text[start:start + 700]
+        for cand in (desc_src, qa or '', ' '.join(body_sents[:4]), ' '.join(body_sents[2:6])):
+            if not cand:
+                continue
+            d = fit_description(cand)
+            if d and d not in used_desc:
+                description = d
+                break
+        if not description:
+            description = fit_description(title.rstrip('.?!') + '. ' + ' '.join(body_sents)) or text_excerpt(r['body'], 155)
+            _stat('description_fallback', path, description)
+        if description != (r['description'] or ''):
+            _stat('description_changed', path)
+        used_desc.add(description)
+        page_title = post_title(dict(r, title=title, seo_title=hygiene(r.get('seo_title') or '', path, license_no)))
+        if page_title in used_title:
+            _stat('title_duplicate', path, used_title[page_title])
+        used_title.setdefault(page_title, path)
+        if len(page_title) > 60:
+            _stat('title_over_60', path, page_title)
+
+        url = domain + path
+        image_obj = ({'@type': 'ImageObject', 'url': domain + img, **({'width': 1200, 'height': 675} if branded else {})}
+                     if img else None)
         article_schema = {
-            '@context': 'https://schema.org', '@type': 'BlogPosting', 'headline': r['title'],
-            'datePublished': r['date'], 'dateModified': r['modified'],
-            'author': {'@type': 'Organization', 'name': D.site['name']},
-            'publisher': {'@type': 'Organization', 'name': D.site['name']},
-            **({'image': D.site['domain'] + img} if img else {}),
+            '@context': 'https://schema.org', '@type': 'BlogPosting',
+            'mainEntityOfPage': {'@type': 'WebPage', '@id': url},
+            'url': url, 'headline': title[:110], 'description': description,
+            **({'image': image_obj} if image_obj else {}),
+            'datePublished': published, 'dateModified': modified,
+            'author': {'@type': 'Organization', 'name': D.site['name'] + ' Team', 'url': domain + '/our-team/'},
+            'publisher': publisher, 'inLanguage': 'en-US',
+            'about': {'@type': 'Service', 'name': cat['name'], 'url': f'{domain}/services/{cat["slug"]}/',
+                      'provider': {'@id': domain + '/#business'}, 'areaServed': AREAS_SCHEMA},
+            'spatialCoverage': AREAS_SCHEMA,
+            'wordCount': len(_text(body).split()),
+            **({'articleSection': cat_names} if cat_names else {}),
+            'speakable': {'@type': 'SpeakableSpecification',
+                          'cssSelector': ['.page-hero h1'] + (['.post-qa-text'] if qa else [])},
         }
+        head_extra = (f'<meta property="article:published_time" content="{published}">\n'
+                      f'<meta property="article:modified_time" content="{modified}">\n'
+                      '<meta name="twitter:card" content="summary_large_image">\n')
         site.add({
-            'path': r['path'], 'legacy': True, 'lastmod': r['modified'],
-            'title': seo_title(r, r['title']),
-            'description': r['description'] or text_excerpt(r['body'], 155),
+            'path': path, 'legacy': True, 'lastmod': modified,
+            'title': page_title, 'description': description,
             'og_image': img or '/assets/images/team-2026.jpg',
-            'body_class': 'page-post',
-            'schema': [article_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
-            'body': page_hero(ch, esc(r['title']), '', crumbs, ctas=False, extra=meta) +
-                    article_layout(f'{lead}<article class="prose">{body}</article>{rel_html}', sidebar(ch, D)) +
+            'body_class': 'page-post', 'head_extra': head_extra,
+            'schema': [article_schema, breadcrumb_schema(domain, crumbs)] + faq_schema,
+            'body': page_hero(ch, esc(title), '', crumbs, ctas=False, extra=meta) +
+                    article_layout(f'{lead}{qa_html}{toc_block}<article class="prose">{body}</article>{rel_html}',
+                                   sidebar(ch, D)) +
                     cta_band(ch),
         })
-    blog_index(site, [r for r in recs if site.pages.get(r['path'], {}).get('legacy')])
+    BLOG_STATS['posts_touched_by_hygiene'] = {'count': touched, 'items': []}
+    cards = [card_of(r) for r in recs if site.pages.get(r['path'], {}).get('legacy')]
+    landmark = landmark_posts(site)
+    blog_index(site, sorted(cards + landmark, key=lambda c: c['date'], reverse=True), landmark)
+    report = ', '.join(f'{k} {v["count"]}' for k, v in sorted(BLOG_STATS.items()) if not k.startswith('service:'))
+    print(f'  blog: {len(cards)} legacy + {len(landmark)} Landmark posts; {report}')
+
+
+# -- Landmark-published posts --------------------------------------------------
+# Landmark (an external publisher) commits finished pages straight to
+# public/blog/<slug>/index.html and lists them in .landmark/manifest.json. We
+# never regenerate or touch those files: each is registered as an `external`
+# page (build.py skips writing it but keeps it in the sitemap and link check),
+# and its title/description/date/og:image are read from its HTML for the /blog/
+# index. The /blog/ page keeps Landmark's `landmark:start/end` marker list so
+# its publisher can keep updating it between builds.
+def _meta(doc, attr, name):
+    m = re.search(r'<meta\s+%s="%s"\s+content="([^"]*)"' % (attr, re.escape(name)), doc) or \
+        re.search(r'<meta\s+content="([^"]*)"\s+%s="%s"' % (attr, re.escape(name)), doc)
+    return html.unescape(m.group(1)).strip() if m else ''
+
+
+def landmark_posts(site):
+    if not os.path.exists(LANDMARK_MANIFEST):
+        return []
+    domain = site.D.site['domain']
+    out = []
+    for rel in json.load(open(LANDMARK_MANIFEST, encoding='utf-8')).get('files', []):
+        f = os.path.join(ROOT, 'public', rel)
+        if not os.path.exists(f):
+            print(f'  ! Landmark manifest lists missing file {rel}')
+            continue
+        doc = open(f, encoding='utf-8').read()
+        canon = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', doc)
+        path = canon.group(1).replace(domain, '') if canon and canon.group(1).startswith(domain) else \
+            '/' + os.path.dirname(rel).replace(os.sep, '/') + '/'
+        tm = re.search(r'<title>(.*?)</title>', doc, re.S)
+        title = _meta(doc, 'property', 'og:title') or (html.unescape(tm.group(1)).strip() if tm else path)
+        title = re.sub(r'\s*\|\s*Sky Clean Air\s*$', '', title)
+        dm = re.search(r'"datePublished"\s*:\s*"([^"]+)"', doc)
+        mm = re.search(r'"dateModified"\s*:\s*"([^"]+)"', doc)
+        published = _iso(_meta(doc, 'property', 'article:published_time') or (dm.group(1) if dm else ''))
+        modified = _iso(mm.group(1) if mm else published)
+        desc = _meta(doc, 'name', 'description')
+        if site.has(path) or site.has(path.rstrip('/') + '/'):
+            print(f'  ! Landmark post {path} collides with a generated page; skipped')
+            continue
+        site.add({'path': path, 'external': True, 'source': '.landmark/manifest.json', 'title': title,
+                  'description': desc, 'lastmod': modified or published, 'body': ''})
+        out.append({'path': path, 'title': title, 'date': published or modified, 'excerpt': desc,
+                    'img': _meta(doc, 'property', 'og:image'), 'branded': False, 'landmark': True})
+    return out
+
+
+# -- cards + index ---------------------------------------------------------------
+_CARDS = {}
+
+
+def card_of(r):
+    if r['path'] not in _CARDS:
+        img, branded = lead_image(r)
+        _CARDS[r['path']] = {'path': r['path'], 'title': r['title'], 'date': _iso(r['date']), 'img': img,
+                             'branded': branded, 'excerpt': text_excerpt(hygiene(r['body'], r['path'], '', count=False), 130)}
+    return _CARDS[r['path']]
 
 
 def format_date(d):
     import datetime
-    dt = datetime.date.fromisoformat(d)
+    dt = datetime.date.fromisoformat(d[:10])
     return '{} {}, {}'.format(dt.strftime('%B'), dt.day, dt.year)  # %-d is glibc/macOS-only
 
 
-def post_card(r):
-    img = image_map().get(r['image']) if r.get('image') else None
-    img_html = (f'<div class="post-card-img"><img src="{img}" alt="" loading="lazy"></div>' if img
-                else '<div class="post-card-img post-card-noimg" aria-hidden="true"></div>')
+def post_card(c):
+    if c['img']:
+        dims = IMG_DIMS if c.get('branded') else ''
+        img_html = f'<div class="post-card-img"><img src="{esc(c["img"])}" alt=""{dims} loading="lazy" decoding="async"></div>'
+    else:
+        img_html = '<div class="post-card-img post-card-noimg" aria-hidden="true"></div>'
+    excerpt = c['excerpt'] if len(c['excerpt']) <= 140 else c['excerpt'][:130].rsplit(' ', 1)[0] + '…'
     return f'''<article class="post-card">
   {img_html}
   <div class="post-card-body">
-    <p class="post-card-date">{format_date(r["date"])}</p>
-    <h3><a class="card-link" href="{r["path"]}">{esc(r["title"])}</a></h3>
-    <p>{esc(text_excerpt(r["body"], 130))}</p>
+    <p class="post-card-date">{format_date(c["date"])}</p>
+    <h3><a class="card-link" href="{c["path"]}">{esc(c["title"])}</a></h3>
+    <p>{esc(excerpt)}</p>
   </div>
 </article>'''
 
 
-def blog_index(site, recs):
+def landmark_list(landmark):
+    """Landmark's marker list (its publisher rewrites the lines between the markers)."""
+    items = '\n'.join(f'<li class="landmark-entry"><a href="{c["path"]}">{esc(c["title"])}</a></li>'
+                      for c in sorted(landmark, key=lambda c: c['date'], reverse=True))
+    return ('<section class="landmark-posts section-tight"><div class="container">'
+            '<p class="landmark-posts-title">Just published</p>\n<ul class="landmark-posts">\n'
+            f'<!-- landmark:start -->\n{items}\n<!-- landmark:end -->\n</ul></div></section>')
+
+
+def blog_index(site, cards, landmark=()):
     ch = site.ch
-    pages = [recs[i:i + POSTS_PER_PAGE] for i in range(0, len(recs), POSTS_PER_PAGE)]
+    pages = [cards[i:i + POSTS_PER_PAGE] for i in range(0, len(cards), POSTS_PER_PAGE)]
     for n, chunk in enumerate(pages, 1):
         path = '/blog/' if n == 1 else f'/blog/page/{n}/'
         nav = pagination(n, len(pages))
@@ -239,8 +757,9 @@ def blog_index(site, recs):
             'noindex': n > 1,
             'body': page_hero(ch, 'HVAC &amp; Air Quality <span class="hl">Tips</span>',
                               'Practical advice from our technicians on keeping your home comfortable, efficient and breathing clean — '
-                              f'{len(recs):,} articles and counting.', crumbs, ctas=False) +
-                    f'<section class="section"><div class="container"><div class="blog-grid">{"".join(post_card(r) for r in chunk)}</div>{nav}</div></section>' +
+                              f'{len(cards):,} articles and counting.', crumbs, ctas=False) +
+                    (landmark_list(landmark) if n == 1 and landmark else '') +
+                    f'<section class="section"><div class="container"><div class="blog-grid">{"".join(post_card(c) for c in chunk)}</div>{nav}</div></section>' +
                     cta_band(ch),
         })
 

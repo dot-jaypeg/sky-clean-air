@@ -1,8 +1,8 @@
 {
   "name": "Sky Clean Air",
   "domain": "https://www.skycleanair.com",
-  "tagline": "Family-owned HVAC & indoor air quality since 2016",
-  "founded": 2016,
+  "tagline": "Family-owned HVAC & indoor air quality since 2018",
+  "founded": 2018,
   "phone": "619-304-8822",
   "phone_tel": "+16193048822",
   "email": "",
@@ -16,40 +16,151 @@
     "lng": -117.1403
   },
   "hours": [
-    ["Mon–Fri", "8am–6pm"],
-    ["Saturday", "8am–3pm"],
-    ["Sunday", "Closed"]
+    [
+      "Mon–Fri",
+      "8am–6pm"
+    ],
+    [
+      "Saturday",
+      "8am–3pm"
+    ],
+    [
+      "Sunday",
+      "Closed"
+    ]
   ],
   "socials": [
-    { "name": "Instagram", "url": "https://instagram.com/skycleanairhvac" },
-    { "name": "TikTok", "url": "https://tiktok.com/@sky.clean.air.hvac" },
-    { "name": "Facebook", "url": "https://www.facebook.com/SkyCleanAir" },
-    { "name": "Yelp", "url": "https://www.yelp.com/biz/sky-clean-air-san-diego" }
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/skycleanairhvac"
+    },
+    {
+      "name": "TikTok",
+      "url": "https://tiktok.com/@sky.clean.air.hvac"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/SkyCleanAir"
+    },
+    {
+      "name": "Yelp",
+      "url": "https://www.yelp.com/biz/sky-clean-air-san-diego"
+    }
   ],
   "logo": "/assets/logos/sca-logo-trimmed-600.png",
-  "_specials_note": "`seasons` lists when an offer runs (\"all\" = year-round). Only offers for the current season (see `season.current`) show, in this order.",
+  "_tracking_note": "Rendered into every page by sitelib (Chrome.head / Chrome.page). gtm = Google Tag Manager container; google_ads = Google Ads tag; call_conversion = Ads call-conversion label + the number it swaps (phone_conversion_number). Landing pages also get the tel:+1 fix for Ads forwarding numbers.",
+  "tracking": {
+    "gtm": "GTM-MVJXPDJ8",
+    "google_ads": "AW-815882541",
+    "call_conversion": "AW-815882541/0UHoCKzl-5wdEK3ChYUD",
+    "call_conversion_phone": "(619) 304-8822"
+  },
+  "_specials_note": "`seasons` lists when an offer runs (\"all\" = year-round). Only offers for the current season (see `season.current`) show, in this order. Tell customers to mention the special when they call and say Skyler referred them (shown on the specials component).",
   "specials": [
-    { "price": "$29", "title": "Furnace Safety Inspection", "text": "Make sure your heat is safe and ready before the cold nights set in.", "seasons": ["winter"], "link": "/services/heating/" },
-    { "price": "$59", "title": "Whole-House Duct Cleaning", "text": "Clear out a summer's worth of dust before the first heat cycle.", "seasons": ["winter"], "link": "/services/air-ducts/" },
-    { "price": "$59", "title": "Whole-House Duct Cleaning", "text": "Deep clean, mold & odor removal.", "seasons": ["summer"], "link": "/services/air-ducts/" },
-    { "price": "$50", "title": "Basic HVAC Tune-Up", "text": "Keep your system running strong.", "seasons": ["all"], "link": "/services/hvac/" }
+    {
+      "price": "FREE",
+      "title": "HVAC Installation Estimate",
+      "text": "Free in-home estimate on a new furnace, heat pump, AC or complete heating and cooling system, with a written price before any work.",
+      "seasons": [
+        "all"
+      ],
+      "link": "/services/hvac/"
+    },
+    {
+      "price": "$29",
+      "title": "Furnace Safety Inspection",
+      "text": "Make sure your heat is safe and ready before the cold nights set in.",
+      "seasons": [
+        "winter"
+      ],
+      "link": "/services/heating/"
+    },
+    {
+      "price": "$59",
+      "title": "Whole-House Duct Cleaning",
+      "text": "Clear out a summer's worth of dust before the first heat cycle.",
+      "seasons": [
+        "winter"
+      ],
+      "link": "/services/air-ducts/"
+    },
+    {
+      "price": "$59",
+      "title": "Whole-House Duct Cleaning",
+      "text": "Deep clean, mold & odor removal.",
+      "seasons": [
+        "summer"
+      ],
+      "link": "/services/air-ducts/"
+    },
+    {
+      "price": "$50",
+      "title": "Basic HVAC Tune-Up",
+      "text": "Keep your system running strong.",
+      "seasons": [
+        "all"
+      ],
+      "link": "/services/hvac/"
+    }
   ],
-
-  "_season_note": "Seasonal emphasis switch. Change `current` to \"summer\" in spring to put cooling back first. `service_order` reorders the 8 services everywhere (nav, homepage, footer, city pages); `home` drives the homepage hero headline and the seasonal prep section; `pages` adds a seasonal banner to those service pages.",
+  "_season_note": "Seasonal emphasis switch. Change `current` to \"summer\" in spring for the summer hero and specials. `service_order` reorders the 8 services everywhere (nav, homepage, footer, city pages); `home` drives the homepage hero headline and the seasonal prep section; `pages` adds a seasonal banner to those service pages. Client direction (2026-10): Heating, Cooling, HVAC Systems lead the menu in every season.",
   "season": {
     "current": "winter",
     "winter": {
-      "service_order": ["heating", "air-ducts", "dryer-vents", "hvac", "indoor-air-quality", "attic-insulation", "air-conditioning", "commercial"],
+      "service_order": [
+        "heating",
+        "air-conditioning",
+        "hvac",
+        "air-ducts",
+        "dryer-vents",
+        "indoor-air-quality",
+        "attic-insulation",
+        "commercial"
+      ],
       "home": {
         "badge": "Winter Prep Season · Family-Owned Since {{founded}}",
-        "h1": "Heating, Furnace &amp; Air Duct Services in <span class=\"hl\">San Diego, CA</span>",
+        "h1": "Heating, Cooling, and Air Duct Cleaning Services in <span class=\"hl\">San Diego, California</span>",
         "prep_title": "Get Your Home <span class=\"grad-text\">Ready For Winter</span>",
-        "prep_text": "Cold nights are coming. Three things worth doing before you run the heat all season.",
+        "prep_text": "Cold nights are coming. A few things worth doing before you run the heat all season — and the ones our customers ask about most.",
         "prep": [
-          { "service": "heating", "title": "Furnace Safety Inspection & Tune-Up", "text": "We check burners, heat exchanger, venting and carbon monoxide safety, then tune it so it lights clean and runs efficiently all winter.", "offer": "$29 safety inspection" },
-          { "service": "air-ducts", "title": "Air Duct Cleaning", "text": "The first heat cycle pushes a summer's worth of dust through every vent. Clean ducts before you close up the house for winter.", "offer": "$59 whole-house" },
-          { "service": "dryer-vents", "title": "Dryer Vent Cleaning", "text": "Holiday laundry and heavy blankets mean longer dryer runs. A clear vent dries faster and cuts lint fire risk.", "offer": "Free estimate" }
-        ]
+          {
+            "service": "heating",
+            "title": "Furnace Safety Inspection & Tune-Up",
+            "text": "We check burners, heat exchanger, venting and carbon monoxide safety, then tune it so it lights clean and runs efficiently all winter.",
+            "offer": "$29 safety inspection"
+          },
+          {
+            "service": "air-ducts",
+            "title": "Air Duct Cleaning",
+            "text": "The first heat cycle pushes a summer's worth of dust through every vent. Clean ducts before you close up the house for winter.",
+            "offer": "$59 whole-house"
+          },
+          {
+            "service": "dryer-vents",
+            "title": "Dryer Vent Cleaning",
+            "text": "Holiday laundry and heavy blankets mean longer dryer runs. A clear vent dries faster and cuts lint fire risk.",
+            "offer": "Free estimate"
+          },
+          {
+            "service": "hvac",
+            "title": "HVAC Installation",
+            "text": "Is your furnace or AC near the end of its life? We size and install new furnaces, heat pumps and full heating and cooling systems, with a written price before any work.",
+            "offer": "Free estimate"
+          },
+          {
+            "service": "attic-insulation",
+            "title": "Attic & Crawl Space Insulation",
+            "text": "Old, compressed or rodent-damaged insulation lets your heat escape. We remove it, seal air leaks and install fresh insulation in attics and crawl spaces.",
+            "offer": "Free estimate"
+          },
+          {
+            "service": "attic-insulation",
+            "title": "Rodent Activity Inspection",
+            "text": "Cooler weather drives rodents into attics and crawl spaces. We check for droppings, nesting and damaged insulation or ducts, and tell you exactly what we find.",
+            "offer": "Book an inspection"
+          }
+        ],
+        "prep_skyler": "Don't wait for the first cold night!"
       },
       "pages": {
         "heating": "Winter special: $29 furnace safety inspection. Book before the first cold snap.",
@@ -58,28 +169,34 @@
       }
     },
     "summer": {
-      "service_order": ["air-conditioning", "air-ducts", "hvac", "dryer-vents", "indoor-air-quality", "attic-insulation", "heating", "commercial"],
+      "service_order": [
+        "heating",
+        "air-conditioning",
+        "hvac",
+        "air-ducts",
+        "dryer-vents",
+        "indoor-air-quality",
+        "attic-insulation",
+        "commercial"
+      ],
       "home": {
         "badge": "Family-Owned Since {{founded}}",
-        "h1": "HVAC &amp; Air Duct Cleaning Services in <span class=\"hl\">San Diego, CA</span>"
+        "h1": "Heating, Cooling, and Air Duct Cleaning Services in <span class=\"hl\">San Diego, California</span>"
       },
       "pages": {}
     }
   },
-
   "_widgets_note": "Optional third-party embed snippets. reviews: a review-widget embed would replace the Yelp testimonials from reviews.json (empty = use reviews.json). Contractor Commerce was dropped at the client's request.",
   "widgets": {
     "reviews": ""
   },
-
-  "_mascot_note": "Skyler the Home Service Eagle (source art: assets/mascot/). Used SPARINGLY on purpose — client direction: never on the homepage, only where a page opts in: the About page Meet Skyler panel ({{component:mascot}}) and the closing CTA band on Contact, Specials and the /service-areas/ hub ({{component:cta:Speech bubble text}} or cta_band(..., mascot_line=...)).",
+  "_mascot_note": "Skyler the Home Service Eagle (source art: assets/mascot/). Client direction 2026-10 (website review): feature Skyler more prominently across the site as a designed-in element — never a pop-up. Placements: homepage winter-prep section (season.<s>.home.prep_skyler), service-page heroes (page_hero skyler=), the closing CTA band on every page (default line SKYLER_CTA_LINE in sitelib, override with {{component:cta:Line}}), the specials referral line, and the About page Meet Skyler panel. Only the thumbs-up pose exists so far; the client is sending flying/peeking variants.",
   "mascot": {
     "name": "Skyler",
     "title": "The Home Service Eagle",
     "image": "/assets/mascot/skyler-thumbs-up.webp",
     "image_sm": "/assets/mascot/skyler-thumbs-up-sm.webp"
   },
-
   "_placeholders_note": "Draft-only: shows labeled boxes where pending assets (widgets, mascot, team photos) will go. Set false before launch to hide them.",
   "show_placeholders": true
 }

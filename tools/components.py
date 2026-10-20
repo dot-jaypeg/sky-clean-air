@@ -29,10 +29,12 @@ def stat_band(ch, D, arg=None):
     from datetime import date
     years = date.today().year - s['founded']
     city_count = sum(1 for c in D.cities() if (c.get('status') or D.region(c['region'])['status']) != 'coming-soon')
-    stats = [(years, '+', 'Years In Business'), (100, '%', 'Licensed &amp; Insured'),
+    # CSLB: no insurance/bonding claims — the license number is shown as-is (not a counter).
+    stats = [(years, '+', 'Years In Business'), ('#' + s['license'], '', 'California Contractor License'),
              (5, '★', 'Google &amp; Yelp Rated'), (city_count, '+', 'Communities Served')]
     items = ''.join(
-        f'<div class="counter-item"><div class="num" data-count="{n}"><span class="val">{n:,}</span><span class="suf">{suf}</span></div>'
+        (f'<div class="counter-item"><div class="num" data-count="{n}"><span class="val">{n:,}</span><span class="suf">{suf}</span></div>'
+         if isinstance(n, int) else f'<div class="counter-item"><div class="num num-text"><span class="val">{n}</span></div>') +
         f'<div class="lbl">{lbl}</div></div>' for n, suf, lbl in stats)
     return f'''<section class="section stat-band bg-dark">
   <div class="hero-grid" aria-hidden="true"></div>
@@ -92,7 +94,7 @@ def areas_band(ch, D, arg=None):
   <div class="container">
     <div class="area-head section-head" data-reveal>
       <h2>Serving <span class="grad-text">Southern California</span></h2>
-      <p>Orange County and San Diego County — if you're within our reach, we're already on our way.</p>
+      <p>San Diego County and Orange County — if you're within our reach, we're already on our way.</p>
     </div>
     <div class="region-groups" data-reveal>{"".join(groups)}</div>
     <p class="area-links"><a href="/service-areas/" class="btn btn-secondary">See the full service area map &rarr;</a></p>
@@ -108,12 +110,15 @@ def specials(ch, D, arg=None):
   <a href="/contact-us/#quote" class="btn btn-primary">Claim This Offer</a>
   {f'<a class="offer-more" href="{o["link"]}">About this service &rarr;</a>' if o.get('link') else ''}
 </div>''' for o in D.specials)
-    return f'<div class="offers-grid" data-reveal>{cards}</div>'
+    m = D.site.get('mascot') or {}
+    referral = (f'<p class="offers-referral" data-reveal><img src="{m["image_sm"]}" alt="" width="56" height="56" loading="lazy">'
+                f'<span>Mention the special when you call {ch.phone} and say <strong>{esc(m.get("name", "Skyler"))} referred you</strong>.</span></p>'
+                if m.get('image_sm') else '')
+    return f'<div class="offers-grid" data-reveal>{cards}</div>{referral}'
 
 
 def cta(ch, D, arg=None):
-    """{{component:cta}}, or {{component:cta:Speech bubble text}} to have Skyler stand at the end of the
-    band saying it. Use sparingly — the client doesn't want the mascot everywhere."""
+    """{{component:cta}} (Skyler with the default line), or {{component:cta:Speech bubble text}}."""
     return cta_band(ch, mascot_line=arg)
 
 
@@ -149,9 +154,13 @@ def season_prep(ch, D, arg=None):
   <p>{esc(p["text"])}</p>
   <span class="service-link" aria-hidden="true">Learn more &rarr;</span>
 </div>''')
+    m = D.site.get('mascot') or {}
+    skyler = (f'<figure class="prep-skyler" aria-hidden="true"><span class="skyler-bubble">{esc(h["prep_skyler"])}</span>'
+              f'<img src="{m["image_sm"]}" alt="" width="471" height="560" loading="lazy"></figure>'
+              if h.get('prep_skyler') and m.get('image_sm') else '')
     return f'''<section class="section season-prep" id="winter-prep">
   <div class="container">
-    <div class="section-head center" data-reveal>
+    {skyler}<div class="section-head center" data-reveal>
       <h2>{h["prep_title"]}</h2>
       <p>{esc(h.get("prep_text", ""))}</p>
     </div>

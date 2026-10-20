@@ -66,7 +66,7 @@ def landing_pages(site):
       <p class="lede">{esc(c["sub"])}</p>
       {offer_html}
       <div class="hero-ctas"><a href="{{{{tel}}}}" class="btn btn-primary">Call Now — {{{{phone}}}}</a></div>
-      <ul class="lp-proof"><li>{icon("star", 16)} 5-star rated · ~1,000 reviews</li><li>{icon("shield", 16)} Licensed &amp; insured · CA #{{{{license}}}}</li><li>{icon("clock", 16)} Same-day &amp; next-day visits often available</li></ul>
+      <ul class="lp-proof"><li>{icon("star", 16)} 5-star rated · 1,000+ reviews</li><li>{icon("shield", 16)} California Contractor License #{{{{license}}}}</li><li>{icon("clock", 16)} Same-day &amp; next-day visits often available</li></ul>
     </div>
     {form}
   </div>

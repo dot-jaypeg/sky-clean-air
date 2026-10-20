@@ -173,6 +173,8 @@ class Site:
 
         written = []
         for path, p in sorted(self.pages.items()):
+            if p.get('external'):
+                continue  # committed by an outside publisher (see gen_legacy.landmark_posts): never written here
             p['body'] = expand(p['body'], self.ch, self.D)
             html_out = self.ch.page(p) if not p.get('raw') else p['body']
             dest = out_path(path)

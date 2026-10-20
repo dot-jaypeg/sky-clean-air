@@ -14,7 +14,7 @@ import re
 
 import components
 from gen_legacy import article_layout, faq_section, image_map, legacy_by_path, sidebar
-from sitelib import ROOT, breadcrumb_schema, cta_band, esc, icon, page_hero
+from sitelib import PUBLIC, ROOT, breadcrumb_schema, cta_band, esc, icon, page_hero
 
 CONTENT = os.path.join(ROOT, 'src', 'content', 'services')
 
@@ -62,7 +62,7 @@ def included_section(cat):
         f'<div class="inc-item"><span class="inc-check">{icon("check", 16)}</span>'
         f'<div><h3>{esc(s["name"])}</h3><p>{esc(s.get("summary", ""))}</p></div></div>' for s in svcs)
     return f'''<section class="included" id="included">
-  <h2>What's Included in Our {esc(cat["name"])} Service</h2>
+  <h2>What's Included in Our {esc(cat.get("included_title") or cat["name"])} Service</h2>
   <div class="inc-grid">{items}</div>
 </section>'''
 
@@ -81,7 +81,11 @@ def area_cta(D, name):
 
 
 def lead_image(cat):
-    """The legacy banner of the category's first sub-service that has one."""
+    """The branded real job photo (tools/brand_service_images.py), else the legacy
+    banner of the category's first sub-service that has one."""
+    branded = f'/assets/images/services/{cat["slug"]}.webp'
+    if cat.get('photo') and os.path.exists(os.path.join(PUBLIC, branded.lstrip('/'))):
+        return branded
     for s in cat['services']:
         img = image_map().get((legacy_by_path(f'/{s["slug"]}/') or {}).get('image') or '')
         if img:
@@ -117,7 +121,7 @@ def service_pages(site):
             'description': custom.get('description') or cat['blurb'],
             'og_image': lead or '/assets/images/team-2026.jpg',
             'schema': [service_schema, breadcrumb_schema(D.site['domain'], crumbs)] + faq_schema,
-            'body': page_hero(ch, h1, lede, crumbs, kicker=esc(name)) +
+            'body': page_hero(ch, h1, lede, crumbs, kicker=esc(name), skyler=cat.get('skyler_line') or 'Mention Skyler when you call!') +
                     article_layout(f'{components.season_banner(ch, D, cat["slug"])}<div class="prose">{lead_html}{custom["body"]}</div>{included_section(cat)}'
                                    f'{faq_html}{area_cta(D, name)}',
                                    sidebar(ch, D, 'Our Other Services', others)) +
@@ -132,7 +136,7 @@ def services_index(site):
     site.add({
         'path': '/services/',
         'title': 'HVAC, Air Duct, Dryer Vent & Attic Services | Sky Clean Air',
-        'description': 'Sky Clean Air services: air conditioning, HVAC systems, heating, air ducts, dryer vents, attic & insulation, indoor air quality and commercial — across San Diego and Orange County.',
+        'description': 'Sky Clean Air services: heating, cooling, HVAC systems, air ducts, dryer vents, attic & insulation, indoor air quality and commercial — across San Diego and Orange County.',
         'schema': [breadcrumb_schema(D.site['domain'], crumbs)],
         'body': page_hero(ch, 'Every Service, <span class="hl">One Trusted Team</span>',
                           'From a same-day duct cleaning to a full system install — residential and commercial, across San Diego and Orange County.',
@@ -146,4 +150,5 @@ def service_redirects(site):
     """Every retired individual-service URL → its category page."""
     for cat in site.D.categories:
         for s in cat['services']:
-            site.redirect(f'/{s["slug"]}/', category_url(cat))
+            if not s.get('no_legacy_url'):  # added after launch; never had its own page
+                site.redirect(f'/{s["slug"]}/', category_url(cat))

@@ -1,6 +1,6 @@
 # Sky Clean Air — Project Notes
 
-Site build for Sky Clean Air (skycleanair.com), family-owned HVAC company founded 2016 by Nadav ("Nadi") Offer and Daniel Lezmy. Home base San Diego County; actively launching Orange County. The Inland Empire was removed from the site entirely at the client's request (2026-10-01) — don't mention it anywhere. See `references/onboarding-info/` for the client brief.
+Site build for Sky Clean Air (skycleanair.com), family-owned HVAC company founded 2018 by Nadav ("Nadi") Offer and Daniel Lezmy. Home base San Diego County; actively launching Orange County. The Inland Empire was removed from the site entirely at the client's request (2026-10-01) — don't mention it anywhere. See `references/onboarding-info/` for the client brief.
 
 Design direction: moody dark-navy hero with a glowing cyan/teal gradient (`#2addea` / `#2dd2c7` / `#23d4d7`, pulled from the SCA logo mark), transitioning into clean light sections. Antonio for headlines, Inter for body copy.
 
@@ -42,14 +42,25 @@ Every incorporated city in both counties has a page (OC list completed 2026-10-0
 ### Working copy / iCloud
 iCloud Drive stalls file reads in this folder when the Mac is low on disk or mid-upload (builds and even `git status` hang). If that happens, clone the repo outside iCloud, build/commit/push there, and `git pull` here later.
 
-### Skyler the mascot — use SPARINGLY and deliberately
-Client direction: Skyler (the Home Service Eagle; source art in `assets/mascot/`, web copies in `public/assets/mascot/`) is **never on the homepage** and must feel designed-in, not dropped in. Current placements: the About page "Meet Skyler" brand panel (he stands on the panel and breaks out of its top edge), and the closing CTA band on Contact, Specials and the /service-areas/ hub, where he stands at the end of the band with a page-specific speech bubble (`{{component:cta:Bubble text}}`). Don't add him elsewhere without being asked.
-
+### Skyler the mascot — featured, but designed in (never a pop-up)
+Client direction changed in the 2026-10 website review: feature Skyler (the Home Service Eagle; source art in `assets/mascot/`, web copies in `public/assets/mascot/`) more prominently across the site, including the homepage and near the top of relevant pages, as a design element — no pop-ups or overlays (agreed on the call: bad for mobile and conversions). Placements: homepage winter-prep heading (`season.<s>.home.prep_skyler`), service-page heroes (`page_hero(..., skyler=line)`, per-category `skyler_line` in services.json; hidden under 1000px), the closing CTA band on every page (`SKYLER_CTA_LINE` default in sitelib; `{{component:cta:Line}}` overrides; `mascot_line=False` hides), the specials "say Skyler referred you" line, and the About page Meet Skyler panel. Only the thumbs-up pose exists; the client is sending flying/peeking variants — use them to vary placements.
 ### Icons
 Service and UI icons are Lucide (ISC license) and social icons are Simple Icons (CC0), embedded as SVG in `ICONS` / `SOCIAL_ICONS` in `tools/sitelib.py`. Use `icon('name')` in Python or `{{icon:name[:size]}}` in page sources. Don't hand-draw icons. To add one, copy its SVG body from lucide.dev into `ICONS`.
 
 ### Favicon
 `public/favicon.ico` + `public/assets/logos/favicon-{32,192}.png` / `apple-touch-icon.png` are the ORIGINAL logo file centered on a square canvas — never stretched or cropped (client: keep the logo in its original format).
+
+### Tracking (GTM / Google Ads)
+GTM container, Google Ads tag and the Ads call-conversion snippet come from `site.json → tracking` and are rendered by `Chrome.tracking_head()/tracking_body()` on every page; ad landing pages also get `LP_TEL_FIX` (restores the +1 on Ads forwarding numbers). They were originally hand-pasted into `public/` (2026-10-16) and would have been wiped by the next build — never add tracking to generated HTML.
+
+### External blog publisher (Landmark)
+An outside publisher commits posts straight to `public/blog/<slug>/index.html` and lists them in `.landmark/manifest.json`. `gen_legacy.landmark_posts()` reads that manifest and registers those pages as `external` (never written or deleted by the build) so they stay in `/blog/` and the sitemap. Don't hand-edit or regenerate their HTML.
+
+### Blog (legacy posts)
+1,224 migrated posts render with AEO/SEO additions from `tools/gen_legacy.py`: extractive Quick Answer, TOC, byline, service callout, BlogPosting schema, cleaned meta, render-time copy hygiene (CSLB wording, competitor links, Inland Empire). Lead images are branded copies in `public/assets/blog/` from `tools/brand_blog_images.py`; `UNSUITABLE_LEAD` swaps images showing other companies' uniforms for the branded service photo. Service-page lead images are real job photos (`services.json → photo`) branded by `tools/brand_service_images.py`. Many legacy titles still carry AI filler ("…Delighted Big Technology Insight") and need a human rewrite pass.
+
+### CSLB advertising wording
+Use "California Contractor License #1036543" exactly. No "insured", "fully insured" or "bonded" claims, and no "proof/certificates of insurance" offers, until the client confirms active coverage and the type to name (`gen_areas.CSLB_REPLACE` neutralizes the legacy neighborhood pages).
 
 ## Git workflow — standing authorization
 
@@ -65,11 +76,11 @@ The user has authorized automatic git management for this repo. Unless told othe
 
 - `assets/content/` (repo root, not deployed) holds raw client material. `*.mp4`/`*.mov` and `stock/` are gitignored (too big). The client's own clips are 9:16 social-ad edits with burned-in captions — not usable as background video.
 - Background videos in `public/assets/video/` are transcoded from stock footage (no audio) with poster frames in `public/assets/images/`. `public/js/app.js` forces hero `play()` so mobile browsers don't show a play-button overlay.
-  - Hero: `hero-residential.*` — Pexels #39056799 (SoCal red-tile-roof suburb + mountains; free commercial license), first 14s played forward then reversed for a seamless loop, 1440px. Replaced the aerial rooftop-HVAC clip, which the client felt looked too commercial. Swap in custom fleet/van footage if the client provides it.
+  - Homepage hero is now the team-and-vans photo `team-2026.jpg` (client: "our guys or the trucks"); swap in the video team's edited fleet footage when delivered. Old stock hero video, kept in the repo: `hero-residential.*` — Pexels #39056799 (SoCal red-tile-roof suburb + mountains; free commercial license), first 14s played forward then reversed for a seamless loop, 1440px. Replaced the aerial rooftop-HVAC clip, which the client felt looked too commercial. Swap in custom fleet/van footage if the client provides it.
   - Service-area band: `area-bg.*` (aerial downtown San Diego).
 - Hero logo overlay (`.hero-brandmark`) is a client-requested test — `?heromark=off` on the URL hides it for side-by-side comparison. Header logo uses `sca-logo-trimmed-600.png`, a copy of the client logo with only its transparent padding cropped (original kept untouched) so it renders at a real size.
 - Team headshots are framed by `tools/frame_headshot.py` (finds the person on the backdrop; centers on the body, keeps shoulders/arms in frame, same 6% headroom for everyone; 720x900). Run it for any new headshot — don't hand-crop.
-- Team photos: the 2026-09-29 shoot is in `assets/content/sky-clean-pics1-3/` (1,707 raw JPGs, gitignored; EXIF-rotated — always `ImageOps.exif_transpose`). `public/assets/images/team-2026.jpg` (frame 00238, full team in front of the vans) replaced the old lineup photo the client asked to remove; it's the homepage About photo, Team page hero and default og:image. New headshots so far: Nadav (01416), Daniel (01525), Valarie (01240). The shoot has ~22 individual headshot sessions (each person shot in a burst, see frame ranges by timestamp); everyone else still shows their legacy headshot until the client names who's who.
+- Team photos: the 2026-09-29 shoot (1,707 raw JPGs) was in `assets/content/sky-clean-pics1-3/` but is no longer on this machine — ask the client/video team for originals. `public/assets/images/team-2026.jpg` (frame 00238, full team in front of the vans) is the homepage hero, homepage About photo, Team page hero and default og:image. Every headshot is now named (2026-10 review, see team.json `_note`); the team page runs Management → Office Team → HVAC Installation (leads, then helpers) → Indoor Air Quality (lead tech, techs, repair techs, insulation, then helpers). Members with `hidden: true` aren't rendered (one unnamed install helper).
 - Phone: site uses 619-304-8822 (onboarding doc). The legacy site shows (858) 346-5551 everywhere, possibly a tracking line — unconfirmed; it's one field in `site.json`.
-- Founding year: 2016 (confirmed by the user 2026-10-08; the brief had said 2018).
-- Revenue figures ($5M revenue, $50M / $5M EBITDA 5-year goal) on the About page are intentionally public — the client asked for them.
+- Founding year: 2018. Nadi corrected it on the 2026-10 website-review call ("we started in 2018, not 2016"), reversing the 2026-10-08 switch to 2016. Use `{{founded}}` / `site.json → founded`, never a hard-coded year.
+- No revenue, EBITDA or growth-target figures anywhere on the site — the client removed them in the 2026-10 review. The About page "Where We're Headed" says only that the plan is to expand across Southern California (don't name Riverside/Temecula/Inland Empire).

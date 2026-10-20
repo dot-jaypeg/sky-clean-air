@@ -1,11 +1,11 @@
 {
-  "_note": "Team page data, grouped by department. Headshots are from the Sept 29, 2026 team shoot, chosen by the client (Nadav 01661, Daniel 01516, Valarie 01194, Erick 00781, Louis 00815; group photo 00238). Oscar, Joe, Tedi and Taylor still use legacy-site headshots. The 'crew' department holds the other people from the shoot whose names we don't have yet (`name_pending`, `shoot_frame` = the source frame) — fill in name/role and move them to the right department when the client confirms. Possible duplicates to check: crew-00853 may be Tedi, crew-00164 may be Oscar.",
+  "_note": "Team page data, grouped by department in display order (client direction 2026-10: Management, Office Team, HVAC Installation (lead installers then helpers), Indoor Air Quality (lead technician, technicians, repair techs, insulation, then helpers)). Names/roles confirmed by Nadi on the website-review call. Headshots from the Sept 29, 2026 shoot (`shoot_frame`); Oscar, Taylor and Tedi use legacy headshots (Nadi chose Oscar's original over shoot frame 00164). Removed: Joe and shoot frame 00011 (no longer with the company), frame 00164 (duplicate of Oscar). `hidden: true` members are not rendered — frame 00881 is an install helper whose name we still need. Missing from the shoot: new helper Andre and other helpers.",
   "group_photo": "/assets/images/team-2026.jpg",
   "departments": [
     {
       "slug": "management",
       "name": "Management",
-      "blurb": "The founders and office team who keep every job scheduled, quoted, staffed and followed up on.",
+      "blurb": "The founders who built Sky Clean Air and still lead it every day.",
       "members": [
         {
           "name": "Nadav Offer",
@@ -49,7 +49,14 @@
               "Time with family and friends"
             ]
           ]
-        },
+        }
+      ]
+    },
+    {
+      "slug": "office",
+      "name": "Office Team",
+      "blurb": "The people you talk to first — answering calls, booking visits, keeping every job on schedule and following up after.",
+      "members": [
         {
           "name": "Valarie Chavez",
           "role": "Office Manager",
@@ -70,33 +77,147 @@
               "Board member at Donald's Doggie Haven, a 501(c) rescue"
             ]
           ]
+        },
+        {
+          "name": "Isabel",
+          "role": "Customer Service Manager",
+          "photo": "/assets/images/team/crew-01140.jpg",
+          "shoot_frame": "01140",
+          "duties": [
+            "Leading our customer service team",
+            "Making sure every call, booking and follow-up is handled right"
+          ]
+        },
+        {
+          "name": "William",
+          "role": "Customer Service Representative",
+          "photo": "/assets/images/team/crew-00993.jpg",
+          "shoot_frame": "00993",
+          "duties": [
+            "Answering calls and booking appointments",
+            "Helping customers find the right service"
+          ]
+        },
+        {
+          "name": "Maya",
+          "role": "Customer Service Representative",
+          "photo": "/assets/images/team/crew-01040.jpg",
+          "shoot_frame": "01040",
+          "duties": [
+            "Answering calls and booking appointments",
+            "Helping customers find the right service"
+          ]
+        },
+        {
+          "name": "Leilani",
+          "role": "Customer Service & Social Media Assistant",
+          "photo": "/assets/images/team/crew-01116.jpg",
+          "shoot_frame": "01116",
+          "duties": [
+            "Answering calls and booking appointments",
+            "Sharing our team's work on social media"
+          ]
         }
       ]
     },
     {
       "slug": "installation",
-      "name": "HVAC Installation Team",
-      "blurb": "The crew that designs, installs and replaces full heating and cooling systems — from sizing the equipment to the final startup test.",
-      "members": []
+      "name": "HVAC Installation",
+      "blurb": "The crew that installs and replaces full heating and cooling systems — from sizing the equipment to the final startup test.",
+      "members": [
+        {
+          "name": "Erick",
+          "role": "Lead Installer",
+          "photo": "/assets/images/team/erick.jpg",
+          "duties": [
+            "Leading heating and cooling system installations",
+            "Equipment sizing, setup and final startup testing"
+          ]
+        },
+        {
+          "name": "Luis",
+          "role": "Lead Installer",
+          "photo": "/assets/images/team/crew-00853.jpg",
+          "shoot_frame": "00853",
+          "duties": [
+            "Leading heating and cooling system installations",
+            "Equipment sizing, setup and final startup testing"
+          ]
+        },
+        {
+          "name": "Louis A.",
+          "role": "Install Helper",
+          "photo": "/assets/images/team/louis.jpg",
+          "duties": [
+            "Supporting our lead installers on every install",
+            "Setup, protection of the home and clean-up"
+          ]
+        },
+        {
+          "name": "",
+          "role": "Install Helper",
+          "photo": "/assets/images/team/crew-00881.jpg",
+          "shoot_frame": "00881",
+          "duties": [
+            "Supporting our lead installers on every install"
+          ],
+          "name_pending": true,
+          "hidden": true
+        }
+      ]
     },
     {
-      "slug": "technicians",
-      "name": "Technicians & Helpers",
-      "blurb": "The people in our trucks every day — inspecting systems, cleaning ducts and dryer vents, diagnosing problems and walking homeowners through their options.",
+      "slug": "indoor-air-quality",
+      "name": "Indoor Air Quality",
+      "blurb": "The technicians in our trucks every day — inspecting systems, cleaning ducts and dryer vents, repairing equipment and upgrading attics and insulation.",
       "members": [
         {
           "name": "Oscar L.",
-          "role": "Sales Technician",
+          "role": "Lead Technician",
           "photo": "/assets/images/team/oscar.jpg",
-          "bio": "Oscar came to HVAC from construction and now diagnoses and quotes residential and commercial heating and cooling solutions.",
+          "bio": "Oscar came to HVAC from construction and now leads our technicians, diagnosing and quoting residential and commercial heating and cooling solutions.",
           "duties": [
+            "Leading our technician crews in the field",
             "In-home system inspections and diagnostics",
             "Explaining repair vs. replacement options and preparing quotes"
           ]
         },
         {
+          "name": "Misael",
+          "role": "Technician",
+          "photo": "/assets/images/team/crew-00036.jpg",
+          "shoot_frame": "00036",
+          "duties": [
+            "Indoor air quality inspections and system diagnostics",
+            "Air duct, dryer vent and equipment cleaning",
+            "Walking homeowners through what we found and their options"
+          ]
+        },
+        {
+          "name": "Jacob",
+          "role": "Technician",
+          "photo": "/assets/images/team/crew-00026.jpg",
+          "shoot_frame": "00026",
+          "duties": [
+            "Indoor air quality inspections and system diagnostics",
+            "Air duct, dryer vent and equipment cleaning",
+            "Walking homeowners through what we found and their options"
+          ]
+        },
+        {
+          "name": "Brandon",
+          "role": "Technician",
+          "photo": "/assets/images/team/crew-00127.jpg",
+          "shoot_frame": "00127",
+          "duties": [
+            "Indoor air quality inspections and system diagnostics",
+            "Air duct, dryer vent and equipment cleaning",
+            "Walking homeowners through what we found and their options"
+          ]
+        },
+        {
           "name": "Taylor M.",
-          "role": "Sales Technician",
+          "role": "Technician",
           "photo": "/assets/images/team/taylor.jpg",
           "bio": "A Hawaii native and military veteran, Taylor worked HVAC in the San Diego shipyards before moving into residential comfort.",
           "duties": [
@@ -115,157 +236,64 @@
           ]
         },
         {
-          "name": "Joe",
-          "role": "HVAC Technician",
-          "photo": "/assets/images/team/joe.jpg",
-          "bio": "With 10+ years in the trade and 3 with Sky Clean Air, Joe helps homeowners and businesses find the right comfort solution.",
+          "name": "Tedi",
+          "role": "Technician",
+          "photo": "/assets/images/team/tedi.jpg",
           "duties": [
-            "Service calls, diagnostics and repairs",
-            "Helping customers choose the right system for their home"
-          ],
-          "facts": [
-            [
-              "Outside work",
-              "Welding, fabricating and building trucks"
-            ]
+            "Indoor air quality inspections and system diagnostics",
+            "Air duct, dryer vent and equipment cleaning",
+            "Walking homeowners through what we found and their options"
           ]
         },
         {
-          "name": "Erick",
-          "role": "Team Member",
-          "role_pending": true,
-          "photo": "/assets/images/team/erick.jpg"
-        },
-        {
-          "name": "Louis A.",
-          "role": "Team Member",
-          "role_pending": true,
-          "photo": "/assets/images/team/louis.jpg"
-        },
-        {
-          "name": "Tedi",
-          "role": "Team Member",
-          "role_pending": true,
-          "photo": "/assets/images/team/tedi.jpg"
-        }
-      ]
-    },
-    {
-      "slug": "crew",
-      "name": "More of Our Crew",
-      "blurb": "The rest of the people who keep Sky Clean Air running — in the office, in the trucks and on the job site.",
-      "members": [
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-00011.jpg",
-          "shoot_frame": "00011"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-00026.jpg",
-          "shoot_frame": "00026"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-00036.jpg",
-          "shoot_frame": "00036"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
+          "name": "Salvador",
+          "role": "Repair Technician",
           "photo": "/assets/images/team/crew-00058.jpg",
-          "shoot_frame": "00058"
+          "shoot_frame": "00058",
+          "duties": [
+            "Diagnosing and repairing heating and cooling equipment",
+            "Getting systems running safely and efficiently again"
+          ]
         },
         {
-          "name": "",
-          "name_pending": true,
-          "role": "",
+          "name": "Brian",
+          "role": "Repair Technician",
           "photo": "/assets/images/team/crew-00092.jpg",
-          "shoot_frame": "00092"
+          "shoot_frame": "00092",
+          "duties": [
+            "Diagnosing and repairing heating and cooling equipment",
+            "Getting systems running safely and efficiently again"
+          ]
         },
         {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-00127.jpg",
-          "shoot_frame": "00127"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-00164.jpg",
-          "shoot_frame": "00164"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-00853.jpg",
-          "shoot_frame": "00853"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-00881.jpg",
-          "shoot_frame": "00881"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
+          "name": "Patrick",
+          "role": "Insulation Specialist",
           "photo": "/assets/images/team/crew-00918.jpg",
-          "shoot_frame": "00918"
+          "shoot_frame": "00918",
+          "duties": [
+            "Attic and crawl space cleanouts",
+            "Insulation removal and installation"
+          ]
         },
         {
-          "name": "",
-          "name_pending": true,
-          "role": "",
+          "name": "Juan",
+          "role": "Insulation Specialist",
           "photo": "/assets/images/team/crew-00954.jpg",
-          "shoot_frame": "00954"
+          "shoot_frame": "00954",
+          "duties": [
+            "Attic and crawl space cleanouts",
+            "Insulation removal and installation"
+          ]
         },
         {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-00993.jpg",
-          "shoot_frame": "00993"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-01040.jpg",
-          "shoot_frame": "01040"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-01116.jpg",
-          "shoot_frame": "01116"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
-          "photo": "/assets/images/team/crew-01140.jpg",
-          "shoot_frame": "01140"
-        },
-        {
-          "name": "",
-          "name_pending": true,
-          "role": "",
+          "name": "Juan",
+          "role": "Helper",
           "photo": "/assets/images/team/crew-01589.jpg",
-          "shoot_frame": "01589"
+          "shoot_frame": "01589",
+          "duties": [
+            "Supporting our technicians on every job",
+            "Setup, protection of the home and clean-up"
+          ]
         }
       ]
     }

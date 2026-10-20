@@ -2,12 +2,29 @@
   "_note": "Single source of truth for where Sky Clean Air works. Drives the service-area pages, the map pins, nav, footer and homepage lists. To add a new market: add a region (status 'coming-soon' until launch) and its cities, then rebuild. Flipping a region's status to 'active' or 'launching' publishes a page for every city in it. A city can override its region's status with its own `status`. lat/lng are filled in by tools/geocode_areas.py.",
   "regions": [
     {
+      "slug": "san-diego-county",
+      "name": "San Diego County",
+      "short": "SD",
+      "status": "active",
+      "order": 1,
+      "blurb": "Our home base since 2018. From San Ysidro to Fallbrook, our trucks are in San Diego County neighborhoods every day.",
+      "center": [
+        32.85,
+        -117.1
+      ],
+      "zoom": 10,
+      "intro": [
+        "San Diego is where Sky Clean Air started in 2018 — one rented van, one set of duct-cleaning equipment and two founders who answered the phone themselves. Today our trucks are in San Diego County neighborhoods every day, from San Ysidro and Chula Vista up through Kearny Mesa, the beach communities and North County to Fallbrook.",
+        "The county's microclimates matter for your home. Coastal neighborhoods deal with marine-layer humidity and salt air; inland areas like El Cajon, Santee, Poway and Escondido see summer heat that pushes AC systems hard; Santa Ana winds and wildfire season send fine dust and smoke into every home. We service all of it — ducts, dryer vents, attics, heating, cooling and indoor air quality — with the same honest recommendations wherever you live."
+      ]
+    },
+    {
       "slug": "orange-county",
       "name": "Orange County",
       "short": "OC",
       "status": "launching",
       "badge": "Now Serving",
-      "order": 1,
+      "order": 2,
       "blurb": "Now serving Orange County homes and businesses from San Clemente to Brea — the same crew, the same standards, and the same upfront pricing our San Diego customers know.",
       "center": [
         33.7,
@@ -17,23 +34,6 @@
       "intro": [
         "Orange County is the newest stop on our map, and we're bringing the same crew habits that built our name in San Diego: show up when we say we will, explain what we find in plain English, and give you a written price before any work starts.",
         "From the coastal neighborhoods of San Clemente, Dana Point and Huntington Beach to the inland heat of Mission Viejo, Lake Forest and Yorba Linda, OC homes put real demands on their HVAC systems. A lot of the housing here went up between the 1970s and 1990s, which means original ductwork, attic-mounted air handlers and systems that are quietly nearing the end of their life. That's exactly the kind of home we know how to take care of — whether you need a duct cleaning, a dryer vent that finally stops clogging, better attic insulation or a new, properly sized system."
-      ]
-    },
-    {
-      "slug": "san-diego-county",
-      "name": "San Diego County",
-      "short": "SD",
-      "status": "active",
-      "order": 2,
-      "blurb": "Our home base since 2016. From San Ysidro to Fallbrook, our trucks are in San Diego County neighborhoods every day.",
-      "center": [
-        32.85,
-        -117.1
-      ],
-      "zoom": 10,
-      "intro": [
-        "San Diego is where Sky Clean Air started in 2016 — one rented van, one set of duct-cleaning equipment and two founders who answered the phone themselves. Today our trucks are in San Diego County neighborhoods every day, from San Ysidro and Chula Vista up through Kearny Mesa, the beach communities and North County to Fallbrook.",
-        "The county's microclimates matter for your home. Coastal neighborhoods deal with marine-layer humidity and salt air; inland areas like El Cajon, Santee, Poway and Escondido see summer heat that pushes AC systems hard; Santa Ana winds and wildfire season send fine dust and smoke into every home. We service all of it — ducts, dryer vents, attics, heating, cooling and indoor air quality — with the same honest recommendations wherever you live."
       ]
     }
   ],
