@@ -25,5 +25,6 @@
    "No. Screens catch lint and block airflow. The outside hood should have a damper flap that opens when the dryer runs and closes to keep pests out."
   ]
  ],
- "service": "dryer-vents"
+ "service": "dryer-vents",
+ "image": "/assets/blog/QLkHHdfYqq.webp"
 }

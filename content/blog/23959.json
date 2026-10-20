@@ -1,33 +1,34 @@
 {
-  "id": "23959",
-  "path": "/how-long-should-an-ac-run-on-a-hot-day/",
-  "status": "rewritten",
-  "title": "How Long Should an AC Run on a Hot Day?",
-  "h1": "How Long Should an AC Run on a Hot Day?",
-  "description": "On a hot day an AC can run for long stretches, even most of the afternoon. Here's what's normal, what's not, and when long or short cycles mean trouble.",
-  "quick_answer": "On a mild day a properly sized AC usually runs in cycles of roughly 15 to 20 minutes, a few times an hour. On a very hot day it's normal for it to run much longer, even close to nonstop in the afternoon, as long as the house holds a steady temperature. Short cycles of a few minutes, or running constantly without cooling, point to a problem.",
-  "body": "<h2>Why does my AC run longer on hot days?</h2><p>Your air conditioner removes heat at a fairly steady rate. When it's warm outside, heat comes into the house slowly and the AC catches up quickly, then shuts off. On a hot inland afternoon, heat pours in through the roof, walls and windows faster, so the AC has to run longer to keep up.</p><p>Most systems are sized to hold a comfortable temperature on a typical hot day, not to make the house ice cold during a heat wave. So on the hottest days of the year, long run times are expected. That's the system doing its job.</p><h2>What does a normal AC cycle look like?</h2><ul><li><strong>Mild days:</strong> the AC turns on, runs for a stretch, reaches the setpoint and shuts off. Fairly regular cycles a few times an hour.</li><li><strong>Hot days:</strong> longer cycles with shorter breaks in between, especially from midafternoon into early evening.</li><li><strong>Heat waves:</strong> the AC may run most of the afternoon. If the indoor temperature stays steady or rises only a few degrees, that's usually fine.</li></ul><p>The evening is often when people notice it most. The sun has gone down, but the attic and walls are still releasing heat they soaked up during the day, so the AC keeps going for a while.</p><h2>When are short AC cycles a problem?</h2><p>If your AC turns on, runs for just a few minutes, shuts off and then starts again soon after, that's called short cycling. It's hard on the compressor and doesn't remove much humidity. Common causes include:</p><ul><li>An oversized system that cools the air too quickly</li><li>A thermostat placed near a supply vent, a sunny window or a heat source</li><li>A clogged filter or iced-up coil tripping a safety control</li><li>Low refrigerant or an electrical problem with the compressor or capacitor</li><li>A dirty outdoor coil causing the unit to overheat</li></ul><h2>When are long AC cycles a problem?</h2><p>Long run times are a concern when the house isn't getting cooler or the AC runs constantly even on mild days. Watch for:</p><ul><li>The indoor temperature climbing steadily even though the AC never stops</li><li>Warm or barely cool air coming from the vents</li><li>Ice on the refrigerant lines or the outdoor unit</li><li>Water around the indoor unit</li><li>Higher electric bills without a change in weather or habits</li></ul><p>These usually trace back to airflow problems, low refrigerant, a dirty coil, leaky attic ducts or a system that's simply too small or too old to keep up.</p><h2>What can you check before calling for service?</h2><ol><li><strong>The filter.</strong> A clogged filter is one of the most common causes of poor cooling.</li><li><strong>The thermostat.</strong> Make sure it's set to cool, the fan is on auto, and the batteries are good.</li><li><strong>The outdoor unit.</strong> Clear leaves and plants back, and make sure the fan is spinning when the AC is on.</li><li><strong>The vents.</strong> Open supply registers and keep furniture off return grilles.</li><li><strong>The breaker.</strong> If the outdoor unit isn't running, check whether a breaker has tripped. If it trips again, leave it off and call a technician.</li></ol><p>If you see ice, turn the cooling off and run the fan only to let it thaw. Don't try to chip it off. Ice usually means an airflow or refrigerant problem that needs a technician.</p><h3>How can I help my AC on the hottest days?</h3><p>Start cooling earlier in the day instead of waiting until the house is hot. Close blinds on west-facing windows, avoid big drops in the setpoint, and run heat-producing appliances in the evening. Ceiling fans help too, since moving air makes a room feel cooler without changing the thermostat. Turn them off when you leave the room. Attic insulation and sealed ducts also make a real difference in older stucco homes where the ducts sit in a hot attic.</p><p>If your AC can't keep up, or it short cycles on mild days, our <a href=\"/services/air-conditioning/\">air conditioning team</a> can find out why. A pre-summer tune-up is the easiest way to catch problems before the first heat wave.</p>",
-  "faqs": [
-    [
-      "Is it bad if my AC runs all afternoon?",
-      "Not by itself. On very hot days, long run times are normal if the house holds a steady temperature. It's a concern if the house keeps getting warmer or the AC runs nonstop on mild days too."
-    ],
-    [
-      "Should I set my thermostat lower to cool faster?",
-      "No. A central AC cools at the same rate no matter how low you set it. Setting it lower just makes it run longer and overcool the house."
-    ],
-    [
-      "Why does my AC shut off after five minutes?",
-      "That's short cycling. It can come from an oversized system, a poorly placed thermostat, a dirty filter, low refrigerant or an electrical issue. Have a technician check it."
-    ],
-    [
-      "How cool should the air from my vents feel?",
-      "A common rule of thumb is that supply air should be roughly 15 to 20 degrees cooler than the air going into the return. A technician can measure it accurately."
-    ],
-    [
-      "Can leaky ducts make my AC run longer?",
-      "Yes. Ducts in a hot attic that leak or have poor insulation lose cool air before it reaches your rooms, so the system has to run longer to reach the setpoint."
-    ]
+ "id": "23959",
+ "path": "/how-long-should-an-ac-run-on-a-hot-day/",
+ "status": "rewritten",
+ "title": "How Long Should an AC Run on a Hot Day?",
+ "h1": "How Long Should an AC Run on a Hot Day?",
+ "description": "On a hot day an AC can run for long stretches, even most of the afternoon. Here's what's normal, what's not, and when long or short cycles mean trouble.",
+ "quick_answer": "On a mild day a properly sized AC usually runs in cycles of roughly 15 to 20 minutes, a few times an hour. On a very hot day it's normal for it to run much longer, even close to nonstop in the afternoon, as long as the house holds a steady temperature. Short cycles of a few minutes, or running constantly without cooling, point to a problem.",
+ "body": "<h2>Why does my AC run longer on hot days?</h2><p>Your air conditioner removes heat at a fairly steady rate. When it's warm outside, heat comes into the house slowly and the AC catches up quickly, then shuts off. On a hot inland afternoon, heat pours in through the roof, walls and windows faster, so the AC has to run longer to keep up.</p><p>Most systems are sized to hold a comfortable temperature on a typical hot day, not to make the house ice cold during a heat wave. So on the hottest days of the year, long run times are expected. That's the system doing its job.</p><h2>What does a normal AC cycle look like?</h2><ul><li><strong>Mild days:</strong> the AC turns on, runs for a stretch, reaches the setpoint and shuts off. Fairly regular cycles a few times an hour.</li><li><strong>Hot days:</strong> longer cycles with shorter breaks in between, especially from midafternoon into early evening.</li><li><strong>Heat waves:</strong> the AC may run most of the afternoon. If the indoor temperature stays steady or rises only a few degrees, that's usually fine.</li></ul><p>The evening is often when people notice it most. The sun has gone down, but the attic and walls are still releasing heat they soaked up during the day, so the AC keeps going for a while.</p><h2>When are short AC cycles a problem?</h2><p>If your AC turns on, runs for just a few minutes, shuts off and then starts again soon after, that's called short cycling. It's hard on the compressor and doesn't remove much humidity. Common causes include:</p><ul><li>An oversized system that cools the air too quickly</li><li>A thermostat placed near a supply vent, a sunny window or a heat source</li><li>A clogged filter or iced-up coil tripping a safety control</li><li>Low refrigerant or an electrical problem with the compressor or capacitor</li><li>A dirty outdoor coil causing the unit to overheat</li></ul><h2>When are long AC cycles a problem?</h2><p>Long run times are a concern when the house isn't getting cooler or the AC runs constantly even on mild days. Watch for:</p><ul><li>The indoor temperature climbing steadily even though the AC never stops</li><li>Warm or barely cool air coming from the vents</li><li>Ice on the refrigerant lines or the outdoor unit</li><li>Water around the indoor unit</li><li>Higher electric bills without a change in weather or habits</li></ul><p>These usually trace back to airflow problems, low refrigerant, a dirty coil, leaky attic ducts or a system that's simply too small or too old to keep up.</p><h2>What can you check before calling for service?</h2><ol><li><strong>The filter.</strong> A clogged filter is one of the most common causes of poor cooling.</li><li><strong>The thermostat.</strong> Make sure it's set to cool, the fan is on auto, and the batteries are good.</li><li><strong>The outdoor unit.</strong> Clear leaves and plants back, and make sure the fan is spinning when the AC is on.</li><li><strong>The vents.</strong> Open supply registers and keep furniture off return grilles.</li><li><strong>The breaker.</strong> If the outdoor unit isn't running, check whether a breaker has tripped. If it trips again, leave it off and call a technician.</li></ol><p>If you see ice, turn the cooling off and run the fan only to let it thaw. Don't try to chip it off. Ice usually means an airflow or refrigerant problem that needs a technician.</p><h3>How can I help my AC on the hottest days?</h3><p>Start cooling earlier in the day instead of waiting until the house is hot. Close blinds on west-facing windows, avoid big drops in the setpoint, and run heat-producing appliances in the evening. Ceiling fans help too, since moving air makes a room feel cooler without changing the thermostat. Turn them off when you leave the room. Attic insulation and sealed ducts also make a real difference in older stucco homes where the ducts sit in a hot attic.</p><p>If your AC can't keep up, or it short cycles on mild days, our <a href=\"/services/air-conditioning/\">air conditioning team</a> can find out why. A pre-summer tune-up is the easiest way to catch problems before the first heat wave.</p>",
+ "faqs": [
+  [
+   "Is it bad if my AC runs all afternoon?",
+   "Not by itself. On very hot days, long run times are normal if the house holds a steady temperature. It's a concern if the house keeps getting warmer or the AC runs nonstop on mild days too."
   ],
-  "service": "air-conditioning"
+  [
+   "Should I set my thermostat lower to cool faster?",
+   "No. A central AC cools at the same rate no matter how low you set it. Setting it lower just makes it run longer and overcool the house."
+  ],
+  [
+   "Why does my AC shut off after five minutes?",
+   "That's short cycling. It can come from an oversized system, a poorly placed thermostat, a dirty filter, low refrigerant or an electrical issue. Have a technician check it."
+  ],
+  [
+   "How cool should the air from my vents feel?",
+   "A common rule of thumb is that supply air should be roughly 15 to 20 degrees cooler than the air going into the return. A technician can measure it accurately."
+  ],
+  [
+   "Can leaky ducts make my AC run longer?",
+   "Yes. Ducts in a hot attic that leak or have poor insulation lose cool air before it reaches your rooms, so the system has to run longer to reach the setpoint."
+  ]
+ ],
+ "service": "air-conditioning",
+ "image": "/assets/blog/How-Long-Should-an-AC-Run-on-a-Hot-Day2.webp"
 }

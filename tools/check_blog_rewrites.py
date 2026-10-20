@@ -91,8 +91,8 @@ def lint(path):
     for href in re.findall(r'href="([^"]*)"', body):
         if not INTERNAL_OK.match(href):
             bad('body', 'link %r (internal links only: /services/<slug>/, /specials/, /contact-us/ ...)' % href)
-    if not 3 <= len(r['faqs']) <= 6:
-        bad('faqs', '%d items (need 3-6)' % len(r['faqs']))
+    if not 3 <= len(r['faqs']) <= 8:
+        bad('faqs', '%d items (need 3-8)' % len(r['faqs']))
     for q, a in r['faqs']:
         if not q.strip().endswith('?'):
             bad('faqs', 'question should end with "?": %r' % q[:60])

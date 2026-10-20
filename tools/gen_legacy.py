@@ -569,6 +569,12 @@ def rewrites():
 
 
 @lru_cache(maxsize=None)
+def landmark_images():
+    f = os.path.join(REWRITES, '_landmark-images.json')
+    return json.load(open(f, encoding='utf-8')) if os.path.exists(f) else {}
+
+
+@lru_cache(maxsize=None)
 def retired_posts():
     if os.environ.get('SCA_SKIP_REWRITES'):
         return {}
@@ -588,6 +594,8 @@ def legacy_post(r, cats, license_no):
     rw = rewrites().get(path)
     if rw:
         _stat('rewritten', path)
+        if rw.get('image'):  # unique lead image from tools/assign_blog_images.py
+            img, branded = rw['image'], True
         body = hygiene(rw['body'], path, license_no)
         return {'path': path, 'h1': rw['h1'], 'title': rw['title'], 'description': rw['description'],
                 'qa': rw['quick_answer'], 'body': body, 'faqs': [tuple(x) for x in rw['faqs']],
@@ -868,7 +876,7 @@ def landmark_posts(site, cats, license_no):
         published = _iso(_meta(doc, 'property', 'article:published_time') or (dm.group(1) if dm else ''))
         modified = _iso(mm.group(1) if mm else published) or published
         cat = match_service({'title': title, 'seo_title': '', 'categories': [], 'body': body}, cats)
-        img = f'/assets/images/services/{cat["slug"]}.webp'
+        img = landmark_images().get(path) or f'/assets/images/services/{cat["slug"]}.webp'
         has_img = os.path.exists(os.path.join(ROOT, 'public', img.lstrip('/')))
         out.append({'path': path, 'h1': title, 'title': None, 'description': _meta(doc, 'name', 'description'),
                     'qa': quick_answer(body, title), 'body': body, 'faqs': [], 'cat': cat,

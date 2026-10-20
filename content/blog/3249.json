@@ -25,5 +25,7 @@
    "Emergency heat turns on backup electric heat strips, or a furnace in a dual-fuel system, and skips the heat pump. It's meant for when the heat pump fails, not for regular use, because heat strips cost a lot more to run."
   ]
  ],
- "service": "heating"
+ "service": "heating",
+ "image": "/assets/blog/cover-3249.webp",
+ "image_locked": true
 }

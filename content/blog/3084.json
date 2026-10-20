@@ -19,7 +19,12 @@
   [
    "How often should my HVAC system be serviced?",
    "Once a year is a good baseline for most homes. Heat pumps that handle both heating and cooling benefit from a check in spring and fall. Filters should be checked monthly and changed as needed."
+  ],
+  [
+   "How Can I Tell How Old My HVAC System Is?",
+   "Find the data plate on the furnace, air handler or outdoor unit and read the serial number. Most manufacturers code the year and often the week or month of manufacture into it. If you can't decode it, look for a manufacture date on the label, check permits or paperwork, or ask a technician to look during a tune-up."
   ]
  ],
- "service": "hvac"
+ "service": "hvac",
+ "image": "/assets/blog/wYjAKZFMAv.webp"
 }
