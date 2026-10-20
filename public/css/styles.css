@@ -1868,3 +1868,81 @@ body.page-lp .site-header.lp-header { top: 0; }
 ul.landmark-posts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 ul.landmark-posts li a { display: inline-block; padding: 9px 16px; border: 1px solid var(--gray-200); border-radius: 999px; background: var(--white); color: var(--ink); font-weight: 600; font-size: 0.92rem; transition: border-color 0.15s ease, color 0.15s ease; }
 ul.landmark-posts li a:hover { border-color: var(--sky); color: var(--sky-deep); }
+
+/* ---- Blog post template (2026-10) ------------------------------------------
+   One layout for every post (legacy, rewritten and Landmark-published):
+   dark hero with service chip, headline, meta and "The short answer";
+   article + sticky rail (On this page, estimate form); FAQ; author box. */
+.pt-hero .pt-hero-inner { position: relative; z-index: 2; }
+.pt-hero .pt-hero-inner > h1 { max-width: 920px; }
+.pt-chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px;
+  background: rgba(42, 221, 234, 0.12); border: 1px solid rgba(42, 221, 234, 0.35); color: var(--sky);
+  font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.15s ease;
+}
+.pt-chip:hover { background: rgba(42, 221, 234, 0.22); }
+.pt-hero h1 { margin-top: 18px; font-size: clamp(2.1rem, 4.6vw, 3.6rem); line-height: 1.04; text-wrap: balance; }
+.pt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 16px; color: rgba(255, 255, 255, 0.7); font-size: 0.92rem; font-weight: 600; }
+.pt-meta a { color: var(--white); text-decoration: underline; text-decoration-color: rgba(42, 221, 234, 0.6); text-underline-offset: 3px; }
+.pt-meta a:hover { color: var(--sky); }
+.pt-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--sky); opacity: 0.7; }
+.pt-answer {
+  margin-top: 28px; max-width: 780px; padding: 20px 24px; border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(42, 221, 234, 0.3); border-left: 4px solid var(--sky);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+.pt-answer-label { display: flex; align-items: center; gap: 8px; color: var(--sky); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.pt-answer-text { margin-top: 8px; color: var(--white); font-size: 1.08rem; line-height: 1.65; }
+
+.pt-section { padding-top: 56px; }
+.pt-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 64px; align-items: start; }
+.pt-main { min-width: 0; max-width: 760px; }
+.pt-lead { margin: 0 0 40px; }
+.pt-body > p:first-child { font-size: 1.14rem; color: var(--ink); }
+.pt-body h2 { position: relative; padding-top: 18px; scroll-margin-top: calc(var(--header-height) + 24px); }
+.pt-body h2::before { content: ''; position: absolute; top: 0; left: 0; width: 44px; height: 4px; border-radius: 2px; background: var(--grad-sky); }
+.pt-body h3 { scroll-margin-top: calc(var(--header-height) + 24px); }
+.pt-body ul li::marker, .pt-body ol li::marker { color: var(--sky-deep); font-weight: 700; }
+.pt-body table { width: 100%; border-collapse: collapse; margin: 1.4em 0; font-size: 0.95rem; display: block; overflow-x: auto; }
+.pt-body th, .pt-body td { padding: 10px 12px; border-bottom: 1px solid var(--gray-200); text-align: left; vertical-align: top; }
+.pt-body th { color: var(--ink); background: var(--gray-100); font-weight: 700; }
+.pt-main .faq { margin-top: 56px; }
+
+.pt-rail { position: sticky; top: calc(var(--header-height) + 16px); display: flex; flex-direction: column; gap: 20px; }
+.pt-toc { padding: 20px 22px; border: 1px solid var(--gray-200); border-radius: var(--radius-md); background: var(--white); }
+.pt-rail-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sky-deep); margin-bottom: 10px; }
+.pt-toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; display: flex; flex-direction: column; gap: 2px; max-height: 46vh; overflow: auto; }
+.pt-toc li { counter-increment: toc; }
+.pt-toc a { display: grid; grid-template-columns: 22px 1fr; gap: 6px; padding: 6px 4px; border-radius: 6px; color: var(--ink-soft); font-size: 0.9rem; font-weight: 600; line-height: 1.35; text-decoration: none; }
+.pt-toc a::before { content: counter(toc, decimal-leading-zero); color: var(--sky-deep); font-size: 0.75rem; font-weight: 800; padding-top: 2px; }
+.pt-toc a:hover { background: var(--gray-100); color: var(--ink); }
+
+.pt-author {
+  display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 22px; align-items: center; margin-top: 56px;
+  padding: 22px; border-radius: var(--radius-lg); background: var(--gray-100); border: 1px solid var(--gray-200);
+}
+.pt-author img { width: 132px; height: 132px; object-fit: cover; object-position: center 30%; border-radius: var(--radius-md); }
+.pt-author-kicker { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sky-deep); }
+.pt-author-name { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; color: var(--ink); margin: 2px 0 6px; }
+.pt-author p { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6; }
+.pt-author-facts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 10px; font-weight: 700; }
+.pt-author-facts span { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); }
+.pt-author-facts svg { color: var(--sky-deep); }
+.pt-author-facts a { display: inline-flex; align-items: center; gap: 4px; color: var(--sky-deep); }
+
+.pt-related { background: var(--gray-100); }
+.pt-related .section-head { margin-bottom: 28px; }
+
+@media (max-width: 1080px) {
+  .pt-grid { grid-template-columns: 1fr; gap: 40px; }
+  .pt-main { max-width: none; }
+  .pt-rail { position: static; }
+  .pt-toc { display: none; }
+}
+@media (max-width: 560px) {
+  .pt-answer { padding: 16px 18px; }
+  .pt-answer-text { font-size: 1rem; }
+  .pt-author { grid-template-columns: 1fr; }
+  .pt-author img { width: 100%; height: 160px; }
+}

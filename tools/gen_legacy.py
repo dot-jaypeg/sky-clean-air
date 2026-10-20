@@ -17,7 +17,7 @@ import os
 import re
 from functools import lru_cache
 
-from sitelib import ROOT, breadcrumb_schema, cta_band, esc, icon, page_hero
+from sitelib import ROOT, breadcrumb_schema, cta_band, esc, icon, page_hero, wave
 
 LEGACY = os.path.join(ROOT, 'content', 'legacy')
 
@@ -545,188 +545,333 @@ def _iso(d):
     return (d or '')[:10]
 
 
-def posts(site):
+# -- rewritten posts (content/blog/) ---------------------------------------------
+# The 2026-10 cleanup rewrote the keepers from scratch (tools/check_blog_rewrites.py
+# lints them) and retired the rest. content/blog/<id>.json replaces the legacy
+# copy for that path; content/blog/_retired.json maps retired paths to where they
+# now redirect (the kept post on the same topic, or the matching service page).
+REWRITES = os.path.join(ROOT, 'content', 'blog')
+REWRITE_DATE = '2026-10-21'
+TEMPLATE_MARK = '<!-- sca-post-template -->'
+LANDMARK_SOURCE = os.path.join(ROOT, '.landmark', 'source')
+
+
+@lru_cache(maxsize=None)
+def rewrites():
+    out = {}
+    for f in sorted(glob.glob(os.path.join(REWRITES, '*.json'))):
+        if not os.path.basename(f).startswith('_'):
+            r = json.load(open(f, encoding='utf-8'))
+            out[r['path']] = r
+    return out
+
+
+@lru_cache(maxsize=None)
+def retired_posts():
+    f = os.path.join(REWRITES, '_retired.json')
+    return json.load(open(f, encoding='utf-8')) if os.path.exists(f) else {}
+
+
+def read_minutes(body):
+    return max(2, -(-len(_text(body).split()) // 230))
+
+
+def legacy_post(r, cats, license_no):
+    """Normalize a legacy post (rewritten version when there is one) into a post record."""
+    path = r['path']
+    img, branded = lead_image(r)
+    published = _iso(r['date'])
+    rw = rewrites().get(path)
+    if rw:
+        _stat('rewritten', path)
+        body = hygiene(rw['body'], path, license_no)
+        return {'path': path, 'h1': rw['h1'], 'title': rw['title'], 'description': rw['description'],
+                'qa': rw['quick_answer'], 'body': body, 'faqs': [tuple(x) for x in rw['faqs']],
+                'cat': cats.get(rw.get('service')) or match_service(r, cats), 'img': img, 'branded': branded,
+                'published': published, 'modified': rw.get('updated') or REWRITE_DATE, 'rewritten': True}
+    body0 = local_images(r['body'])
+    before = json.dumps([body0, [list(x) for x in r['faqs']], r['description'] or ''], ensure_ascii=False)
+    body = hygiene(body0, path, license_no)
+    faqs = [(hygiene(q, path, license_no), hygiene(a, path, license_no)) for q, a in r['faqs']]
+    desc_src = hygiene(r['description'] or '', path, license_no)
+    title = hygiene(r['title'], path, license_no)
+    if json.dumps([body, [list(x) for x in faqs], desc_src], ensure_ascii=False) != before:
+        _stat('posts_touched_by_hygiene', path)
+    if img:
+        body = re.sub(r'^<figure>.*?</figure>\n?', '', body)  # drop a duplicate lead image
+    return {'path': path, 'h1': title, 'title': None, 'description': None, 'desc_src': desc_src,
+            'seo_title': hygiene(r.get('seo_title') or '', path, license_no), 'raw_body': r['body'],
+            'qa': quick_answer(body, title), 'body': body, 'faqs': faqs, 'cat': match_service(r, cats),
+            'img': img, 'branded': branded, 'published': published,
+            'modified': _iso(r['modified'] or r['date']), 'rewritten': False}
+
+
+def legacy_meta(P, used_desc):
+    """Title + meta description for a post that hasn't been rewritten (from its legacy copy)."""
+    body, desc_src, title = P['body'], P['desc_src'], P['h1']
+    body_text = _text(body)
+    body_sents = sentences(body_text)[:8]
+    if desc_src and not re.search(r'[.!?…)"”]$', desc_src.strip()) and _text(desc_src)[:60] in body_text[:600]:
+        # WordPress trimmed the excerpt mid-sentence: rebuild it from the same opening text.
+        start = body_text.index(_text(desc_src)[:60])
+        desc_src = body_text[start:start + 700]
+    description = None
+    for cand in (desc_src, P['qa'] or '', ' '.join(body_sents[:4]), ' '.join(body_sents[2:6])):
+        d = fit_description(cand) if cand else None
+        if d and d not in used_desc:
+            description = d
+            break
+    if not description:
+        description = fit_description(title.rstrip('.?!') + '. ' + ' '.join(body_sents)) or text_excerpt(P['raw_body'], 155)
+        _stat('description_fallback', P['path'], description)
+    return post_title({'title': title, 'seo_title': P['seo_title']}), description
+
+
+def post_hero(ch, P):
+    cat = P['cat']
+    qa = (f'<div class="pt-answer" id="quick-answer"><p class="pt-answer-label">{icon("check", 16)} The short answer</p>'
+          f'<p class="pt-answer-text post-qa-text">{esc(P["qa"])}</p></div>') if P['qa'] else ''
+    return f'''<section class="page-hero pt-hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="container pt-hero-inner">
+    <a class="pt-chip" href="/services/{cat["slug"]}/">{icon(cat.get("icon", "vent"), 16)} {esc(cat["name"])}</a>
+    <h1>{esc(P["h1"])}</h1>
+    <p class="pt-meta"><span>Updated <time datetime="{P["modified"]}">{format_date(P["modified"])}</time></span>
+      <span class="pt-dot" aria-hidden="true"></span><span>{read_minutes(P["body"])} min read</span>
+      <span class="pt-dot" aria-hidden="true"></span><span>By <a href="/our-team/">the Sky Clean Air team</a></span></p>
+    {qa}
+  </div>
+  {wave()}
+</section>'''
+
+
+def post_rail(ch, D, toc):
+    toc_html_ = ''
+    if len(toc) >= 3:
+        items = ''.join(f'<li><a href="#{h}">{esc(t)}</a></li>' for h, t in toc)
+        toc_html_ = (f'<nav class="pt-toc" aria-label="On this page"><p class="pt-rail-title">On this page</p>'
+                     f'<ol>{items}</ol></nav>')
+    options = ''.join(f'<option>{esc(c["name"])}</option>' for c in D.categories) + '<option>Other</option>'
+    return f'''<aside class="pt-rail">
+  {toc_html_}
+  <div class="side-card side-quote pt-quote">
+    <h3>Get a Free Estimate</h3>
+    <p>Tell us what's going on and we'll call you back, usually the same day.</p>
+    <a href="{ch.tel}" class="btn btn-primary btn-block">{icon("phone", 18)} {ch.phone}</a>
+    <form class="quote-form side-form" data-quote-form>
+      <input type="hidden" name="source" value="Sidebar Form"><label class="form-hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+      <label class="sr-only" for="pt-name">Name</label><input id="pt-name" name="name" placeholder="Your name" required>
+      <label class="sr-only" for="pt-phone">Phone</label><input id="pt-phone" name="phone" type="tel" placeholder="Phone number" required>
+      <label class="sr-only" for="pt-service">Service</label><select id="pt-service" name="service" required><option value="" disabled selected>Service needed</option>{options}</select>
+      <button type="submit" class="btn btn-secondary btn-block">Request a Callback</button>
+      <div class="form-success">Thanks! We'll call you back shortly.</div>
+    </form>
+  </div>
+</aside>'''
+
+
+def author_box(D):
+    return (f'<aside class="pt-author" aria-label="About the author">'
+            f'<img src="/assets/images/team-2026.jpg" alt="The Sky Clean Air team in front of their service vans" loading="lazy">'
+            f'<div><p class="pt-author-kicker">Written by</p><p class="pt-author-name">The Sky Clean Air team</p>'
+            f'<p>Family-owned HVAC and indoor air quality company based in Kearny Mesa, San Diego, since {D.site["founded"]}. '
+            f'Our technicians answer these questions in homes across San Diego County and Orange County every week.</p>'
+            f'<p class="pt-author-facts"><span>{icon("shield", 16)} California Contractor License #{esc(D.site["license"])}</span>'
+            f'<a href="/our-team/">Meet the team {icon("arrow", 14)}</a></p></div></aside>')
+
+
+def render_post(site, P, related, publisher, extra_page=None):
     D, ch = site.D, site.ch
+    domain = D.site['domain']
+    path, cat = P['path'], P['cat']
+    body = P['body']
+    if P['qa']:
+        # An extractive short answer is lifted from the opening; don't repeat it as the first paragraph.
+        first = re.match(r'\s*<p[^>]*>(.*?)</p>\s*', body, re.S)
+        if first and _text(first.group(1)) == P['qa']:
+            body = body[first.end():]
+    body, toc = add_h2_ids(body)
+    body = insert_callout(body, service_callout(cat, ch))
+    if P['qa']:
+        _stat('quick_answer', path)
+    if len(toc) >= 3:
+        _stat('toc', path)
+    faq_html, faq_schema = faq_section(P['faqs'], 'Common Questions') if P['faqs'] else ('', [])
+    lead = (f'<figure class="post-lead pt-lead"><img src="{P["img"]}" alt="{esc(P["h1"])}"'
+            f'{IMG_DIMS if P["branded"] else ""} fetchpriority="high"></figure>') if P['img'] else ''
+    rel_html = ''
+    if related:
+        rel_html = (f'<section class="section pt-related"><div class="container">'
+                    f'<div class="section-head"><h2>More on <span class="grad-text">{esc(cat["name"])}</span></h2></div>'
+                    f'<div class="blog-grid">{"".join(post_card(c) for c in related)}</div></div></section>')
+    url = domain + path
+    img = P['img']
+    image_obj = ({'@type': 'ImageObject', 'url': (img if img.startswith('http') else domain + img),
+                  **({'width': 1200, 'height': 675} if P['branded'] else {})} if img else None)
+    crumbs = [('Home', '/'), ('Blog', '/blog/'), (P['h1'], None)]
+    article_schema = {
+        '@context': 'https://schema.org', '@type': 'BlogPosting',
+        'mainEntityOfPage': {'@type': 'WebPage', '@id': url},
+        'url': url, 'headline': P['h1'][:110], 'description': P['description'],
+        **({'image': image_obj} if image_obj else {}),
+        'datePublished': P['published'], 'dateModified': P['modified'],
+        'author': {'@type': 'Organization', 'name': D.site['name'] + ' Team', 'url': domain + '/our-team/'},
+        'publisher': publisher, 'inLanguage': 'en-US',
+        'about': {'@type': 'Service', 'name': cat['name'], 'url': f'{domain}/services/{cat["slug"]}/',
+                  'provider': {'@id': domain + '/#business'}, 'areaServed': AREAS_SCHEMA},
+        'spatialCoverage': AREAS_SCHEMA,
+        'wordCount': len(_text(body).split()),
+        'articleSection': cat['name'],
+        'speakable': {'@type': 'SpeakableSpecification',
+                      'cssSelector': ['.pt-hero h1'] + (['.post-qa-text'] if P['qa'] else [])},
+    }
+    head_extra = (f'<meta property="article:published_time" content="{P["published"]}">\n'
+                  f'<meta property="article:modified_time" content="{P["modified"]}">\n'
+                  '<meta name="twitter:card" content="summary_large_image">\n')
+    page = {
+        'path': path, 'legacy': True, 'lastmod': P['modified'],
+        'title': P['title'], 'description': P['description'],
+        'og_image': (img if img and not img.startswith('http') else '/assets/images/team-2026.jpg'),
+        'body_class': 'page-post', 'og_type': 'article', 'head_extra': head_extra,
+        'schema': [article_schema, breadcrumb_schema(domain, crumbs)] + faq_schema,
+        'body': TEMPLATE_MARK + post_hero(ch, P) +
+                f'''<section class="section pt-section"><div class="container pt-grid">
+  <div class="pt-main">{lead}<article class="prose pt-body">{body}</article>{faq_html}{author_box(D)}</div>
+  {post_rail(ch, D, toc)}
+</div></section>''' + rel_html + cta_band(ch),
+    }
+    if extra_page:
+        page.update(extra_page)
+    site.add(page)
+
+
+def page_title_for(P):
+    t = P['title'] or P['h1']
+    return t + SUFFIX if len(t + SUFFIX) <= 60 else t
+
+
+def posts(site):
+    D = site.D
     domain = D.site['domain']
     license_no = D.site.get('license', '')
     cats = {c['slug']: c for c in D.categories}
     BLOG_STATS.clear()
     _CARDS.clear()
     recs = sorted(legacy_all('post'), key=lambda r: r['date'], reverse=True)
-    by_cat = {}
-    for r in recs:
-        for c in r.get('categories', []):
-            by_cat.setdefault(c, []).append(r)
-    used_desc, used_title = set(), {}
     publisher = {'@type': 'Organization', '@id': domain + '/#business', 'name': D.site['name'], 'url': domain + '/',
                  'logo': {'@type': 'ImageObject', 'url': domain + D.site['logo'], 'width': 600, 'height': 316}}
-    touched = 0
+    retired = retired_posts()
+    built = []
     for r in recs:
         if r['path'] in RETIRED:
+            continue
+        if r['path'] in retired:
+            site.redirect(r['path'], retired[r['path']])
+            _stat('retired', r['path'])
             continue
         if site.has(r['path']):
             print(f'  ! post {r["path"]} collides with an existing page; skipped')
             continue
-        path = r['path']
-        img, branded = lead_image(r)
-        body0 = local_images(r['body'])
-        before = json.dumps([body0, [list(x) for x in r['faqs']], r['description'] or ''], ensure_ascii=False)
-        body = hygiene(body0, path, license_no)
-        faqs = [(hygiene(q, path, license_no), hygiene(a, path, license_no)) for q, a in r['faqs']]
-        desc_src = hygiene(r['description'] or '', path, license_no)
-        title = hygiene(r['title'], path, license_no)
-        if json.dumps([body, [list(x) for x in faqs], desc_src], ensure_ascii=False) != before:
-            touched += 1
-        if img:
-            body = re.sub(r'^<figure>.*?</figure>\n?', '', body)  # drop a duplicate lead image
-        cat = match_service(r, cats)
-        _stat('service:' + cat['slug'], path)
+        built.append(legacy_post(r, cats, license_no))
+    built += landmark_posts(site, cats, license_no)
 
-        qa = quick_answer(body, title)
-        body, toc = add_h2_ids(body)
-        body = insert_callout(body, service_callout(cat, ch))
+    used_desc, used_title = set(), {}
+    for P in built:
+        if not P['rewritten'] and not P.get('landmark'):
+            P['title'], P['description'] = legacy_meta(P, used_desc)
+        else:
+            P['title'] = page_title_for(P)
+        used_desc.add(P['description'])
+        if P['title'] in used_title:
+            _stat('title_duplicate', P['path'], used_title[P['title']])
+        used_title.setdefault(P['title'], P['path'])
+        if len(P['title']) > 60:
+            _stat('title_over_60', P['path'], P['title'])
+        _stat('service:' + P['cat']['slug'], P['path'])
+        _CARDS[P['path']] = {'path': P['path'], 'title': P['h1'], 'date': P['published'] or P['modified'],
+                             'img': P['img'], 'branded': P['branded'],
+                             'excerpt': P['description'] if (P['rewritten'] or P.get('landmark')) else
+                             text_excerpt(hygiene(P['raw_body'], P['path'], '', count=False), 130),
+                             'service': P['cat']['slug'], 'rewritten': P['rewritten']}
 
-        crumbs = [('Home', '/'), ('Blog', '/blog/'), (title, None)]
-        faq_schema = faq_section(faqs)[1] if faqs else []
-        related = []
-        for c in r.get('categories', []):
-            for o in by_cat.get(c, []):
-                if o is not r and o not in related:
-                    related.append(o)
-        related = related[:3] or [o for o in recs[:4] if o is not r][:3]
-        published, modified = _iso(r['date']), _iso(r['modified'] or r['date'])
-        cat_names = ', '.join(html.unescape(c) for c in r.get('categories', [])[:2] if c not in ('Blog', 'Uncategorized'))
-        meta = (f'<p class="post-meta">{icon("clock", 16)} '
-                f'<span>Last updated <time datetime="{modified}">{format_date(modified)}</time></span>'
-                f'<span class="post-meta-sep">·</span><span class="post-byline">By <a href="/our-team/">the Sky Clean Air Team</a></span>'
-                f'{"<span class=post-meta-sep>·</span><span>" + esc(cat_names) + "</span>" if cat_names else ""}</p>')
-        lead = (f'<figure class="post-lead"><img src="{img}" alt="{esc(title)}"'
-                f'{IMG_DIMS if branded else ""} fetchpriority="high"></figure>') if img else ''
-        qa_html = (f'<div class="post-quick-answer" id="quick-answer"><p class="post-qa-label">Quick Answer</p>'
-                   f'<p class="post-qa-text">{esc(qa)}</p></div>') if qa else ''
-        if qa:
-            _stat('quick_answer', path)
-        if len(toc) >= 3:
-            _stat('toc', path)
-        toc_block = toc_html(toc) if len(toc) >= 3 else ''
-        rel_html = ''
-        if related:
-            rel_html = '<section class="related-posts"><h2>Keep Reading</h2><div class="blog-grid">' + \
-                       ''.join(post_card(card_of(o)) for o in related) + '</div></section>'
+    by_service = {}
+    for P in sorted(built, key=lambda P: P['published'] or P['modified'], reverse=True):
+        by_service.setdefault(P['cat']['slug'], []).append(P['path'])
+    for P in built:
+        same = [p for p in by_service[P['cat']['slug']] if p != P['path']]
+        # Rewritten posts first, then the most recent, so related links point at cleaned-up content.
+        same.sort(key=lambda p: not _CARDS[p]['rewritten'])
+        related = [_CARDS[p] for p in same[:3]]
+        render_post(site, P, related, publisher, P.get('page_extra'))
 
-        # Meta description: the post's own, else its quick answer / opening sentences; unique.
-        body_sents = sentences(_text(body))[:8]
-        description = None
-        body_text = _text(body)
-        desc_cut = desc_src and not re.search(r'[.!?…)"”]$', desc_src.strip())
-        if desc_cut and _text(desc_src)[:60] in body_text[:600]:
-            # WordPress trimmed the excerpt mid-sentence: rebuild it from the same opening text.
-            start = body_text.index(_text(desc_src)[:60])
-            desc_src = body_text[start:start + 700]
-        for cand in (desc_src, qa or '', ' '.join(body_sents[:4]), ' '.join(body_sents[2:6])):
-            if not cand:
-                continue
-            d = fit_description(cand)
-            if d and d not in used_desc:
-                description = d
-                break
-        if not description:
-            description = fit_description(title.rstrip('.?!') + '. ' + ' '.join(body_sents)) or text_excerpt(r['body'], 155)
-            _stat('description_fallback', path, description)
-        if description != (r['description'] or ''):
-            _stat('description_changed', path)
-        used_desc.add(description)
-        page_title = post_title(dict(r, title=title, seo_title=hygiene(r.get('seo_title') or '', path, license_no)))
-        if page_title in used_title:
-            _stat('title_duplicate', path, used_title[page_title])
-        used_title.setdefault(page_title, path)
-        if len(page_title) > 60:
-            _stat('title_over_60', path, page_title)
-
-        url = domain + path
-        image_obj = ({'@type': 'ImageObject', 'url': domain + img, **({'width': 1200, 'height': 675} if branded else {})}
-                     if img else None)
-        article_schema = {
-            '@context': 'https://schema.org', '@type': 'BlogPosting',
-            'mainEntityOfPage': {'@type': 'WebPage', '@id': url},
-            'url': url, 'headline': title[:110], 'description': description,
-            **({'image': image_obj} if image_obj else {}),
-            'datePublished': published, 'dateModified': modified,
-            'author': {'@type': 'Organization', 'name': D.site['name'] + ' Team', 'url': domain + '/our-team/'},
-            'publisher': publisher, 'inLanguage': 'en-US',
-            'about': {'@type': 'Service', 'name': cat['name'], 'url': f'{domain}/services/{cat["slug"]}/',
-                      'provider': {'@id': domain + '/#business'}, 'areaServed': AREAS_SCHEMA},
-            'spatialCoverage': AREAS_SCHEMA,
-            'wordCount': len(_text(body).split()),
-            **({'articleSection': cat_names} if cat_names else {}),
-            'speakable': {'@type': 'SpeakableSpecification',
-                          'cssSelector': ['.page-hero h1'] + (['.post-qa-text'] if qa else [])},
-        }
-        head_extra = (f'<meta property="article:published_time" content="{published}">\n'
-                      f'<meta property="article:modified_time" content="{modified}">\n'
-                      '<meta name="twitter:card" content="summary_large_image">\n')
-        site.add({
-            'path': path, 'legacy': True, 'lastmod': modified,
-            'title': page_title, 'description': description,
-            'og_image': img or '/assets/images/team-2026.jpg',
-            'body_class': 'page-post', 'head_extra': head_extra,
-            'schema': [article_schema, breadcrumb_schema(domain, crumbs)] + faq_schema,
-            'body': page_hero(ch, esc(title), '', crumbs, ctas=False, extra=meta) +
-                    article_layout(f'{lead}{qa_html}{toc_block}<article class="prose">{body}</article>{rel_html}',
-                                   sidebar(ch, D)) +
-                    cta_band(ch),
-        })
-    BLOG_STATS['posts_touched_by_hygiene'] = {'count': touched, 'items': []}
-    cards = [card_of(r) for r in recs if site.pages.get(r['path'], {}).get('legacy')]
-    landmark = landmark_posts(site)
-    blog_index(site, sorted(cards + landmark, key=lambda c: c['date'], reverse=True), landmark)
+    cards = sorted(_CARDS.values(), key=lambda c: c['date'], reverse=True)
+    landmark = [c for c in cards if any(P['path'] == c['path'] and P.get('landmark') for P in built)]
+    blog_index(site, cards, landmark)
     report = ', '.join(f'{k} {v["count"]}' for k, v in sorted(BLOG_STATS.items()) if not k.startswith('service:'))
-    print(f'  blog: {len(cards)} legacy + {len(landmark)} Landmark posts; {report}')
+    print(f'  blog: {len(built)} posts ({len(landmark)} Landmark); {report}')
 
 
 # -- Landmark-published posts --------------------------------------------------
 # Landmark (an external publisher) commits finished pages straight to
-# public/blog/<slug>/index.html and lists them in .landmark/manifest.json. We
-# never regenerate or touch those files: each is registered as an `external`
-# page (build.py skips writing it but keeps it in the sitemap and link check),
-# and its title/description/date/og:image are read from its HTML for the /blog/
-# index. The /blog/ page keeps Landmark's `landmark:start/end` marker list so
-# its publisher can keep updating it between builds.
+# public/blog/<slug>/index.html and lists them in .landmark/manifest.json. So
+# every post looks the same, the build re-skins them: the publisher's original
+# HTML is saved to .landmark/source/<same path> (whenever the live file isn't
+# already our template, i.e. they've just published or republished it), its
+# article is lifted out, cleaned like any other post, and rendered through our
+# post template at the same URL. Their publishing flow keeps working unchanged.
 def _meta(doc, attr, name):
     m = re.search(r'<meta\s+%s="%s"\s+content="([^"]*)"' % (attr, re.escape(name)), doc) or \
         re.search(r'<meta\s+content="([^"]*)"\s+%s="%s"' % (attr, re.escape(name)), doc)
     return html.unescape(m.group(1)).strip() if m else ''
 
 
-def landmark_posts(site):
+def landmark_posts(site, cats, license_no):
     if not os.path.exists(LANDMARK_MANIFEST):
         return []
     domain = site.D.site['domain']
     out = []
     for rel in json.load(open(LANDMARK_MANIFEST, encoding='utf-8')).get('files', []):
-        f = os.path.join(ROOT, 'public', rel)
-        if not os.path.exists(f):
-            print(f'  ! Landmark manifest lists missing file {rel}')
+        live = os.path.join(ROOT, 'public', rel)
+        src = os.path.join(LANDMARK_SOURCE, rel)
+        doc = open(live, encoding='utf-8').read() if os.path.exists(live) else ''
+        if doc and TEMPLATE_MARK not in doc:
+            os.makedirs(os.path.dirname(src), exist_ok=True)
+            with open(src, 'w', encoding='utf-8') as f:
+                f.write(doc)
+        elif os.path.exists(src):
+            doc = open(src, encoding='utf-8').read()
+        else:
+            print(f'  ! Landmark post {rel}: no source HTML found')
             continue
-        doc = open(f, encoding='utf-8').read()
         canon = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', doc)
         path = canon.group(1).replace(domain, '') if canon and canon.group(1).startswith(domain) else \
             '/' + os.path.dirname(rel).replace(os.sep, '/') + '/'
+        if not path.endswith('/'):
+            path += '/'
+        if site.has(path):
+            print(f'  ! Landmark post {path} collides with a generated page; skipped')
+            continue
+        h1 = re.search(r'<h1[^>]*>(.*?)</h1>', doc, re.S)
         tm = re.search(r'<title>(.*?)</title>', doc, re.S)
-        title = _meta(doc, 'property', 'og:title') or (html.unescape(tm.group(1)).strip() if tm else path)
-        title = re.sub(r'\s*\|\s*Sky Clean Air\s*$', '', title)
+        title = _text(h1.group(1)) if h1 else re.sub(r'\s*\|\s*Sky Clean Air\s*$', '', html.unescape(tm.group(1)).strip())
+        art = re.search(r'<article[^>]*class="[^"]*post-article[^"]*"[^>]*>(.*?)</article>', doc, re.S)
+        body = art.group(1) if art else ''
+        body = re.sub(r'<figure[^>]*class="[^"]*lm-featured[^"]*".*?</figure>', '', body, flags=re.S)
+        body = hygiene(body, path, license_no)
         dm = re.search(r'"datePublished"\s*:\s*"([^"]+)"', doc)
         mm = re.search(r'"dateModified"\s*:\s*"([^"]+)"', doc)
         published = _iso(_meta(doc, 'property', 'article:published_time') or (dm.group(1) if dm else ''))
-        modified = _iso(mm.group(1) if mm else published)
-        desc = _meta(doc, 'name', 'description')
-        if site.has(path) or site.has(path.rstrip('/') + '/'):
-            print(f'  ! Landmark post {path} collides with a generated page; skipped')
-            continue
-        site.add({'path': path, 'external': True, 'source': '.landmark/manifest.json', 'title': title,
-                  'description': desc, 'lastmod': modified or published, 'body': ''})
-        out.append({'path': path, 'title': title, 'date': published or modified, 'excerpt': desc,
-                    'img': _meta(doc, 'property', 'og:image'), 'branded': False, 'landmark': True})
+        modified = _iso(mm.group(1) if mm else published) or published
+        cat = match_service({'title': title, 'seo_title': '', 'categories': [], 'body': body}, cats)
+        img = f'/assets/images/services/{cat["slug"]}.webp'
+        has_img = os.path.exists(os.path.join(ROOT, 'public', img.lstrip('/')))
+        out.append({'path': path, 'h1': title, 'title': None, 'description': _meta(doc, 'name', 'description'),
+                    'qa': quick_answer(body, title), 'body': body, 'faqs': [], 'cat': cat,
+                    'img': img if has_img else None, 'branded': has_img, 'published': published,
+                    'modified': modified, 'rewritten': False, 'landmark': True,
+                    'page_extra': {'source': '.landmark/manifest.json'}})
+        _stat('landmark_reskinned', path)
     return out
 
 
