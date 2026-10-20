@@ -176,7 +176,7 @@ def region_pages(site):
         if soon:
             h1 = f'<span class="hl">{esc(r["name"])}</span> — Coming Soon'
         site.add({
-            'path': path,
+            'path': path, 'region': r['slug'],
             'title': (f'{r["name"]} HVAC, Air Duct & Dryer Vent Services | Sky Clean Air' if not soon
                       else f'Sky Clean Air in the {r["name"]} — Coming Soon'),
             'description': r['blurb'],
@@ -264,7 +264,7 @@ def city_pages(site):
         }
         img = image_map().get((legacy or {}).get('image') or '')
         site.add({
-            'path': path, 'legacy': bool(legacy and not cc), 'lastmod': (legacy or {}).get('modified'),
+            'path': path, 'region': c['region'], 'legacy': bool(legacy and not cc), 'lastmod': (legacy or {}).get('modified'),
             'title': title, 'description': desc,
             'og_image': img or '/assets/images/team-2026.jpg',
             'head_extra': MAP_ASSETS, 'scripts': MAP_SCRIPTS,

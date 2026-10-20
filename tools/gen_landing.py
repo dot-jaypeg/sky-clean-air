@@ -89,7 +89,7 @@ def landing_pages(site):
   <div class="cta-actions"><a href="{{{{tel}}}}" class="btn btn-primary">Call {{{{phone}}}}</a><a href="#quote" class="btn btn-outline">Request a Callback</a></div>
 </div></div></section>'''
         site.add({
-            'path': path, 'chrome': 'lp', 'noindex': True, 'body_class': 'page-lp',
+            'path': path, 'region': region['slug'], 'chrome': 'lp', 'noindex': True, 'body_class': 'page-lp',
             'title': c['title'] if 'Sky Clean Air' in c['title'] else c['title'] + ' | Sky Clean Air',
             'description': c['description'],
             'body': body,

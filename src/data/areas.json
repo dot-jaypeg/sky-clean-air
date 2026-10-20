@@ -1,5 +1,5 @@
 {
-  "_note": "Single source of truth for where Sky Clean Air works. Drives the service-area pages, the map pins, nav, footer and homepage lists. To add a new market: add a region (status 'coming-soon' until launch) and its cities, then rebuild. Flipping a region's status to 'active' or 'launching' publishes a page for every city in it. A city can override its region's status with its own `status`. lat/lng are filled in by tools/geocode_areas.py.",
+  "_note": "Single source of truth for where Sky Clean Air works. Drives the service-area pages, the map pins, nav, footer and homepage lists. To add a new market: add a region (status 'coming-soon' until launch) and its cities, then rebuild. Flipping a region's status to 'active' or 'launching' publishes a page for every city in it. A city can override its region's status with its own `status`. lat/lng are filled in by tools/geocode_areas.py. A region's optional `phone`/`phone_tel` replace the main number on its region page, city pages and ad landing pages (organic tracking line; Google Ads swaps in its own forwarding number for ad visitors).",
   "regions": [
     {
       "slug": "san-diego-county",
@@ -34,7 +34,9 @@
       "intro": [
         "Orange County is the newest stop on our map, and we're bringing the same crew habits that built our name in San Diego: show up when we say we will, explain what we find in plain English, and give you a written price before any work starts.",
         "From the coastal neighborhoods of San Clemente, Dana Point and Huntington Beach to the inland heat of Mission Viejo, Lake Forest and Yorba Linda, OC homes put real demands on their HVAC systems. A lot of the housing here went up between the 1970s and 1990s, which means original ductwork, attic-mounted air handlers and systems that are quietly nearing the end of their life. That's exactly the kind of home we know how to take care of — whether you need a duct cleaning, a dryer vent that finally stops clogging, better attic insulation or a new, properly sized system."
-      ]
+      ],
+      "phone": "949-625-2199",
+      "phone_tel": "+19496252199"
     }
   ],
   "cities": [

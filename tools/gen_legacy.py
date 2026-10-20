@@ -559,6 +559,8 @@ LANDMARK_SOURCE = os.path.join(ROOT, '.landmark', 'source')
 @lru_cache(maxsize=None)
 def rewrites():
     out = {}
+    if os.environ.get('SCA_SKIP_REWRITES'):  # build without content/blog/ (e.g. while a rewrite pass is mid-run)
+        return out
     for f in sorted(glob.glob(os.path.join(REWRITES, '*.json'))):
         if not os.path.basename(f).startswith('_'):
             r = json.load(open(f, encoding='utf-8'))
@@ -568,6 +570,8 @@ def rewrites():
 
 @lru_cache(maxsize=None)
 def retired_posts():
+    if os.environ.get('SCA_SKIP_REWRITES'):
+        return {}
     f = os.path.join(REWRITES, '_retired.json')
     return json.load(open(f, encoding='utf-8')) if os.path.exists(f) else {}
 

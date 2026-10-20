@@ -83,6 +83,27 @@ def expand(body, ch, D):
     return re.sub(r'\{\{\s*([^}]+?)\s*\}\}', sub, body)
 
 
+def localize_phone(html_out, p, D):
+    """Swap the main number for the page's region number (areas.json -> region `phone`), everywhere
+    on the page except JSON-LD, which keeps the business's main NAP. The Google Ads call snippet's
+    phone_conversion_number is swapped too, so Ads can replace the number for ad visitors."""
+    region = p.get('region')
+    r = next((x for x in D.areas['regions'] if x['slug'] == region), None) if region else None
+    if not r or not r.get('phone'):
+        return html_out
+    main, local = D.site['phone'], r['phone']
+    a, b, c = main.split('-')
+    x, y, z = local.split('-')
+    pairs = [(main, local), (D.site['phone_tel'], r['phone_tel']), (f'({a}) {b}-{c}', f'({x}) {y}-{z}')]
+    parts = re.split(r'(<script type="application/ld\+json">.*?</script>)', html_out, flags=re.S)
+    for i, part in enumerate(parts):
+        if not part.startswith('<script type="application/ld+json">'):
+            for old, new in pairs:
+                part = part.replace(old, new)
+            parts[i] = part
+    return ''.join(parts)
+
+
 def out_path(url_path):
     rel = url_path.strip('/')
     if url_path.endswith('.html') or url_path.endswith('.xml') or url_path.endswith('.txt'):
@@ -177,6 +198,7 @@ class Site:
                 continue  # committed by an outside publisher (see gen_legacy.landmark_posts): never written here
             p['body'] = expand(p['body'], self.ch, self.D)
             html_out = self.ch.page(p) if not p.get('raw') else p['body']
+            html_out = localize_phone(html_out, p, self.D)
             dest = out_path(path)
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             with open(dest, 'w', encoding='utf-8') as f:
